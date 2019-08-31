@@ -1,8 +1,8 @@
 ---
-valuation: "data: {\"current\":3,\"last\":13,\"id\":\"valuation\",\"updatedAt\":1567176320583}\n\n"
-karma: "data: {\"current\":61980,\"last\":101780,\"id\":\"karma\",\"updatedAt\":1567176320583}\n\n"
-synergy: "data: {\"value\":31,\"id\":\"synergy\",\"updatedAt\":1567176320583}\n\n"
-buzzwords: "data: {\"items\":[{\"label\":\"Leverage\",\"value\":7},{\"label\":\"Exit
-  strategy\",\"value\":2},{\"label\":\"Pivoting\",\"value\":3},{\"label\":\"Turn-key\",\"value\":3},{\"label\":\"Paradigm
-  shift\",\"value\":4},{\"label\":\"Web 2.0\",\"value\":4},{\"label\":\"Synergy\",\"value\":1},{\"label\":\"Streamlininess\",\"value\":5}],\"id\":\"buzzwords\",\"updatedAt\":1567176320583}\n\n"
-convergence: "data: {\"points\":[{\"x\":30,\"y\":13},{\"x\":31,\"y\":23},{\"x\":32,\"y\":35},{\"x\":33,\"y\":10},{\"x\":34,\"y\":15},{\"x\":35,\"y\":12},{\"x\":36,\"y\":32},{\"x\":37,\"y\":21},{\"x\":38,\"y\":27},{\"x\":39,\"y\":26}],\"id\":\"convergence\",\"updatedAt\":1567176320884}\n\n"
+buzzwords: "data: {\"items\":[{\"label\":\"Web 2.0\",\"value\":6},{\"label\":\"Synergy\",\"value\":3},{\"label\":\"Paradigm
+  shift\",\"value\":3},{\"label\":\"Streamlininess\",\"value\":1},{\"label\":\"Exit
+  strategy\",\"value\":4},{\"label\":\"Pivoting\",\"value\":1}],\"id\":\"buzzwords\",\"updatedAt\":1567245136559}\n\n"
+convergence: "data: {\"points\":[{\"x\":19,\"y\":34},{\"x\":20,\"y\":33},{\"x\":21,\"y\":20},{\"x\":22,\"y\":24},{\"x\":23,\"y\":24},{\"x\":24,\"y\":3},{\"x\":25,\"y\":11},{\"x\":26,\"y\":14},{\"x\":27,\"y\":42},{\"x\":28,\"y\":44}],\"id\":\"convergence\",\"updatedAt\":1567245136559}\n\n"
+valuation: "data: {\"current\":13,\"last\":53,\"id\":\"valuation\",\"updatedAt\":1567245136560}\n\n"
+karma: "data: {\"current\":52605,\"last\":114625,\"id\":\"karma\",\"updatedAt\":1567245136560}\n\n"
+synergy: "data: {\"value\":51,\"id\":\"synergy\",\"updatedAt\":1567245136560}\n\n"
