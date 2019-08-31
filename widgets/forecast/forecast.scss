@@ -1,0 +1,35 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #EC3C6B;
+
+$full-color:  rgba(255, 255, 255, 1);
+$light-color: rgba(255, 255, 255, 0.7);
+
+// ----------------------------------------------------------------------------
+// Widget-forecast styles
+// ----------------------------------------------------------------------------
+.widget-forecast {
+
+  background-color: $background-color;
+
+  .title {
+    color: $light-color;
+  }
+
+  .temp {
+    color: $full-color;
+  }
+
+  .summary {
+    color: $light-color;
+  }
+
+  .more-info {
+      color: $light-color;
+  }
+
+  .updated-at {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
