@@ -6,18 +6,19 @@ convergence: "data: {\"points\":[{\"x\":19,\"y\":34},{\"x\":20,\"y\":33},{\"x\":
 valuation: "data: {\"current\":13,\"last\":53,\"id\":\"valuation\",\"updatedAt\":1567245136560}\n\n"
 karma: "data: {\"current\":52605,\"last\":114625,\"id\":\"karma\",\"updatedAt\":1567245136560}\n\n"
 synergy: "data: {\"value\":51,\"id\":\"synergy\",\"updatedAt\":1567245136560}\n\n"
-NationalRail: "data: {\"items\":[{\"label\":\"York\",\"value\":\"19:42 (On time) \"},{\"label\":\"Leeds\",\"value\":\"20:07
-  (On time) \"},{\"label\":\"Leeds\",\"value\":\"20:37 (On time) \"},{\"label\":\"York\",\"value\":\"20:43
-  (On time) \"},{\"label\":\"Leeds\",\"value\":\"21:07 (On time) \"}],\"message\":\"\",\"id\":\"NationalRail\",\"updatedAt\":1567449622277}\n\n"
+NationalRail: "data: {\"items\":[{\"label\":\"Leeds\",\"value\":\"22:07 (On time)
+  \"},{\"label\":\"Harrogate\",\"value\":\"22:52 (On time) \"},{\"label\":\"Leeds\",\"value\":\"23:07
+  (On time) \"},{\"label\":\"Leeds\",\"value\":\"23:40 (On time) \"},{\"label\":\"Harrogate\",\"value\":\"23:52
+  (On time) \"}],\"message\":\"\",\"id\":\"NationalRail\",\"updatedAt\":1567458489566}\n\n"
 news: "data: {\"headlines\":[{\"title\":\"Brexit: 'Election in October' if MPs block
   no deal\",\"description\":\"The PM says he does not want a general election, but
-  it is understood he would seek to call one if he is defeated over Brexit delays.\"},{\"title\":\"Hurricane
+  he is expected to seek one on 14 October if his opponents succeed.\"},{\"title\":\"Hurricane
   Dorian: Bahamas sees 'unprecedented devastation'\",\"description\":\"PM Hubert Minnis
   says reports suggest \\\"unprecedented devastation\\\" from the powerful storm.\"},{\"title\":\"Alfie
   Lamb car seat death: Man admits manslaughter\",\"description\":\"Three-year-old
   Alfie Lamb was squashed as he sat in a car footwell.\"},{\"title\":\"California
-  boat fire: At least 34 missing near Santa Cruz Island\",\"description\":\"At least
-  34 people are missing in the fire, which started in the middle of the night.\"},{\"title\":\"Boris
+  boat fire: Four dead, 29 missing near Santa Cruz Island\",\"description\":\"Some
+  passengers are believed to have been trapped below deck as the diving boat was destroyed.\"},{\"title\":\"Boris
   Johnson's new rescue puppy moves in to Downing Street\",\"description\":\"The 15-week-old
   Jack Russell-cross, called Dilyn, had been abandoned by puppy farmers.\"},{\"title\":\"Fake
   poison letter to Queen sparked major alert, court told\",\"description\":\"David
@@ -26,12 +27,12 @@ news: "data: {\"headlines\":[{\"title\":\"Brexit: 'Election in October' if MPs b
   Orb plant\",\"description\":\"The factory closure is called a \\\"devastating blow\\\"
   although Tata hopes to offer alternative work.\"},{\"title\":\"Kevin Hart suffers
   'major injuries' in car crash\",\"description\":\"The US comedian and actor was
-  hurt in an accident in Los Angeles early on Sunday morning.\"},{\"title\":\"Hong
-  Kong students boycott class on first day of school\",\"description\":\"School and
-  university students are joining a broader strike as the city reels after a weekend
-  of unrest.\"},{\"title\":\"Night in the Woods video game creator Alec Holowka dies\",\"description\":\"Police
-  are investigating the death of Alec Holowka, co-creator of the Night in the Woods
-  video game.\"},{\"title\":\"Where whales are back on the menu\",\"description\":\"After
+  hurt in an accident in Los Angeles early on Sunday morning.\"},{\"title\":\"British
+  family involved in collision in Greece, Foreign Office confirms\",\"description\":\"The
+  Foreign Office confirms it is in contact with local authorities following the incident.\"},{\"title\":\"Night
+  in the Woods video game creator Alec Holowka dies\",\"description\":\"Police are
+  investigating the death of Alec Holowka, co-creator of the Night in the Woods video
+  game.\"},{\"title\":\"Where whales are back on the menu\",\"description\":\"After
   33 years, Japanese fishermen are once again carrying out commercial whaling.\"},{\"title\":\"Terrance
   Dicks, Doctor Who writer and script editor, dies at 84\",\"description\":\"The prolific
   British writer entertained generations of readers with his Doctor Who novelisations.\"},{\"title\":\"Make-up’s
@@ -39,9 +40,9 @@ news: "data: {\"headlines\":[{\"title\":\"Brexit: 'Election in October' if MPs b
   Guinea to discover the truth about what’s in her make-up, and find out whether there’s
   a sustainable way of producing the oil used.\"},{\"title\":\"Barbara Windsor goes
   to Downing Street to deliver dementia petition\",\"description\":\"The former Eastenders
-  star visited Downing Street on behalf of the Alzheimer's Society.\"},{\"title\":\"Australian
+  star visited Downing Street on behalf of the Alzheimer's Society.\"},{\"title\":\"Australia
   flying student makes 'perfect' emergency landing\",\"description\":\"An Australian
-  man landed a light aircraft in just his third lesson after his instructor blacked
+  safely landed a light aircraft during his third lesson after his instructor blacked
   out.\"},{\"title\":\"Jet suit: British inventor flies letter to Isle of Wight\",\"description\":\"Richard
   Browning revives a 1934 dream by delivering a letter to the Isle of Wight in a jet
   suit.\"},{\"title\":\"Why Brazilian people are getting a tattoo of a museum\",\"description\":\"How
@@ -57,7 +58,7 @@ news: "data: {\"headlines\":[{\"title\":\"Brexit: 'Election in October' if MPs b
   designs can be thinner, lighter and made out of non-traditional materials.\"},{\"title\":\"World
   War Two: Sirens sound to commemorate start of war\",\"description\":\"Politicians
   from around the world have attended events in Poland to remember the German invasion
-  80 years ago.\"},{\"title\":\"BBC News Channel\",\"description\":\"Britain's most-watched
+  80 years ago.\"},{\"title\":\"BBC News at Ten\",\"description\":\"Britain's most-watched
   news channel, delivering breaking news and analysis all day, every day.\"},{\"title\":\"Joker
   film: 'daring' yet 'pernicious' origin story divides critics\",\"description\":\"Joaquin
   Phoenix impresses but not all reviewers are wowed by the comic book villain's latest
@@ -77,28 +78,52 @@ news: "data: {\"headlines\":[{\"title\":\"Brexit: 'Election in October' if MPs b
   is an event in Finland celebrating afro hairdos and bringing together Afro-Finns.\"},{\"title\":\"In
   pictures: A time capsule of Leeds' lost buildings\",\"description\":\"How photographer
   Peter Mitchell captured a side of Leeds that would soon be erased by the bulldozer.\"},{\"title\":\"US
-  Open 2019: Defending champion Naomi Osaka loses to Belinda Bencic\",\"description\":\"Defending
+  Open 2019: Naomi Osaka loses to Belinda Bencic in last 16\",\"description\":\"Defending
   champion Naomi Osaka is knocked out of the US Open as she loses 7-5 6-4 to Switzerland's
-  Belinda Bencic in the last 16 on Monday.\"},{\"title\":\"Rangers agree £7m fee with
-  Liverpool for Kent\",\"description\":\"Liverpool agree a £7m fee with Rangers for
-  the transfer of winger Ryan Kent to the Ibrox club.\"},{\"title\":\"Archer will
-  demand to bowl at returning Smith - Broad\",\"description\":\"England bowler Jofra
-  Archer will raise his game when he renews his contest with Australia's Steve Smith
-  in the fourth Ashes Test, says Stuart Broad.\"},{\"title\":\"Team Ineos sign Giro
-  d'Italia champion Carapaz from 2020\",\"description\":\"Team Ineos sign Ecuador's
-  Giro d'Italia champion Richard Carapaz on a three-year deal from next season.\"},{\"title\":\"Bundesliga:
-  FC Union Berlin stun Dortmund to claim first win\",\"description\":\"Watch highlights
-  as FC Union Berlin claim their first win in the Bundesliga, with a 3-1 victory over
-  Borussia Dortmund at the Stadion An der Alten Forsterei.\"},{\"title\":\"Brexit:
-  EU considers using disaster fund for no deal\",\"description\":\"The move could
-  see the scenario classified alongside earthquakes or floods for EU aid applications.\"},{\"title\":\"Can
+  Belinda Bencic in the last 16 on Monday.\"},{\"title\":\"Archer will demand to bowl
+  at returning Smith - Broad\",\"description\":\"England bowler Jofra Archer will
+  raise his game when he renews his contest with Australia's Steve Smith in the fourth
+  Ashes Test, says Stuart Broad.\"},{\"title\":\"Bury's expulsion from the EFL: MP
+  James Frith to put forward League Two proposal\",\"description\":\"Bury North MP
+  James Frith says he plans to put forward a proposal to the EFL by 20 September in
+  a bid to have Bury reinstated to League Two in 2020/21.\"},{\"title\":\"Christian
+  Coleman: US Anti-Doping Agency withdraws case against sprinter\",\"description\":\"The
+  US Anti-Doping Agency withdraws its case against sprinter Christian Coleman, the
+  fastest man in the world this year.\"},{\"title\":\"Bundesliga: FC Union Berlin
+  stun Dortmund to claim first win\",\"description\":\"Watch highlights as FC Union
+  Berlin claim their first win in the Bundesliga, with a 3-1 victory over Borussia
+  Dortmund at the Stadion An der Alten Forsterei.\"},{\"title\":\"Brexit's most important
+  week? Five things that happened on Monday\",\"description\":\"At the start of a
+  potentially decisive week for Brexit, here are five key things that happened on
+  Monday.\"},{\"title\":\"Brexit: EU considers using disaster fund for no deal\",\"description\":\"The
+  move could see the scenario classified alongside earthquakes or floods for EU aid
+  applications.\"},{\"title\":\"Elephant traps and pigs in pokes?\",\"description\":\"Elephant
+  traps, pigs and pokes - it's been a strange few days in politics.\"},{\"title\":\"Can
   no-deal Brexit be stopped?\",\"description\":\"What ways - if any - do MPs and lawyers
   have of preventing the UK leaving the EU without a deal on 31 October?\"},{\"title\":\"Brexit:
   What happens now?\",\"description\":\"Prime Minister Boris Johnson says he plans
   to renegotiate the Brexit deal. What could happen?\"},{\"title\":\"Corbyn wants
   an election despite warning from Tony Blair\",\"description\":\"The Labour leader
   says the UK \\\"needs\\\" a general election, but the ex-PM says it could be \\\"a
-  trap\\\".\"},{\"title\":\"Elephant traps and pigs in pokes?\",\"description\":\"Elephant
-  traps, pigs and pokes - it's been a strange few days in politics.\"}],\"id\":\"news\",\"updatedAt\":1567449622243}\n\n"
-weeklyweather: "data: {\"forecasts\":[{\"high\":19,\"low\":14,\"date\":\"Tuesday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":10,\"date\":\"Wednesday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":7,\"date\":\"Thursday\",\"code\":\"partly-cloudy-day\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":11,\"date\":\"Friday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":9,\"date\":\"Saturday\",\"code\":\"partly-cloudy-day\",\"text\":null,\"element\":\"weather-icon\"}],\"today\":{\"temp\":\"14°C\",\"summary\":\"High
-  of 17 with a low of 10. Overcast throughout the day.\",\"code\":\"rain\",\"element\":\"currentWeatherIcon\",\"location\":\"Horsforth,\\u003cbr\\u003eLeeds\"},\"id\":\"weeklyweather\",\"updatedAt\":1567449622643}\n\n"
+  trap\\\".\"}],\"id\":\"news\",\"updatedAt\":1567458489503}\n\n"
+weeklyweather: "data: {\"forecasts\":[{\"high\":19,\"low\":14,\"date\":\"Tuesday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":10,\"date\":\"Wednesday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":17,\"low\":7,\"date\":\"Thursday\",\"code\":\"partly-cloudy-day\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":11,\"date\":\"Friday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":9,\"date\":\"Saturday\",\"code\":\"partly-cloudy-day\",\"text\":null,\"element\":\"weather-icon\"}],\"today\":{\"temp\":\"13°C\",\"summary\":\"High
+  of 16 with a low of 10. Overcast throughout the day.\",\"code\":\"partly-cloudy-night\",\"element\":\"currentWeatherIcon\",\"location\":\"Horsforth,\\u003cbr\\u003eLeeds\"},\"id\":\"weeklyweather\",\"updatedAt\":1567458489884}\n\n"
+google_calendar: "data: {\"events\":[{\"start\":\"2019-09-03T16:00:00.000Z\",\"end\":\"2019-09-03T17:00:00.000Z\",\"summary\":\"Emily
+  Visit\"},{\"start\":\"2019-09-04T18:00:00.000Z\",\"end\":\"2019-09-04T19:00:00.000Z\",\"summary\":\"William
+  Hill Match\"},{\"start\":\"2019-09-07\",\"end\":\"2019-09-09\",\"summary\":\"Uni
+  Friends\"},{\"start\":\"2019-09-14T10:30:00.000Z\",\"end\":\"2019-09-14T11:30:00.000Z\",\"summary\":\"Nationwide
+  Appointment\"},{\"start\":\"2019-09-15\",\"end\":\"2019-09-16\",\"summary\":\"Lauren
+  Birthday\"},{\"start\":\"2019-09-15\",\"end\":\"2019-09-16\",\"summary\":\"Lauren
+  Birthday\"}],\"id\":\"google_calendar\",\"updatedAt\":1567453501991}\n\n"
+google_calendar_tom: "data: {\"events\":[{\"start\":\"2019-09-03T16:00:00.000Z\",\"end\":\"2019-09-03T17:00:00.000Z\",\"summary\":\"Emily
+  Visit\"},{\"start\":\"2019-09-04T18:00:00.000Z\",\"end\":\"2019-09-04T19:00:00.000Z\",\"summary\":\"William
+  Hill Match\"},{\"start\":\"2019-09-07\",\"end\":\"2019-09-09\",\"summary\":\"Uni
+  Friends\"},{\"start\":\"2019-09-14T10:30:00.000Z\",\"end\":\"2019-09-14T11:30:00.000Z\",\"summary\":\"Nationwide
+  Appointment\"},{\"start\":\"2019-09-22\",\"end\":\"2019-09-23\",\"summary\":\"10k
+  Run\"},{\"start\":\"2019-09-24\",\"end\":\"2019-09-28\",\"summary\":\"Stay at Hotel
+  Helios\"}],\"id\":\"google_calendar_tom\",\"updatedAt\":1567458494010}\n\n"
+google_calendar_lauren: "data: {\"events\":[{\"start\":\"2019-09-24\",\"end\":\"2019-09-30\",\"summary\":\"France\"},{\"start\":\"2019-09-27\",\"end\":\"2019-09-30\",\"summary\":\"Stay
+  at Chambre privee\"},{\"start\":\"2019-10-05T18:00:00.000Z\",\"end\":\"2019-10-05T19:00:00.000Z\",\"summary\":\"Becca
+  golf and comedy\"},{\"start\":\"2019-10-07\",\"end\":\"2019-10-09\",\"summary\":\"Academic
+  programme Wee\"},{\"start\":\"2019-10-12\",\"end\":\"2019-10-14\",\"summary\":\"Gals\"},{\"start\":\"2019-11-16\",\"end\":\"2019-11-17\",\"summary\":\"Bride
+  swag\"}],\"id\":\"google_calendar_lauren\",\"updatedAt\":1567458494592}\n\n"

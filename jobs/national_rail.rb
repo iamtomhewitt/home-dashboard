@@ -9,7 +9,7 @@ token = "4ae0f545-388c-4812-a4c9-b72ffb815abd"
 crs = "HRS"
 numRows = "8"
 
-SCHEDULER.every "30s", :first_in => 0 do |job|
+SCHEDULER.every "1m", :first_in => 0 do |job|
 
     url = URI("https://lite.realtime.nationalrail.co.uk/OpenLDBWS/ldb6.asmx")
 
