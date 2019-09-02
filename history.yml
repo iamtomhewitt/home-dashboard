@@ -6,3 +6,8 @@ convergence: "data: {\"points\":[{\"x\":19,\"y\":34},{\"x\":20,\"y\":33},{\"x\":
 valuation: "data: {\"current\":13,\"last\":53,\"id\":\"valuation\",\"updatedAt\":1567245136560}\n\n"
 karma: "data: {\"current\":52605,\"last\":114625,\"id\":\"karma\",\"updatedAt\":1567245136560}\n\n"
 synergy: "data: {\"value\":51,\"id\":\"synergy\",\"updatedAt\":1567245136560}\n\n"
+NationalRail: "data: {\"items\":[{\"label\":\"Leeds\",\"value\":\"19:08 (19:10) -
+  2 min\"},{\"label\":\"Knaresborough\",\"value\":\"19:14 (On time) \"},{\"label\":\"Leeds\",\"value\":\"19:37
+  (On time) \"},{\"label\":\"York\",\"value\":\"19:42 (On time) \"},{\"label\":\"Leeds\",\"value\":\"20:07
+  (On time) \"},{\"label\":\"Leeds\",\"value\":\"20:37 (On time) \"},{\"label\":\"York\",\"value\":\"20:43
+  (On time) \"}],\"message\":\"\",\"id\":\"NationalRail\",\"updatedAt\":1567447519262}\n\n"

@@ -3,6 +3,7 @@ require 'net/http'
 require 'openssl'
 require 'nokogiri'
 require "json"
+require 'active_support/all'
 
 token = "4ae0f545-388c-4812-a4c9-b72ffb815abd"
 crs = "HRS"
@@ -32,51 +33,40 @@ SCHEDULER.every "30s", :first_in => 0 do |job|
     digResult = data.dig("Envelope", "Body", "GetDepartureBoardResponse", "GetStationBoardResult", "trainServices","service")
 
     if(digResult != nil)
-
         services = data['Envelope']['Body']['GetDepartureBoardResponse']['GetStationBoardResult']['trainServices']['service']
 
-        if(services.kind_of?(Array))
-        
+        if(services.kind_of?(Array))        
             data['Envelope']['Body']['GetDepartureBoardResponse']['GetStationBoardResult']['trainServices']['service'].each do |child|
-                
                 
                 isValidTime = Time.parse(child['etd']) rescue nil
 
                 if isValidTime 
                     timeDiff = "- #{time_diff(child['std'].to_time.to_i , child['etd'].to_time.to_i )} min"
-                end
-                
+                end                
                 
                 item = {
                     label: "#{child['destination']['location']['locationName']}",
                     value: "#{child['std']} (#{child['etd']}) #{timeDiff}",
                 }
                 
-                trains.push(item)
-            
+                trains.push(item)            
             end
            
             if(stationMessage == nil)
                 send_event "NationalRail", { items: trains, message: ""}
-            else
-            
+            else            
                 message = stationMessage['message']
                 indexOf = stationMessage['message'].index "<A"
                 message.insert (indexOf.to_i + 2), " target='_blank'"
                 message = "Notice: #{message}"
                 send_event "NationalRail", { items: trains, message: message}
             end
-        else
-        
+        else        
             send_event "NationalRail", { items: [{label: "No more trains today",  value: ":("}] }
-
         end
-        
     else
-            send_event "NationalRail", { items: [{label: "No more trains today",  value: ":("}] }
-    
+        send_event "NationalRail", { items: [{label: "No more trains today",  value: ":("}] }
     end
-
 end
 
 def time_diff(start_time, end_time)
