@@ -6,7 +6,99 @@ convergence: "data: {\"points\":[{\"x\":19,\"y\":34},{\"x\":20,\"y\":33},{\"x\":
 valuation: "data: {\"current\":13,\"last\":53,\"id\":\"valuation\",\"updatedAt\":1567245136560}\n\n"
 karma: "data: {\"current\":52605,\"last\":114625,\"id\":\"karma\",\"updatedAt\":1567245136560}\n\n"
 synergy: "data: {\"value\":51,\"id\":\"synergy\",\"updatedAt\":1567245136560}\n\n"
-NationalRail: "data: {\"items\":[{\"label\":\"Leeds\",\"value\":\"19:37 (On time)
-  \"},{\"label\":\"York\",\"value\":\"19:42 (On time) \"},{\"label\":\"Leeds\",\"value\":\"20:07
+NationalRail: "data: {\"items\":[{\"label\":\"York\",\"value\":\"19:42 (On time) \"},{\"label\":\"Leeds\",\"value\":\"20:07
   (On time) \"},{\"label\":\"Leeds\",\"value\":\"20:37 (On time) \"},{\"label\":\"York\",\"value\":\"20:43
-  (On time) \"},{\"label\":\"Leeds\",\"value\":\"21:07 (On time) \"}],\"message\":\"\",\"id\":\"NationalRail\",\"updatedAt\":1567448361013}\n\n"
+  (On time) \"},{\"label\":\"Leeds\",\"value\":\"21:07 (On time) \"}],\"message\":\"\",\"id\":\"NationalRail\",\"updatedAt\":1567449622277}\n\n"
+news: "data: {\"headlines\":[{\"title\":\"Brexit: 'Election in October' if MPs block
+  no deal\",\"description\":\"The PM says he does not want a general election, but
+  it is understood he would seek to call one if he is defeated over Brexit delays.\"},{\"title\":\"Hurricane
+  Dorian: Bahamas sees 'unprecedented devastation'\",\"description\":\"PM Hubert Minnis
+  says reports suggest \\\"unprecedented devastation\\\" from the powerful storm.\"},{\"title\":\"Alfie
+  Lamb car seat death: Man admits manslaughter\",\"description\":\"Three-year-old
+  Alfie Lamb was squashed as he sat in a car footwell.\"},{\"title\":\"California
+  boat fire: At least 34 missing near Santa Cruz Island\",\"description\":\"At least
+  34 people are missing in the fire, which started in the middle of the night.\"},{\"title\":\"Boris
+  Johnson's new rescue puppy moves in to Downing Street\",\"description\":\"The 15-week-old
+  Jack Russell-cross, called Dilyn, had been abandoned by puppy farmers.\"},{\"title\":\"Fake
+  poison letter to Queen sparked major alert, court told\",\"description\":\"David
+  Parnham also sent letters containing white powder to Theresa May, David Cameron
+  and two bishops.\"},{\"title\":\"Tata: Hundreds of steel jobs could go at Newport
+  Orb plant\",\"description\":\"The factory closure is called a \\\"devastating blow\\\"
+  although Tata hopes to offer alternative work.\"},{\"title\":\"Kevin Hart suffers
+  'major injuries' in car crash\",\"description\":\"The US comedian and actor was
+  hurt in an accident in Los Angeles early on Sunday morning.\"},{\"title\":\"Hong
+  Kong students boycott class on first day of school\",\"description\":\"School and
+  university students are joining a broader strike as the city reels after a weekend
+  of unrest.\"},{\"title\":\"Night in the Woods video game creator Alec Holowka dies\",\"description\":\"Police
+  are investigating the death of Alec Holowka, co-creator of the Night in the Woods
+  video game.\"},{\"title\":\"Where whales are back on the menu\",\"description\":\"After
+  33 years, Japanese fishermen are once again carrying out commercial whaling.\"},{\"title\":\"Terrance
+  Dicks, Doctor Who writer and script editor, dies at 84\",\"description\":\"The prolific
+  British writer entertained generations of readers with his Doctor Who novelisations.\"},{\"title\":\"Make-up’s
+  big secret\",\"description\":\"Make-up artist Emmy Burbidge travels to Papua New
+  Guinea to discover the truth about what’s in her make-up, and find out whether there’s
+  a sustainable way of producing the oil used.\"},{\"title\":\"Barbara Windsor goes
+  to Downing Street to deliver dementia petition\",\"description\":\"The former Eastenders
+  star visited Downing Street on behalf of the Alzheimer's Society.\"},{\"title\":\"Australian
+  flying student makes 'perfect' emergency landing\",\"description\":\"An Australian
+  man landed a light aircraft in just his third lesson after his instructor blacked
+  out.\"},{\"title\":\"Jet suit: British inventor flies letter to Isle of Wight\",\"description\":\"Richard
+  Browning revives a 1934 dream by delivering a letter to the Isle of Wight in a jet
+  suit.\"},{\"title\":\"Why Brazilian people are getting a tattoo of a museum\",\"description\":\"How
+  staff and students from Brazil's National Museum are coping with the loss of the
+  building after fire destroyed it last year.\"},{\"title\":\"Minecraft players to
+  be helped by AI assistant\",\"description\":\"The smart assistant can help players
+  dig and build in the massively popular block-based video game.\"},{\"title\":\"Sheffield
+  professor urges dentists to ditch single-use plastic\",\"description\":\"\\\"I've
+  never seen this many different plastics in one place,\\\" chemistry professor Tony
+  Ryan says.\"},{\"title\":\"Newsnight: The music behind the headlines\",\"description\":\"As
+  Newsnight unveils a new look and sound, the man behind the theme tune shares his
+  composing secrets.\"},{\"title\":\"How Gothic cathedrals can inspire modern architecture\",\"description\":\"Arched
+  designs can be thinner, lighter and made out of non-traditional materials.\"},{\"title\":\"World
+  War Two: Sirens sound to commemorate start of war\",\"description\":\"Politicians
+  from around the world have attended events in Poland to remember the German invasion
+  80 years ago.\"},{\"title\":\"BBC News Channel\",\"description\":\"Britain's most-watched
+  news channel, delivering breaking news and analysis all day, every day.\"},{\"title\":\"Joker
+  film: 'daring' yet 'pernicious' origin story divides critics\",\"description\":\"Joaquin
+  Phoenix impresses but not all reviewers are wowed by the comic book villain's latest
+  outing.\"},{\"title\":\"In pictures: Famous names 30 minutes before curtain up\",\"description\":\"Intimate,
+  off-guard images of acclaimed actors as they gear up to go on stage.\"},{\"title\":\"The
+  former monk who runs a $100m meditation firm\",\"description\":\"After a decade
+  as a Buddhist monk, Andy Puddicombe set up Headspace with one of his clients.\"},{\"title\":\"Modern
+  slavery: Are British victims being failed in the UK?\",\"description\":\"The number
+  of British nationals enslaved in the UK doubled last year, but low conviction rates
+  persist.\"},{\"title\":\"The back-to-school question some believe we should ditch\",\"description\":\"Teachers
+  and former students debate whether you should ask children what they did during
+  the summer.\"},{\"title\":\"Can you survive on foraged food?\",\"description\":\"Experts
+  say a range of wild foods can supplement a normal diet - but can you go even further?\"},{\"title\":\"Mat
+  Dan: 'I became an accidental celebrity 6,000 miles from home'\",\"description\":\"When
+  Daniel Tyler went backpacking, little did he know he'd end up a star in Malaysia.\"},{\"title\":\"Afro
+  hair: How black Finns are taking on racism\",\"description\":\"The Good Hair Day
+  is an event in Finland celebrating afro hairdos and bringing together Afro-Finns.\"},{\"title\":\"In
+  pictures: A time capsule of Leeds' lost buildings\",\"description\":\"How photographer
+  Peter Mitchell captured a side of Leeds that would soon be erased by the bulldozer.\"},{\"title\":\"US
+  Open 2019: Defending champion Naomi Osaka loses to Belinda Bencic\",\"description\":\"Defending
+  champion Naomi Osaka is knocked out of the US Open as she loses 7-5 6-4 to Switzerland's
+  Belinda Bencic in the last 16 on Monday.\"},{\"title\":\"Rangers agree £7m fee with
+  Liverpool for Kent\",\"description\":\"Liverpool agree a £7m fee with Rangers for
+  the transfer of winger Ryan Kent to the Ibrox club.\"},{\"title\":\"Archer will
+  demand to bowl at returning Smith - Broad\",\"description\":\"England bowler Jofra
+  Archer will raise his game when he renews his contest with Australia's Steve Smith
+  in the fourth Ashes Test, says Stuart Broad.\"},{\"title\":\"Team Ineos sign Giro
+  d'Italia champion Carapaz from 2020\",\"description\":\"Team Ineos sign Ecuador's
+  Giro d'Italia champion Richard Carapaz on a three-year deal from next season.\"},{\"title\":\"Bundesliga:
+  FC Union Berlin stun Dortmund to claim first win\",\"description\":\"Watch highlights
+  as FC Union Berlin claim their first win in the Bundesliga, with a 3-1 victory over
+  Borussia Dortmund at the Stadion An der Alten Forsterei.\"},{\"title\":\"Brexit:
+  EU considers using disaster fund for no deal\",\"description\":\"The move could
+  see the scenario classified alongside earthquakes or floods for EU aid applications.\"},{\"title\":\"Can
+  no-deal Brexit be stopped?\",\"description\":\"What ways - if any - do MPs and lawyers
+  have of preventing the UK leaving the EU without a deal on 31 October?\"},{\"title\":\"Brexit:
+  What happens now?\",\"description\":\"Prime Minister Boris Johnson says he plans
+  to renegotiate the Brexit deal. What could happen?\"},{\"title\":\"Corbyn wants
+  an election despite warning from Tony Blair\",\"description\":\"The Labour leader
+  says the UK \\\"needs\\\" a general election, but the ex-PM says it could be \\\"a
+  trap\\\".\"},{\"title\":\"Elephant traps and pigs in pokes?\",\"description\":\"Elephant
+  traps, pigs and pokes - it's been a strange few days in politics.\"}],\"id\":\"news\",\"updatedAt\":1567449622243}\n\n"
+weeklyweather: "data: {\"forecasts\":[{\"high\":19,\"low\":14,\"date\":\"Tuesday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":10,\"date\":\"Wednesday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":7,\"date\":\"Thursday\",\"code\":\"partly-cloudy-day\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":11,\"date\":\"Friday\",\"code\":\"rain\",\"text\":null,\"element\":\"weather-icon\"},{\"high\":16,\"low\":9,\"date\":\"Saturday\",\"code\":\"partly-cloudy-day\",\"text\":null,\"element\":\"weather-icon\"}],\"today\":{\"temp\":\"14°C\",\"summary\":\"High
+  of 17 with a low of 10. Overcast throughout the day.\",\"code\":\"rain\",\"element\":\"currentWeatherIcon\",\"location\":\"Horsforth,\\u003cbr\\u003eLeeds\"},\"id\":\"weeklyweather\",\"updatedAt\":1567449622643}\n\n"
