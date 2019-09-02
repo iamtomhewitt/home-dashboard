@@ -1,0 +1,39 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #47bbb3;
+$value-color:       #fff;
+ 
+$title-color:       rgba(255, 255, 255, 0.7);;
+$moreinfo-color:    rgba(255, 255, 255, 0.7);;
+ 
+// ----------------------------------------------------------------------------
+// Widget-weather styles
+// ----------------------------------------------------------------------------
+.widget-news {
+
+  background-color: $background-color;
+  vertical-align: baseline !important;
+
+  .headline-container {
+    display: none;
+  }
+
+  .heading span {
+    color: black;
+  }
+
+  .heading img {
+    margin-top: -5px;
+  }
+
+  .description {
+    font-size: 0.8em;
+  }
+
+  .heading{
+    font-size: 1.2em;
+    padding: 20px;
+  }
+
+}
