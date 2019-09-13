@@ -1,0 +1,1 @@
+class Dashing.TodoList extends Dashing.Widget

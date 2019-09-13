@@ -1,4 +1,9 @@
 <script type='text/javascript'>
+$(function() foo() {
+   alert("Submit button clicked!");
+   return true;
+}
+
  $(function() {
    Dashing.gridsterLayout('[{"col":2,"row":1,"size_x":1,"size_y":1},{"col":1,"row":1,"size_x":1,"size_y":1},{"col":3,"row":2,"size_x":1,"size_y":1},{"col":1,"row":2,"size_x":2,"size_y":1},{"col":3,"row":1,"size_x":1,"size_y":1},{"col":4,"row":1,"size_x":1,"size_y":1}]')
  });
@@ -14,6 +19,7 @@
       <div data-view="Clock"></div>
     </li>
 
+
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="news" data-view="News"></div>
     </li>
@@ -27,6 +33,10 @@
     </li>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" >
       <div data-id="google_calendar_lauren" data-view="GoogleCalendar" data-title="Lauren's Calendar" style="background-color: #E67C73">
+    </li>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" >
+      <div data-id="todo-list" data-view="TodoList" data-title="Your Todo List">
     </li>
   </ul>
 </div>

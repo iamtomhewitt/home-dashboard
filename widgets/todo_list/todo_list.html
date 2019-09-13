@@ -1,0 +1,22 @@
+<h1 class="title" data-bind="title"></h1>
+
+<ul>
+    <li data-foreach-item="items">
+        <span data-bind="item.name"></span>
+        <a data-bind="item.removeUrl | raw">dddd</a>
+    </li>
+</ul>
+
+<form>
+    <input type="text" id="newItem" name="newItemName">
+    <button type="button" onclick="return foo(this.form.newItemName.value);">Go</button>
+</form>
+
+<p class="updated-at" data-bind="updatedAtMessage"></p>
+
+<script>
+    function foo(name) {
+        alert(name);
+        return;
+    }
+</script>

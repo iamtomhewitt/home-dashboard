@@ -7,7 +7,7 @@ require 'active_support/all'
 
 token = "4ae0f545-388c-4812-a4c9-b72ffb815abd"
 crs = "HRS"
-numRows = "8"
+numRows = "6"
 
 SCHEDULER.every "1m", :first_in => 0 do |job|
 
