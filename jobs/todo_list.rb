@@ -2,28 +2,63 @@ require 'json'
 require 'net/http'
 require 'httparty'
 
-private_code = 'BUmbxItLy0a8oq8Gtz1_xQhaHmJ5QbCUKnqfRKGMs85A'
-public_code = '5d7bc377d1041303ec9461d6'
+private_code    = 'BUmbxItLy0a8oq8Gtz1_xQhaHmJ5QbCUKnqfRKGMs85A'
+public_code     = '5d7bc377d1041303ec9461d6'
 
-add_url = 'http://dreamlo.com/lb/BUmbxItLy0a8oq8Gtz1_xQhaHmJ5QbCUKnqfRKGMs85A/add/'
-get_url = 'http://dreamlo.com/lb/5d7bc377d1041303ec9461d6/json'
-delete_url = 'http://dreamlo.com/lb/BUmbxItLy0a8oq8Gtz1_xQhaHmJ5QbCUKnqfRKGMs85A/delete/'
+get_url         = 'http://dreamlo.com/lb/'+public_code+'/json'
+add_url         = 'http://dreamlo.com/lb/'+private_code+'/add/'
+delete_url      = 'http://dreamlo.com/lb/'+private_code+'/delete/'
 
-def fetch(uri)
-    response = HTTParty.get(uri)
-    data = response['dreamlo']['leaderboard']['entry']
-end
-
-SCHEDULER.every "1m", :first_in => 0 do |job |
+SCHEDULER.every "5s", :first_in => 0 do |job |
     items = []
 
-    data = fetch(get_url)
-    data.each do |item|
+    uri = URI.parse(get_url)
+    response = Net::HTTP.get_response(uri)
+    data = JSON.parse(response.body)
+    puts data
+    puts "---"
+
+    entries = data['dreamlo']['leaderboard']['entry']
+    
+    if entries.kind_of?(Array)
+        entries.each do |child|
+            item_name = child['name']
+            items.push({
+                name: item_name,
+                deleteUrl: "<a href='"+delete_url+item_name+"' target='_blank'>Delete</a>"
+            });
+        end
+    else
+        puts "not an array"
+        item_name = entries['name']
         items.push({
-        name: item['name'],
-        deleteUrl: "<a href='"+delete_url+item['name']+"' target='_blank'>Delete</a>"
-    });
+                name: item_name,
+                deleteUrl: "<a href='"+delete_url+item_name+"' target='_blank'>Delete</a>"
+            });
     end
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # entries.each do |item|
+    #     puts item
+    #     # item_name = item[0]
+    #     # puts item_name
+    #     #     items.push({
+    #     #         name: item_name,
+    #     #         deleteUrl: "<a href='"+delete_url+item_name+"' target='_blank'>Delete</a>"
+    #     #     });
+    #     end
 
     send_event('todo-list', items: items)
 end
