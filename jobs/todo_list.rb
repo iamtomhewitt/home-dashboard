@@ -18,23 +18,25 @@ SCHEDULER.every "5s", :first_in => 0 do |job |
     puts data
     puts "---"
 
-    entries = data['dreamlo']['leaderboard']['entry']
-    
-    if entries.kind_of?(Array)
-        entries.each do |child|
-            item_name = child['name']
+    if !data['dreamlo']['leaderboard'].nil?
+        entries = data['dreamlo']['leaderboard']['entry']
+
+        if entries.kind_of?(Array)
+            entries.each do |child|
+                item_name = child['name']
+                items.push({
+                    name: item_name,
+                    deleteUrl: "<a href='"+delete_url+item_name+"' target='_blank'>Delete</a>"
+                });
+            end
+        else
+            puts "not an array"
+            item_name = entries['name']
             items.push({
                 name: item_name,
                 deleteUrl: "<a href='"+delete_url+item_name+"' target='_blank'>Delete</a>"
             });
         end
-    else
-        puts "not an array"
-        item_name = entries['name']
-        items.push({
-                name: item_name,
-                deleteUrl: "<a href='"+delete_url+item_name+"' target='_blank'>Delete</a>"
-            });
     end
     
 
