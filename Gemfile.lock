@@ -17,14 +17,21 @@ GEM
       tzinfo
     eventmachine (1.2.7)
     execjs (2.7.0)
+    httparty (0.17.0)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     icalendar (2.5.3)
       ice_cube (~> 0.16)
     ice_cube (0.16.3)
+    mime-types (3.3)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2019.0904)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     mustermann (1.0.3)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
@@ -77,6 +84,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport (~> 5.0)
+  httparty
   icalendar
   nokogiri
   smashing
