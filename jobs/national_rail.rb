@@ -42,10 +42,13 @@ SCHEDULER.every "1m", :first_in => 0 do |job|
 
                 if isValidTime 
                     timeDiff = "- #{time_diff(child['std'].to_time.to_i , child['etd'].to_time.to_i )} min"
-                end                
+                end            
+                
+                destination = child['destination']['location']['locationName']
+                destination = destination[0..7]
                 
                 item = {
-                    label: "#{child['destination']['location']['locationName']}",
+                    label: destination,
                     value: "#{child['std']} (#{child['etd']}) #{timeDiff}",
                 }
                 

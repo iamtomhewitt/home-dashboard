@@ -9,7 +9,7 @@ get_url         = 'http://dreamlo.com/lb/'+public_code+'/json'
 add_url         = 'http://dreamlo.com/lb/'+private_code+'/add/'
 delete_url      = 'http://dreamlo.com/lb/'+private_code+'/delete/'
 
-SCHEDULER.every "5s", :first_in => 0 do |job |
+SCHEDULER.every "1m", :first_in => 0 do |job |
     items = []
 
     uri = URI.parse(get_url)
