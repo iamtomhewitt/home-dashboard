@@ -15,8 +15,6 @@ SCHEDULER.every "1m", :first_in => 0 do |job |
     uri = URI.parse(get_url)
     response = Net::HTTP.get_response(uri)
     data = JSON.parse(response.body)
-    puts data
-    puts "---"
 
     if !data['dreamlo']['leaderboard'].nil?
         entries = data['dreamlo']['leaderboard']['entry']
@@ -30,7 +28,6 @@ SCHEDULER.every "1m", :first_in => 0 do |job |
                 });
             end
         else
-            puts "not an array"
             item_name = entries['name']
             items.push({
                 name: item_name,
@@ -38,29 +35,6 @@ SCHEDULER.every "1m", :first_in => 0 do |job |
             });
         end
     end
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # entries.each do |item|
-    #     puts item
-    #     # item_name = item[0]
-    #     # puts item_name
-    #     #     items.push({
-    #     #         name: item_name,
-    #     #         deleteUrl: "<a href='"+delete_url+item_name+"' target='_blank'>Delete</a>"
-    #     #     });
-    #     end
 
     send_event('todo-list', items: items)
 end

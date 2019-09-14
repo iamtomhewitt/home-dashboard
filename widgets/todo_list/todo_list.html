@@ -9,14 +9,26 @@
 
 <form>
     <input type="text" id="newItem" name="newItemName">
-    <button type="button" onclick="return foo(this.form.newItemName.value);">Go</button>
+    <button type="button" onclick="addItem(this.form.newItemName.value); this.form.reset();">Go</button>
 </form>
 
 <p class="updated-at" data-bind="updatedAtMessage"></p>
 
 <script>
-    function foo(name) {
-        alert(name);
+    function addItem(name) {
+        url = 'http://dreamlo.com/lb/BUmbxItLy0a8oq8Gtz1_xQhaHmJ5QbCUKnqfRKGMs85A/add/'+name+'/100'
+        makeGetRequest(url, null);
         return;
+    }
+
+    function makeGetRequest(theUrl, callback)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", theUrl, true);
+        xmlHttp.send(null);
     }
 </script>
