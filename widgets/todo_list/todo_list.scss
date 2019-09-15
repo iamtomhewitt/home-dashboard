@@ -25,11 +25,32 @@ $moreinfo-color:    rgba(255, 255, 255, 0.7);
     color: rgba(255, 255, 255, 0.7);
   }
 
-  .my-link {
-    
-  }
-
   &.large h3 {
     font-size: 65px;
+  }
+
+  .item-name {
+    font-weight: bold;
+    float: left;
+    margin-left: 20px;
+  }
+
+  .item-link {
+    color: #009dff;
+    text-decoration: underline;
+    float: right;
+    margin-right: 20px;
+  }
+
+  .add-button {
+    background-color: rgb(0, 166, 255);
+    border: none;
+    color: white;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px;
   }
 }

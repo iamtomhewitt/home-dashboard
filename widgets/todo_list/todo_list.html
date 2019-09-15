@@ -2,21 +2,28 @@
 
 <ul>
     <li data-foreach-item="items">
-        <span data-bind="item.name"></span>
-        <a data-bind="item.deleteUrl | raw"></a>
+        <span data-bind="item.name" class="item-name"></span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span data-bind="item.deleteUrl | raw" class="item-link"></span>
     </li>
 </ul>
 
 <form>
     <input type="text" id="newItem" name="newItemName">
-    <button type="button" onclick="addItem(this.form.newItemName.value); this.form.reset();">Go</button>
+    <button type="button" class="add-button" onclick="addItem(this.form.newItemName.value); this.form.reset();">Add</button>
 </form>
 
 <p class="updated-at" data-bind="updatedAtMessage"></p>
 
 <script>
+    function test(name)
+    {
+        alert(name);
+    }
+
     function addItem(name) {
-        url = 'http://dreamlo.com/lb/BUmbxItLy0a8oq8Gtz1_xQhaHmJ5QbCUKnqfRKGMs85A/add/'+name+'/100'
+        private_code = 'BUmbxItLy0a8oq8Gtz1_xQhaHmJ5QbCUKnqfRKGMs85A'
+        url = 'http://dreamlo.com/lb/'+private_code+'/add/'+name+'/100'
         makeGetRequest(url, null);
         return;
     }
