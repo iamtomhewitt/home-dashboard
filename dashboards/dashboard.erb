@@ -4,26 +4,30 @@
     Dashing.gridsterLayout('[{"col":2,"row":1,"size_x":1,"size_y":1},{"col":1,"row":1,"size_x":1,"size_y":1},{"col":3,"row":2,"size_x":1,"size_y":1},{"col":1,"row":2,"size_x":2,"size_y":1},{"col":3,"row":1,"size_x":1,"size_y":1},{"col":4,"row":1,"size_x":1,"size_y":1},{"col":5,"row":1,"size_x":1,"size_y":1}]')
  });
  </script>
- <% content_for :title do %>24 Sussex Avenue<% end %>
+ <% content_for :title do %>Tom & Lauren's House<% end %>
 <div class="gridster">
   <ul>
+    <%# Train times %>
     <li data-row="1" data-col="2", data-sizex="1", data-sizey="1">
       <div data-id="NationalRail" data-view="NationalRail" data-unordered="true", data-title="Trains" data-station="Horsforth"></div>
     </li>
 
+    <%# Clock %>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-view="Clock"></div>
     </li>
 
-
+    <%# BBC News %>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="news" data-view="News"></div>
     </li>
 
+    <%# Weather %>
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
         <div data-id="weeklyweather" data-view="WeeklyWeather"></div>
     </li>
 
+    <%# Google Calendar %>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="google_calendar_tom" data-view="GoogleCalendar" data-title="Tom's Calendar" style="background-color: #4285F4">
     </li>
@@ -31,6 +35,7 @@
       <div data-id="google_calendar_lauren" data-view="GoogleCalendar" data-title="Lauren's Calendar" style="background-color: #E67C73">
     </li>
 
+    <%# Online TODO list %>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" >
       <div data-id="todo-list" data-view="TodoList" data-title="Your Todo List">
     </li>
