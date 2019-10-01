@@ -1,0 +1,48 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+
+public class Trains : Widget
+{
+	[Space(15f)]
+	[SerializeField] private TrainEntry[] trainEntries;
+
+	private string apiToken = "4ae0f545-388c-4812-a4c9-b72ffb815abd";
+	private string stationCode = "HRS";
+
+	public TrainServices[] services;
+	private int numberOfResults = 5;
+
+	private void Start()
+	{
+		this.Initialise();
+		InvokeRepeating("Run", 0f, 60f);
+	}
+
+	public override void Run()
+	{
+		StartCoroutine(RunRoutine());
+	}
+
+	private IEnumerator RunRoutine()
+	{
+		string url = "https://huxley.apphb.com/departures/" + stationCode + "/" + numberOfResults + "?accessToken=" + apiToken;
+
+		UnityWebRequest request = UnityWebRequest.Get(url);
+		yield return request.SendWebRequest();
+		string jsonResponse = request.downloadHandler.text;
+		print(jsonResponse);
+
+		TrainJsonResponse trainData = JsonUtility.FromJson<TrainJsonResponse>(jsonResponse);
+
+		for (int i = 0; i < trainEntries.Length; i++)
+		{
+			TrainEntry entry = trainEntries[i];
+			TrainServices trainService = trainData.trainServices[i];
+			entry.destinationText.text = trainService.destination[0].locationName;
+			entry.timeText.text = trainService.std + " (" + trainService.etd + ")";
+		}
+	}
+}

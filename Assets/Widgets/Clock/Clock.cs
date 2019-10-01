@@ -10,7 +10,7 @@ public class Clock : Widget
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, 1f);
+		InvokeRepeating("Run", 0f, this.repeatRate);
 	}
 
 	public override void Run()

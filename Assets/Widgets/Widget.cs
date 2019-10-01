@@ -13,6 +13,8 @@ public abstract class Widget : MonoBehaviour
 
 	[SerializeField] private string title;
 
+	public float repeatRate;
+
 	public abstract void Run();
 
 	public void Initialise()
@@ -20,6 +22,7 @@ public abstract class Widget : MonoBehaviour
 		UpdateLastUpdatedText();
 		SetTitleText();
 		SetColour();
+		SetTextColour();
 	}
 
 	private void UpdateLastUpdatedText()
@@ -35,5 +38,11 @@ public abstract class Widget : MonoBehaviour
 	private void SetColour()
 	{
 		widgetBackground.color = widgetColour;
+	}
+
+	private void SetTextColour()
+	{
+		titleText.color = textColour;
+		lastUpdatedText.color = textColour;
 	}
 }
