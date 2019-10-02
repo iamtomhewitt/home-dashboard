@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 public class Trains : Widget
 {
@@ -12,18 +10,18 @@ public class Trains : Widget
 	private string apiToken = "4ae0f545-388c-4812-a4c9-b72ffb815abd";
 	private string stationCode = "HRS";
 
-	public TrainServices[] services;
 	private int numberOfResults = 5;
 
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, 60f);
+		InvokeRepeating("Run", 0f, this.repeatRate);
 	}
 
 	public override void Run()
 	{
 		StartCoroutine(RunRoutine());
+		this.UpdateLastUpdatedText();
 	}
 
 	private IEnumerator RunRoutine()
@@ -33,11 +31,11 @@ public class Trains : Widget
 		UnityWebRequest request = UnityWebRequest.Get(url);
 		yield return request.SendWebRequest();
 		string jsonResponse = request.downloadHandler.text;
-		print(jsonResponse);
 
 		TrainJsonResponse trainData = JsonUtility.FromJson<TrainJsonResponse>(jsonResponse);
+		TrainServices[] services = trainData.trainServices;
 
-		for (int i = 0; i < trainEntries.Length; i++)
+		for (int i = 0; i < services.Length; i++)
 		{
 			TrainEntry entry = trainEntries[i];
 			TrainServices trainService = trainData.trainServices[i];

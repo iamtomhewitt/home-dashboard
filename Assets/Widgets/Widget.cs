@@ -25,7 +25,7 @@ public abstract class Widget : MonoBehaviour
 		SetTextColour();
 	}
 
-	private void UpdateLastUpdatedText()
+	public void UpdateLastUpdatedText()
 	{
 		lastUpdatedText.text = "Last Updated: " + DateTime.Now.ToString("HH:mm");
 	}
