@@ -1,3 +1,43 @@
-*DS_STORE
-history.yml
-/--user-install
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Library/
+
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+/Library/*
+
+# Other folders
+Logs/
+
+# Files
+/.vscode/settings.json
+/.vs/home-dashboard/v15/Server/sqlite3/db.lock
+/.vs/home-dashboard/v15/Server/sqlite3/storage.ide
+/.vs/home-dashboard/v15/Server/sqlite3/storage.ide-shm
+/.vs/home-dashboard/v15/Server/sqlite3/storage.ide-wal
