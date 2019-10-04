@@ -1,0 +1,58 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #6acb5b;
+
+$title-color:       rgba(255, 255, 255, 0.7);
+$moreinfo-color:    rgba(255, 255, 255, 0.7);
+
+// ----------------------------------------------------------------------------
+// Widget-text styles
+// ----------------------------------------------------------------------------
+.widget-todo-list {
+
+  background-color: $background-color;
+
+  .title {
+    color: $title-color;
+  }
+
+  .more-info {
+    color: $moreinfo-color;
+  }
+
+  .updated-at {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &.large h3 {
+    font-size: 65px;
+  }
+
+  .item-name {
+    font-weight: bold;
+    float: left;
+    margin-left: 20px;
+    font-size: 16px;
+  }
+
+  .item-link {
+    color: #009dff;
+    text-decoration: underline;
+    float: right;
+    margin-right: 20px;
+    font-size: 16px;
+  }
+
+  .add-button {
+    background-color: rgb(0, 166, 255);
+    border: none;
+    color: white;
+    padding: 3px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+}
