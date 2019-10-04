@@ -32,6 +32,7 @@ public class TodoList : Widget
 	public void HideMenu()
 	{
 		addItemMenu.SetActive(false);
+		statusText.text = "";
 	}
 
 	// Called from the add button on the menu that pops up
