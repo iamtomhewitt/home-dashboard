@@ -12,6 +12,7 @@ public class ListItem : MonoBehaviour
 
 	public void Delete()
 	{
+		FindObjectOfType<TodoList>().SaveToFile();
 		Destroy(this.gameObject);
 	}
 }
