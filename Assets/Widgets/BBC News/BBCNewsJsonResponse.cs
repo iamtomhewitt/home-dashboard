@@ -9,4 +9,5 @@ public class Article
 {
 	public string title;
 	public string description;
+	public string url;
 }

@@ -42,6 +42,7 @@ public class BBCNews : Widget
 
 		entry.title.text = responseItem.title;
 		entry.description.text = responseItem.description;
+		entry.url = responseItem.url;
 
 		currentArticleIndex++;
 
