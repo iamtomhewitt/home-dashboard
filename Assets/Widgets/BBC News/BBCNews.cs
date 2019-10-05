@@ -6,24 +6,26 @@ public class BBCNews : Widget
 {
 	[Space(15f)]
 	public BBCNewsEntry entry;
-
 	public string apiKey;
+	public float secondsBetweenArticles = 20f;
 
-	public int secondsBetweenArticles = 20;
+	private BBCNewsJsonResponse response;
+	private int currentArticleIndex = 0;
 
 	private void Start()
 	{
 		this.Initialise();
 		InvokeRepeating("Run", 0f, this.repeatRate);
+		InvokeRepeating("Cycle", 1f, secondsBetweenArticles);
 	}
-	
+
 	public override void Run()
 	{
-		StartCoroutine(RunRoutine());
+		StartCoroutine(RequestHeadlines());
 		this.UpdateLastUpdatedText();
 	}
 
-	private IEnumerator RunRoutine()
+	private IEnumerator RequestHeadlines()
 	{
 		string url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=" + apiKey;
 
@@ -31,21 +33,21 @@ public class BBCNews : Widget
 		yield return request.SendWebRequest();
 		string jsonResponse = request.downloadHandler.text;
 
-		BBCNewsJsonResponse response = JsonUtility.FromJson<BBCNewsJsonResponse>(jsonResponse);
+		response = JsonUtility.FromJson<BBCNewsJsonResponse>(jsonResponse);
+	}
 
-		for (int i = 0; i < response.articles.Length; i++)
+	private void Cycle()
+	{
+		Article responseItem = response.articles[currentArticleIndex];
+
+		entry.title.text = responseItem.title;
+		entry.description.text = responseItem.description;
+
+		currentArticleIndex++;
+
+		if (currentArticleIndex == response.articles.Length - 1)
 		{
-			Article responseItem = response.articles[i];
-
-			entry.title.text = responseItem.title;
-			entry.description.text = responseItem.description;
-
-			yield return new WaitForSeconds(secondsBetweenArticles);
-
-			if (i == response.articles.Length - 1)
-			{
-				i = -1; // will be set to 0 on next loop
-			}
+			currentArticleIndex = 0; 
 		}
 	}
 }
