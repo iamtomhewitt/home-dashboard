@@ -21,7 +21,7 @@ public abstract class Widget : MonoBehaviour
 	{
 		UpdateLastUpdatedText();
 		SetTitleText();
-		SetColour();
+		SetColour(widgetColour);
 		SetTextColour();
 	}
 
@@ -35,9 +35,9 @@ public abstract class Widget : MonoBehaviour
 		titleText.text = title;
 	}
 
-	private void SetColour()
+	public void SetColour(Color colour)
 	{
-		widgetBackground.color = widgetColour;
+		widgetBackground.color = colour;
 	}
 
 	private void SetTextColour()
