@@ -46,7 +46,7 @@ public class Weather : Widget
 
 		for (int i = 0; i < entries.Length; i++)
 		{
-			Data day = response.daily.data[i + 1];
+			Data day = response.daily.data[i + 2];
 			WeatherEntry entry = entries[i];
 
 			DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0);
