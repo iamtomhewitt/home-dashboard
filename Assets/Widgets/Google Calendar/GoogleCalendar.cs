@@ -42,6 +42,12 @@ public class GoogleCalendar : Widget
 		for (int i = 0; i < eventEntries.Length; i++)
 		{
 			GoogleCalendarEvent eventEntry = eventEntries[i];
+
+			if (response.items.Length == i)
+			{
+				yield break;
+			}
+
 			Item responseItem = response.items[i];
 
 			// There could be two different types of date to use, so figure out which one to use and substring accordingly
@@ -53,6 +59,7 @@ public class GoogleCalendar : Widget
 			// And populate
 			eventEntry.nameText.text = responseItem.summary;
 			eventEntry.dateText.text = time.ToString("dd MMM yy");
+
 		}
 	}
 }
