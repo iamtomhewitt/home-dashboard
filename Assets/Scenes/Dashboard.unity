@@ -671,7 +671,8 @@ MonoBehaviour:
   widgetColour: {r: 0.6827218, g: 0.43867922, b: 1, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Bin Day
-  repeatRate: 86400
+  repeatRate: 2
+  timeUnit: 2
   greenBinDays: 0700000015000000
   blackBinDays: 0e0000001c000000
   greenBinColour: {r: 0.2, g: 0.7137255, b: 0.4745098, a: 1}
@@ -1219,6 +1220,7 @@ MonoBehaviour:
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Clock
   repeatRate: 1
+  timeUnit: 0
   clockText: {fileID: 1024095214}
   dateText: {fileID: 1035907068}
 --- !u!1 &190675892
@@ -3537,7 +3539,8 @@ MonoBehaviour:
   widgetColour: {r: 0.25882354, g: 0.52156866, b: 0.95686275, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Tom's Calendar
-  repeatRate: 3600
+  repeatRate: 1
+  timeUnit: 2
   eventEntries:
   - {fileID: 983960443}
   - {fileID: 1468289007}
@@ -5446,7 +5449,8 @@ MonoBehaviour:
   widgetColour: {r: 1, g: 0.5851397, b: 0, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Weather
-  repeatRate: 1800
+  repeatRate: 30
+  timeUnit: 1
   apiKey: 23e9dad33a0bffa114dd52285c2807ad
   latitude: 53.848246
   longitude: -1.631747
@@ -7571,7 +7575,8 @@ MonoBehaviour:
   widgetColour: {r: 0.24705882, g: 0.31764707, b: 0.70980394, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: TODO
-  repeatRate: 9999999
+  repeatRate: 7
+  timeUnit: 3
   addItemMenu: {fileID: 2062140541}
   itemPrefab: {fileID: 7190958785051621841, guid: b1f49b0b195654f44af860870a2aa3c0,
     type: 3}
@@ -9320,7 +9325,8 @@ MonoBehaviour:
   widgetColour: {r: 0.4964285, g: 0.764151, b: 0.26312745, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Trains | Horsforth
-  repeatRate: 60
+  repeatRate: 1
+  timeUnit: 1
   trainEntries:
   - {fileID: 1749437075}
   - {fileID: 896238307}
@@ -9463,7 +9469,8 @@ MonoBehaviour:
   widgetColour: {r: 0.73333335, g: 0.09803922, b: 0.09803922, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: BBC News
-  repeatRate: 1800
+  repeatRate: 30
+  timeUnit: 1
   entry: {fileID: 1242877118}
   apiKey: a262b1f658db4170be65e2f854b53572
   secondsBetweenArticles: 20
@@ -10293,6 +10300,7 @@ MonoBehaviour:
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Weather
   repeatRate: 1800
+  timeUnit: 0
   apiKey: 23e9dad33a0bffa114dd52285c2807ad
   latitude: 53.848246
   longitude: -1.631747
@@ -12395,7 +12403,8 @@ MonoBehaviour:
   widgetColour: {r: 0.9019608, g: 0.4862745, b: 0.4509804, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Lauren's Calendar
-  repeatRate: 3600
+  repeatRate: 1
+  timeUnit: 2
   eventEntries:
   - {fileID: 1199071337}
   - {fileID: 1770781075}

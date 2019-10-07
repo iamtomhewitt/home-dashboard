@@ -13,7 +13,7 @@ public class Clock : Widget
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, this.repeatRate);
+		InvokeRepeating("Run", 0f, TimeCalculator.ToSeconds(this.timeUnit, this.repeatRate));
 		InvokeRepeating("UpdateDateText", 0f, oneDay);
 	}
 

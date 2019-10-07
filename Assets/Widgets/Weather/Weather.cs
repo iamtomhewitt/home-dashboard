@@ -21,7 +21,7 @@ public class Weather : Widget
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, this.repeatRate);
+		InvokeRepeating("Run", 0f, TimeCalculator.ToSeconds(this.timeUnit, this.repeatRate));
 	}
 
 	public override void Run()
