@@ -56,5 +56,7 @@ public class BinDay : Widget
 			text.text = "No bin alerts yet! :-)";
 			this.SetColour(noBinColour);
 		}
+
+		this.UpdateLastUpdatedText();
 	}
 }
