@@ -668,16 +668,16 @@ MonoBehaviour:
   titleText: {fileID: 1294223238}
   lastUpdatedText: {fileID: 1370069683}
   widgetBackground: {fileID: 1421464344}
-  widgetColour: {r: 0.6827218, g: 0.43867922, b: 1, a: 1}
+  widgetColour: {r: 0.011764706, g: 0.6627451, b: 0.95686275, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Bin Day
   repeatRate: 2
   timeUnit: 2
   greenBinDays: 0700000015000000
   blackBinDays: 0e0000001c000000
-  greenBinColour: {r: 0.2, g: 0.7137255, b: 0.4745098, a: 1}
-  blackBinColour: {r: 0.38039216, g: 0.38039216, b: 0.38039216, a: 1}
-  noBinColour: {r: 0.6827218, g: 0.43867922, b: 1, a: 1}
+  greenBinColour: {r: 0.4, g: 0.73333335, b: 0.41568628, a: 1}
+  blackBinColour: {r: 0.14901961, g: 0.19607843, b: 0.21960784, a: 1}
+  noBinColour: {r: 0.011764706, g: 0.6627451, b: 0.95686275, a: 1}
   text: {fileID: 1270317663}
 --- !u!1 &110863052
 GameObject:
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   titleText: {fileID: 1694735703}
   lastUpdatedText: {fileID: 1035907068}
   widgetBackground: {fileID: 934806362}
-  widgetColour: {r: 0.56078434, g: 0.31764707, b: 0.70980394, a: 1}
+  widgetColour: {r: 0.49411765, g: 0.34117648, b: 0.7607843, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Clock
   repeatRate: 1
@@ -4715,7 +4715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24705882, g: 0.31764707, b: 0.70980394, a: 1}
+  m_Color: {r: 0.1882353, g: 0.24705882, b: 0.62352943, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5059,7 +5059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24705882, g: 0.31764707, b: 0.70980394, a: 1}
+  m_Color: {r: 0.1882353, g: 0.24705882, b: 0.62352943, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5446,7 +5446,7 @@ MonoBehaviour:
   titleText: {fileID: 1181040627}
   lastUpdatedText: {fileID: 303868772}
   widgetBackground: {fileID: 1863358513}
-  widgetColour: {r: 1, g: 0.5851397, b: 0, a: 1}
+  widgetColour: {r: 1, g: 0.7176471, b: 0.3019608, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Weather
   repeatRate: 30
@@ -7572,7 +7572,7 @@ MonoBehaviour:
   titleText: {fileID: 1756638694}
   lastUpdatedText: {fileID: 1208963495}
   widgetBackground: {fileID: 1374968121}
-  widgetColour: {r: 0.24705882, g: 0.31764707, b: 0.70980394, a: 1}
+  widgetColour: {r: 0.1882353, g: 0.24705882, b: 0.62352943, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: TODO
   repeatRate: 7
@@ -9322,7 +9322,7 @@ MonoBehaviour:
   titleText: {fileID: 1777598884}
   lastUpdatedText: {fileID: 451464715}
   widgetBackground: {fileID: 313698520}
-  widgetColour: {r: 0.4964285, g: 0.764151, b: 0.26312745, a: 1}
+  widgetColour: {r: 0.2627451, g: 0.627451, b: 0.2784314, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Trains | Horsforth
   repeatRate: 1
@@ -11520,7 +11520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.18503025, g: 0.25178462, b: 0.6226415, a: 1}
+  m_Color: {r: 0.11503203, g: 0.1763286, b: 0.5188679, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14979,7 +14979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24705882, g: 0.31764707, b: 0.70980394, a: 1}
+  m_Color: {r: 0.1882353, g: 0.24705882, b: 0.62352943, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
