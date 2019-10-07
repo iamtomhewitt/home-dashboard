@@ -33,7 +33,7 @@ public class TimeCalculator : MonoBehaviour
 				break;
 		}
 
-		print(amount + " " + unit + ": " + seconds + " seconds");
+		// print(amount + " " + unit + ": " + seconds + " seconds");
 		
 		return seconds;
 	}
