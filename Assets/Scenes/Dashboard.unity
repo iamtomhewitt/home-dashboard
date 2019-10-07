@@ -5446,7 +5446,7 @@ MonoBehaviour:
   titleText: {fileID: 1181040627}
   lastUpdatedText: {fileID: 303868772}
   widgetBackground: {fileID: 1863358513}
-  widgetColour: {r: 1, g: 0.7176471, b: 0.3019608, a: 1}
+  widgetColour: {r: 1, g: 0.5851397, b: 0, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Weather
   repeatRate: 30
