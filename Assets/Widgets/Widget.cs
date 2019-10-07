@@ -13,7 +13,9 @@ public abstract class Widget : MonoBehaviour
 
 	[SerializeField] private string title;
 
+	[Space()]
 	public float repeatRate;
+	public TimeUnit timeUnit;
 
 	public abstract void Run();
 
