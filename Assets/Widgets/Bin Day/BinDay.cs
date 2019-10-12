@@ -19,7 +19,7 @@ public class BinDay : Widget
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, TimeCalculator.ToSeconds(this.timeUnit, this.repeatRate));
+		InvokeRepeating("Run", 0f, ToSeconds(this.timeUnit, this.repeatRate));
 	}
 
 	public override void Run()
@@ -53,7 +53,7 @@ public class BinDay : Widget
 
 		else
 		{
-			text.text = "No bin alerts yet! :-)";
+			text.text = "No bin alerts yet!";
 			this.SetColour(noBinColour);
 		}
 

@@ -27,6 +27,39 @@ public abstract class Widget : MonoBehaviour
 		SetTextColour();
 	}
 
+	public float ToSeconds(TimeUnit unit, float amount)
+	{
+		float seconds = 0f;
+
+		switch (unit)
+		{
+			case TimeUnit.Seconds:
+				seconds = amount;
+				break;
+
+			case TimeUnit.Minutes:
+				seconds = amount * 60f;
+				break;
+
+			case TimeUnit.Hours:
+				seconds = amount * 3600f;
+				break;
+
+			case TimeUnit.Days:
+				seconds = amount * 86400f;
+				break;
+
+			default:
+				print("Unknown unit: " + unit);
+				seconds = 600f;
+				break;
+		}
+
+		// print(amount + " " + unit + ": " + seconds + " seconds");
+
+		return seconds;
+	}
+
 	public void UpdateLastUpdatedText()
 	{
 		lastUpdatedText.text = "Last Updated: " + DateTime.Now.ToString("HH:mm");
@@ -46,5 +79,14 @@ public abstract class Widget : MonoBehaviour
 	{
 		titleText.color = textColour;
 		lastUpdatedText.color = textColour;
+	}
+
+	[System.Serializable]
+	public enum TimeUnit
+	{
+		Seconds,
+		Minutes,
+		Hours,
+		Days
 	}
 }

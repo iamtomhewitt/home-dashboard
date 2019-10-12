@@ -15,7 +15,7 @@ public class Trains : Widget
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, TimeCalculator.ToSeconds(this.timeUnit, this.repeatRate));
+		InvokeRepeating("Run", 0f, ToSeconds(this.timeUnit, this.repeatRate));
 	}
 
 	public override void Run()
@@ -37,6 +37,11 @@ public class Trains : Widget
 
 		for (int i = 0; i < services.Length; i++)
 		{
+			if (services.Length == i)
+			{
+				yield break;
+			}
+
 			TrainEntry entry = trainEntries[i];
 			TrainServices trainService = trainData.trainServices[i];
 			entry.destinationText.text = trainService.destination[0].locationName;

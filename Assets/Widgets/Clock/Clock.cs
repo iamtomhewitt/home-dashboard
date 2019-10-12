@@ -8,22 +8,15 @@ public class Clock : Widget
 	public Text clockText;
 	public Text dateText;
 
-	private int oneDay = 86400;
-
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, TimeCalculator.ToSeconds(this.timeUnit, this.repeatRate));
-		InvokeRepeating("UpdateDateText", 0f, oneDay);
+		InvokeRepeating("Run", 0f, ToSeconds(this.timeUnit, this.repeatRate));
 	}
 
 	public override void Run()
 	{
 		clockText.text = DateTime.Now.ToString("HH:mm:ss");
-	}
-
-	private void UpdateDateText()
-	{
 		dateText.text = DateTime.Now.ToString("dd MMMM yyyy");
 	}
 }

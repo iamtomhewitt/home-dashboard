@@ -15,7 +15,15 @@ public class GoogleCalendar : Widget
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, TimeCalculator.ToSeconds(this.timeUnit, this.repeatRate));
+
+		for (int i = 0; i < eventEntries.Length; i++)
+		{
+			GoogleCalendarEvent eventEntry = eventEntries[i];
+			eventEntry.nameText.text = "";
+			eventEntry.dateText.text = "";
+		}
+
+		InvokeRepeating("Run", 0f, ToSeconds(this.timeUnit, this.repeatRate));
 	}
 
 	public override void Run()
@@ -58,8 +66,7 @@ public class GoogleCalendar : Widget
 
 			// And populate
 			eventEntry.nameText.text = responseItem.summary;
-			eventEntry.dateText.text = time.ToString("dd MMM yy");
-
+			eventEntry.dateText.text = time.ToString("dd MMM");
 		}
 	}
 }
