@@ -23,7 +23,7 @@ public class GoogleCalendar : Widget
 			eventEntry.dateText.text = "";
 		}
 
-		InvokeRepeating("Run", 0f, ToSeconds(this.timeUnit, this.repeatRate));
+		InvokeRepeating("Run", 0f, ToSeconds());
 	}
 
 	public override void Run()

@@ -27,30 +27,30 @@ public abstract class Widget : MonoBehaviour
 		SetTextColour();
 	}
 
-	public float ToSeconds(TimeUnit unit, float amount)
+	public float ToSeconds()
 	{
 		float seconds = 0f;
 
-		switch (unit)
+		switch (timeUnit)
 		{
 			case TimeUnit.Seconds:
-				seconds = amount;
+				seconds = repeatRate;
 				break;
 
 			case TimeUnit.Minutes:
-				seconds = amount * 60f;
+				seconds = repeatRate * 60f;
 				break;
 
 			case TimeUnit.Hours:
-				seconds = amount * 3600f;
+				seconds = repeatRate * 3600f;
 				break;
 
 			case TimeUnit.Days:
-				seconds = amount * 86400f;
+				seconds = repeatRate * 86400f;
 				break;
 
 			default:
-				print("Unknown unit: " + unit);
+				print("Unknown unit: " + timeUnit);
 				seconds = 600f;
 				break;
 		}

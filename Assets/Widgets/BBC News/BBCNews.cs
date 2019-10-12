@@ -15,7 +15,7 @@ public class BBCNews : Widget
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, ToSeconds(this.timeUnit, this.repeatRate));
+		InvokeRepeating("Run", 0f, ToSeconds());
 		InvokeRepeating("Cycle", 1f, secondsBetweenArticles);
 	}
 

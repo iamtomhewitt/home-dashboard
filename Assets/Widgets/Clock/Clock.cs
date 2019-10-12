@@ -11,7 +11,7 @@ public class Clock : Widget
 	private void Start()
 	{
 		this.Initialise();
-		InvokeRepeating("Run", 0f, ToSeconds(this.timeUnit, this.repeatRate));
+		InvokeRepeating("Run", 0f, ToSeconds());
 	}
 
 	public override void Run()
