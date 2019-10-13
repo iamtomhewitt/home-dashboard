@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-public class ShoppingListJsonHelper
+public class OnlineListJsonHelper
 {
 	/// <summary>
 	/// Formats the JSON downloaded from Dreamlo so it starts with the 'entry' tag instead of the 'dreamlo' tag.
