@@ -1588,7 +1588,7 @@ RectTransform:
   - {fileID: 1024095213}
   - {fileID: 1035907067}
   m_Father: {fileID: 998751467}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3661,7 +3661,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1674227128}
   m_HandleRect: {fileID: 1674227127}
   m_Direction: 2
-  m_Value: 1.000051
+  m_Value: 1.0000516
   m_Size: 0.75054294
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5020,7 +5020,7 @@ RectTransform:
   - {fileID: 411104423}
   - {fileID: 203348378}
   m_Father: {fileID: 998751467}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7878,7 +7878,7 @@ MonoBehaviour:
   widgetColour: {r: 1, g: 0.5851397, b: 0, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Weather
-  repeatRate: 15
+  repeatRate: 10
   timeUnit: 1
   apiKey: 23e9dad33a0bffa114dd52285c2807ad
   latitude: 53.848246
@@ -9232,12 +9232,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1328514299}
   - {fileID: 163220745}
   - {fileID: 1273118026}
   - {fileID: 524320301}
   - {fileID: 2062732454}
   - {fileID: 1642213449}
-  - {fileID: 1328514299}
   - {fileID: 1281220134}
   - {fileID: 840664272}
   - {fileID: 1109632466}
@@ -12487,7 +12487,7 @@ RectTransform:
   - {fileID: 451464714}
   - {fileID: 71121112}
   m_Father: {fileID: 998751467}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13168,7 +13168,7 @@ RectTransform:
   - {fileID: 1825763324}
   - {fileID: 820278063}
   m_Father: {fileID: 998751467}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16696,7 +16696,7 @@ RectTransform:
   - {fileID: 2053614988}
   - {fileID: 2028747881}
   m_Father: {fileID: 998751467}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -18458,7 +18458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 13.619, y: -3.2500002}
+  m_AnchoredPosition: {x: 13.619019, y: -3.25}
   m_SizeDelta: {x: 2.9, y: 5.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1870469004
@@ -18479,7 +18479,7 @@ MonoBehaviour:
   widgetColour: {r: 0.7411765, g: 0.6556604, b: 1, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Shopping List
-  repeatRate: 15
+  repeatRate: 10
   timeUnit: 1
   publicKey: 5da1f814d1041303ec58f3e3
   privateKey: 
@@ -19998,7 +19998,7 @@ RectTransform:
   - {fileID: 1015444165}
   - {fileID: 435298151}
   m_Father: {fileID: 998751467}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

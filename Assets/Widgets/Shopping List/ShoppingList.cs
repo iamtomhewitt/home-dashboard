@@ -21,6 +21,7 @@ public class ShoppingList : Widget
 	public override void Run()
 	{
 		StartCoroutine(RunRoutine());
+		this.UpdateLastUpdatedText();
 	}
 
 	private IEnumerator RunRoutine()
@@ -31,6 +32,12 @@ public class ShoppingList : Widget
 		yield return request.SendWebRequest();
 		string jsonResponse = ShoppingListJsonHelper.StripParentFromJson(request.downloadHandler.text, 2);
 		ShoppingListData leaderboard = JsonUtility.FromJson<ShoppingListData>(jsonResponse);
+
+		// Remove previous entries so there are no duplicates
+		foreach (Transform g in content)
+		{
+			Destroy(g.gameObject);
+		}
 
 		for (int i = 0; i < leaderboard.entry.Length; i++)
 		{
