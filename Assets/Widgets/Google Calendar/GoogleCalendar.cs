@@ -35,7 +35,7 @@ public class GoogleCalendar : Widget
 	private IEnumerator RunRoutine()
 	{
 		string today = DateTime.Now.ToString("yyyy-MM-dd");
-		string future = DateTime.Now.AddMonths(3).ToString("yyyy-MM-dd");
+		string future = DateTime.Now.AddMonths(4).ToString("yyyy-MM-dd");
 
 		string url = "https://www.googleapis.com/calendar/v3/calendars/" + gmailAddress +
 						"/events?orderBy=startTime&singleEvents=true&timeMax=" + future + "T10:00:00-07:00&timeMin=" + today + "T10:00:00-07:00&key=" +
