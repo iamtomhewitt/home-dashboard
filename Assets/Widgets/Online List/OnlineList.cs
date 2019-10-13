@@ -48,13 +48,14 @@ public class OnlineList : Widget
 		{
 			OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
 			e.nameText.text = leaderboard.entry[i].name;
+			e.removeUrl = dreamloUrl + privateKey + "/delete/" + e.nameText.text;
 		}
 	}
 
 	private IEnumerator AddItem(string item)
 	{
 		string url = dreamloUrl + privateKey + "/add/" + item + "/0";
-		print(url);
+
 		UnityWebRequest request = UnityWebRequest.Get(url);
 		yield return request.SendWebRequest();
 
@@ -64,7 +65,9 @@ public class OnlineList : Widget
 			print(request.downloadHandler.text);
 		}
 
-		statusText.text = item + " uploaded!";
+		statusText.text = "'" + item + "' uploaded!";
+
+		this.Run();
 	}
 
 	// Called from the pop up menu
@@ -72,6 +75,11 @@ public class OnlineList : Widget
 	{
 		StartCoroutine(AddItem(input.text));
 		input.text = "";
+	}
+
+	public void RemoveItem()
+	{
+
 	}
 
 	// Called from a button
