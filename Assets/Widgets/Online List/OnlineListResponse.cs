@@ -15,3 +15,15 @@ public class OnlineListItem
 {
 	public string name;
 }
+
+[System.Serializable]
+public class OnlineListSingleResponse
+{
+	public OnlineListSingleData leaderboard;
+}
+
+[System.Serializable]
+public class OnlineListSingleData
+{
+	public OnlineListItem entry;
+}

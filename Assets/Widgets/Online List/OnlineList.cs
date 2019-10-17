@@ -36,19 +36,40 @@ public class OnlineList : Widget
 		UnityWebRequest request = UnityWebRequest.Get(url);
 		yield return request.SendWebRequest();
 		string jsonResponse = OnlineListJsonHelper.StripParentFromJson(request.downloadHandler.text, 2);
+
 		OnlineListData leaderboard = JsonUtility.FromJson<OnlineListData>(jsonResponse);
 
-		// Remove previous entries so there are no duplicates
-		foreach (Transform g in content)
+		if (leaderboard.entry != null)
 		{
-			Destroy(g.gameObject);
-		}
+			// Remove previous entries so there are no duplicates
+			foreach (Transform g in content)
+			{
+				Destroy(g.gameObject);
+			}
 
-		for (int i = 0; i < leaderboard.entry.Length; i++)
+			for (int i = 0; i < leaderboard.entry.Length; i++)
+			{
+				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
+				e.nameText.text = leaderboard.entry[i].name;
+				e.removeUrl = dreamloUrl + privateKey + "/delete/" + e.nameText.text;
+			}
+		}
+		else
 		{
-			OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
-			e.nameText.text = leaderboard.entry[i].name;
-			e.removeUrl = dreamloUrl + privateKey + "/delete/" + e.nameText.text;
+			OnlineListSingleData singleEntry = JsonUtility.FromJson<OnlineListSingleData>(jsonResponse);
+			
+			// Remove previous entries so there are no duplicates
+			foreach (Transform g in content)
+			{
+				Destroy(g.gameObject);
+			}
+
+			for (int i = 0; i < 1; i++)
+			{
+				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
+				e.nameText.text = singleEntry.entry.name;
+				e.removeUrl = dreamloUrl + privateKey + "/delete/" + e.nameText.text;
+			}
 		}
 	}
 
