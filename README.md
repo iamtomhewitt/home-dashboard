@@ -3,6 +3,11 @@
 ![Last Commit](https://img.shields.io/github/last-commit/iamtomhewitt/home-dashboard/master?label=last%20commit%20&style=flat-square)
 
 # Home Dashboard
+
+<p align="center">
+  <img src="github.png">
+</p>
+
 A dashboard with useful information to display in my house. The idea is to build a dashboard which then will be displayed 24/7 on a tablet stuck to the fridge via magnets.
 
 Train times widget had the help from 'Dashional Rail' by [Smittey](https://github.com/Smittey/Dashional-Rail)
