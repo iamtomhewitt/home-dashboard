@@ -20266,7 +20266,7 @@ MonoBehaviour:
   titleText: {fileID: 1391962098}
   lastUpdatedText: {fileID: 1629429172}
   widgetBackground: {fileID: 76039609}
-  widgetColour: {r: 0.19600964, g: 0, b: 1, a: 1}
+  widgetColour: {r: 0.2611092, g: 0.11743506, b: 0.8584906, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Food Planner
   repeatRate: 10
