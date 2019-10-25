@@ -26,6 +26,12 @@ public class Trains : Widget
 
 	private IEnumerator RunRoutine()
 	{
+		foreach (TrainEntry entry in trainEntries)
+		{
+			entry.destinationText.text = "";
+			entry.timeText.text = "";
+		}
+
 		string url = "https://huxley.apphb.com/departures/" + stationCode + "/" + numberOfResults + "?accessToken=" + apiToken;
 
 		UnityWebRequest request = UnityWebRequest.Get(url);
