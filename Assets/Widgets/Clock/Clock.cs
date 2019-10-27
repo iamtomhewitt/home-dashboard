@@ -2,21 +2,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Clock : Widget
+namespace Clock
 {
-	[Space(15f)]
-	public Text clockText;
-	public Text dateText;
-
-	private void Start()
+	public class Clock : Widget
 	{
-		this.Initialise();
-		InvokeRepeating("Run", 0f, ToSeconds());
-	}
+		[Space(15f)]
+		public Text clockText;
+		public Text dateText;
 
-	public override void Run()
-	{
-		clockText.text = DateTime.Now.ToString("HH:mm:ss");
-		dateText.text = DateTime.Now.ToString("dd MMMM yyyy");
+		private void Start()
+		{
+			this.Initialise();
+			InvokeRepeating("Run", 0f, ToSeconds());
+		}
+
+		public override void Run()
+		{
+			clockText.text = DateTime.Now.ToString("HH:mm:ss");
+			dateText.text = DateTime.Now.ToString("dd MMMM yyyy");
+		}
 	}
 }

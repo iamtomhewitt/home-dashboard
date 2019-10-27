@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class TrainEntry : MonoBehaviour
+namespace Train
 {
-	public Text destinationText;
-	public Text timeText;
+	public class TrainEntry : MonoBehaviour
+	{
+		public Text destinationText;
+		public Text timeText;
+	}
 }

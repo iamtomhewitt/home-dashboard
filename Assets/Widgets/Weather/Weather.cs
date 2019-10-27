@@ -4,72 +4,75 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class Weather : Widget
+namespace WeatherForecast
 {
-	[Space(15f)]
-	public string apiKey;
-	public string latitude;
-	public string longitude;
-
-	public Text currentSummary;
-	public Image currentIcon;
-	public Text currentTemperature;
-
-	public WeatherEntry[] entries;
-	public Sprite[] weatherSprites;
-
-	private void Start()
+	public class Weather : Widget
 	{
-		this.Initialise();
-		InvokeRepeating("Run", 0f, ToSeconds());
-	}
+		[Space(15f)]
+		public string apiKey;
+		public string latitude;
+		public string longitude;
 
-	public override void Run()
-	{
-		StartCoroutine(RunRoutine());
-		this.UpdateLastUpdatedText();
-	}
+		public Text currentSummary;
+		public Image currentIcon;
+		public Text currentTemperature;
 
-	private IEnumerator RunRoutine()
-	{
-		string url = "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude + "?units=uk";
+		public WeatherEntry[] entries;
+		public Sprite[] weatherSprites;
 
-		UnityWebRequest request = UnityWebRequest.Get(url);
-		yield return request.SendWebRequest();
-		string jsonResponse = request.downloadHandler.text;
-
-		WeatherJsonResponse response = JsonUtility.FromJson<WeatherJsonResponse>(jsonResponse);
-
-		currentSummary.text = response.currently.summary;
-		currentIcon.sprite = GetSpriteForName(response.currently.icon);
-		currentTemperature.text = Mathf.RoundToInt((float)response.currently.temperature).ToString() + "°";
-
-		for (int i = 0; i < entries.Length; i++)
+		private void Start()
 		{
-			Data day = response.daily.data[i + 2];
-			WeatherEntry entry = entries[i];
-
-			DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-			date = date.AddSeconds(day.time);
-
-			entry.day.text = date.DayOfWeek.ToString();
-			entry.icon.sprite = GetSpriteForName(day.icon);
-			entry.temperatureHigh.text = Mathf.RoundToInt((float)day.temperatureHigh).ToString() + "°";
-			entry.temperatureLow.text = Mathf.RoundToInt((float)day.temperatureLow).ToString() + "°";
+			this.Initialise();
+			InvokeRepeating("Run", 0f, ToSeconds());
 		}
-	}
 
-	private Sprite GetSpriteForName(string weatherName)
-	{
-		foreach (Sprite weatherSprite in weatherSprites)
+		public override void Run()
 		{
-			if (weatherSprite.name == weatherName)
+			StartCoroutine(RunRoutine());
+			this.UpdateLastUpdatedText();
+		}
+
+		private IEnumerator RunRoutine()
+		{
+			string url = "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude + "?units=uk";
+
+			UnityWebRequest request = UnityWebRequest.Get(url);
+			yield return request.SendWebRequest();
+			string jsonResponse = request.downloadHandler.text;
+
+			WeatherJsonResponse response = JsonUtility.FromJson<WeatherJsonResponse>(jsonResponse);
+
+			currentSummary.text = response.currently.summary;
+			currentIcon.sprite = GetSpriteForName(response.currently.icon);
+			currentTemperature.text = Mathf.RoundToInt((float)response.currently.temperature).ToString() + "°";
+
+			for (int i = 0; i < entries.Length; i++)
 			{
-				return weatherSprite;
+				Data day = response.daily.data[i + 2];
+				WeatherEntry entry = entries[i];
+
+				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+				date = date.AddSeconds(day.time);
+
+				entry.day.text = date.DayOfWeek.ToString();
+				entry.icon.sprite = GetSpriteForName(day.icon);
+				entry.temperatureHigh.text = Mathf.RoundToInt((float)day.temperatureHigh).ToString() + "°";
+				entry.temperatureLow.text = Mathf.RoundToInt((float)day.temperatureLow).ToString() + "°";
 			}
 		}
 
-		print("Could not find: " + weatherName);
-		return null;
+		private Sprite GetSpriteForName(string weatherName)
+		{
+			foreach (Sprite weatherSprite in weatherSprites)
+			{
+				if (weatherSprite.name == weatherName)
+				{
+					return weatherSprite;
+				}
+			}
+
+			print("Could not find: " + weatherName);
+			return null;
+		}
 	}
 }

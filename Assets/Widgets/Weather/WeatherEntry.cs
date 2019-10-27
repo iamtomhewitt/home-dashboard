@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeatherEntry : MonoBehaviour
+namespace WeatherForecast
 {
-	public Text day;
-	public Image icon;
-	public Text temperatureHigh;
-	public Text temperatureLow;
+	public class WeatherEntry : MonoBehaviour
+	{
+		public Text day;
+		public Image icon;
+		public Text temperatureHigh;
+		public Text temperatureLow;
+	}
 }

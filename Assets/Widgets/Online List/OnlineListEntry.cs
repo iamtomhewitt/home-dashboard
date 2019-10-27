@@ -3,48 +3,51 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class OnlineListEntry : MonoBehaviour
+namespace OnlineLists
 {
-	public Text nameText;
-	public string removeUrl;
-
-	// Called from the 'X' button
-	public void Remove()
+	public class OnlineListEntry : MonoBehaviour
 	{
-		StartCoroutine(RemoveRoutine());
-	}
+		public Text nameText;
+		public string removeUrl;
 
-	private IEnumerator RemoveRoutine()
-	{
-		RemoveConfirmDialog dialog = FindObjectOfType<RemoveConfirmDialog>();
-		dialog.Show("Remove '<b>" + nameText.text + "</b>'?");
-		dialog.SetNone();
-
-		while (dialog.GetResult() == RemoveConfirmDialog.DialogResult.NONE)
+		// Called from the 'X' button
+		public void Remove()
 		{
-			yield return null;
+			StartCoroutine(RemoveRoutine());
 		}
 
-		if (dialog.GetResult() == RemoveConfirmDialog.DialogResult.NO || dialog.GetResult() == RemoveConfirmDialog.DialogResult.CANCEL)
+		private IEnumerator RemoveRoutine()
 		{
-			dialog.Hide();
-			yield break;
-		}
+			RemoveConfirmDialog dialog = FindObjectOfType<RemoveConfirmDialog>();
+			dialog.Show("Remove '<b>" + nameText.text + "</b>'?");
+			dialog.SetNone();
 
-		if (dialog.GetResult() == RemoveConfirmDialog.DialogResult.YES)
-		{
-			dialog.Hide();
-
-			UnityWebRequest request = UnityWebRequest.Get(removeUrl);
-			yield return request.SendWebRequest();
-
-			bool ok = request.downloadHandler.text.Equals("OK") ? true : false;
-			if (!ok)
+			while (dialog.GetResult() == RemoveConfirmDialog.DialogResult.NONE)
 			{
-				print(request.downloadHandler.text);
+				yield return null;
 			}
 
-			Destroy(this.gameObject);
+			if (dialog.GetResult() == RemoveConfirmDialog.DialogResult.NO || dialog.GetResult() == RemoveConfirmDialog.DialogResult.CANCEL)
+			{
+				dialog.Hide();
+				yield break;
+			}
+
+			if (dialog.GetResult() == RemoveConfirmDialog.DialogResult.YES)
+			{
+				dialog.Hide();
+
+				UnityWebRequest request = UnityWebRequest.Get(removeUrl);
+				yield return request.SendWebRequest();
+
+				bool ok = request.downloadHandler.text.Equals("OK") ? true : false;
+				if (!ok)
+				{
+					print(request.downloadHandler.text);
+				}
+
+				Destroy(this.gameObject);
+			}
 		}
 	}
 }

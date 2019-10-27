@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class BBCNewsEntry : MonoBehaviour
+namespace BBCNews
 {
-	public Text title;
-	public Text description;
-
-	[HideInInspector] public string url;
-
-	public void OpenInBrowser()
+	public class BBCNewsEntry : MonoBehaviour
 	{
-		Application.OpenURL(url);
+		public Text title;
+		public Text description;
+
+		[HideInInspector] public string url;
+
+		public void OpenInBrowser()
+		{
+			Application.OpenURL(url);
+		}
 	}
 }

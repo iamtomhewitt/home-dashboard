@@ -1,24 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class FoodPlannerJsonHelper : MonoBehaviour
+namespace FoodPlanner
 {
-	public static string ToJson(RecipeData[] recipes)
+	public class FoodPlannerJsonHelper : MonoBehaviour
 	{
-		Wrapper<RecipeData> wrapper = new Wrapper<RecipeData>();
-		wrapper.recipes = recipes;
-		return JsonUtility.ToJson(wrapper);
-	}
+		public static string ToJson(RecipeData[] recipes)
+		{
+			Wrapper<RecipeData> wrapper = new Wrapper<RecipeData>();
+			wrapper.recipes = recipes;
+			return JsonUtility.ToJson(wrapper);
+		}
 
-	public static RecipeData[] FromJson(string json)
-	{
-		Wrapper<RecipeData> wrapper = JsonUtility.FromJson<Wrapper<RecipeData>>(json);
-		return wrapper.recipes;
-	}
+		public static RecipeData[] FromJson(string json)
+		{
+			Wrapper<RecipeData> wrapper = JsonUtility.FromJson<Wrapper<RecipeData>>(json);
+			return wrapper.recipes;
+		}
 
-	[System.Serializable]
-	private class Wrapper<T>
-	{
-		public T[] recipes;
+		[System.Serializable]
+		private class Wrapper<T>
+		{
+			public T[] recipes;
+		}
 	}
 }
