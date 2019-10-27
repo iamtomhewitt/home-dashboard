@@ -21,7 +21,7 @@ namespace BinDay
 		private void Start()
 		{
 			this.Initialise();
-			InvokeRepeating("Run", 0f, ToSeconds());
+			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
 		public override void Run()

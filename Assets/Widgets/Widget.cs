@@ -27,7 +27,7 @@ public abstract class Widget : MonoBehaviour
 		SetTextColour();
 	}
 
-	public float ToSeconds()
+	public float RepeatRateInSeconds()
 	{
 		float seconds = 0f;
 
