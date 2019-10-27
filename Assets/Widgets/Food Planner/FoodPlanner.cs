@@ -41,7 +41,6 @@ namespace FoodPlanner
 			StreamWriter writer = new StreamWriter(filePath, false);
 			writer.WriteLine(json);
 			writer.Close();
-			print(filePath);
 		}
 
 		/// <summary>
@@ -49,6 +48,11 @@ namespace FoodPlanner
 		/// </summary>
 		private void LoadRecipesFromFile()
 		{
+			if (!File.Exists(filePath))
+			{
+				SaveToFile();
+			}
+
 			string fileContent = File.ReadAllText(filePath);
 
 			RecipeData[] data = FoodPlannerJsonHelper.FromJson(fileContent);
