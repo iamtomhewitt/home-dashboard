@@ -8,7 +8,8 @@ namespace GoogleCalendar
 	public class GoogleCalendar : Widget
 	{
 		[Space(15f)]
-		public GoogleCalendarEvent[] eventEntries;
+		public GoogleCalendarEvent googleCalendarEventPrefab;
+		public Transform scrollParent;
 
 		public string gmailAddress;
 		public string apiKey;
@@ -16,14 +17,6 @@ namespace GoogleCalendar
 		private void Start()
 		{
 			this.Initialise();
-
-			for (int i = 0; i < eventEntries.Length; i++)
-			{
-				GoogleCalendarEvent eventEntry = eventEntries[i];
-				eventEntry.nameText.text = "";
-				eventEntry.dateText.text = "";
-			}
-
 			InvokeRepeating("Run", 0f, ToSeconds());
 		}
 
@@ -36,7 +29,7 @@ namespace GoogleCalendar
 		private IEnumerator RunRoutine()
 		{
 			string today = DateTime.Now.ToString("yyyy-MM-dd");
-			string future = DateTime.Now.AddMonths(4).ToString("yyyy-MM-dd");
+			string future = DateTime.Now.AddMonths(6).ToString("yyyy-MM-dd");
 
 			string url = "https://www.googleapis.com/calendar/v3/calendars/" + gmailAddress +
 							"/events?orderBy=startTime&singleEvents=true&timeMax=" + future + "T10:00:00-07:00&timeMin=" + today + "T10:00:00-07:00&key=" +
@@ -48,10 +41,8 @@ namespace GoogleCalendar
 
 			GoogleCalendarJsonResponse response = JsonUtility.FromJson<GoogleCalendarJsonResponse>(jsonResponse);
 
-			for (int i = 0; i < eventEntries.Length; i++)
+			for (int i = 0; i < response.items.Length; i++)
 			{
-				GoogleCalendarEvent eventEntry = eventEntries[i];
-
 				if (response.items.Length == i)
 				{
 					yield break;
@@ -66,6 +57,7 @@ namespace GoogleCalendar
 				DateTime time = DateTime.Parse(dateToUse);
 
 				// And populate
+				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
 				eventEntry.nameText.text = responseItem.summary;
 				eventEntry.dateText.text = time.ToString("dd MMM");
 			}
