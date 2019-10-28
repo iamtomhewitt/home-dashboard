@@ -41,6 +41,12 @@ namespace GoogleCalendar
 
 			GoogleCalendarJsonResponse response = JsonUtility.FromJson<GoogleCalendarJsonResponse>(jsonResponse);
 
+			// Remove old events
+			foreach (Transform child in scrollParent)
+			{
+				Destroy(child.gameObject);
+			}
+
 			for (int i = 0; i < response.items.Length; i++)
 			{
 				if (response.items.Length == i)
