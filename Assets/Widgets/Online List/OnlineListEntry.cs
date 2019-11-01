@@ -29,21 +29,22 @@ namespace OnlineLists
 		private IEnumerator RemoveRoutine()
 		{
 			RemoveConfirmDialog dialog = FindObjectOfType<RemoveConfirmDialog>();
-			dialog.Show("Remove '<b>" + nameText.text + "</b>'?");
+			dialog.Show();
+			dialog.SetInfoMessage("Remove '<b>" + nameText.text + "</b>'?");
 			dialog.SetNone();
 
-			while (dialog.GetResult() == RemoveConfirmDialog.DialogResult.NONE)
+			while (dialog.GetResult() == DialogResult.NONE)
 			{
 				yield return null;
 			}
 
-			if (dialog.GetResult() == RemoveConfirmDialog.DialogResult.NO || dialog.GetResult() == RemoveConfirmDialog.DialogResult.CANCEL)
+			if (dialog.GetResult() == DialogResult.NO || dialog.GetResult() == DialogResult.CANCEL)
 			{
 				dialog.Hide();
 				yield break;
 			}
 
-			if (dialog.GetResult() == RemoveConfirmDialog.DialogResult.YES)
+			if (dialog.GetResult() == DialogResult.YES)
 			{
 				dialog.Hide();
 
