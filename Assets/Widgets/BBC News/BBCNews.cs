@@ -7,9 +7,9 @@ namespace BBCNews
 	public class BBCNews : Widget
 	{
 		[Space(15f)]
-		public BBCNewsEntry entry;
-		public string apiKey;
-		public float secondsBetweenArticles = 20f;
+		[SerializeField] private BBCNewsEntry entry;
+		[SerializeField] private string apiKey;
+		[SerializeField] private float secondsBetweenArticles = 20f;
 
 		private BBCNewsJsonResponse response;
 		private int currentArticleIndex = 0;
@@ -42,9 +42,9 @@ namespace BBCNews
 		{
 			Article responseItem = response.articles[currentArticleIndex];
 
-			entry.title.text = responseItem.title;
-			entry.description.text = responseItem.description;
-			entry.url = responseItem.url;
+			entry.GetTitle().text = responseItem.title;
+			entry.GetDescription().text = responseItem.description;
+			entry.SetUrl(responseItem.url);
 
 			currentArticleIndex++;
 

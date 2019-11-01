@@ -5,26 +5,30 @@ using System;
 public abstract class Widget : MonoBehaviour
 {
 	[SerializeField] private Text titleText;
+
+	[Space()]
 	[SerializeField] private Text lastUpdatedText;
 	[SerializeField] private Image widgetBackground;
 
+	[Space()]
 	[SerializeField] private Color widgetColour;
 	[SerializeField] private Color textColour;
 
+	[Space()]
 	[SerializeField] private string title;
 
 	[Space()]
-	public float repeatRate;
-	public TimeUnit timeUnit;
+	[SerializeField] private float repeatRate;
+	[SerializeField] private TimeUnit timeUnit;
 
 	public abstract void Run();
 
 	public void Initialise()
 	{
 		UpdateLastUpdatedText();
-		SetTitleText();
+		SetTitleText(title);
 		SetColour(widgetColour);
-		SetTextColour();
+		SetTextColour(textColour);
 	}
 
 	public float RepeatRateInSeconds()
@@ -65,9 +69,9 @@ public abstract class Widget : MonoBehaviour
 		lastUpdatedText.text = "Last Updated: " + DateTime.Now.ToString("HH:mm");
 	}
 
-	private void SetTitleText()
+	private void SetTitleText(string s)
 	{
-		titleText.text = title;
+		titleText.text = s;
 	}
 
 	public void SetColour(Color colour)
@@ -75,10 +79,10 @@ public abstract class Widget : MonoBehaviour
 		widgetBackground.color = colour;
 	}
 
-	private void SetTextColour()
+	private void SetTextColour(Color colour)
 	{
-		titleText.color = textColour;
-		lastUpdatedText.color = textColour;
+		titleText.color = colour;
+		lastUpdatedText.color = colour;
 	}
 
 	[System.Serializable]

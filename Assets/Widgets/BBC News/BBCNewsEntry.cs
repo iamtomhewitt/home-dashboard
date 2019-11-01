@@ -5,10 +5,25 @@ namespace BBCNews
 {
 	public class BBCNewsEntry : MonoBehaviour
 	{
-		public Text title;
-		public Text description;
+		[SerializeField] private Text title;
+		[SerializeField] private Text description;
 
-		[HideInInspector] public string url;
+		private string url;
+
+		public Text GetTitle()
+		{
+			return title;
+		}
+
+		public Text GetDescription()
+		{
+			return description;
+		}
+
+		public void SetUrl(string url)
+		{
+			this.url = url;
+		}
 
 		public void OpenInBrowser()
 		{
