@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a62c999e07588414c874990a02e81c45, type: 3}
-  m_Name: Fishcakes, Potatoes & Peas
+  m_Name: Pie & Peas
   m_EditorClassIdentifier: 
   serves: 2
   ingredients:
-  - ingredient: {fileID: 11400000, guid: e4dca0f33a90e6349a1d5d7b2bdfff43, type: 2}
+  - ingredient: {fileID: 11400000, guid: aea3b7c8723176947972cb1f30d21d72, type: 2}
     amount: 2
     weight: 3
-  - ingredient: {fileID: 11400000, guid: 2f99a49aa4e5cf449a5da5c0f7dc65ea, type: 2}
-    amount: 360
-    weight: 0
   - ingredient: {fileID: 11400000, guid: d7d35568ab4623543a78697c329667c4, type: 2}
+    amount: 100
+    weight: 0
+  - ingredient: {fileID: 11400000, guid: 2f99a49aa4e5cf449a5da5c0f7dc65ea, type: 2}
     amount: 100
     weight: 0
