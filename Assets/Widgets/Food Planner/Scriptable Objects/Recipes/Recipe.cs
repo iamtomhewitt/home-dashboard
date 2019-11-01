@@ -19,6 +19,7 @@ public class Recipe : ScriptableObject
         Grams,
         Teaspoon,
         Tablespoon,
-        Quantity
+        Quantity,
+        Millilitres
     }
 }
