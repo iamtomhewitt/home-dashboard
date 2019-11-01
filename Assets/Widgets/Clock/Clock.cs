@@ -7,8 +7,8 @@ namespace Clock
 	public class Clock : Widget
 	{
 		[Space(15f)]
-		public Text clockText;
-		public Text dateText;
+		[SerializeField] private Text clockText;
+		[SerializeField] private Text dateText;
 
 		private void Start()
 		{

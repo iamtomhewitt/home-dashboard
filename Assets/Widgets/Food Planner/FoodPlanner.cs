@@ -5,8 +5,8 @@ namespace FoodPlanner
 {
 	public class FoodPlanner : Widget
 	{
-		private RecipeCard[] recipes;
-		private string filePath;
+		[SerializeField] private RecipeCard[] recipes;
+		[SerializeField] private string filePath;
 
 		private void Start()
 		{

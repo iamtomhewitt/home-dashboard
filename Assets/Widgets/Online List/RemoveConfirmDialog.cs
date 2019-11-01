@@ -5,7 +5,7 @@ namespace OnlineLists
 {
 	public class RemoveConfirmDialog : MonoBehaviour
 	{
-		public Text infoText;
+		[SerializeField] private Text infoText;
 		private DialogResult result;
 
 		private void Start()

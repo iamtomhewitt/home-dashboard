@@ -8,11 +8,11 @@ namespace GoogleCalendar
 	public class GoogleCalendar : Widget
 	{
 		[Space(15f)]
-		public GoogleCalendarEvent googleCalendarEventPrefab;
-		public Transform scrollParent;
+		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
+		[SerializeField] private Transform scrollParent;
 
-		public string gmailAddress;
-		public string apiKey;
+		[SerializeField] private string gmailAddress;
+		[SerializeField] private string apiKey;
 
 		private void Start()
 		{
@@ -64,8 +64,8 @@ namespace GoogleCalendar
 
 				// And populate
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
-				eventEntry.nameText.text = responseItem.summary;
-				eventEntry.dateText.text = time.ToString("dd MMM");
+				eventEntry.GetNameText().text = responseItem.summary;
+				eventEntry.GetDateText().text = time.ToString("dd MMM");
 			}
 		}
 	}

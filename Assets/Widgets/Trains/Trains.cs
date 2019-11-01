@@ -30,8 +30,8 @@ namespace Train
 		{
 			foreach (TrainEntry entry in trainEntries)
 			{
-				entry.destinationText.text = "";
-				entry.timeText.text = "";
+				entry.GetDestinationText().text = "";
+				entry.GetTimeText().text = "";
 			}
 
 			string url = "https://huxley.apphb.com/departures/" + stationCode + "/" + numberOfResults + "?accessToken=" + apiToken;
@@ -52,8 +52,8 @@ namespace Train
 
 				TrainEntry entry = trainEntries[i];
 				TrainServices trainService = trainData.trainServices[i];
-				entry.destinationText.text = trainService.destination[0].locationName;
-				entry.timeText.text = trainService.std + " (" + trainService.etd + ")";
+				entry.GetDestinationText().text = trainService.destination[0].locationName;
+				entry.GetTimeText().text = trainService.std + " (" + trainService.etd + ")";
 			}
 		}
 	}

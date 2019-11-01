@@ -9,16 +9,16 @@ namespace WeatherForecast
 	public class Weather : Widget
 	{
 		[Space(15f)]
-		public string apiKey;
-		public string latitude;
-		public string longitude;
+		[SerializeField] private string apiKey;
+		[SerializeField] private string latitude;
+		[SerializeField] private string longitude;
 
-		public Text currentSummary;
-		public Image currentIcon;
-		public Text currentTemperature;
+		[SerializeField] private Text currentSummary;
+		[SerializeField] private Image currentIcon;
+		[SerializeField] private Text currentTemperature;
 
-		public WeatherEntry[] entries;
-		public Sprite[] weatherSprites;
+		[SerializeField] private WeatherEntry[] entries;
+		[SerializeField] private Sprite[] weatherSprites;
 
 		private void Start()
 		{
@@ -54,10 +54,10 @@ namespace WeatherForecast
 				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 				date = date.AddSeconds(day.time);
 
-				entry.day.text = date.DayOfWeek.ToString();
-				entry.icon.sprite = GetSpriteForName(day.icon);
-				entry.temperatureHigh.text = Mathf.RoundToInt((float)day.temperatureHigh).ToString() + "°";
-				entry.temperatureLow.text = Mathf.RoundToInt((float)day.temperatureLow).ToString() + "°";
+				entry.SetDayText(date.DayOfWeek.ToString());
+				entry.SetIconSprite(GetSpriteForName(day.icon));
+				entry.SetTemperatureHighText(Mathf.RoundToInt((float)day.temperatureHigh).ToString() + "°");
+				entry.SetTemperatureLowText(Mathf.RoundToInt((float)day.temperatureLow).ToString() + "°");
 			}
 		}
 

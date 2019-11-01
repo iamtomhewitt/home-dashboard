@@ -7,8 +7,18 @@ namespace OnlineLists
 {
 	public class OnlineListEntry : MonoBehaviour
 	{
-		public Text nameText;
-		public string removeUrl;
+		[SerializeField] private Text nameText;
+		[SerializeField] private string removeUrl;
+
+		public Text GetNameText()
+		{
+			return nameText;
+		}
+
+		public void SetRemoveUrl(string url)
+		{
+			removeUrl = url;
+		}
 
 		// Called from the 'X' button
 		public void Remove()

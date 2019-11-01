@@ -5,6 +5,6 @@ public class Version : MonoBehaviour
 {
     private void Start()
     {
-		GetComponent<Text>().text = "Version: " + Application.version;
+        GetComponent<Text>().text = "Version: " + Application.version;
     }
 }

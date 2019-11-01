@@ -8,15 +8,15 @@ namespace BinDay
 	public class BinDay : Widget
 	{
 		[Space(15f)]
-		public List<int> greenBinDays;
-		public List<int> blackBinDays;
+		[SerializeField] private List<int> greenBinDays;
+		[SerializeField] private List<int> blackBinDays;
 
 		[Space()]
-		public Color greenBinColour;
-		public Color blackBinColour;
-		public Color noBinColour;
+		[SerializeField] private Color greenBinColour;
+		[SerializeField] private Color blackBinColour;
+		[SerializeField] private Color noBinColour;
 
-		public Text text;
+		[SerializeField] private Text text;
 
 		private void Start()
 		{

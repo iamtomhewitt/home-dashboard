@@ -7,9 +7,29 @@ namespace WeatherForecast
 {
 	public class WeatherEntry : MonoBehaviour
 	{
-		public Text day;
-		public Image icon;
-		public Text temperatureHigh;
-		public Text temperatureLow;
+		[SerializeField] private Text day;
+		[SerializeField] private Image icon;
+		[SerializeField] private Text temperatureHigh;
+		[SerializeField] private Text temperatureLow;
+
+		public void SetDayText(string s)
+		{
+			day.text = s;
+		}
+
+		public void SetIconSprite(Sprite s)
+		{
+			icon.sprite = s;
+		}
+
+		public void SetTemperatureHighText(string s)
+		{
+			temperatureHigh.text = s;
+		}
+
+		public void SetTemperatureLowText(string s)
+		{
+			temperatureLow.text = s;
+		}
 	}
 }
