@@ -4693,10 +4693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 9b8fe71837921e24fa19e895ef7b5399, type: 2}
-  m_Camera: {fileID: 519420031}
-  m_PreviousProfile: {fileID: 11400000, guid: 9b8fe71837921e24fa19e895ef7b5399, type: 2}
-  m_RenderingInSceneView: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -6370,7 +6366,7 @@ GameObject:
   - component: {fileID: 840664272}
   - component: {fileID: 840664273}
   m_Layer: 5
-  m_Name: Weather 1x2
+  m_Name: Weather
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9678,7 +9674,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 1397447808}
   description: {fileID: 715590067}
-  url: 
 --- !u!1 &1253615064
 GameObject:
   m_ObjectHideFlags: 0
@@ -10818,7 +10813,7 @@ GameObject:
   - component: {fileID: 1328514299}
   - component: {fileID: 1328514300}
   m_Layer: 5
-  m_Name: Google Calendar Lauren 1x1
+  m_Name: Google Calendar Lauren
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16607,7 +16602,7 @@ GameObject:
   - component: {fileID: 2062732454}
   - component: {fileID: 2062732455}
   m_Layer: 5
-  m_Name: Google Calendar Tom 1x1
+  m_Name: Google Calendar Tom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

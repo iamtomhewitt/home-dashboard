@@ -10,7 +10,7 @@ public class Recipe : ScriptableObject
     public class RecipeIngredient
     {
         public Ingredient ingredient;
-        public int amount;
+        public float amount;
         public Weight weight;
     }
 
@@ -18,6 +18,7 @@ public class Recipe : ScriptableObject
     {
         Grams,
         Teaspoon,
-        Tablespoon
+        Tablespoon,
+        Quantity
     }
 }
