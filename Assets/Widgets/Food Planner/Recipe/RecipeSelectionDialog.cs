@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class RecipeSelectionDialog : Dialog
 {
@@ -7,6 +8,7 @@ public class RecipeSelectionDialog : Dialog
 	[SerializeField] private Transform scrollParent;
 
 	private Recipe selectedRecipe;
+	private string freeTextRecipe;
 
 	public Recipe GetSelectedRecipe()
 	{
@@ -16,6 +18,18 @@ public class RecipeSelectionDialog : Dialog
 	public void SetSelectedRecipe(Recipe recipe)
 	{
 		selectedRecipe = recipe;
+	}
+
+	public string GetFreeTextRecipeName()
+	{
+		return freeTextRecipe;
+	}
+
+	public void SelectFreeTextRecipe(InputField freeTextInput)
+	{
+		freeTextRecipe = freeTextInput.text;
+		SetResult(DialogResult.FINISHED);
+		Hide();
 	}
 
 	/// <summary>

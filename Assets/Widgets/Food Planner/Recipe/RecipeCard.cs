@@ -49,7 +49,7 @@ namespace FoodPlanner
 
 			if (dialog.GetResult() == DialogResult.FINISHED)
 			{
-				recipeText.text = dialog.GetSelectedRecipe().name;
+				recipeText.text = dialog.GetSelectedRecipe() != null ? dialog.GetSelectedRecipe().name : dialog.GetFreeTextRecipeName();
 				UpdateRecipeDataName();
 				FindObjectOfType<FoodPlanner>().SaveToFile();
 				yield break;
