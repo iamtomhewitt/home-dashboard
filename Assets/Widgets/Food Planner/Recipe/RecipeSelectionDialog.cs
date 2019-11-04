@@ -28,6 +28,7 @@ public class RecipeSelectionDialog : Dialog
 	public void SelectFreeTextRecipe(InputField freeTextInput)
 	{
 		freeTextRecipe = freeTextInput.text;
+		selectedRecipe = null;
 		SetResult(DialogResult.FINISHED);
 		Hide();
 	}
