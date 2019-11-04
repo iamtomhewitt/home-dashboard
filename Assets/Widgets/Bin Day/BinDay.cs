@@ -14,6 +14,9 @@ namespace BinDay
 
 		[SerializeField] private Text text;
 
+		private DateTime firstGreenBinDay = new DateTime(2019, 10, 7);
+		private DateTime firstBlackBinDay = new DateTime(2019, 10, 14);
+
 		private void Start()
 		{
 			this.Initialise();
@@ -21,27 +24,15 @@ namespace BinDay
 		}
 
 		public override void Run()
-		{
-			DateTime firstGreenBinDay = new DateTime(2019, 10, 7);
-			DateTime firstBlackBinDay = new DateTime(2019, 10, 14);
+		{			
 			DateTime today = DateTime.Today;
 			DateTime tomorrow = today.AddDays(1);
 
-			int greenBinDays = (int)(today - firstGreenBinDay).TotalDays;
-			int blackBinDays = (int)(today - firstBlackBinDay).TotalDays;
+			DateTime lastGreenBinDay = GetLastBinDate(firstGreenBinDay);
+			DateTime lastBlackBinDay = GetLastBinDate(firstBlackBinDay);
+			DateTime nextGreenBinDay = GetNextBinDate(lastGreenBinDay);
+			DateTime nextBlackBinDay = GetNextBinDate(lastBlackBinDay);
 
-			int greenBinRemainder = greenBinDays % 14;
-			int blackBinRemainder = blackBinDays % 14;
-
-			DateTime lastGreenBinDay = today.AddDays(-greenBinRemainder);
-			DateTime nextGreenBinDay = lastGreenBinDay.AddDays(14);
-
-			DateTime lastBlackBinDay = today.AddDays(-blackBinRemainder);
-			DateTime nextBlackBinDay = lastBlackBinDay.AddDays(14);
-
-			print("Today: " + today.ToString("dd/MM/yyyy"));
-			print("Next green bin: " + nextGreenBinDay.ToString("dd/MM/yyyy"));
-			print("Next black bin: " + nextBlackBinDay.ToString("dd/MM/yyyy"));
 
 			if (today == nextBlackBinDay || today == lastBlackBinDay)
 			{
@@ -72,6 +63,19 @@ namespace BinDay
 			}
 
 			this.UpdateLastUpdatedText();
+		}
+
+		private DateTime GetLastBinDate(DateTime firstBinDate)
+		{
+			DateTime today = DateTime.Today;
+			int days = (int)(today - firstBinDate).TotalDays;
+			int remainder = days % 14;
+			return today.AddDays(-remainder);
+		}
+
+		private DateTime GetNextBinDate(DateTime lastBinDate)
+		{
+			return lastBinDate.AddDays(14);
 		}
 	}
 }
