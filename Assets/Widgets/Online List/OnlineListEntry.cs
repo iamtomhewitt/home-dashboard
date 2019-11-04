@@ -28,7 +28,7 @@ namespace OnlineLists
 
 		private IEnumerator RemoveRoutine()
 		{
-			RemoveConfirmDialog dialog = FindObjectOfType<RemoveConfirmDialog>();
+			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
 			dialog.Show();
 			dialog.SetInfoMessage("Remove '<b>" + nameText.text + "</b>'?");
 			dialog.SetNone();

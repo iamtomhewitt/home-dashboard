@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace OnlineLists
 {
@@ -15,13 +15,11 @@ namespace OnlineLists
         [Space()]
         [SerializeField] private OnlineListEntry entryPrefab;
         [SerializeField] private Transform content;
-        [SerializeField] private GameObject addItemMenu;
         [SerializeField] private Text statusText;
 
         private void Start()
         {
             this.Initialise();
-            this.HideMenu();
             InvokeRepeating("Run", 0f, RepeatRateInSeconds());
         }
 
@@ -98,20 +96,6 @@ namespace OnlineLists
         {
             StartCoroutine(AddItem(input.text));
             input.text = "";
-        }
-
-        // Called from a button
-        public void ShowMenu()
-        {
-            addItemMenu.SetActive(true);
-            statusText.text = "";
-        }
-
-        // Called from a button
-        public void HideMenu()
-        {
-            addItemMenu.SetActive(false);
-            statusText.text = "";
         }
     }
 }

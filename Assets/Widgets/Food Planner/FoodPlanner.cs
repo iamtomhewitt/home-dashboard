@@ -21,7 +21,7 @@ namespace FoodPlanner
 
 		public override void Run()
 		{
-
+			// Nothing to do!
 		}
 
 		/// <summary>
@@ -59,8 +59,8 @@ namespace FoodPlanner
 
 			for (int i = 0; i < data.Length; i++)
 			{
-				//print(data[i].day + ": " + data[i].recipeName);
-				recipes[i].GetRecipeInput().text = data[i].recipeName;
+				print(data[i].day + ": " + data[i].recipeName);
+				recipes[i].GetRecipeCardText().text = data[i].recipeName;
 				recipes[i].GetRecipeData().recipeName = data[i].recipeName;
 				recipes[i].GetRecipeData().day = data[i].day;
 			}
