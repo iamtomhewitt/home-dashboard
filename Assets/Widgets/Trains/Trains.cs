@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JsonResponse;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -41,11 +42,10 @@ namespace Train
 			string jsonResponse = request.downloadHandler.text;
 
 			TrainJsonResponse trainData = JsonUtility.FromJson<TrainJsonResponse>(jsonResponse);
-			TrainServices[] services = trainData.trainServices;
 
-			for (int i = 0; i < services.Length; i++)
+			for (int i = 0; i < trainData.trainServices.Length; i++)
 			{
-				if (services.Length == i)
+				if (trainData.trainServices.Length == i)
 				{
 					yield break;
 				}

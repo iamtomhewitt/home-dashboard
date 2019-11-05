@@ -1,4 +1,4 @@
-﻿namespace WeatherForecast
+﻿namespace JsonResponse
 {
 	[System.Serializable]
 	public class WeatherJsonResponse

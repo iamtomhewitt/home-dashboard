@@ -1,4 +1,4 @@
-﻿namespace Train
+﻿namespace JsonResponse
 {
 	[System.Serializable]
 	public class TrainJsonResponse

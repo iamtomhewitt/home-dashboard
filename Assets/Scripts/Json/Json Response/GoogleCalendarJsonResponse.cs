@@ -1,4 +1,4 @@
-﻿namespace GoogleCalendar
+﻿namespace JsonResponse
 {
 	[System.Serializable]
 	public class GoogleCalendarJsonResponse

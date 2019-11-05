@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System;
+using System.Collections;
+using JsonResponse;
 
 namespace WeatherForecast
 {
@@ -17,7 +18,7 @@ namespace WeatherForecast
 		[SerializeField] private Image currentIcon;
 		[SerializeField] private Text currentTemperature;
 
-		[SerializeField] private WeatherEntry[] entries;
+		[SerializeField] private WeatherEntry[] weatherEntries;
 		[SerializeField] private Sprite[] weatherSprites;
 
 		private void Start()
@@ -46,10 +47,10 @@ namespace WeatherForecast
 			currentIcon.sprite = GetSpriteForName(response.currently.icon);
 			currentTemperature.text = Mathf.RoundToInt((float)response.currently.temperature).ToString() + "°";
 
-			for (int i = 0; i < entries.Length; i++)
+			for (int i = 0; i < weatherEntries.Length; i++)
 			{
 				Data day = response.daily.data[i + 2];
-				WeatherEntry entry = entries[i];
+				WeatherEntry entry = weatherEntries[i];
 
 				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 				date = date.AddSeconds(day.time);

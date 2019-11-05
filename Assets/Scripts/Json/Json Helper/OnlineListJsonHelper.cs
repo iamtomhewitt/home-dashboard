@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace OnlineLists
+namespace JsonHelper
 {
 	public class OnlineListJsonHelper
 	{

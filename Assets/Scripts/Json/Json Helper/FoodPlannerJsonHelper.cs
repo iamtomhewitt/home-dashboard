@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using FoodPlanner;
+using UnityEngine;
 
-namespace FoodPlanner
+namespace JsonHelper
 {
 	public class FoodPlannerJsonHelper : MonoBehaviour
 	{

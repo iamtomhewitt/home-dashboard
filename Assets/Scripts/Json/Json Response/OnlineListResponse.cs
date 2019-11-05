@@ -1,4 +1,4 @@
-﻿namespace OnlineLists
+﻿namespace JsonResponse
 {
 	[System.Serializable]
 	public class OnlineListResponse

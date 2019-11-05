@@ -1,4 +1,4 @@
-﻿namespace BBCNews
+﻿namespace JsonResponse
 {
 	[System.Serializable]
 	public class BBCNewsJsonResponse
