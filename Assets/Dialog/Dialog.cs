@@ -32,6 +32,16 @@ public abstract class Dialog : MonoBehaviour
 	{
 		GetComponent<RectTransform>().localPosition = Vector2.zero;
 	}
+
+	public void Cancel()
+	{
+		result = DialogResult.CANCEL;
+	}
+
+	public void None()
+	{
+		result = DialogResult.NONE;
+	}
 }
 
 public enum DialogResult

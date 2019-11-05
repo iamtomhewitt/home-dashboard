@@ -17,11 +17,6 @@ namespace OnlineLists
             infoText.text = message;
         }
 
-        public void SetNone()
-        {
-            SetResult(DialogResult.NONE);
-        }
-
         public void Yes()
         {
 			SetResult(DialogResult.YES);
@@ -30,11 +25,6 @@ namespace OnlineLists
         public void No()
         {
 			SetResult(DialogResult.NO);
-        }
-
-        public void Cancel()
-        {
-			SetResult(DialogResult.CANCEL);
         }
     }
 }

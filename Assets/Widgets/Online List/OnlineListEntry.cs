@@ -31,7 +31,7 @@ namespace OnlineLists
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
 			dialog.Show();
 			dialog.SetInfoMessage("Remove '<b>" + nameText.text + "</b>'?");
-			dialog.SetNone();
+			dialog.None();
 
 			while (dialog.GetResult() == DialogResult.NONE)
 			{

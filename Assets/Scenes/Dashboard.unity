@@ -1065,8 +1065,6 @@ MonoBehaviour:
   title: Bin Day
   repeatRate: 2
   timeUnit: 2
-  greenBinDays: 0700000015000000
-  blackBinDays: 0e0000001c000000
   greenBinColour: {r: 0.4, g: 0.73333335, b: 0.41568628, a: 1}
   blackBinColour: {r: 0.14901961, g: 0.19607843, b: 0.21960784, a: 1}
   noBinColour: {r: 0.011764706, g: 0.6627451, b: 0.95686275, a: 1}
@@ -4343,7 +4341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.013, y: 2.02}
+  m_AnchoredPosition: {x: -0.013000011, y: 2.02}
   m_SizeDelta: {x: -0.5758, y: -8.1815}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485637335
@@ -5801,6 +5799,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0924e6291575c04bb777c983313ac8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  list: {fileID: 1870469004}
+  statusText: {fileID: 1345734257}
+  dreamloPrivateKey: HbYnByfESUemvIRTE9nLRw-lBuVGwN20uqa0JFjf5c0w
 --- !u!1 &715590065
 GameObject:
   m_ObjectHideFlags: 0
@@ -10812,7 +10813,7 @@ GameObject:
   - component: {fileID: 1345734258}
   - component: {fileID: 1345734257}
   m_Layer: 5
-  m_Name: Item Status
+  m_Name: Status Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11654,6 +11655,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 713499689}
+        m_MethodName: ResetStatusText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1400614310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11929,6 +11941,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2118230374}
+        m_MethodName: ResetStatusText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1427047689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11977,7 +12000,7 @@ GameObject:
   - component: {fileID: 1435083303}
   - component: {fileID: 1435083302}
   m_Layer: 5
-  m_Name: Item Status
+  m_Name: Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12825,7 +12848,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1763180177}
+      - m_Target: {fileID: 2118230374}
         m_MethodName: AddItem
         m_Mode: 2
         m_Arguments:
@@ -15574,7 +15597,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1870469004}
+      - m_Target: {fileID: 713499689}
         m_MethodName: AddItem
         m_Mode: 2
         m_Arguments:
@@ -16995,6 +17018,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0924e6291575c04bb777c983313ac8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  list: {fileID: 1763180177}
+  statusText: {fileID: 1435083302}
+  dreamloPrivateKey: 7ZSQifiLrUOEP9w0mHvi0gu1TLzx94IE6tsdcLT_YEUg
 --- !u!1 &2126595009
 GameObject:
   m_ObjectHideFlags: 0

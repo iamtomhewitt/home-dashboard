@@ -73,29 +73,12 @@ namespace OnlineLists
             }
         }
 
-        private IEnumerator AddItem(string item)
-        {
-            string url = dreamloUrl + privateKey + "/add/" + item + "/0";
-
-            UnityWebRequest request = UnityWebRequest.Get(url);
-            yield return request.SendWebRequest();
-
-            bool ok = request.downloadHandler.text.Equals("OK") ? true : false;
-            if (!ok)
-            {
-                print(request.downloadHandler.text);
-            }
-
-            statusText.text = "'" + item + "' uploaded!";
-
-            this.Run();
-        }
-
-        // Called from the pop up menu
-        public void AddItem(InputField input)
-        {
-            StartCoroutine(AddItem(input.text));
-            input.text = "";
-        }
+		/// <summary>
+		/// Refreshes the list by re-running the Run() routine.
+		/// </summary>
+		public void Refresh()
+		{
+			Run();
+		}
     }
 }
