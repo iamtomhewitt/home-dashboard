@@ -1,30 +1,30 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace OnlineLists
+namespace Dialog
 {
-    public class ConfirmDialog : Dialog
-    {
-        [SerializeField] private Text infoText;
+	public class ConfirmDialog : Dialog
+	{
+		[SerializeField] private Text infoText;
 
-        private void Start()
-        {
-            Hide();
-        }
+		private void Start()
+		{
+			Hide();
+		}
 
-        public void SetInfoMessage(string message)
-        {
-            infoText.text = message;
-        }
+		public void SetInfoMessage(string message)
+		{
+			infoText.text = message;
+		}
 
-        public void Yes()
-        {
+		public void Yes()
+		{
 			SetResult(DialogResult.YES);
-        }
+		}
 
-        public void No()
-        {
+		public void No()
+		{
 			SetResult(DialogResult.NO);
-        }
-    }
+		}
+	}
 }

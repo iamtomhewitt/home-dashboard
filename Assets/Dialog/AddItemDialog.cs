@@ -2,50 +2,54 @@
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using OnlineLists;
 
-namespace OnlineLists
+namespace Dialog
 {
-	public class AddItemDialog : Dialog
+	namespace OnlineLists
 	{
-		[SerializeField] private OnlineList list;
-		[SerializeField] private Text statusText;
-		[SerializeField] private string dreamloPrivateKey;
-
-		private string dreamloUrl = "http://dreamlo.com/lb/";
-
-		/// <summary>
-		/// Called from a button.
-		/// </summary>
-		public void ResetStatusText()
+		public class AddItemDialog : Dialog
 		{
-			statusText.text = "";
-		}
+			[SerializeField] private OnlineList list;
+			[SerializeField] private Text statusText;
+			[SerializeField] private string dreamloPrivateKey;
 
-		/// <summary>
-		/// Called from a button.
-		/// </summary>
-		public void AddItem(InputField input)
-		{
-			StartCoroutine(AddItem(input.text));
-			input.text = "";
-		}
+			private string dreamloUrl = "http://dreamlo.com/lb/";
 
-		private IEnumerator AddItem(string item)
-		{
-			string url = dreamloUrl + dreamloPrivateKey + "/add/" + item + "/0";
-
-			UnityWebRequest request = UnityWebRequest.Get(url);
-			yield return request.SendWebRequest();
-
-			bool ok = request.downloadHandler.text.Equals("OK") ? true : false;
-			if (!ok)
+			/// <summary>
+			/// Called from a button.
+			/// </summary>
+			public void ResetStatusText()
 			{
-				statusText.text = request.downloadHandler.text;
+				statusText.text = "";
 			}
 
-			list.Refresh();
+			/// <summary>
+			/// Called from a button.
+			/// </summary>
+			public void AddItem(InputField input)
+			{
+				StartCoroutine(AddItem(input.text));
+				input.text = "";
+			}
 
-			statusText.text = "'" + item + "' uploaded!";
+			private IEnumerator AddItem(string item)
+			{
+				string url = dreamloUrl + dreamloPrivateKey + "/add/" + item + "/0";
+
+				UnityWebRequest request = UnityWebRequest.Get(url);
+				yield return request.SendWebRequest();
+
+				bool ok = request.downloadHandler.text.Equals("OK") ? true : false;
+				if (!ok)
+				{
+					statusText.text = request.downloadHandler.text;
+				}
+
+				list.Refresh();
+
+				statusText.text = "'" + item + "' uploaded!";
+			}
 		}
 	}
 }

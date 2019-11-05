@@ -2225,9 +2225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a331a060e2112a748b5b21e564a7b957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeEntry: {fileID: 133812575312509910, guid: 1613a3382a028084dba093d4ad2022b2,
+  recipeEntryPrefab: {fileID: 133812575312509910, guid: 1613a3382a028084dba093d4ad2022b2,
     type: 3}
-  scrollParent: {fileID: 1490282456}
+  scrollViewContent: {fileID: 1490282456}
 --- !u!1 &311405005
 GameObject:
   m_ObjectHideFlags: 0

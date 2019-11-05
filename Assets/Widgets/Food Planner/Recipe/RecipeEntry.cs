@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Dialog;
 
 public class RecipeEntry : MonoBehaviour
 {
