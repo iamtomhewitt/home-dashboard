@@ -7,6 +7,16 @@ public class Ingredient : ScriptableObject
     [SerializeField] private string name;
     [SerializeField] private Type type;
 
+	public string GetName()
+	{
+		return name;
+	}
+
+	public Type GetType()
+	{
+		return type;
+	}
+
     public enum Type
     {
         Meat,

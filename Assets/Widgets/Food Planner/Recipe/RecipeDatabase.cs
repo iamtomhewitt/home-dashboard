@@ -22,4 +22,13 @@ public class RecipeDatabase : MonoBehaviour
 	{
 		return recipes.Select(x => x.name).ToList();
 	}
+
+	/// <summary>
+	/// Finds a recipe by name
+	/// </summary>
+	public Recipe FindRecipe(string name)
+	{
+		Recipe r = recipes.Where(x => x.name.Equals(name)).FirstOrDefault();
+		return r;
+	}
 }
