@@ -118,7 +118,7 @@ namespace FoodPlannerWidget
 				foreach (IngredientData s in ingredientsToUpload)
 				{
 					//print(s.ToString());
-					shoppingList.AddItem("TEST " + s.ToString());
+					shoppingList.AddItem(s.ToString());
 				}
 			}
 		}
