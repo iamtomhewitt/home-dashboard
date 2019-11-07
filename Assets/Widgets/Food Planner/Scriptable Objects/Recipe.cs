@@ -30,6 +30,28 @@ public class Recipe : ScriptableObject
 		{
 			return "\nName: " + ingredient.GetName() + "\n\tType: " + ingredient.GetType() + "\n\tAmount: " + amount + "\n\tWeight: " + weight;
 		}
+
+		public IngredientData ToIngredientData()
+		{
+			return new IngredientData(this.ingredient.name, this.amount);
+		}
+
+		public struct IngredientData
+		{
+			public string name;
+			public float amount;
+
+			public IngredientData(string name, float amount)
+			{
+				this.name = name;
+				this.amount = amount;
+			}
+
+			public override string ToString()
+			{
+				return this.name + " | " + this.amount;
+			}
+		}
 	}
 
 	public enum Weight

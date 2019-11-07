@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using static Recipe;
 using System.Linq;
 using OnlineLists;
+using static Recipe.RecipeIngredient;
 
 namespace FoodPlanner
 {
@@ -105,34 +106,23 @@ namespace FoodPlanner
 			{
 				dialog.Hide();
 
-				List<Recipe> recipesToUpload = CombineDuplicateRecipesFromRecipeCards();
+				List<Recipe> selectedRecipes = CollectSelectedRecipes();
+				List<IngredientData> ingredientsToUpload = CollectedIngredientsFromRecipes(selectedRecipes);
 
-				print("====\nThe recipes to upload are:\n====");
-
-				foreach (Recipe r in recipesToUpload)
+				print("===");
+				foreach (IngredientData s in ingredientsToUpload)
 				{
-					//print(r.ToString());
-
-					List<string> items = new List<string>();
-
-					foreach (RecipeIngredient ingredient in r.ingredients)
-					{
-						string item = ingredient.ingredient.name + " " + ingredient.amount + " " + ingredient.weight;
-						print(item);
-						items.Add(item);
-					}
+					print(s.ToString());
 				}
 			}
 		}
 
 		/// <summary>
-		/// Iterates through the recipe cards, and combines duplicate recipes. <para/>
-		/// E.g. If Pie & Peas occurs twice, then the returned list will contain double the amount of ingredients under one 
-		/// recipe, instead of the same recipe occuring twice.
+		/// Iterates through the recipe cards, finds the associated recipe by name and adds it to a list.
 		/// </summary>
-		private List<Recipe> CombineDuplicateRecipesFromRecipeCards()
+		private List<Recipe> CollectSelectedRecipes()
 		{
-			List<Recipe> recipes = new List<Recipe>();
+			List<Recipe> selectedRecipes = new List<Recipe>();
 			foreach (RecipeCard card in recipeCards)
 			{
 				string recipeName = card.GetRecipeData().recipeName;
@@ -144,35 +134,42 @@ namespace FoodPlanner
 				{
 					// Make a copy so we dont update the original scriptable object
 					Recipe recipe = Instantiate(recipeScriptableObject);
+					selectedRecipes.Add(recipe);
+				}
+			}
+			return selectedRecipes;
+		}
 
-					bool recipeAlreadyPresent = recipes.Where(x => x.name.Equals(recipe.name)).FirstOrDefault() != null ? true : false;
-					if (recipeAlreadyPresent)
+		private List<IngredientData> CollectedIngredientsFromRecipes(List<Recipe> recipes)
+		{
+			List<IngredientData> ingredients = new List<IngredientData>();
+			foreach (Recipe r in recipes)
+			{
+				foreach (RecipeIngredient ingredient in r.ingredients)
+				{
+					IngredientData ingredientData = ingredient.ToIngredientData();
+
+					bool exists = ingredients.Any(x => x.name.Equals(ingredientData.name));
+
+					if (exists)
 					{
-						print(recipe.name + " is already in the recipes to upload");
-						Recipe containedRecipe = recipes.Find(x => x.name.Equals(recipe.name));
+						IngredientData presentIngredient = ingredients.Where(x => x.name.Equals(ingredientData.name)).FirstOrDefault();
+						//print("The existing ingredient is: " + presentIngredient.ToString());
+						//print("The ingredient trying to add is: " + ingredientData.ToString());
 
-						for (int i = 0; i < containedRecipe.ingredients.Length; i++)
-						{
-							RecipeIngredient containedRecipeIngredient = containedRecipe.ingredients[i];
+						IngredientData updatedIngredient = new IngredientData(ingredientData.name, (presentIngredient.amount + ingredientData.amount));
+						//print("The updated ingredient will be: " + updatedIngredient.ToString());
 
-							float currentAmount = containedRecipeIngredient.amount;
-							float amountToAdd = recipe.ingredients[i].amount;
-							float newAmount = currentAmount + amountToAdd;
-							containedRecipeIngredient.amount = newAmount;
-
-							print("The current added recipe contains " + currentAmount + " of " + containedRecipeIngredient.ingredient.name);
-							print("The recipe to add contains " + amountToAdd + " of " + recipe.ingredients[i].ingredient.name);
-							print("The new amount is now: " + containedRecipeIngredient.amount);
-						}
+						ingredients.Remove(presentIngredient);
+						ingredients.Add(updatedIngredient);
 					}
 					else
 					{
-						print(recipe.name + " is NOT in the recipes to upload");
-						recipes.Add(recipe);
+						ingredients.Add(ingredientData);
 					}
 				}
 			}
-			return recipes;
+			return ingredients;
 		}
 	}
 }
