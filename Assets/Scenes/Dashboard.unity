@@ -1939,9 +1939,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipeData:
-    day: Monday
+    day: Sunday
     recipeName: 
   recipeText: {fileID: 907066135}
+  dayLabel: {fileID: 1516808915}
 --- !u!114 &299540459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5279,9 +5280,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipeData:
-    day: Monday
+    day: Friday
     recipeName: 
   recipeText: {fileID: 311405007}
+  dayLabel: {fileID: 1646434105}
 --- !u!114 &624086195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5371,9 +5373,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipeData:
-    day: Monday
+    day: Saturday
     recipeName: 
   recipeText: {fileID: 1855191379}
+  dayLabel: {fileID: 1472377100}
 --- !u!114 &628252426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11310,6 +11313,7 @@ MonoBehaviour:
     day: Monday
     recipeName: 
   recipeText: {fileID: 1671802409}
+  dayLabel: {fileID: 1787500905}
 --- !u!114 &1525053366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11573,9 +11577,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipeData:
-    day: Monday
+    day: Tuesday
     recipeName: 
   recipeText: {fileID: 740692682}
+  dayLabel: {fileID: 508370983}
 --- !u!114 &1597925300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12634,9 +12639,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipeData:
-    day: Monday
+    day: Wednesday
     recipeName: 
   recipeText: {fileID: 1709868146}
+  dayLabel: {fileID: 338434506}
 --- !u!114 &1681651721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13337,9 +13343,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipeData:
-    day: Monday
+    day: Thursday
     recipeName: 
   recipeText: {fileID: 212478546}
+  dayLabel: {fileID: 137732360}
 --- !u!114 &1814684622
 MonoBehaviour:
   m_ObjectHideFlags: 0

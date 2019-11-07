@@ -10,6 +10,17 @@ namespace Recipes.UI
 	{
 		[SerializeField] private RecipeData recipeData;
 		[SerializeField] private Text recipeText;
+		[SerializeField] private Text dayLabel;
+
+		private void Start()
+		{
+			string label = "";
+			foreach (char c in recipeData.day.Substring(0, 3).ToUpper())
+			{
+				label += c + "\n";
+			}
+			dayLabel.text = label;
+		}
 
 		/// <summary>
 		/// Updates the recipe data objects with the name of the recipe card text.
