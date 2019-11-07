@@ -6,15 +6,15 @@ using System.Collections;
 using System.Collections.Generic;
 using static Recipe;
 using System.Linq;
-using OnlineLists;
 using static Recipe.RecipeIngredient;
+using Dialog.OnlineLists;
 
 namespace FoodPlanner
 {
 	public class FoodPlanner : Widget
 	{
 		[SerializeField] private RecipeCard[] recipeCards;
-		[SerializeField] private OnlineList shoppingList;
+		[SerializeField] private AddItemDialog shoppingList;
 		[SerializeField] private string filePath;
 
 		private void Start()
@@ -88,7 +88,7 @@ namespace FoodPlanner
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
 			dialog.Show();
 			dialog.None();
-			dialog.SetInfoMessage("Upload recipes?\n This will add all the ingredients from each recipe to the shopping list.");
+			dialog.SetInfoMessage("Add all ingredients from each recipe to the shopping list?");
 
 			while (dialog.GetResult() == DialogResult.NONE)
 			{
@@ -109,10 +109,10 @@ namespace FoodPlanner
 				List<Recipe> selectedRecipes = CollectSelectedRecipes();
 				List<IngredientData> ingredientsToUpload = CollectedIngredientsFromRecipes(selectedRecipes);
 
-				print("===");
 				foreach (IngredientData s in ingredientsToUpload)
 				{
-					print(s.ToString());
+					//print(s.ToString());
+					shoppingList.AddItem("TEST " + s.ToString());
 				}
 			}
 		}
@@ -140,6 +140,9 @@ namespace FoodPlanner
 			return selectedRecipes;
 		}
 
+		/// <summary>
+		/// Collects ingredients from the selected recipes, removing duplicates and updating the amounts along the way.
+		/// </summary>
 		private List<IngredientData> CollectedIngredientsFromRecipes(List<Recipe> recipes)
 		{
 			List<IngredientData> ingredients = new List<IngredientData>();
@@ -154,11 +157,7 @@ namespace FoodPlanner
 					if (exists)
 					{
 						IngredientData presentIngredient = ingredients.Where(x => x.name.Equals(ingredientData.name)).FirstOrDefault();
-						//print("The existing ingredient is: " + presentIngredient.ToString());
-						//print("The ingredient trying to add is: " + ingredientData.ToString());
-
-						IngredientData updatedIngredient = new IngredientData(ingredientData.name, (presentIngredient.amount + ingredientData.amount));
-						//print("The updated ingredient will be: " + updatedIngredient.ToString());
+						IngredientData updatedIngredient = new IngredientData(ingredientData.name, (presentIngredient.amount + ingredientData.amount), ingredientData.weight);
 
 						ingredients.Remove(presentIngredient);
 						ingredients.Add(updatedIngredient);

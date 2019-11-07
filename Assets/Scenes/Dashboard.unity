@@ -13599,6 +13599,7 @@ MonoBehaviour:
   repeatRate: 10
   timeUnit: 2
   recipeCards: []
+  shoppingList: {fileID: 713499689}
   filePath: 
 --- !u!1 &1840678959
 GameObject:

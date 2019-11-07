@@ -29,11 +29,16 @@ namespace Dialog
 			/// </summary>
 			public void AddItem(InputField input)
 			{
-				StartCoroutine(AddItem(input.text));
+				StartCoroutine(AddItemRoutine(input.text));
 				input.text = "";
 			}
 
-			private IEnumerator AddItem(string item)
+			public void AddItem(string item)
+			{
+				StartCoroutine(AddItemRoutine(item));
+			}
+
+			private IEnumerator AddItemRoutine(string item)
 			{
 				string url = dreamloUrl + dreamloPrivateKey + "/add/" + item + "/0";
 
@@ -43,7 +48,7 @@ namespace Dialog
 				bool ok = request.downloadHandler.text.Equals("OK") ? true : false;
 				if (!ok)
 				{
-					statusText.text = request.downloadHandler.text;
+					statusText.text = "ERROR UPLOADING: " + request.downloadHandler.text;
 				}
 
 				list.Refresh();

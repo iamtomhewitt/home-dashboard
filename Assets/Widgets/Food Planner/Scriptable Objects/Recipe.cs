@@ -33,33 +33,35 @@ public class Recipe : ScriptableObject
 
 		public IngredientData ToIngredientData()
 		{
-			return new IngredientData(this.ingredient.name, this.amount);
+			return new IngredientData(this.ingredient.name, this.amount, this.weight.ToString());
 		}
 
 		public struct IngredientData
 		{
 			public string name;
 			public float amount;
+			public string weight;
 
-			public IngredientData(string name, float amount)
+			public IngredientData(string name, float amount, string weight)
 			{
 				this.name = name;
 				this.amount = amount;
+				this.weight = weight;
 			}
 
 			public override string ToString()
 			{
-				return this.name + " | " + this.amount;
+				return this.name + " (" + this.amount + (this.weight.Equals("quantity") ? "" : " " +this.weight) +")";
 			}
 		}
 	}
 
 	public enum Weight
 	{
-		Grams,
-		Teaspoon,
-		Tablespoon,
-		Quantity,
-		Millilitres
+		grams,
+		tsp,
+		tbsp,
+		quantity,
+		ml
 	}
 }
