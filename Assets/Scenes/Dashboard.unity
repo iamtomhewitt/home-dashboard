@@ -2981,7 +2981,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1417317358}
   m_HandleRect: {fileID: 1417317357}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4218,7 +4218,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1585299581}
   m_HandleRect: {fileID: 1585299580}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13783,6 +13783,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipes:
+  - {fileID: 11400000, guid: 8092d1f34f83e1940a963699da152852, type: 2}
+  - {fileID: 11400000, guid: c01972659a3690840b011991c64b2915, type: 2}
   - {fileID: 11400000, guid: 8cf2ad805130d534488d75c28b5670b1, type: 2}
   - {fileID: 11400000, guid: ac25b1add987dd949b702bad88f2200c, type: 2}
   - {fileID: 11400000, guid: 01dfe8de39844784285a46948c7e847f, type: 2}
