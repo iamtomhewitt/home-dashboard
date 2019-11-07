@@ -25,7 +25,8 @@ namespace Recipes.ScriptableObjects
 			Vegetables,
 			Dairy,
 			Frozen,
-			Other
+			Other,
+			Seasoning
 		}
 	}
 }

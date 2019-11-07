@@ -18,7 +18,7 @@ MonoBehaviour:
     amount: 2
     weight: 3
   - ingredient: {fileID: 11400000, guid: 2f99a49aa4e5cf449a5da5c0f7dc65ea, type: 2}
-    amount: 360
+    amount: 200
     weight: 0
   - ingredient: {fileID: 11400000, guid: d7d35568ab4623543a78697c329667c4, type: 2}
     amount: 100
