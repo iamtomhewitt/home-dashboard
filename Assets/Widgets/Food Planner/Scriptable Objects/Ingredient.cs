@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
-[CreateAssetMenu(fileName = "New Ingredient", menuName = "Ingredient")]
-public class Ingredient : ScriptableObject
+namespace Recipes.ScriptableObjects
 {
-    [SerializeField] private string name;
-    [SerializeField] private Type type;
-
-	public string GetName()
+	[System.Serializable]
+	[CreateAssetMenu(fileName = "New Ingredient", menuName = "Ingredient")]
+	public class Ingredient : ScriptableObject
 	{
-		return name;
-	}
+		[SerializeField] private string name;
+		[SerializeField] private Type type;
 
-	public Type GetType()
-	{
-		return type;
-	}
+		public string GetName()
+		{
+			return name;
+		}
 
-    public enum Type
-    {
-        Meat,
-        Vegetables,
-        Dairy,
-        Frozen,
-        Other
-    }
+		public Type GetType()
+		{
+			return type;
+		}
+
+		public enum Type
+		{
+			Meat,
+			Vegetables,
+			Dairy,
+			Frozen,
+			Other
+		}
+	}
 }

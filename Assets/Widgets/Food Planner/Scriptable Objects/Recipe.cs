@@ -1,67 +1,70 @@
 using UnityEngine;
 
-[System.Serializable]
-[CreateAssetMenu(fileName = "New Recipe", menuName = "Recipe")]
-public class Recipe : ScriptableObject
+namespace Recipes.ScriptableObjects
 {
-	public int serves;
-	public RecipeIngredient[] ingredients;
-
-	public override string ToString()
-	{
-		string s = "Name: " + name + "\nServes: " + serves + "\nIngredients:";
-
-		foreach (RecipeIngredient i in ingredients)
-		{
-			s += "\t" + i.ToString();
-		}
-
-		return s;
-	}
-
 	[System.Serializable]
-	public class RecipeIngredient
+	[CreateAssetMenu(fileName = "New Recipe", menuName = "Recipe")]
+	public class Recipe : ScriptableObject
 	{
-		public Ingredient ingredient;
-		public float amount;
-		public Weight weight;
+		public int serves;
+		public RecipeIngredient[] ingredients;
 
 		public override string ToString()
 		{
-			return "\nName: " + ingredient.GetName() + "\n\tType: " + ingredient.GetType() + "\n\tAmount: " + amount + "\n\tWeight: " + weight;
-		}
+			string s = "Name: " + name + "\nServes: " + serves + "\nIngredients:";
 
-		public IngredientData ToIngredientData()
-		{
-			return new IngredientData(this.ingredient.name, this.amount, this.weight.ToString());
-		}
-
-		public struct IngredientData
-		{
-			public string name;
-			public float amount;
-			public string weight;
-
-			public IngredientData(string name, float amount, string weight)
+			foreach (RecipeIngredient i in ingredients)
 			{
-				this.name = name;
-				this.amount = amount;
-				this.weight = weight;
+				s += "\t" + i.ToString();
 			}
+
+			return s;
+		}
+
+		[System.Serializable]
+		public class RecipeIngredient
+		{
+			public Ingredient ingredient;
+			public float amount;
+			public Weight weight;
 
 			public override string ToString()
 			{
-				return this.name + " (" + this.amount + (this.weight.Equals("quantity") ? "" : " " +this.weight) +")";
+				return "\nName: " + ingredient.GetName() + "\n\tType: " + ingredient.GetType() + "\n\tAmount: " + amount + "\n\tWeight: " + weight;
+			}
+
+			public IngredientData ToIngredientData()
+			{
+				return new IngredientData(this.ingredient.name, this.amount, this.weight.ToString());
+			}
+
+			public struct IngredientData
+			{
+				public string name;
+				public float amount;
+				public string weight;
+
+				public IngredientData(string name, float amount, string weight)
+				{
+					this.name = name;
+					this.amount = amount;
+					this.weight = weight;
+				}
+
+				public override string ToString()
+				{
+					return this.name + " (" + this.amount + (this.weight.Equals("quantity") ? "" : " " + this.weight) + ")";
+				}
 			}
 		}
-	}
 
-	public enum Weight
-	{
-		grams,
-		tsp,
-		tbsp,
-		quantity,
-		ml
+		public enum Weight
+		{
+			grams,
+			tsp,
+			tbsp,
+			quantity,
+			ml
+		}
 	}
 }

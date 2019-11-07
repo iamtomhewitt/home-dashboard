@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Recipes;
+using Recipes.ScriptableObjects;
+using Recipes.UI;
 
 namespace Dialog
 {

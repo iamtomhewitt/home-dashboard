@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
-using System.IO;
-using JsonHelper;
-using Dialog;
 using System.Collections;
 using System.Collections.Generic;
-using static Recipe;
 using System.Linq;
-using static Recipe.RecipeIngredient;
+using System.IO;
+
+using JsonHelper;
+
+using Dialog;
 using Dialog.OnlineLists;
 
-namespace FoodPlanner
+using Recipes.UI;
+using Recipes.ScriptableObjects;
+using static Recipes.ScriptableObjects.Recipe.RecipeIngredient;
+using static Recipes.ScriptableObjects.Recipe;
+using Recipes;
+
+namespace FoodPlannerWidget
 {
 	public class FoodPlanner : Widget
 	{

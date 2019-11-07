@@ -2,8 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 using Dialog;
+using FoodPlannerWidget;
 
-namespace FoodPlanner
+namespace Recipes.UI
 {
 	public class RecipeCard : MonoBehaviour
 	{

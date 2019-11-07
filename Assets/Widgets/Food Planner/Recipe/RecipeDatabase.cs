@@ -1,34 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Recipes.ScriptableObjects;
 
-public class RecipeDatabase : MonoBehaviour
+namespace Recipes
 {
-	[SerializeField] private Recipe[] recipes;
-
-	public static RecipeDatabase instance;
-
-	private void Start()
+	public class RecipeDatabase : MonoBehaviour
 	{
-		instance = this;
-	}
+		[SerializeField] private Recipe[] recipes;
 
-	public Recipe[] GetRecipes()
-	{
-		return recipes;
-	}
+		public static RecipeDatabase instance;
 
-	public List<string> GetRecipeNames()
-	{
-		return recipes.Select(x => x.name).ToList();
-	}
+		private void Start()
+		{
+			instance = this;
+		}
 
-	/// <summary>
-	/// Finds a recipe by name
-	/// </summary>
-	public Recipe FindRecipe(string name)
-	{
-		Recipe r = recipes.Where(x => x.name.Equals(name)).FirstOrDefault();
-		return r;
+		public Recipe[] GetRecipes()
+		{
+			return recipes;
+		}
+
+		public List<string> GetRecipeNames()
+		{
+			return recipes.Select(x => x.name).ToList();
+		}
+
+		/// <summary>
+		/// Finds a recipe by name
+		/// </summary>
+		public Recipe FindRecipe(string name)
+		{
+			Recipe r = recipes.Where(x => x.name.Equals(name)).FirstOrDefault();
+			return r;
+		}
 	}
 }
