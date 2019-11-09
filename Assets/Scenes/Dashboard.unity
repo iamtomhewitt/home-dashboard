@@ -6281,7 +6281,6 @@ MonoBehaviour:
   title: Weather
   repeatRate: 10
   timeUnit: 1
-  apiKey: 23e9dad33a0bffa114dd52285c2807ad
   latitude: 53.848246
   longitude: -1.631747
   currentSummary: {fileID: 1304677431}
@@ -6303,6 +6302,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6a676208fa935044086612b2e993a1d3, type: 3}
   - {fileID: 21300000, guid: e90d71aac42f61d4fa098cf24aceca04, type: 3}
   - {fileID: 21300000, guid: 898266dab0656974e911214c49e994d1, type: 3}
+  config: {fileID: 1944233602}
 --- !u!1001 &848376614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8941,6 +8941,7 @@ MonoBehaviour:
   - {fileID: 1597858229}
   - {fileID: 1708542067}
   - {fileID: 1561160447}
+  config: {fileID: 1944233602}
 --- !u!1 &1281220133
 GameObject:
   m_ObjectHideFlags: 0
@@ -8979,7 +8980,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 7.5894814, y: -4.7499924}
+  m_AnchoredPosition: {x: 7.5894775, y: -4.75}
   m_SizeDelta: {x: 2.9, y: 2.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1281220135
@@ -9594,8 +9595,9 @@ MonoBehaviour:
   googleCalendarEventPrefab: {fileID: 7321161315731493455, guid: 389f46b08721e724f9bdf1259dd5c519,
     type: 3}
   scrollParent: {fileID: 1040976248}
+  config: {fileID: 1944233602}
   gmailAddress: laurencolesyt@gmail.com
-  apiKey: 'AIzaSyA1QT7Zrc5KijMRwEwLJT6__atDN0UxKzU '
+  apiKeyConfigKeyName: lauren
 --- !u!1 &1340221785
 GameObject:
   m_ObjectHideFlags: 0
@@ -13162,12 +13164,12 @@ MonoBehaviour:
   title: TODO
   repeatRate: 10
   timeUnit: 1
-  publicKey: 5da35497d1041303ec60ba6a
-  privateKey: 7ZSQifiLrUOEP9w0mHvi0gu1TLzx94IE6tsdcLT_YEUg
   entryPrefab: {fileID: 8526732701419245916, guid: 3830930bc10367f48aba2d3e7b8c1143,
     type: 3}
   content: {fileID: 879678591}
   statusText: {fileID: 1435083302}
+  config: {fileID: 1944233602}
+  configKeyName: todoList
 --- !u!1 &1777598882
 GameObject:
   m_ObjectHideFlags: 0
@@ -14072,12 +14074,12 @@ MonoBehaviour:
   title: Shopping List
   repeatRate: 10
   timeUnit: 1
-  publicKey: 5da1f814d1041303ec58f3e3
-  privateKey: HbYnByfESUemvIRTE9nLRw-lBuVGwN20uqa0JFjf5c0w
   entryPrefab: {fileID: 8526732701419245916, guid: 3830930bc10367f48aba2d3e7b8c1143,
     type: 3}
   content: {fileID: 537251640}
   statusText: {fileID: 1345734257}
+  config: {fileID: 1944233602}
+  configKeyName: shoppingList
 --- !u!1 &1921489743
 GameObject:
   m_ObjectHideFlags: 0
@@ -14372,6 +14374,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -2.0625}
   m_SizeDelta: {x: -20, y: -15.875}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1944233601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1944233603}
+  - component: {fileID: 1944233602}
+  m_Layer: 0
+  m_Name: Config
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1944233602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944233601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  configFile: {fileID: 4900000, guid: c3435ac72635ad34399cea81350ea9d8, type: 3}
+--- !u!4 &1944233603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944233601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1980166635
 GameObject:
   m_ObjectHideFlags: 0
@@ -14909,8 +14955,9 @@ MonoBehaviour:
   googleCalendarEventPrefab: {fileID: 7321161315731493455, guid: 389f46b08721e724f9bdf1259dd5c519,
     type: 3}
   scrollParent: {fileID: 275628701}
+  config: {fileID: 1944233602}
   gmailAddress: tommhewitt@gmail.com
-  apiKey: AIzaSyCB0iXkasXXk0l3DqJmrlLzEgupYaR3BLU
+  apiKeyConfigKeyName: tom
 --- !u!1 &2069436460
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,17 +10,22 @@ namespace OnlineLists
     public class OnlineList : Widget
     {
         [Space(15f)]
-        [SerializeField] private string publicKey;
-        [SerializeField] private string privateKey;
-        private string dreamloUrl = "http://dreamlo.com/lb/";
-
-        [Space()]
         [SerializeField] private OnlineListEntry entryPrefab;
         [SerializeField] private Transform content;
         [SerializeField] private Text statusText;
+		[SerializeField] private Config config;
 
-        private void Start()
+		[SerializeField] private string configKeyName;
+
+		private string publicKey;
+		private string privateKey;
+		private string dreamloUrl = "http://dreamlo.com/lb/";
+
+		private void Start()
         {
+			publicKey = config.GetConfig()["apiKeys"]["onlineLists"][configKeyName]["publicKey"];
+			privateKey = config.GetConfig()["apiKeys"]["onlineLists"][configKeyName]["privateKey"];
+
             this.Initialise();
             InvokeRepeating("Run", 0f, RepeatRateInSeconds());
         }

@@ -11,12 +11,17 @@ namespace GoogleCalendar
 		[Space(15f)]
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
 		[SerializeField] private Transform scrollParent;
+		[SerializeField] private Config config;
 
 		[SerializeField] private string gmailAddress;
-		[SerializeField] private string apiKey;
+		[SerializeField] private string apiKeyConfigKeyName;
+
+		private string apiKey;
 
 		private void Start()
 		{
+			apiKey = config.GetConfig()["apiKeys"]["googleCalendars"][apiKeyConfigKeyName];
+
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}

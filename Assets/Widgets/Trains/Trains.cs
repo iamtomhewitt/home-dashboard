@@ -1,7 +1,7 @@
-﻿using JsonResponse;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections;
+using JsonResponse;
 
 namespace Train
 {
@@ -9,8 +9,9 @@ namespace Train
 	{
 		[Space(15f)]
 		[SerializeField] private TrainEntry[] trainEntries;
+		[SerializeField] private Config config;
 
-		private string apiToken = "4ae0f545-388c-4812-a4c9-b72ffb815abd";
+		private string apiToken;
 		private string stationCode = "HRS";
 
 		private int numberOfResults = 5;
@@ -18,6 +19,8 @@ namespace Train
 
 		private void Start()
 		{
+			apiToken = config.GetConfig()["apiKeys"]["trains"];
+			
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}

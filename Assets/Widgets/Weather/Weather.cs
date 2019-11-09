@@ -10,7 +10,6 @@ namespace WeatherForecast
 	public class Weather : Widget
 	{
 		[Space(15f)]
-		[SerializeField] private string apiKey;
 		[SerializeField] private string latitude;
 		[SerializeField] private string longitude;
 
@@ -20,9 +19,14 @@ namespace WeatherForecast
 
 		[SerializeField] private WeatherEntry[] weatherEntries;
 		[SerializeField] private Sprite[] weatherSprites;
+		[SerializeField] private Config config;
+
+		private string apiKey;
 
 		private void Start()
 		{
+			apiKey = config.GetConfig()["apiKeys"]["weather"];
+
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
