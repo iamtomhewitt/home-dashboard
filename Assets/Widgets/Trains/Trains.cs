@@ -14,6 +14,7 @@ namespace Train
 		private string stationCode = "HRS";
 
 		private int numberOfResults = 5;
+		private int maxDestinationLength = 10;
 
 		private void Start()
 		{
@@ -52,7 +53,14 @@ namespace Train
 
 				TrainEntry entry = trainEntries[i];
 				TrainServices trainService = trainData.trainServices[i];
-				entry.GetDestinationText().text = trainService.destination[0].locationName;
+				string locationName = trainService.destination[0].locationName;
+
+				if (locationName.Length > maxDestinationLength)
+				{
+					locationName = locationName.Substring(0, maxDestinationLength -1) + "...";
+				}
+
+				entry.GetDestinationText().text = locationName;
 				entry.GetTimeText().text = trainService.std + " (" + trainService.etd + ")";
 			}
 		}
