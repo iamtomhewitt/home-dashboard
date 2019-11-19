@@ -53,7 +53,7 @@ namespace WeatherForecast
 
 			for (int i = 0; i < weatherEntries.Length; i++)
 			{
-				Data day = response.daily.data[i + 2];
+				Data day = response.daily.data[i + 1];
 				WeatherEntry entry = weatherEntries[i];
 
 				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0);
