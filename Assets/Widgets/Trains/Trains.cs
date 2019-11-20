@@ -14,7 +14,6 @@ namespace Train
 		private string apiToken;
 		private string stationCode = "HRS";
 
-		private int numberOfResults = 5;
 		private int maxDestinationLength = 10;
 
 		private void Start()
@@ -38,6 +37,8 @@ namespace Train
 				entry.GetDestinationText().text = "";
 				entry.GetTimeText().text = "";
 			}
+
+			int numberOfResults = trainEntries.Length;
 
 			string url = "https://huxley.apphb.com/departures/" + stationCode + "/" + numberOfResults + "?accessToken=" + apiToken;
 
