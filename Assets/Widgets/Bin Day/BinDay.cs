@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace BinDay
 {
@@ -13,6 +12,7 @@ namespace BinDay
 		[SerializeField] private Color noBinColour;
 
 		[SerializeField] private Text text;
+		[SerializeField] private Image logo;
 
 		private DateTime firstGreenBinDay = new DateTime(2019, 10, 7);
 		private DateTime firstBlackBinDay = new DateTime(2019, 10, 14);
@@ -35,33 +35,46 @@ namespace BinDay
 
 			if (today == nextBlackBinDay || today == lastBlackBinDay)
 			{
-				Display("Black bin today!", FontStyle.Bold, blackBinColour);
+				Display("Black bin today!", FontStyle.Bold, blackBinColour, Lighten(blackBinColour));
 			}
 			else if (today == nextGreenBinDay || today == lastGreenBinDay)
 			{
-				Display("Green bin today!", FontStyle.Bold, greenBinColour);
+				Display("Green bin today!", FontStyle.Bold, greenBinColour, Darken(greenBinColour));
 			}
 			else if (tomorrow == nextBlackBinDay || tomorrow == lastBlackBinDay)
 			{
-				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour);
+				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour, Lighten(blackBinColour));
 			}
 			else if (tomorrow == nextGreenBinDay || tomorrow == lastGreenBinDay)
 			{
-				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour);
+				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour, Darken(greenBinColour));
 			}
 			else
 			{
-				Display("No bins today!", FontStyle.Normal, noBinColour);
+				Display("No bins today!", FontStyle.Normal, noBinColour, Darken(noBinColour));
 			}
 
 			this.UpdateLastUpdatedText();
 		}
 
-		private void Display(string message, FontStyle style, Color widgetColour)
+		private void Display(string message, FontStyle style, Color widgetColour, Color logoColour)
 		{
 			text.text = message;
 			text.fontStyle = style;
+			logo.color = logoColour;
 			this.SetColour(widgetColour);
+		}
+
+		private Color Darken(Color colour)
+		{
+			float multiplier = 0.75f;
+			return new Color(colour.r * multiplier, colour.g * multiplier, colour.b * multiplier, 1f);
+		}
+
+		private Color Lighten(Color colour)
+		{
+			float multiplier = 2f;
+			return new Color(colour.r * multiplier, colour.g * multiplier, colour.b * multiplier, 1f);
 		}
 
 		private DateTime GetLastBinDate(DateTime firstBinDate)
