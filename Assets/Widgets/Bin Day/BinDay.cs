@@ -33,36 +33,35 @@ namespace BinDay
 			DateTime nextGreenBinDay = GetNextBinDate(lastGreenBinDay);
 			DateTime nextBlackBinDay = GetNextBinDate(lastBlackBinDay);
 
-
 			if (today == nextBlackBinDay || today == lastBlackBinDay)
 			{
-				text.text = "Black bin today!";
-				text.fontStyle = FontStyle.Bold;
-				this.SetColour(blackBinColour);
+				Display("Black bin today!", FontStyle.Bold, blackBinColour);
 			}
 			else if (today == nextGreenBinDay || today == lastGreenBinDay)
 			{
-				text.text = "Green bin today!";
-				text.fontStyle = FontStyle.Bold;
-				this.SetColour(greenBinColour);
+				Display("Green bin today!", FontStyle.Bold, greenBinColour);
 			}
 			else if (tomorrow == nextBlackBinDay || tomorrow == lastBlackBinDay)
 			{
-				text.text = "Black bin tomorrow!";
-				this.SetColour(blackBinColour);
+				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour);
 			}
 			else if (tomorrow == nextGreenBinDay || tomorrow == lastGreenBinDay)
 			{
-				text.text = "Green bin tomorrow!";
-				this.SetColour(greenBinColour);
+				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour);
 			}
 			else
 			{
-				text.text = "No bin alerts yet!";
-				this.SetColour(noBinColour);
+				Display("No bins today!", FontStyle.Normal, noBinColour);
 			}
 
 			this.UpdateLastUpdatedText();
+		}
+
+		private void Display(string message, FontStyle style, Color widgetColour)
+		{
+			text.text = message;
+			text.fontStyle = style;
+			this.SetColour(widgetColour);
 		}
 
 		private DateTime GetLastBinDate(DateTime firstBinDate)
