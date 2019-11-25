@@ -3352,8 +3352,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1920043809}
   m_HandleRect: {fileID: 1920043808}
   m_Direction: 2
-  m_Value: 1.0000004
-  m_Size: 0.7955353
+  m_Value: 1.0000002
+  m_Size: 0.7404387
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9258,7 +9258,7 @@ MonoBehaviour:
   repeatRate: 30
   timeUnit: 1
   entry: {fileID: 1242877118}
-  apiKey: a262b1f658db4170be65e2f854b53572
+  config: {fileID: 1944233602}
   secondsBetweenArticles: 60
 --- !u!1 &1282859342
 GameObject:

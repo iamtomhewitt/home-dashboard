@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System;
 using System.Collections;
 using JsonResponse;
+using SimpleJSON;
 
 namespace GoogleCalendar
 {
@@ -15,6 +16,8 @@ namespace GoogleCalendar
 
 		[SerializeField] private string gmailAddress;
 		[SerializeField] private string apiKeyConfigKeyName;
+
+		private JSONNode json;
 
 		private string apiKey;
 
@@ -43,9 +46,9 @@ namespace GoogleCalendar
 
 			UnityWebRequest request = UnityWebRequest.Get(url);
 			yield return request.SendWebRequest();
-			string jsonResponse = request.downloadHandler.text;
+			string response = request.downloadHandler.text;
 
-			GoogleCalendarJsonResponse response = JsonUtility.FromJson<GoogleCalendarJsonResponse>(jsonResponse);
+			json = JSON.Parse(response);
 
 			// Remove old events
 			foreach (Transform child in scrollParent)
@@ -53,24 +56,24 @@ namespace GoogleCalendar
 				Destroy(child.gameObject);
 			}
 
-			for (int i = 0; i < response.items.Length; i++)
+			for (int i = 0; i < json["items"].Count; i++)
 			{
-				if (response.items.Length == i)
+				if (json["items"].Count == i)
 				{
 					yield break;
 				}
 
-				Item responseItem = response.items[i];
+				JSONNode item = json["items"][i];
 
 				// There could be two different types of date to use, so figure out which one to use and substring accordingly
-				string dateToUse = responseItem.start.date == null ? responseItem.start.dateTime.Substring(0, 10) : responseItem.start.date;
+				string dateToUse = item["start"]["date"] == null ? item["start"]["dateTime"].Value.Substring(0, 10) : item["start"]["date"].Value;
 
 				// Convert to a date time
 				DateTime time = DateTime.Parse(dateToUse);
 
 				// And populate
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
-				eventEntry.GetNameText().text = responseItem.summary;
+				eventEntry.GetNameText().text = item["summary"];
 				eventEntry.GetDateText().text = time.ToString("dd MMM");
 			}
 		}
