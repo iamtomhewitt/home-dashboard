@@ -3,7 +3,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using System;
 using System.Collections;
-using JsonResponse;
+using SimpleJSON;
 
 namespace WeatherForecast
 {
@@ -43,26 +43,26 @@ namespace WeatherForecast
 
 			UnityWebRequest request = UnityWebRequest.Get(url);
 			yield return request.SendWebRequest();
-			string jsonResponse = request.downloadHandler.text;
+			string response = request.downloadHandler.text;
 
-			WeatherJsonResponse response = JsonUtility.FromJson<WeatherJsonResponse>(jsonResponse);
+			JSONNode json = JSON.Parse(response);
 
-			currentSummary.text = response.currently.summary;
-			currentIcon.sprite = GetSpriteForName(response.currently.icon);
-			currentTemperature.text = Mathf.RoundToInt((float)response.currently.temperature).ToString() + "°";
+			currentSummary.text = json["currently"]["summary"];
+			currentIcon.sprite = GetSpriteForName(json["currently"]["icon"]);
+			currentTemperature.text = Mathf.RoundToInt((float)json["currently"]["temperature"]).ToString() + "°";
 
 			for (int i = 0; i < weatherEntries.Length; i++)
 			{
-				Data day = response.daily.data[i + 1];
+				JSONNode day = json["daily"]["data"][i + 1];
 				WeatherEntry entry = weatherEntries[i];
 
 				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-				date = date.AddSeconds(day.time);
+				date = date.AddSeconds(day["time"]);
 
 				entry.SetDayText(date.DayOfWeek.ToString());
-				entry.SetIconSprite(GetSpriteForName(day.icon));
-				entry.SetTemperatureHighText(Mathf.RoundToInt((float)day.temperatureHigh).ToString() + "°");
-				entry.SetTemperatureLowText(Mathf.RoundToInt((float)day.temperatureLow).ToString() + "°");
+				entry.SetIconSprite(GetSpriteForName(day["icon"]));
+				entry.SetTemperatureHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
+				entry.SetTemperatureLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
 			}
 		}
 
