@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
-using JsonResponse;
+using SimpleJSON;
 
 namespace Train
 {
@@ -10,6 +10,8 @@ namespace Train
 		[Space(15f)]
 		[SerializeField] private TrainEntry[] trainEntries;
 		[SerializeField] private Config config;
+
+		private JSONNode json;
 
 		private string apiToken;
 		private string stationCode = "HRS";
@@ -44,20 +46,20 @@ namespace Train
 
 			UnityWebRequest request = UnityWebRequest.Get(url);
 			yield return request.SendWebRequest();
-			string jsonResponse = request.downloadHandler.text;
+			string response = request.downloadHandler.text;
 
-			TrainJsonResponse trainData = JsonUtility.FromJson<TrainJsonResponse>(jsonResponse);
+			json = JSON.Parse(response);
 
-			for (int i = 0; i < trainData.trainServices.Length; i++)
+			for (int i = 0; i < json["trainServices"].Count; i++)
 			{
-				if (trainData.trainServices.Length == i)
+				if (json["trainServices"].Count == i)
 				{
 					yield break;
 				}
 
 				TrainEntry entry = trainEntries[i];
-				TrainServices trainService = trainData.trainServices[i];
-				string locationName = trainService.destination[0].locationName;
+				JSONNode trainService = json["trainServices"][i];
+				string locationName = trainService["destination"][0]["locationName"];
 
 				if (locationName.Length > maxDestinationLength)
 				{
@@ -65,7 +67,7 @@ namespace Train
 				}
 
 				entry.GetDestinationText().text = locationName;
-				entry.GetTimeText().text = trainService.std + " (" + trainService.etd + ")";
+				entry.GetTimeText().text = trainService["std"] + " (" + trainService["etd"] + ")";
 			}
 		}
 	}
