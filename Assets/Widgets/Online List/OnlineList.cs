@@ -2,8 +2,7 @@
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
-using JsonHelper;
-using JsonResponse;
+using SimpleJSON;
 
 namespace OnlineLists
 {
@@ -38,15 +37,15 @@ namespace OnlineLists
 
         private IEnumerator RunRoutine()
         {
-            string url = dreamloUrl + publicKey + "/json";
+			string url = dreamloUrl + publicKey + "/json";
 
             UnityWebRequest request = UnityWebRequest.Get(url);
             yield return request.SendWebRequest();
-            string jsonResponse = OnlineListJsonHelper.StripParentFromJson(request.downloadHandler.text, 2);
+            string response = request.downloadHandler.text;
 
-            OnlineListData leaderboard = JsonUtility.FromJson<OnlineListData>(jsonResponse);
+			JSONNode json = JSON.Parse(response)["dreamlo"]["leaderboard"];
 
-            if (leaderboard.entry != null)
+            if (json["entry"] != null)
             {
                 // Remove previous entries so there are no duplicates
                 foreach (Transform g in content)
@@ -54,31 +53,23 @@ namespace OnlineLists
                     Destroy(g.gameObject);
                 }
 
-                for (int i = 0; i < leaderboard.entry.Length; i++)
-                {
-                    OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
-                    e.GetNameText().text = leaderboard.entry[i].name;
-                    e.SetRemoveUrl(dreamloUrl + privateKey + "/delete/" + e.GetNameText().text);
-                }
+				if (!json["entry"].IsArray)
+				{
+					OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
+					e.GetNameText().text = json["entry"]["name"];
+					e.SetRemoveUrl(dreamloUrl + privateKey + "/delete/" + e.GetNameText().text);
+				}
+				else
+				{
+					for (int i = 0; i < json["entry"].Count; i++)
+					{
+						OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
+						e.GetNameText().text = json["entry"][i]["name"];
+						e.SetRemoveUrl(dreamloUrl + privateKey + "/delete/" + e.GetNameText().text);
+					}
+				}
             }
-            else
-            {
-                OnlineListSingleData singleEntry = JsonUtility.FromJson<OnlineListSingleData>(jsonResponse);
-
-                // Remove previous entries so there are no duplicates
-                foreach (Transform g in content)
-                {
-                    Destroy(g.gameObject);
-                }
-
-                for (int i = 0; i < 1; i++)
-                {
-                    OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
-                    e.GetNameText().text = leaderboard.entry[i].name;
-                    e.SetRemoveUrl(dreamloUrl + privateKey + "/delete/" + e.GetNameText().text);
-                }
-            }
-        }
+		}
 
 		/// <summary>
 		/// Refreshes the list by re-running the Run() routine.
