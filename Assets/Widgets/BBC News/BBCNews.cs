@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
-using JsonResponse;
+using SimpleJSON;
 
 namespace BBCNews
 {
@@ -9,15 +9,19 @@ namespace BBCNews
 	{
 		[Space(15f)]
 		[SerializeField] private BBCNewsEntry entry;
-		[SerializeField] private string apiKey;
+		[SerializeField] private Config config;
 		[SerializeField] private float secondsBetweenArticles = 20f;
 
-		private BBCNewsJsonResponse response;
+		private JSONNode json;
+
+		private string apiKey;
 		private int currentArticleIndex = 0;
 
 		private void Start()
 		{
 			this.Initialise();
+			apiKey = config.GetConfig()["apiKeys"]["bbcNews"];
+
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);
 		}
@@ -34,22 +38,24 @@ namespace BBCNews
 
 			UnityWebRequest request = UnityWebRequest.Get(url);
 			yield return request.SendWebRequest();
-			string jsonResponse = request.downloadHandler.text;
+			string response = request.downloadHandler.text;
 
-			response = JsonUtility.FromJson<BBCNewsJsonResponse>(jsonResponse);
+			json = JSON.Parse(response);
 		}
 
 		private void Cycle()
 		{
-			Article responseItem = response.articles[currentArticleIndex];
+			string title		= json["articles"][currentArticleIndex]["title"];
+			string description	= json["articles"][currentArticleIndex]["description"];
+			string url			= json["articles"][currentArticleIndex]["url"];
 
-			entry.GetTitle().text = responseItem.title;
-			entry.GetDescription().text = responseItem.description;
-			entry.SetUrl(responseItem.url);
+			entry.GetTitle().text = title;
+			entry.GetDescription().text = description;
+			entry.SetUrl(url);
 
 			currentArticleIndex++;
 
-			if (currentArticleIndex == response.articles.Length - 1)
+			if (currentArticleIndex == json["articles"].Count - 1)
 			{
 				currentArticleIndex = 0;
 			}
