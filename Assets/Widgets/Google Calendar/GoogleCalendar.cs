@@ -2,7 +2,6 @@
 using UnityEngine.Networking;
 using System;
 using System.Collections;
-using JsonResponse;
 using SimpleJSON;
 
 namespace GoogleCalendar
