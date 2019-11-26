@@ -2,7 +2,7 @@
 ![Release](https://img.shields.io/github/v/tag/iamtomhewitt/home-dashboard?color=success&style=flat-square&label=latest%20version)
 ![Last Commit](https://img.shields.io/github/last-commit/iamtomhewitt/home-dashboard/master?label=last%20commit%20&style=flat-square)
 
-# Home Dashboard
+# 🏡 Home Dashboard
 
 <p align="center">
   <img src="github.png">
@@ -15,7 +15,7 @@ Originally created using the [Smashing](https://github.com/Smashing/smashing) da
 
 I have also built a simple [react app](https://github.com/iamtomhewitt/home-dashboard-list-uploader) to keep an online list that can be accessed from iPhone shortcuts.
 
-## Widgets
+## 🎯 Widgets
 The current set of widgets on my dashboard are:
 
 ### 🕒 Clock
@@ -43,7 +43,7 @@ An alert to show if the bin needs putting out. Changes colour based on which bin
 An editable set of 'cards' to show what we're having for our evening meal for the week.
 I've also incorporated a set of predefined recipes from what we eat often. Pressing the button at the bottom of the planner will add every single ingredient from all the predefined recipes for that week to the shopping list widget, so you can plan your weekly shop based on what you are eating. Duplicate ingredients are also removed, so if you have a recipe of 200g of chicken, and another recipe with 400g of chicken, then 600g of chicken is added to your shopping list.
 
-## Potential Widget / General Ideas
+## 💡 Potential Widget / General Ideas
 ### Splitwise Integration
 Add our splitwise account to show how much one person owes another.
 
