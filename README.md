@@ -13,7 +13,7 @@ A dashboard with useful information to display in my house. The idea is to build
 
 Originally created using the [Smashing](https://github.com/Smashing/smashing) dashboard in Ruby, but moved to a [Unity3D](https://unity.com/) project as I was after some interactivity (such as adding and removing from a shopping list) instead of just displaying information (And also I could customize the widgets further than the Smashing dashboard).
 
-I have also built a simple [microservice type react app](https://github.com/iamtomhewitt/home-dashboard-list-uploader) to keep an online list that can be accessed from iPhone shortcuts.
+I have also built a simple [react app](https://github.com/iamtomhewitt/home-dashboard-list-uploader) to keep an online list that can be accessed from iPhone shortcuts.
 
 ## Widgets
 The current set of widgets on my dashboard are:
@@ -42,3 +42,19 @@ An alert to show if the bin needs putting out. Changes colour based on which bin
 ### Food Planner
 An editable set of 'cards' to show what we're having for our evening meal for the week.
 I've also incorporated a set of predefined recipes from what we eat often. Pressing the button at the bottom of the planner will add every single ingredient from all the predefined recipes for that week to the shopping list widget, so you can plan your weekly shop based on what you are eating. Duplicate ingredients are also removed, so if you have a recipe of 200g of chicken, and another recipe with 400g of chicken, then 600g of chicken is added to your shopping list.
+
+## Potential Widget / General Ideas
+### Splitwise Integration
+Add our splitwise account to show how much one person owes another.
+
+### Upgrade the Online List Widgets from Dreamlo to Todoist
+Todoist is an actual list managing app, and has good JSON documentation / responses, which would be easier to use and set up in the long run. I wouldn't have to set up Dreamlo leaderboards or do extra parsing or calculations to get a piece of text to simply upload. The app would be easier to use for anyone else getting started, and would not require [my react app](https://github.com/iamtomhewitt/home-dashboard-list-uploader) to run.
+
+### Rotating Widgets
+As it stands the dashboard is a bit constrained for room. Suggest that any future widgets can sit over the top of another widget, and switch with another widget in its place. E.g. the Google Calendar widgets could be combined into one and switch between calendars every `x` seconds.
+
+### Viewable Logs
+A screen showing logs from the widgets for the day. It would look similar to the Unity console, and would be cleared out at the end of the day. Accessed by tapping on the version number.
+
+### Widget Animations
+A nice to have - some widgets that refresh their information just flicker to the new data, having a nice fade transition would be pretty (e.g. when a BBC news headline changes, should fade in between the two headlines). Furthermore - combine with the rotating widgets to make the widgets actually spin when changing from one widget to another.
