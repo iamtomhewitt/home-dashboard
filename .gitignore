@@ -44,5 +44,22 @@ Logs/
 /Packages
 /Assets/config.json
 /Assets/config.json.meta
-/ProjectSettings/*.asset
+
 /Builds/Home Dashboard.apk
+/ProjectSettings/AudioManager.asset
+/ProjectSettings/ClusterInputManager.asset
+/ProjectSettings/DynamicsManager.asset
+/ProjectSettings/EditorBuildSettings.asset
+/ProjectSettings/EditorSettings.asset
+/ProjectSettings/GraphicsSettings.asset
+/ProjectSettings/InputManager.asset
+/ProjectSettings/NavMeshAreas.asset
+/ProjectSettings/NetworkManager.asset
+/ProjectSettings/Physics2DSettings.asset
+/ProjectSettings/PresetManager.asset
+/ProjectSettings/QualitySettings.asset
+/ProjectSettings/TagManager.asset
+/ProjectSettings/TimeManager.asset
+/ProjectSettings/UnityConnectSettings.asset
+/ProjectSettings/VFXManager.asset
+/ProjectSettings/XRSettings.asset

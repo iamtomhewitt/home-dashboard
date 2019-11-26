@@ -13,8 +13,6 @@ A dashboard with useful information to display in my house. The idea is to build
 
 Originally created using the [Smashing](https://github.com/Smashing/smashing) dashboard in Ruby, but moved to a [Unity3D](https://unity.com/) project as I was after some interactivity (such as adding and removing from a shopping list) instead of just displaying information (And also I could customize the widgets further than the Smashing dashboard).
 
-I have also built a simple [react app](https://github.com/iamtomhewitt/home-dashboard-list-uploader) to keep an online list that can be accessed from iPhone shortcuts.
-
 ## 🎯 Widgets
 The current set of widgets on my dashboard are:
 
@@ -25,7 +23,7 @@ A clock showing the date and time.
 A scrollable widget showing mine and my partners calendar for the next three months. Any edits to calendar events are done through the Google Calendar app itself and not the dashboard.
 
 ### 📝 Online Lists
-Scrollable list widgets - one for TODOs, and one for the shopping list. Both can be modified (add and remove items) from the dashboard, and items can be added from [my react app](https://github.com/iamtomhewitt/home-dashboard-list-uploader) from a mobile phone link in case you are on the move.
+Scrollable list widgets - one for TODOs, and one for the shopping list. The lists are integrated with the `Todoist` app, so I can add items to the shopping list via the app on my mobile.
 
 ### 📰 BBC News
 A widget that cycles headlines every minute. New headlines are fetched over time. Tapping on the BBC news widget opens up the displayed headline on the BBC news website.
@@ -46,9 +44,6 @@ I've also incorporated a set of predefined recipes from what we eat often. Press
 ## 💡 Potential Widget / General Ideas
 ### Splitwise Integration
 Add our splitwise account to show how much one person owes another.
-
-### Upgrade the Online List Widgets from Dreamlo to Todoist
-Todoist is an actual list managing app, and has good JSON documentation / responses, which would be easier to use and set up in the long run. I wouldn't have to set up Dreamlo leaderboards or do extra parsing or calculations to get a piece of text to simply upload. The app would be easier to use for anyone else getting started, and would not require [my react app](https://github.com/iamtomhewitt/home-dashboard-list-uploader) to run.
 
 ### Rotating Widgets
 As it stands the dashboard is a bit constrained for room. Suggest that any future widgets can sit over the top of another widget, and switch with another widget in its place. E.g. the Google Calendar widgets could be combined into one and switch between calendars every `x` seconds.
