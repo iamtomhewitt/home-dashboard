@@ -14,16 +14,13 @@ namespace OnlineLists
         [SerializeField] private Text statusText;
 		[SerializeField] private Config config;
 
-		[SerializeField] private string configKeyName;
+		[SerializeField] private string todoistProjectKeyName;
 
-		private string publicKey;
-		private string privateKey;
-		private string dreamloUrl = "http://dreamlo.com/lb/";
+		private string apiKey;
 
 		private void Start()
         {
-			publicKey = config.GetConfig()["apiKeys"]["onlineLists"][configKeyName]["publicKey"];
-			privateKey = config.GetConfig()["apiKeys"]["onlineLists"][configKeyName]["privateKey"];
+			apiKey = config.GetConfig()["apiKeys"]["todoist"];
 
             this.Initialise();
             InvokeRepeating("Run", 0f, RepeatRateInSeconds());
@@ -37,38 +34,27 @@ namespace OnlineLists
 
         private IEnumerator RunRoutine()
         {
-			string url = dreamloUrl + publicKey + "/json";
+			string projectId = config.GetConfig()["todoist"][todoistProjectKeyName];
+			string url = "https://api.todoist.com/rest/v1/tasks?project_id=" + projectId;
 
-            UnityWebRequest request = UnityWebRequest.Get(url);
-            yield return request.SendWebRequest();
-            string response = request.downloadHandler.text;
+			UnityWebRequest request = UnityWebRequest.Get(url);
+			request.SetRequestHeader("Authorization", "Bearer " + apiKey);
+			yield return request.SendWebRequest();
+			string response = request.downloadHandler.text;
 
-			JSONNode json = JSON.Parse(response)["dreamlo"]["leaderboard"];
+			// Remove previous entries so there are no duplicates
+			foreach (Transform g in content)
+			{
+				Destroy(g.gameObject);
+			}
 
-            if (json["entry"] != null)
-            {
-                // Remove previous entries so there are no duplicates
-                foreach (Transform g in content)
-                {
-                    Destroy(g.gameObject);
-                }
-
-				if (!json["entry"].IsArray)
-				{
-					OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
-					e.GetNameText().text = json["entry"]["name"];
-					e.SetRemoveUrl(dreamloUrl + privateKey + "/delete/" + e.GetNameText().text);
-				}
-				else
-				{
-					for (int i = 0; i < json["entry"].Count; i++)
-					{
-						OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
-						e.GetNameText().text = json["entry"][i]["name"];
-						e.SetRemoveUrl(dreamloUrl + privateKey + "/delete/" + e.GetNameText().text);
-					}
-				}
-            }
+			JSONNode json = JSON.Parse(response);
+			foreach (JSONNode task in json)
+			{
+				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
+				e.GetNameText().text = task["content"].Value;
+				e.SetTaskId(task["id"].Value);
+			}
 		}
 
 		/// <summary>

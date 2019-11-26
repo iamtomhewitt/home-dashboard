@@ -5921,7 +5921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list: {fileID: 1870469004}
   statusText: {fileID: 1345734257}
-  dreamloPrivateKey: HbYnByfESUemvIRTE9nLRw-lBuVGwN20uqa0JFjf5c0w
+  todoistProjectKeyName: shoppingListProjectId
 --- !u!1 &717354461
 GameObject:
   m_ObjectHideFlags: 0
@@ -13822,7 +13822,7 @@ MonoBehaviour:
   content: {fileID: 879678591}
   statusText: {fileID: 1435083302}
   config: {fileID: 1944233602}
-  configKeyName: todoList
+  todoistProjectKeyName: todoListProjectId
 --- !u!1001 &1773956310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14970,7 +14970,7 @@ MonoBehaviour:
   content: {fileID: 537251640}
   statusText: {fileID: 1345734257}
   config: {fileID: 1944233602}
-  configKeyName: shoppingList
+  todoistProjectKeyName: shoppingListProjectId
 --- !u!224 &1878106864 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8932881662907039469, guid: 2b808b19c90da494e918dbbeaa29bb95,
@@ -16613,7 +16613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list: {fileID: 1763180177}
   statusText: {fileID: 1435083302}
-  dreamloPrivateKey: 7ZSQifiLrUOEP9w0mHvi0gu1TLzx94IE6tsdcLT_YEUg
+  todoistProjectKeyName: todoListProjectId
 --- !u!1 &2126595009
 GameObject:
   m_ObjectHideFlags: 0

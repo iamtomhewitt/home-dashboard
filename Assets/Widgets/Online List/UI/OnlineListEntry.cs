@@ -9,16 +9,16 @@ namespace OnlineLists
 	public class OnlineListEntry : MonoBehaviour
 	{
 		[SerializeField] private Text nameText;
-		[SerializeField] private string removeUrl;
+		[SerializeField] private string taskId;
 
 		public Text GetNameText()
 		{
 			return nameText;
 		}
 
-		public void SetRemoveUrl(string url)
+		public void SetTaskId(string id)
 		{
-			removeUrl = url;
+			taskId = id;
 		}
 
 		// Called from the 'X' button
@@ -49,14 +49,14 @@ namespace OnlineLists
 			{
 				dialog.Hide();
 
-				UnityWebRequest request = UnityWebRequest.Get(removeUrl);
-				yield return request.SendWebRequest();
+				Config config = FindObjectOfType<Config>();
 
-				bool ok = request.downloadHandler.text.Equals("OK") ? true : false;
-				if (!ok)
-				{
-					print(request.downloadHandler.text);
-				}
+				string url = "https://api.todoist.com/rest/v1/tasks/" + taskId + "/close";
+				string apiKey = config.GetConfig()["apiKeys"]["todoist"];
+
+				UnityWebRequest request = UnityWebRequest.Post(url, "");
+				request.SetRequestHeader("Authorization", "Bearer " + apiKey);
+				yield return request.SendWebRequest();
 
 				Destroy(this.gameObject);
 			}

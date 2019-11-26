@@ -12,9 +12,7 @@ namespace Dialog
 		{
 			[SerializeField] private OnlineList list;
 			[SerializeField] private Text statusText;
-			[SerializeField] private string dreamloPrivateKey;
-
-			private string dreamloUrl = "http://dreamlo.com/lb/";
+			[SerializeField] private string todoistProjectKeyName;
 
 			/// <summary>
 			/// Called from a button.
@@ -40,20 +38,45 @@ namespace Dialog
 
 			private IEnumerator AddItemRoutine(string item)
 			{
-				string url = dreamloUrl + dreamloPrivateKey + "/add/" + item + "/0";
+				Config config = FindObjectOfType<Config>();
 
-				UnityWebRequest request = UnityWebRequest.Get(url);
+				string url			= "https://api.todoist.com/rest/v1/tasks";
+				string apiKey		= config.GetConfig()["apiKeys"]["todoist"];
+				string projectId	= config.GetConfig()["todoist"][todoistProjectKeyName];
+				string uuid			= System.Guid.NewGuid().ToString();
+				string json			= "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";
+
+				UnityWebRequest request = CreateRequest(url, json, apiKey, uuid);
 				yield return request.SendWebRequest();
-
-				bool ok = request.downloadHandler.text.Equals("OK") ? true : false;
+				
+				bool ok = request.error == null ? true : false;
 				if (!ok)
 				{
-					statusText.text = "ERROR UPLOADING: " + request.downloadHandler.text;
+					print(request.downloadHandler.text);
 				}
 
 				list.Refresh();
 
 				statusText.text = "'" + item + "' uploaded!";
+			}
+
+			/// <summary>
+			/// Creates a UnityWebRequest for Todoist
+			/// </summary>
+			private UnityWebRequest CreateRequest(string url, string json, string apiKey, string uuid)
+			{
+				UnityWebRequest request = new UnityWebRequest(url, "POST");
+
+				byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+
+				request.uploadHandler = new UploadHandlerRaw(jsonToSend);
+				request.downloadHandler = new DownloadHandlerBuffer();
+
+				request.SetRequestHeader("Content-Type", "application/json");
+				request.SetRequestHeader("Authorization", "Bearer " + apiKey);
+				request.SetRequestHeader("X-Request-Id", uuid);
+
+				return request;
 			}
 		}
 	}
