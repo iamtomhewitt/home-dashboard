@@ -48,8 +48,5 @@ Add our splitwise account to show how much one person owes another.
 ### Rotating Widgets
 As it stands the dashboard is a bit constrained for room. Suggest that any future widgets can sit over the top of another widget, and switch with another widget in its place. E.g. the Google Calendar widgets could be combined into one and switch between calendars every `x` seconds.
 
-### Viewable Logs
-A screen showing logs from the widgets for the day. It would look similar to the Unity console, and would be cleared out at the end of the day. Accessed by tapping on the version number.
-
 ### Widget Animations
 A nice to have - some widgets that refresh their information just flicker to the new data, having a nice fade transition would be pretty (e.g. when a BBC news headline changes, should fade in between the two headlines). Furthermore - combine with the rotating widgets to make the widgets actually spin when changing from one widget to another.
