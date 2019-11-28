@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System;
 using System.Collections;
 using SimpleJSON;
+using Dialog;
 
 namespace GoogleCalendar
 {
@@ -48,6 +49,12 @@ namespace GoogleCalendar
 			string response = request.downloadHandler.text;
 
 			json = JSON.Parse(response);
+
+			bool ok = request.error == null ? true : false;
+			if (!ok)
+			{
+				WidgetLogger.instance.Log(this, "Error: " + request.error);
+			}
 
 			// Remove old events
 			foreach (Transform child in scrollParent)

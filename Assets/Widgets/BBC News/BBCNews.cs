@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 using SimpleJSON;
+using Dialog;
 
 namespace BBCNews
 {
@@ -39,6 +40,12 @@ namespace BBCNews
 			UnityWebRequest request = UnityWebRequest.Get(url);
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
+
+			bool ok = request.error == null ? true : false;
+			if (!ok)
+			{
+				WidgetLogger.instance.Log(this, "Error: " + request.error);
+			}
 
 			json = JSON.Parse(response);
 		}

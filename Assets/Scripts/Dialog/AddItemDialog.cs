@@ -52,7 +52,7 @@ namespace Dialog
 				bool ok = request.error == null ? true : false;
 				if (!ok)
 				{
-					print(request.downloadHandler.text);
+					WidgetLogger.instance.Log("<b>Add Dialog</b>: Could not add item: " + request.downloadHandler.text);
 				}
 
 				list.Refresh();

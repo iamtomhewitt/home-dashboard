@@ -53,9 +53,13 @@ namespace FoodPlannerWidget
 
 			string json = FoodPlannerJsonHelper.ToJson(data);
 
+			WidgetLogger.instance.Log(this, "Saving recipes to file");
+
 			StreamWriter writer = new StreamWriter(filePath, false);
 			writer.WriteLine(json);
 			writer.Close();
+
+			WidgetLogger.instance.Log(this, "Done");
 		}
 
 		/// <summary>
@@ -63,8 +67,11 @@ namespace FoodPlannerWidget
 		/// </summary>
 		private void LoadRecipesFromFile()
 		{
+			WidgetLogger.instance.Log(this, "Loading recipes");
+
 			if (!File.Exists(filePath))
 			{
+				WidgetLogger.instance.Log(this, "Recipe file does not exist");
 				SaveToFile();
 			}
 
@@ -79,6 +86,8 @@ namespace FoodPlannerWidget
 				recipeCards[i].GetRecipeData().recipeName = data[i].recipeName;
 				recipeCards[i].GetRecipeData().day = data[i].day;
 			}
+
+			WidgetLogger.instance.Log(this, "Done");
 		}
 
 		/// <summary>
@@ -103,6 +112,8 @@ namespace FoodPlannerWidget
 
 			if (dialog.GetResult() == DialogResult.NO)
 			{
+				WidgetLogger.instance.Log(this, "Result of dialog was No");
+
 				dialog.Hide();
 				dialog.None();
 				yield break;
@@ -110,6 +121,8 @@ namespace FoodPlannerWidget
 
 			if (dialog.GetResult() == DialogResult.YES)
 			{
+				WidgetLogger.instance.Log(this, "Result of dialog was Yes");
+
 				dialog.Hide();
 
 				List<Recipe> selectedRecipes = CollectSelectedRecipes();

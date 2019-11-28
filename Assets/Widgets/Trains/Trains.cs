@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 using SimpleJSON;
+using Dialog;
 
 namespace Train
 {
@@ -49,6 +50,12 @@ namespace Train
 			string response = request.downloadHandler.text;
 
 			json = JSON.Parse(response);
+
+			bool ok = request.error == null ? true : false;
+			if (!ok)
+			{
+				WidgetLogger.instance.Log(this, "Error: " + request.error);
+			}
 
 			for (int i = 0; i < json["trainServices"].Count; i++)
 			{

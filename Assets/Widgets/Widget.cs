@@ -85,6 +85,16 @@ public abstract class Widget : MonoBehaviour
 		lastUpdatedText.color = colour;
 	}
 
+	public Color GetWidgetColour()
+	{
+		return widgetColour;
+	}
+
+	public string GetWidgetTitle()
+	{
+		return title;
+	}
+
 	[System.Serializable]
 	public enum TimeUnit
 	{

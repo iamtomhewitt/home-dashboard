@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
 using SimpleJSON;
+using Dialog;
 
 namespace OnlineLists
 {
@@ -41,6 +42,12 @@ namespace OnlineLists
 			request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
+
+			bool ok = request.error == null ? true : false;
+			if (!ok)
+			{
+				WidgetLogger.instance.Log(this, "Error: " + request.error);
+			}
 
 			// Remove previous entries so there are no duplicates
 			foreach (Transform g in content)

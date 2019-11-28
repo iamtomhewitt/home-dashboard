@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using SimpleJSON;
+using Dialog;
 
 namespace WeatherForecast
 {
@@ -46,6 +47,12 @@ namespace WeatherForecast
 			string response = request.downloadHandler.text;
 
 			JSONNode json = JSON.Parse(response);
+
+			bool ok = request.error == null ? true : false;
+			if (!ok)
+			{
+				WidgetLogger.instance.Log(this, "Error: " + request.error);
+			}
 
 			currentSummary.text = json["currently"]["summary"];
 			currentIcon.sprite = GetSpriteForName(json["currently"]["icon"]);
