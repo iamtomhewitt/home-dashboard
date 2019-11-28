@@ -1,10 +1,20 @@
-﻿using UnityEngine;
+﻿using Dialog;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Version : MonoBehaviour
 {
     private void Start()
     {
-        GetComponent<Text>().text = "Version: " + Application.version;
+		Button button = GetComponent<Button>();
+		button.GetComponentInChildren<Text>().text = "Version: " + Application.version;
     }
+	
+	/// <summary>
+	/// Called from a button.
+	/// </summary>
+	public void ShowLog()
+	{
+		FindObjectOfType<WidgetLogger>().Show();
+	}
 }
