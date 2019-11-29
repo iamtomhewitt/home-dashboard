@@ -41,14 +41,9 @@ An editable set of 'cards' to show what we're having for our evening meal for th
 I've also incorporated a set of predefined recipes from what we eat often. Pressing the button at the bottom of the planner will add every single ingredient from all the predefined recipes for that week to the shopping list widget, so you can plan your weekly shop based on what you are eating. Duplicate ingredients are also removed, so if you have a recipe of 200g of chicken, and another recipe with 400g of chicken, then 600g of chicken is added to your shopping list.
 
 ## 💡 Potential Widget / General Ideas
-### Splitwise Integration
-Add our splitwise account to show how much one person owes another.
 
 ### Rotating Widgets
 As it stands the dashboard is a bit constrained for room. Suggest that any future widgets can sit over the top of another widget, and switch with another widget in its place. E.g. the Google Calendar widgets could be combined into one and switch between calendars every `x` seconds.
-
-### Widget Animations
-A nice to have - some widgets that refresh their information just flicker to the new data, having a nice fade transition would be pretty (e.g. when a BBC news headline changes, should fade in between the two headlines). Furthermore - combine with the rotating widgets to make the widgets actually spin when changing from one widget to another.
 
 ## Getting Started
 Want your own dashboard? Follow [getting started](GETTING&#32;STARTED.md)!
