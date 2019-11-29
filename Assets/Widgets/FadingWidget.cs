@@ -8,7 +8,7 @@ public abstract class FadingWidget : Widget
 	public abstract void FadeIn();
 	public abstract void FadeOut();
 
-	public IEnumerator Fade(MethodToCallBetweenFading Method, float fadeOutLength)
+	public IEnumerator Fade(VoidMethodToCallBetweenFading Method, float fadeOutLength)
 	{
 		FadeOut();
 
@@ -20,6 +20,20 @@ public abstract class FadingWidget : Widget
 
 		FadeIn();
 	}
+
+	public IEnumerator Fade(IEnumeratorMethodToCallBetweenFading Method, float fadeOutLength)
+	{
+		FadeOut();
+
+		yield return new WaitForSeconds(fadeOutLength);
+
+		yield return StartCoroutine(Method());
+
+		yield return new WaitForSeconds(fadeInDelay);
+
+		FadeIn();
+	}
 }
 
-public delegate void MethodToCallBetweenFading();
+public delegate void VoidMethodToCallBetweenFading();
+public delegate IEnumerator IEnumeratorMethodToCallBetweenFading();
