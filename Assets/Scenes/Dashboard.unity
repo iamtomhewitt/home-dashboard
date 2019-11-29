@@ -4403,6 +4403,7 @@ GameObject:
   - component: {fileID: 466969348}
   - component: {fileID: 466969347}
   - component: {fileID: 466969346}
+  - component: {fileID: 466969349}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -4479,6 +4480,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 466969344}
   m_CullTransparentMesh: 0
+--- !u!225 &466969349
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466969344}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &468320420
 GameObject:
   m_ObjectHideFlags: 0
@@ -9935,6 +9948,7 @@ GameObject:
   - component: {fileID: 1253615068}
   - component: {fileID: 1253615067}
   - component: {fileID: 1253615066}
+  - component: {fileID: 1253615069}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -10011,6 +10025,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253615064}
   m_CullTransparentMesh: 0
+--- !u!225 &1253615069
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253615064}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1267951968
 GameObject:
   m_ObjectHideFlags: 0
@@ -15197,6 +15223,7 @@ MonoBehaviour:
   title: TODO
   repeatRate: 10
   timeUnit: 1
+  canvasGroup: {fileID: 1253615069}
   entryPrefab: {fileID: 8526732701419245916, guid: 3830930bc10367f48aba2d3e7b8c1143,
     type: 3}
   content: {fileID: 879678591}
@@ -16467,6 +16494,7 @@ MonoBehaviour:
   title: Shopping List
   repeatRate: 10
   timeUnit: 1
+  canvasGroup: {fileID: 466969349}
   entryPrefab: {fileID: 8526732701419245916, guid: 3830930bc10367f48aba2d3e7b8c1143,
     type: 3}
   content: {fileID: 537251640}

@@ -7,7 +7,7 @@ using Dialog;
 
 namespace OnlineLists
 {
-    public class OnlineList : Widget
+    public class OnlineList : CanvasGroupFadingWidget
     {
         [Space(15f)]
         [SerializeField] private OnlineListEntry entryPrefab;
@@ -27,7 +27,7 @@ namespace OnlineLists
 
         public override void Run()
         {
-            StartCoroutine(RunRoutine());
+            StartCoroutine(Fade(RunRoutine, 1f));
             this.UpdateLastUpdatedText();
         }
 
