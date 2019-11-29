@@ -10,7 +10,7 @@ namespace BBCNews
 	{
 		[Space(15f)]
 		[SerializeField] private BBCNewsEntry entry;
-		[SerializeField] private float secondsBetweenArticles = 20f;
+		[SerializeField] private float secondsBetweenArticles = 60f;
 
 		private JSONNode json;
 

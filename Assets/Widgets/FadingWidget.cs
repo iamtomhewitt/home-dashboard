@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public abstract class FadingWidget : Widget
 {
@@ -8,42 +8,24 @@ public abstract class FadingWidget : Widget
 
 	private Animator animator;
 
+	private float fadeInDelay = 0.15f;
+
 	public void SetAnimator(Animator animator)
 	{
 		this.animator = animator;
 	}
 
-	public void FadeIn()
-	{
-		animator.Play(fadeInAnimation.name);
-	}
-
-	public void FadeOut()
+	public IEnumerator Fade(MethodToCallBetweenFading Method)
 	{
 		animator.Play(fadeOutAnimation.name);
-	}
 
-	public float GetFadeInLength()
-	{
-		return fadeInAnimation.length;
-	}
+		yield return new WaitForSeconds(fadeOutAnimation.length);
 
-	public float GetFadeOutLength()
-	{
-		return fadeOutAnimation.length;
-	}
+		Method();
 
-	public IEnumerator Fade(MethodToCallBetweenFading method)
-	{
-		FadeOut();
+		yield return new WaitForSeconds(fadeInDelay);
 
-		yield return new WaitForSeconds(GetFadeOutLength());
-
-		method();
-
-		yield return new WaitForSeconds(0.15f);
-
-		FadeIn();
+		animator.Play(fadeInAnimation.name);
 	}
 }
 
