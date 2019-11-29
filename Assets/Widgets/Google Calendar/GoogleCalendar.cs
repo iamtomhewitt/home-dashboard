@@ -13,7 +13,6 @@ namespace GoogleCalendar
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
 		[SerializeField] private Transform scrollParent;
 		[SerializeField] private string gmailAddress;
-		[SerializeField] private string apiKeyConfigKeyName;
 
 		private JSONNode json;
 
@@ -21,7 +20,7 @@ namespace GoogleCalendar
 
 		private void Start()
 		{
-			apiKey = Config.instance.GetConfig()["apiKeys"]["googleCalendars"][apiKeyConfigKeyName];
+			apiKey = Config.instance.GetConfig()["apiKeys"]["googleCalendars"][gmailAddress];
 
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
