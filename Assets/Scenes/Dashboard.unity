@@ -10212,6 +10212,7 @@ MonoBehaviour:
   title: Trains | Horsforth
   repeatRate: 1
   timeUnit: 1
+  canvasGroup: {fileID: 1323832137}
   trainEntries:
   - {fileID: 1749437075}
   - {fileID: 1204760250}

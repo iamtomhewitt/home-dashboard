@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// A fading widget that uses the Animator for its fading.
+/// </summary>
 public abstract class AnimatorFadingWidget : FadingWidget
 {
 	[Space(15f)]

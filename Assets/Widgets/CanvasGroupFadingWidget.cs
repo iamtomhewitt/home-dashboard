@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// A fading widget that uses the CanvasGroup for its fading.
+/// </summary>
 public abstract class CanvasGroupFadingWidget : FadingWidget
 {
 	[Space(15f)]
