@@ -12,6 +12,10 @@
 		"firstGreenBin": "dd-MM-YYYY",
 		"firstBlackBin": "dd-MM-YYYY"
 	},
+	"todoist": {
+		"todo": "project_id",
+		"shopping": "project_id"
+	},
 	"trains": {
 		"stationCode": "station_code"
 	},
