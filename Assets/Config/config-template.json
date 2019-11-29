@@ -14,5 +14,9 @@
 	},
 	"trains": {
 		"stationCode": "station_code"
+	},
+	"weather": {
+		"latitude": "number",
+		"longitude": "number"
 	}
 }
