@@ -15,7 +15,7 @@ namespace OnlineLists
         [SerializeField] private Text statusText;
 		[SerializeField] private Config config;
 
-		[SerializeField] private string todoistProjectKeyName;
+		[SerializeField] private TodoistList listType;
 
 		private string apiKey;
 
@@ -35,7 +35,7 @@ namespace OnlineLists
 
         private IEnumerator RunRoutine()
         {
-			string projectId = config.GetConfig()["todoist"][todoistProjectKeyName];
+			string projectId = config.GetConfig()["todoist"][listType];
 			string url = "https://api.todoist.com/rest/v1/tasks?project_id=" + projectId;
 
 			UnityWebRequest request = UnityWebRequest.Get(url);
@@ -72,4 +72,6 @@ namespace OnlineLists
 			Run();
 		}
     }
+
+	private enum TodoistList { TODO, Shopping};
 }
