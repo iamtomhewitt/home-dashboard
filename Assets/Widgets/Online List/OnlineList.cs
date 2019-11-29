@@ -33,7 +33,7 @@ namespace OnlineLists
 
         private IEnumerator RunRoutine()
         {
-			string projectId = Config.instance.GetConfig()["todoist"][listType];
+			string projectId = Config.instance.GetConfig()["todoist"][listType.ToString()];
 			string url = "https://api.todoist.com/rest/v1/tasks?project_id=" + projectId;
 
 			UnityWebRequest request = UnityWebRequest.Get(url);
@@ -71,5 +71,5 @@ namespace OnlineLists
 		}
     }
 
-	private enum TodoistList { TODO, Shopping};
+	public enum TodoistList { TODO, Shopping};
 }

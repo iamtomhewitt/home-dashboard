@@ -53,13 +53,13 @@ In order for the widgets to work, some need API keys, or external apps.
 * Using the `config-template.json' provided, fill out the config file with the API keys you have retrieved. 
 * Optionally, save it as a new file.
 
-### Dashboard
+### 📊 Dashboard
 * Open the `Dashboard.unity` scene.
 * Find the `Config` GameObject, and drag your config file into the `Config File` variable slot in the inspector.
 * In the hierarchy, select each widget. Some variables will need updating to match your config file. For example, the Google Calendar widget has a variable `apiKeyConfigKeyName` which needs to match your config file. This is to help distinguish between multiple calendars.
 * Run it! Press the play button and see your dashboard populate.
 
-### Deploy to Android
+### 📱 Deploy to Android
 * Plug in your Android device to your computer. Make sure you have all your drivers updated and the Android SDK.
 * Open the Build Settings in Unity, and click Build & Run.
 * Any issues, consider the [troubleshooting](https://docs.unity3d.com/Manual/TroubleShootingAndroid.html) guide from Unity.

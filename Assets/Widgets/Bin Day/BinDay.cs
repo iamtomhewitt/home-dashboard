@@ -14,8 +14,8 @@ namespace BinDay
 		[SerializeField] private Text text;
 		[SerializeField] private Image logo;
 
-		private DateTime firstGreenBinDay;// = new DateTime(2019, 10, 7);
-		private DateTime firstBlackBinDay;// = new DateTime(2019, 10, 14);
+		private DateTime firstGreenBinDay;
+		private DateTime firstBlackBinDay;
 
 		private void Start()
 		{
