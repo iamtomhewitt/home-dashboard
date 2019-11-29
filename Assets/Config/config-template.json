@@ -1,0 +1,11 @@
+{
+	"apiKeys": {
+		"bbcNews": "your_key",
+		"googleCalendars": {
+			"your_name": "your_key"
+		},
+		"todoist": "your_key",
+		"trains": "your_key",
+		"weather": "your_key"
+	}
+}
