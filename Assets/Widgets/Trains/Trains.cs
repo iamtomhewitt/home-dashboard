@@ -6,7 +6,7 @@ using Dialog;
 
 namespace Train
 {
-	public class Trains : Widget
+	public class Trains : FadingWidget
 	{
 		[Space(15f)]
 		[SerializeField] private TrainEntry[] trainEntries;
@@ -28,11 +28,11 @@ namespace Train
 
 		public override void Run()
 		{
-			StartCoroutine(RunRoutine());
+			StartCoroutine(Fade(PopulateEntries, 1f));
 			this.UpdateLastUpdatedText();
 		}
 
-		private IEnumerator RunRoutine()
+		private IEnumerator PopulateEntries()
 		{
 			foreach (TrainEntry entry in trainEntries)
 			{
@@ -54,6 +54,7 @@ namespace Train
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				yield break;
 			}
 
 			for (int i = 0; i < json["trainServices"].Count; i++)
@@ -69,7 +70,7 @@ namespace Train
 
 				if (locationName.Length > maxDestinationLength)
 				{
-					locationName = locationName.Substring(0, maxDestinationLength -1) + "...";
+					locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
 				}
 
 				entry.GetDestinationText().text = locationName;

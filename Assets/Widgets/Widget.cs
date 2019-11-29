@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System;
 
+/// <summary>
+/// The base of all widgets, sharing all common variables.
+/// </summary>
 public abstract class Widget : MonoBehaviour
 {
 	[SerializeField] private Text titleText;

@@ -7,7 +7,7 @@ using Dialog;
 
 namespace GoogleCalendar
 {
-	public class GoogleCalendar : Widget
+	public class GoogleCalendar : FadingWidget
 	{
 		[Space(15f)]
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
@@ -28,7 +28,7 @@ namespace GoogleCalendar
 
 		public override void Run()
 		{
-			StartCoroutine(RunRoutine());
+			StartCoroutine(Fade(RunRoutine, 1f));
 			this.UpdateLastUpdatedText();
 		}
 
