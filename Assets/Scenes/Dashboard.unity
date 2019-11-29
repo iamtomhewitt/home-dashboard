@@ -10290,7 +10290,7 @@ MonoBehaviour:
   fadeOutAnimation: {fileID: 7400000, guid: 9a0ff698586b38c48beb7567b7a84256, type: 2}
   fadeInAnimation: {fileID: 7400000, guid: 6cba018e50629f64b81539c8ac2b040a, type: 2}
   entry: {fileID: 1242877118}
-  secondsBetweenArticles: 10
+  secondsBetweenArticles: 60
 --- !u!95 &1281220136
 Animator:
   serializedVersion: 3
