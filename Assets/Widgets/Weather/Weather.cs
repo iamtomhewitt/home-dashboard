@@ -11,8 +11,6 @@ namespace WeatherForecast
 	public class Weather : Widget
 	{
 		[Space(15f)]
-		[SerializeField] private string latitude;
-		[SerializeField] private string longitude;
 
 		[SerializeField] private Text currentSummary;
 		[SerializeField] private Image currentIcon;
@@ -20,13 +18,16 @@ namespace WeatherForecast
 
 		[SerializeField] private WeatherEntry[] weatherEntries;
 		[SerializeField] private Sprite[] weatherSprites;
-		[SerializeField] private Config config;
 
 		private string apiKey;
+		private string latitude;
+		private string longitude;
 
 		private void Start()
 		{
-			apiKey = config.GetConfig()["apiKeys"]["weather"];
+			apiKey 		= Config.instance.GetConfig()["apiKeys"]["weather"];
+			latitude 	= Config.instance.GetConfig()["weather"]["latitude"];
+			longitude 	= Config.instance.GetConfig()["weather"]["longitude"];
 
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
@@ -83,7 +84,7 @@ namespace WeatherForecast
 				}
 			}
 
-			print("Could not find: " + weatherName);
+			WidgetLogger.instance.Log(this, "Could not find: " + weatherName);
 			return null;
 		}
 	}

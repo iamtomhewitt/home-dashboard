@@ -6800,8 +6800,6 @@ MonoBehaviour:
   title: Weather
   repeatRate: 10
   timeUnit: 1
-  latitude: 53.848246
-  longitude: -1.631747
   currentSummary: {fileID: 1304677431}
   currentIcon: {fileID: 1840678961}
   currentTemperature: {fileID: 1294488463}
@@ -6821,7 +6819,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6a676208fa935044086612b2e993a1d3, type: 3}
   - {fileID: 21300000, guid: e90d71aac42f61d4fa098cf24aceca04, type: 3}
   - {fileID: 21300000, guid: 898266dab0656974e911214c49e994d1, type: 3}
-  config: {fileID: 1944233602}
 --- !u!1001 &848376614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9986,7 +9983,6 @@ MonoBehaviour:
   - {fileID: 1878106865}
   - {fileID: 1118930832}
   - {fileID: 175449573}
-  config: {fileID: 1944233602}
 --- !u!1 &1281220133
 GameObject:
   m_ObjectHideFlags: 0
@@ -10049,7 +10045,6 @@ MonoBehaviour:
   repeatRate: 30
   timeUnit: 1
   entry: {fileID: 1242877118}
-  config: {fileID: 1944233602}
   secondsBetweenArticles: 60
 --- !u!1 &1282859342
 GameObject:
@@ -10728,7 +10723,6 @@ MonoBehaviour:
   googleCalendarEventPrefab: {fileID: 7321161315731493455, guid: 389f46b08721e724f9bdf1259dd5c519,
     type: 3}
   scrollParent: {fileID: 1040976248}
-  config: {fileID: 1944233602}
   gmailAddress: laurencolesyt@gmail.com
   apiKeyConfigKeyName: lauren
 --- !u!1 &1340221785
@@ -14827,8 +14821,7 @@ MonoBehaviour:
     type: 3}
   content: {fileID: 879678591}
   statusText: {fileID: 1435083302}
-  config: {fileID: 1944233602}
-  todoistProjectKeyName: todoListProjectId
+  listType: 0
 --- !u!1001 &1773956310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16098,8 +16091,7 @@ MonoBehaviour:
     type: 3}
   content: {fileID: 537251640}
   statusText: {fileID: 1345734257}
-  config: {fileID: 1944233602}
-  todoistProjectKeyName: shoppingListProjectId
+  listType: 1
 --- !u!224 &1878106864 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8932881662907039469, guid: 2b808b19c90da494e918dbbeaa29bb95,
@@ -17298,7 +17290,6 @@ MonoBehaviour:
   googleCalendarEventPrefab: {fileID: 7321161315731493455, guid: 389f46b08721e724f9bdf1259dd5c519,
     type: 3}
   scrollParent: {fileID: 275628701}
-  config: {fileID: 1944233602}
   gmailAddress: tommhewitt@gmail.com
   apiKeyConfigKeyName: tom
 --- !u!1 &2069436460
@@ -18021,11 +18012,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1281220134}
     m_Modifications:
-    - target: {fileID: 6881474513962551683, guid: df312c35839a95142a23727ccca8a162,
-        type: 3}
-      propertyPath: m_Name
-      value: BBC News Entry
-      objectReference: {fileID: 0}
     - target: {fileID: 6881474513962551682, guid: df312c35839a95142a23727ccca8a162,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18130,6 +18116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881474513962551683, guid: df312c35839a95142a23727ccca8a162,
+        type: 3}
+      propertyPath: m_Name
+      value: BBC News Entry
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df312c35839a95142a23727ccca8a162, type: 3}

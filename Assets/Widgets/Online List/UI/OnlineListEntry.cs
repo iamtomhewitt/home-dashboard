@@ -49,10 +49,8 @@ namespace OnlineLists
 			{
 				dialog.Hide();
 
-				Config config = FindObjectOfType<Config>();
-
 				string url = "https://api.todoist.com/rest/v1/tasks/" + taskId + "/close";
-				string apiKey = config.GetConfig()["apiKeys"]["todoist"];
+				string apiKey = Config.instance.GetConfig()["apiKeys"]["todoist"];
 
 				UnityWebRequest request = UnityWebRequest.Post(url, "");
 				request.SetRequestHeader("Authorization", "Bearer " + apiKey);
