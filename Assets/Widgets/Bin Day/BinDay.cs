@@ -19,15 +19,15 @@ namespace BinDay
 
 		private void Start()
 		{
-			firstGreenBinDay = DateTime.Parse(Config.instance.GetConfig()["binDay"]["firstGreenBin"]);
-			firstBlackBinDay = DateTime.Parse(Config.instance.GetConfig()["binDay"]["firstBlackBin"]);
+			firstGreenBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstGreenBin"], "dd-MM-yyyy", null);
+			firstBlackBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstBlackBin"], "dd-MM-yyyy", null);
 
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
 		public override void Run()
-		{			
+		{
 			DateTime today = DateTime.Today;
 			DateTime tomorrow = today.AddDays(1);
 
