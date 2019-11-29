@@ -11,5 +11,8 @@
 	"binDay": {
 		"firstGreenBin": "dd-MM-YYYY",
 		"firstBlackBin": "dd-MM-YYYY"
+	},
+	"trains": {
+		"stationCode": "station_code"
 	}
 }
