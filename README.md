@@ -10,7 +10,6 @@
 
 A dashboard with useful information to display in my house. The idea is to build a dashboard which then will be displayed 24/7 on a tablet stuck to the fridge via magnets.
 
-
 Originally created using the [Smashing](https://github.com/Smashing/smashing) dashboard in Ruby, but moved to a [Unity3D](https://unity.com/) project as I was after some interactivity (such as adding and removing from a shopping list) instead of just displaying information (And also I could customize the widgets further than the Smashing dashboard).
 
 ## 🎯 Widgets
@@ -50,3 +49,6 @@ As it stands the dashboard is a bit constrained for room. Suggest that any futur
 
 ### Widget Animations
 A nice to have - some widgets that refresh their information just flicker to the new data, having a nice fade transition would be pretty (e.g. when a BBC news headline changes, should fade in between the two headlines). Furthermore - combine with the rotating widgets to make the widgets actually spin when changing from one widget to another.
+
+## Getting Started
+Want your own dashboard? Follow [getting started](GETTING&#32;STARTED.md)!
