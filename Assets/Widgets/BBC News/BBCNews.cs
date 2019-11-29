@@ -6,11 +6,11 @@ using Dialog;
 
 namespace BBCNews
 {
-	public class BBCNews : Widget
+	public class BBCNews : FadingWidget
 	{
 		[Space(15f)]
 		[SerializeField] private BBCNewsEntry entry;
-		[SerializeField] private float secondsBetweenArticles = 20f;
+		[SerializeField] private float secondsBetweenArticles = 60f;
 
 		private JSONNode json;
 
@@ -23,7 +23,7 @@ namespace BBCNews
 			apiKey = Config.instance.GetConfig()["apiKeys"]["bbcNews"];
 
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);
+			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);			
 		}
 
 		public override void Run()
@@ -50,6 +50,11 @@ namespace BBCNews
 		}
 
 		private void Cycle()
+		{
+			StartCoroutine(Fade(SwitchArticle, 1f));
+		}
+
+		private void SwitchArticle()
 		{
 			string title		= json["articles"][currentArticleIndex]["title"];
 			string description	= json["articles"][currentArticleIndex]["description"];
