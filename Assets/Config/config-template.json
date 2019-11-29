@@ -7,5 +7,9 @@
 		"todoist": "your_key",
 		"trains": "your_key",
 		"weather": "your_key"
+	},
+	"binDay": {
+		"firstGreenBin": "dd-MM-YYYY",
+		"firstBlackBin": "dd-MM-YYYY"
 	}
 }
