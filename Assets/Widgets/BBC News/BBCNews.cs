@@ -6,7 +6,7 @@ using Dialog;
 
 namespace BBCNews
 {
-	public class BBCNews : AnimatorFadingWidget
+	public class BBCNews : FadingWidget
 	{
 		[Space(15f)]
 		[SerializeField] private BBCNewsEntry entry;
@@ -51,7 +51,7 @@ namespace BBCNews
 
 		private void Cycle()
 		{
-			StartCoroutine(Fade(SwitchArticle, this.GetFadeOutAnimationLength()));
+			StartCoroutine(Fade(SwitchArticle, 1f));
 		}
 
 		private void SwitchArticle()

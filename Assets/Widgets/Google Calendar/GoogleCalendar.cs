@@ -7,7 +7,7 @@ using Dialog;
 
 namespace GoogleCalendar
 {
-	public class GoogleCalendar : CanvasGroupFadingWidget
+	public class GoogleCalendar : FadingWidget
 	{
 		[Space(15f)]
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;

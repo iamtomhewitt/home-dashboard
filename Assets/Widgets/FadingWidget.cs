@@ -6,10 +6,49 @@ using System.Collections;
 /// </summary>
 public abstract class FadingWidget : Widget
 {
+	[Space(15f)]
+	[SerializeField] private CanvasGroup canvasGroup;
+
+	private float fadeSpeed = 2f;
 	private float fadeInDelay = 0.15f;
 
-	public abstract void FadeIn();
-	public abstract void FadeOut();
+	public void FadeIn()
+	{
+		StartCoroutine(FadeInRoutine());
+	}
+
+	public void FadeOut()
+	{
+		StartCoroutine(FadeOutRoutine());
+	}
+
+	private IEnumerator FadeInRoutine()
+	{
+		canvasGroup.alpha = 0f;
+
+		while (canvasGroup.alpha < 1)
+		{
+			canvasGroup.alpha += Time.deltaTime * fadeSpeed;
+			yield return null;
+		}
+
+		canvasGroup.interactable = false;
+		yield return null;
+	}
+
+	private IEnumerator FadeOutRoutine()
+	{
+		canvasGroup.alpha = 1f;
+
+		while (canvasGroup.alpha > 0)
+		{
+			canvasGroup.alpha -= Time.deltaTime * fadeSpeed;
+			yield return null;
+		}
+
+		canvasGroup.interactable = false;
+		yield return null;
+	}
 
 	/// <summary>
 	/// Fade the widget, calling a void method in between.

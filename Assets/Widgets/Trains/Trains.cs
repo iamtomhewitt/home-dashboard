@@ -6,7 +6,7 @@ using Dialog;
 
 namespace Train
 {
-	public class Trains : CanvasGroupFadingWidget
+	public class Trains : FadingWidget
 	{
 		[Space(15f)]
 		[SerializeField] private TrainEntry[] trainEntries;

@@ -9893,6 +9893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1242877117}
   - component: {fileID: 1242877118}
+  - component: {fileID: 1242877119}
   m_Layer: 5
   m_Name: BBC News Entry
   m_TagString: Untagged
@@ -9936,6 +9937,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 1397447808}
   description: {fileID: 715590067}
+--- !u!225 &1242877119
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242877116}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1253615064
 GameObject:
   m_ObjectHideFlags: 0
@@ -10273,7 +10286,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1281220134}
   - component: {fileID: 1281220135}
-  - component: {fileID: 1281220136}
   m_Layer: 5
   m_Name: BBC News
   m_TagString: Untagged
@@ -10325,30 +10337,9 @@ MonoBehaviour:
   title: BBC News
   repeatRate: 30
   timeUnit: 1
-  animator: {fileID: 1281220136}
-  fadeOutAnimation: {fileID: 7400000, guid: 9a0ff698586b38c48beb7567b7a84256, type: 2}
-  fadeInAnimation: {fileID: 7400000, guid: 6cba018e50629f64b81539c8ac2b040a, type: 2}
+  canvasGroup: {fileID: 1242877119}
   entry: {fileID: 1242877118}
-  secondsBetweenArticles: 60
---- !u!95 &1281220136
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281220133}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 33bcfc1f5f52ce641b0c0010632c24af, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  secondsBetweenArticles: 45
 --- !u!1 &1282859342
 GameObject:
   m_ObjectHideFlags: 0

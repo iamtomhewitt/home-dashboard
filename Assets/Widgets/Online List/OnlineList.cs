@@ -7,7 +7,7 @@ using Dialog;
 
 namespace OnlineLists
 {
-    public class OnlineList : CanvasGroupFadingWidget
+    public class OnlineList : FadingWidget
     {
         [Space(15f)]
         [SerializeField] private OnlineListEntry entryPrefab;
