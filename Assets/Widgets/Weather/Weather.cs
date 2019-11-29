@@ -84,7 +84,7 @@ namespace WeatherForecast
 				}
 			}
 
-			print("Could not find: " + weatherName);
+			WidgetLogger.instance.Log(this, "Could not find: " + weatherName);
 			return null;
 		}
 	}
