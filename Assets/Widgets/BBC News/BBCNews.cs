@@ -10,7 +10,6 @@ namespace BBCNews
 	{
 		[Space(15f)]
 		[SerializeField] private BBCNewsEntry entry;
-		[SerializeField] private Config config;
 		[SerializeField] private float secondsBetweenArticles = 20f;
 
 		private JSONNode json;
@@ -21,7 +20,7 @@ namespace BBCNews
 		private void Start()
 		{
 			this.Initialise();
-			apiKey = config.GetConfig()["apiKeys"]["bbcNews"];
+			apiKey = Config.instance.GetConfig()["apiKeys"]["bbcNews"];
 
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);
