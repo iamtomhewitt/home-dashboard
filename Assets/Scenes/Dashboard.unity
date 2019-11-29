@@ -5890,6 +5890,7 @@ GameObject:
   - component: {fileID: 631731417}
   - component: {fileID: 631731416}
   - component: {fileID: 631731415}
+  - component: {fileID: 631731418}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -5966,6 +5967,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631731413}
   m_CullTransparentMesh: 0
+--- !u!225 &631731418
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631731413}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &688389466 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8932881662907039469, guid: 2b808b19c90da494e918dbbeaa29bb95,
@@ -10630,6 +10643,7 @@ GameObject:
   - component: {fileID: 1314918148}
   - component: {fileID: 1314918147}
   - component: {fileID: 1314918146}
+  - component: {fileID: 1314918149}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -10706,6 +10720,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314918144}
   m_CullTransparentMesh: 0
+--- !u!225 &1314918149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314918144}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1323832132
 GameObject:
   m_ObjectHideFlags: 0
@@ -10997,6 +11023,7 @@ MonoBehaviour:
   title: Lauren's Calendar
   repeatRate: 30
   timeUnit: 1
+  canvasGroup: {fileID: 631731418}
   googleCalendarEventPrefab: {fileID: 7321161315731493455, guid: 389f46b08721e724f9bdf1259dd5c519,
     type: 3}
   scrollParent: {fileID: 1040976248}
@@ -17640,6 +17667,7 @@ MonoBehaviour:
   title: Tom's Calendar
   repeatRate: 30
   timeUnit: 1
+  canvasGroup: {fileID: 1314918149}
   googleCalendarEventPrefab: {fileID: 7321161315731493455, guid: 389f46b08721e724f9bdf1259dd5c519,
     type: 3}
   scrollParent: {fileID: 275628701}
