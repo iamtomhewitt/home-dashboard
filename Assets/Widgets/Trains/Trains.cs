@@ -15,13 +15,14 @@ namespace Train
 		private JSONNode json;
 
 		private string apiToken;
-		private string stationCode = "HRS";
+		private string stationCode;
 
 		private int maxDestinationLength = 10;
 
 		private void Start()
 		{
-			apiToken = config.GetConfig()["apiKeys"]["trains"];
+			apiToken 	= config.GetConfig()["apiKeys"]["trains"];
+			stationCode = config.GetConfig()["trains"]["stationCode"];
 			
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());

@@ -14,11 +14,14 @@ namespace BinDay
 		[SerializeField] private Text text;
 		[SerializeField] private Image logo;
 
-		private DateTime firstGreenBinDay = new DateTime(2019, 10, 7);
-		private DateTime firstBlackBinDay = new DateTime(2019, 10, 14);
+		private DateTime firstGreenBinDay;// = new DateTime(2019, 10, 7);
+		private DateTime firstBlackBinDay;// = new DateTime(2019, 10, 14);
 
 		private void Start()
 		{
+			firstGreenBinDay = DateTime.Parse(Config.instance.GetConfig()["binDay"]["firstGreenBin"]);
+			firstBlackBinDay = DateTime.Parse(Config.instance.GetConfig()["binDay"]["firstBlackBin"]);
+
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
