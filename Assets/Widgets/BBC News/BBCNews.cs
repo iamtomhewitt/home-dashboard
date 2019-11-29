@@ -6,7 +6,7 @@ using Dialog;
 
 namespace BBCNews
 {
-	public class BBCNews : FadingWidget
+	public class BBCNews : AnimatorFadingWidget
 	{
 		[Space(15f)]
 		[SerializeField] private BBCNewsEntry entry;
@@ -22,10 +22,8 @@ namespace BBCNews
 			this.Initialise();
 			apiKey = Config.instance.GetConfig()["apiKeys"]["bbcNews"];
 
-			this.SetAnimator(GetComponent<Animator>());
-
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);
+			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);			
 		}
 
 		public override void Run()
@@ -53,7 +51,7 @@ namespace BBCNews
 
 		private void Cycle()
 		{
-			StartCoroutine(Fade(SwitchArticle));
+			StartCoroutine(Fade(SwitchArticle, this.GetFadeOutAnimationLength()));
 		}
 
 		private void SwitchArticle()

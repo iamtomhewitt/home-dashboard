@@ -10162,6 +10162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1273118026}
   - component: {fileID: 1273118027}
+  - component: {fileID: 1273118028}
   m_Layer: 5
   m_Name: Trains
   m_TagString: Untagged
@@ -10223,6 +10224,25 @@ MonoBehaviour:
   - {fileID: 1878106865}
   - {fileID: 1118930832}
   - {fileID: 175449573}
+--- !u!95 &1273118028
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273118025}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16ad4cf3d1018774c822c638277777c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1281220133
 GameObject:
   m_ObjectHideFlags: 0
@@ -10285,10 +10305,10 @@ MonoBehaviour:
   title: BBC News
   repeatRate: 30
   timeUnit: 1
-  entry: {fileID: 1242877118}
-  secondsBetweenArticles: 10
   fadeOutAnimation: {fileID: 7400000, guid: 9a0ff698586b38c48beb7567b7a84256, type: 2}
   fadeInAnimation: {fileID: 7400000, guid: 6cba018e50629f64b81539c8ac2b040a, type: 2}
+  entry: {fileID: 1242877118}
+  secondsBetweenArticles: 10
 --- !u!95 &1281220136
 Animator:
   serializedVersion: 3

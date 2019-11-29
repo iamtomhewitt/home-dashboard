@@ -3,29 +3,22 @@ using System.Collections;
 
 public abstract class FadingWidget : Widget
 {
-	[SerializeField] private AnimationClip fadeOutAnimation;
-	[SerializeField] private AnimationClip fadeInAnimation;
-
-	private Animator animator;
-
 	private float fadeInDelay = 0.15f;
 
-	public void SetAnimator(Animator animator)
-	{
-		this.animator = animator;
-	}
+	public abstract void FadeIn();
+	public abstract void FadeOut();
 
-	public IEnumerator Fade(MethodToCallBetweenFading Method)
+	public IEnumerator Fade(MethodToCallBetweenFading Method, float fadeOutLength)
 	{
-		animator.Play(fadeOutAnimation.name);
+		FadeOut();
 
-		yield return new WaitForSeconds(fadeOutAnimation.length);
+		yield return new WaitForSeconds(fadeOutLength);
 
 		Method();
 
 		yield return new WaitForSeconds(fadeInDelay);
 
-		animator.Play(fadeInAnimation.name);
+		FadeIn();
 	}
 }
 
