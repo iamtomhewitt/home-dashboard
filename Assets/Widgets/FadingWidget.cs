@@ -12,17 +12,7 @@ public abstract class FadingWidget : Widget
 	private float fadeSpeed = 2f;
 	private float fadeInDelay = 0.15f;
 
-	public void FadeIn()
-	{
-		StartCoroutine(FadeInRoutine());
-	}
-
-	public void FadeOut()
-	{
-		StartCoroutine(FadeOutRoutine());
-	}
-
-	private IEnumerator FadeInRoutine()
+	private IEnumerator FadeIn()
 	{
 		canvasGroup.alpha = 0f;
 
@@ -36,7 +26,7 @@ public abstract class FadingWidget : Widget
 		yield return null;
 	}
 
-	private IEnumerator FadeOutRoutine()
+	private IEnumerator FadeOut()
 	{
 		canvasGroup.alpha = 1f;
 
@@ -55,7 +45,7 @@ public abstract class FadingWidget : Widget
 	/// </summary>
 	public IEnumerator Fade(VoidMethodToCallBetweenFading Method, float fadeOutLength)
 	{
-		FadeOut();
+		StartCoroutine(FadeOut());
 
 		yield return new WaitForSeconds(fadeOutLength);
 
@@ -63,7 +53,7 @@ public abstract class FadingWidget : Widget
 
 		yield return new WaitForSeconds(fadeInDelay);
 
-		FadeIn();
+		StartCoroutine(FadeIn());
 	}
 
 	/// <summary>
@@ -71,7 +61,7 @@ public abstract class FadingWidget : Widget
 	/// </summary>
 	public IEnumerator Fade(IEnumeratorMethodToCallBetweenFading Method, float fadeOutLength)
 	{
-		FadeOut();
+		StartCoroutine(FadeOut());
 
 		yield return new WaitForSeconds(fadeOutLength);
 
@@ -79,7 +69,7 @@ public abstract class FadingWidget : Widget
 
 		yield return new WaitForSeconds(fadeInDelay);
 
-		FadeIn();
+		StartCoroutine(FadeIn());
 	}
 }
 
