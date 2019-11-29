@@ -18,7 +18,6 @@ namespace WeatherForecast
 
 		[SerializeField] private WeatherEntry[] weatherEntries;
 		[SerializeField] private Sprite[] weatherSprites;
-		[SerializeField] private Config config;
 
 		private string apiKey;
 		private string latitude;
@@ -26,9 +25,9 @@ namespace WeatherForecast
 
 		private void Start()
 		{
-			apiKey 		= config.GetConfig()["apiKeys"]["weather"];
-			latitude 	= config.GetConfig()["weather"]["latitude"];
-			longitude 	= config.GetConfig()["weather"]["longitude"];
+			apiKey 		= Config.instance.GetConfig()["apiKeys"]["weather"];
+			latitude 	= Config.instance.GetConfig()["weather"]["latitude"];
+			longitude 	= Config.instance.GetConfig()["weather"]["longitude"];
 
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());

@@ -13,15 +13,13 @@ namespace OnlineLists
         [SerializeField] private OnlineListEntry entryPrefab;
         [SerializeField] private Transform content;
         [SerializeField] private Text statusText;
-		[SerializeField] private Config config;
-
 		[SerializeField] private TodoistList listType;
 
 		private string apiKey;
 
 		private void Start()
         {
-			apiKey = config.GetConfig()["apiKeys"]["todoist"];
+			apiKey = Config.instance.GetConfig()["apiKeys"]["todoist"];
 
             this.Initialise();
             InvokeRepeating("Run", 0f, RepeatRateInSeconds());
@@ -35,7 +33,7 @@ namespace OnlineLists
 
         private IEnumerator RunRoutine()
         {
-			string projectId = config.GetConfig()["todoist"][listType];
+			string projectId = Config.instance.GetConfig()["todoist"][listType];
 			string url = "https://api.todoist.com/rest/v1/tasks?project_id=" + projectId;
 
 			UnityWebRequest request = UnityWebRequest.Get(url);

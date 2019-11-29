@@ -10,8 +10,6 @@ namespace Train
 	{
 		[Space(15f)]
 		[SerializeField] private TrainEntry[] trainEntries;
-		[SerializeField] private Config config;
-
 		private JSONNode json;
 
 		private string apiToken;
@@ -21,8 +19,8 @@ namespace Train
 
 		private void Start()
 		{
-			apiToken 	= config.GetConfig()["apiKeys"]["trains"];
-			stationCode = config.GetConfig()["trains"]["stationCode"];
+			apiToken 	= Config.instance.GetConfig()["apiKeys"]["trains"];
+			stationCode = Config.instance.GetConfig()["trains"]["stationCode"];
 			
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
