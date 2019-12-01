@@ -6,7 +6,7 @@ namespace BinDay
 {
 	public class BinDay : Widget
 	{
-		[Space(15f)]
+		[Header("Bin Day Settings")]
 		[SerializeField] private Color greenBinColour;
 		[SerializeField] private Color blackBinColour;
 		[SerializeField] private Color noBinColour;

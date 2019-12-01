@@ -8,7 +8,7 @@ namespace BBCNews
 {
 	public class BBCNews : FadingWidget
 	{
-		[Space(15f)]
+		[Header("BBC News Settings")]
 		[SerializeField] private BBCNewsEntry entry;
 		[SerializeField] private float secondsBetweenArticles = 60f;
 

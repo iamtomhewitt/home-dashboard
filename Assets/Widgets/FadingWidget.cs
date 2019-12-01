@@ -6,11 +6,11 @@ using System.Collections;
 /// </summary>
 public abstract class FadingWidget : Widget
 {
-	[Space(15f)]
+	[Header("Fading Settings")]
 	[SerializeField] private CanvasGroup canvasGroup;
 
-	private float fadeSpeed = 2f;
-	private float fadeInDelay = 0.15f;
+	[SerializeField] private float fadeSpeed = 2f;
+	[SerializeField] private float fadeInDelay = 0.15f;
 
 	private IEnumerator FadeIn()
 	{

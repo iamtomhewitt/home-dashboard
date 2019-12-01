@@ -7,20 +7,13 @@ using System;
 /// </summary>
 public abstract class Widget : MonoBehaviour
 {
+	[Header("Widget Settings")]
 	[SerializeField] private Text titleText;
-
-	[Space()]
 	[SerializeField] private Text lastUpdatedText;
 	[SerializeField] private Image widgetBackground;
-
-	[Space()]
 	[SerializeField] private Color widgetColour;
 	[SerializeField] private Color textColour;
-
-	[Space()]
 	[SerializeField] private string title;
-
-	[Space()]
 	[SerializeField] private float repeatRate;
 	[SerializeField] private TimeUnit timeUnit;
 

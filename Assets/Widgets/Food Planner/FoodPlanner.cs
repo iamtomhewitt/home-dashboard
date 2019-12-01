@@ -19,6 +19,7 @@ namespace FoodPlannerWidget
 {
 	public class FoodPlanner : Widget
 	{
+		[Header("Food Planner Settings")]
 		[SerializeField] private RecipeCard[] recipeCards;
 		[SerializeField] private AddItemDialog shoppingList;
 		[SerializeField] private string filePath;

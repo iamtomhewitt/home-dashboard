@@ -9,8 +9,8 @@ namespace OnlineLists
 {
     public class OnlineList : FadingWidget
     {
-        [Space(15f)]
-        [SerializeField] private OnlineListEntry entryPrefab;
+		[Header("Online List Settings")]
+		[SerializeField] private OnlineListEntry entryPrefab;
         [SerializeField] private Transform content;
         [SerializeField] private Text statusText;
 		[SerializeField] private TodoistList listType;

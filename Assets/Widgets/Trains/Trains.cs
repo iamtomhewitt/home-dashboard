@@ -8,7 +8,7 @@ namespace Train
 {
 	public class Trains : FadingWidget
 	{
-		[Space(15f)]
+		[Header("Train Settings")]
 		[SerializeField] private TrainEntry[] trainEntries;
 		private JSONNode json;
 
