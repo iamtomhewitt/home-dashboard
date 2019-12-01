@@ -6318,7 +6318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list: {fileID: 1870469004}
   statusText: {fileID: 1345734257}
-  todoistProjectKeyName: shoppingListProjectId
+  listType: 1
 --- !u!1 &715590065
 GameObject:
   m_ObjectHideFlags: 0
@@ -18119,7 +18119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list: {fileID: 1763180177}
   statusText: {fileID: 1435083302}
-  todoistProjectKeyName: todoListProjectId
+  listType: 0
 --- !u!1 &2126595009
 GameObject:
   m_ObjectHideFlags: 0

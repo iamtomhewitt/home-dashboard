@@ -19,6 +19,7 @@ namespace FoodPlannerWidget
 {
 	public class FoodPlanner : Widget
 	{
+		[Header("Food Planner Settings")]
 		[SerializeField] private RecipeCard[] recipeCards;
 		[SerializeField] private AddItemDialog shoppingList;
 		[SerializeField] private string filePath;
@@ -67,11 +68,9 @@ namespace FoodPlannerWidget
 		/// </summary>
 		private void LoadRecipesFromFile()
 		{
-			WidgetLogger.instance.Log(this, "Loading recipes");
-
 			if (!File.Exists(filePath))
 			{
-				WidgetLogger.instance.Log(this, "Recipe file does not exist");
+				WidgetLogger.instance.Log(this, "Tried loading a recipe file, but it does not exist");
 				SaveToFile();
 			}
 
@@ -81,13 +80,10 @@ namespace FoodPlannerWidget
 
 			for (int i = 0; i < data.Length; i++)
 			{
-				//print(data[i].day + ": " + data[i].recipeName);
 				recipeCards[i].GetRecipeCardText().text = data[i].recipeName;
 				recipeCards[i].GetRecipeData().recipeName = data[i].recipeName;
 				recipeCards[i].GetRecipeData().day = data[i].day;
 			}
-
-			WidgetLogger.instance.Log(this, "Done");
 		}
 
 		/// <summary>

@@ -9,7 +9,7 @@ namespace GoogleCalendar
 {
 	public class GoogleCalendar : FadingWidget
 	{
-		[Space(15f)]
+		[Header("Google Calendar Settings")]
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
 		[SerializeField] private Transform scrollParent;
 		[SerializeField] private string gmailAddress;

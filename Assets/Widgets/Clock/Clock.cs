@@ -6,7 +6,7 @@ namespace Clock
 {
 	public class Clock : Widget
 	{
-		[Space(15f)]
+		[Header("Clock Settings")]
 		[SerializeField] private Text clockText;
 		[SerializeField] private Text dateText;
 
