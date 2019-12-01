@@ -9,8 +9,8 @@ namespace OnlineLists
 {
     public class OnlineList : FadingWidget
     {
-        [Space(15f)]
-        [SerializeField] private OnlineListEntry entryPrefab;
+		[Header("Online List Settings")]
+		[SerializeField] private OnlineListEntry entryPrefab;
         [SerializeField] private Transform content;
         [SerializeField] private Text statusText;
 		[SerializeField] private TodoistList listType;
@@ -44,7 +44,8 @@ namespace OnlineLists
 			bool ok = request.error == null ? true : false;
 			if (!ok)
 			{
-				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				WidgetLogger.instance.Log(this, "Error: " + request.error + "\n URL: " + url);
+				yield break;
 			}
 
 			// Remove previous entries so there are no duplicates

@@ -10,8 +10,7 @@ namespace WeatherForecast
 {
 	public class Weather : Widget
 	{
-		[Space(15f)]
-
+		[Header("Weather Settings")]
 		[SerializeField] private Text currentSummary;
 		[SerializeField] private Image currentIcon;
 		[SerializeField] private Text currentTemperature;

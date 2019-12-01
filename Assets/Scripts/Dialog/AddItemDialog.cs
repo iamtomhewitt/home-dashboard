@@ -12,7 +12,7 @@ namespace Dialog
 		{
 			[SerializeField] private OnlineList list;
 			[SerializeField] private Text statusText;
-			[SerializeField] private string todoistProjectKeyName;
+			[SerializeField] private TodoistList listType;
 
 			/// <summary>
 			/// Called from a button.
@@ -42,7 +42,7 @@ namespace Dialog
 
 				string url			= "https://api.todoist.com/rest/v1/tasks";
 				string apiKey		= config.GetConfig()["apiKeys"]["todoist"];
-				string projectId	= config.GetConfig()["todoist"][todoistProjectKeyName];
+				string projectId	= config.GetConfig()["todoist"][listType.ToString()];
 				string uuid			= System.Guid.NewGuid().ToString();
 				string json			= "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";
 
