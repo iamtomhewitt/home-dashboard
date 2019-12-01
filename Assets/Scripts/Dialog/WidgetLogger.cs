@@ -27,7 +27,7 @@ namespace Dialog
 			string date = DateTime.Now.ToString("dd/MMM/yy HH:mm");
 
 			log.text += date + " | " + message + "\n";
-			//print(date + " | " + message);
+			print(date + " | " + message);
 		}
 
 		public void Log(Widget widget, string message)
@@ -36,7 +36,7 @@ namespace Dialog
 			string messageFormatted = "<b><color=#" + ColorUtility.ToHtmlStringRGB(widget.GetWidgetColour()) + ">" + widget.GetWidgetTitle() + "</color></b>: " + message;
 
 			log.text += date + " | " + messageFormatted + "\n";
-			//print(date + " | " + messageFormatted);
+			print(date + " | " + messageFormatted);
 		}
 
 		private void HouseKeep()
@@ -44,10 +44,6 @@ namespace Dialog
 			if (lastDate != DateTime.Today)
 			{
 				log.text = "";
-			}
-			else
-			{
-				Log("<b>Widget Logger</b>: House keeping complete");
 			}
 
 			lastDate = DateTime.Today;
