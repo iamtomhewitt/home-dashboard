@@ -22,7 +22,6 @@ public abstract class FadingWidget : Widget
 			yield return null;
 		}
 
-		canvasGroup.interactable = false;
 		yield return null;
 	}
 
@@ -36,7 +35,6 @@ public abstract class FadingWidget : Widget
 			yield return null;
 		}
 
-		canvasGroup.interactable = false;
 		yield return null;
 	}
 
