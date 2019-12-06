@@ -51,4 +51,6 @@ Want your own dashboard? Follow [getting started](GETTING&#32;STARTED.md)!
 
 <br>
 
+------------
+
 <div align="center">Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
