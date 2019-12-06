@@ -8,6 +8,7 @@
 
 <p align="center"><i>A dashboard with useful information to display in my house.</i></p>
 <p align="center"><img src="github.png" width="600"></p>
+<p align="center">Built with ❤︎ by <a href="https://github.com/iamtomhewitt">Tom Hewitt</a></p>
 
 ------------
 
@@ -53,4 +54,4 @@ Want your own dashboard? Follow [getting started](GETTING&#32;STARTED.md)!
 
 ------------
 
-<div align="center">Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+<div align="center">❤ Icon made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
