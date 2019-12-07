@@ -24,7 +24,7 @@ A clock showing the date and time.
 A scrollable widget showing mine and my partners calendar for the next three months. Any edits to calendar events are done through the Google Calendar app itself and not the dashboard.
 
 ### 📝 Online Lists
-Scrollable list widgets - one for TODOs, and one for the shopping list. The lists are integrated with the `Todoist` app, so I can add items to the shopping list via the app on my mobile.
+Scrollable list widgets - one for TODOs, and one for the shopping list. The lists are integrated with the [Todoist](https://todoist.com) app, so I can add items to the shopping list via the app on my mobile.
 
 ### 📰 BBC News
 A widget that cycles headlines every minute. New headlines are fetched over time. Tapping on the BBC news widget opens up the displayed headline on the BBC news website.
@@ -47,8 +47,12 @@ I've also incorporated a set of predefined recipes from what we eat often. Press
 ### Rotating Widgets
 As it stands the dashboard is a bit constrained for room. Suggest that any future widgets can sit over the top of another widget, and switch with another widget in its place. E.g. the Google Calendar widgets could be combined into one and switch between calendars every `x` seconds.
 
-## Getting Started
-Want your own dashboard? Follow [getting started](GETTING&#32;STARTED.md)!
+## 👷‍♂️ Getting Started
+Have the dashboard and need a hand setting it up? Follow [this guide](GETTING&#32;STARTED.md)!
+
+## 💻 Development
+Know how to use Unity3D and want to build your own dashboard? Follow [this guide](DEVELOPMENT.md)!
+
 
 <br>
 
