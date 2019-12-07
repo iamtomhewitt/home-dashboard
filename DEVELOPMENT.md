@@ -11,7 +11,7 @@ Requirements:
 2. When installing, make sure you select the Android Build Module from the list of modules.
 
 ## 🔑 API Keys & Apps
-You'll need a set of API keys for each fo the widgets, which can be found [here](GETTING&#32;STARTED.md).
+You'll need a set of API keys for each of the widgets, which can be found [here](GETTING&#32;STARTED.md).
 
 ## 👷🏻‍♂️ Build Your Dashboard
 
