@@ -1,17 +1,9 @@
-# 🛠 Getting Started
-
-Follow these steps to build and run your own dashboard.
-
-Requirements:
-1. [Unity3D](https://unity.com) (with the Android module installed).
-2. An Android tablet.
-
-## 💻 Install Unity
-1. Install the latest version of Unity. Easiest way is to install via Unity Hub.
-2. When installing, make sure you select the Android Build Module from the list of modules.
+# 👷‍♂️ Getting Started
 
 ## 🔑 API Keys & Apps
-In order for the widgets to work, some need API keys, or external apps.
+In order for the widgets to work, some need access keys (also known as API keys), or apps from the App Store.
+
+Here's a list of what you need to do to get your dashboard up and running.
 
 ### 📰 BBC News
 * Go to [News API website](https://newsapi.org/) and register to get an API key. Save it for later.
@@ -31,7 +23,7 @@ In order for the widgets to work, some need API keys, or external apps.
 
 	* Your project ID is everything between `%2F`, for example:
 
-	* https://todoist.com/app#project%2F***3222176134***%2Ffull
+	* https://todoist.com/app#project%2F ***3222176134*** %2Ffull
 
 	* Your project ID is: `3222176134`
 
@@ -47,19 +39,8 @@ In order for the widgets to work, some need API keys, or external apps.
 * Go to [Darksky](https://darksky.net/dev) and register for an API key.
 * Find out your latitude and longitude for where you want your weather. Save the values for later.
 
-## 👷🏻‍♂️ Build Your Dashboard
-
-### ⚙️ Config File
-* Using the `config-template.json' provided, fill out the config file with the API keys you have retrieved. 
-* Optionally, save it as a new file.
-
-### 📊 Dashboard
-* Open the `Dashboard.unity` scene.
-* Find the `Config` GameObject, and drag your config file into the `Config File` variable slot in the inspector.
-* In the hierarchy, select each widget. Some variables will need updating to match your config file. For example, the Google Calendar widget has a variable `apiKeyConfigKeyName` which needs to match your config file. This is to help distinguish between multiple calendars.
-* Run it! Press the play button and see your dashboard populate.
-
-### 📱 Deploy to Android
-* Plug in your Android device to your computer. Make sure you have all your drivers updated and the Android SDK.
-* Open the Build Settings in Unity, and click Build & Run.
-* Any issues, consider the [troubleshooting](https://docs.unity3d.com/Manual/TroubleShootingAndroid.html) guide from Unity.
+## 📊 Add to Dashboard
+* Open the settings page from your dashboard by clicking the '⚙' icon.
+* Fill out the settings with the access keys from above.
+* Click save.
+* Your dashboard will pick up the changes the next time the widgets refresh. If you can't wait that long, just restart the dashboard app.
