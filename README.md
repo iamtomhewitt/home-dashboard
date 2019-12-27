@@ -5,7 +5,10 @@
   <img src="https://img.shields.io/github/v/tag/iamtomhewitt/home-dashboard?color=success&style=flat-square&label=latest%20version">
   <img src="https://img.shields.io/github/last-commit/iamtomhewitt/home-dashboard/master?label=last%20commit%20&style=flat-square">
 </p>
-
+<p align="center">
+	<img src="https://img.shields.io/github/forks/iamtomhewitt/home-dashboard?style=social"/>
+	<img src="https://img.shields.io/github/stars/iamtomhewitt/home-dashboard?style=social"/>
+</p>
 <p align="center"><i>A dashboard with useful information to display in my house.</i></p>
 <p align="center"><img src="Github/demo.png" width="600"></p>
 <p align="center">Built with ❤︎ by <a href="https://github.com/iamtomhewitt">Tom Hewitt</a></p>
