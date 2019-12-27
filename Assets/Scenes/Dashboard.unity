@@ -6763,7 +6763,7 @@ MonoBehaviour:
   keyTree:
   - todoist
   - TODO
-  value: {fileID: 0}
+  value: {fileID: 880705172}
 --- !u!1 &607969775
 GameObject:
   m_ObjectHideFlags: 0
@@ -8874,7 +8874,7 @@ MonoBehaviour:
   keyTree:
   - todoist
   - Shopping
-  value: {fileID: 0}
+  value: {fileID: 1182067604}
 --- !u!1 &806815105
 GameObject:
   m_ObjectHideFlags: 0
@@ -23042,10 +23042,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: d9f34d8218de7804b9cbc0e3167c9854, type: 3}
-    m_FontSize: 6
+    m_FontSize: 5
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 6
+    m_MinSize: 5
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -23230,7 +23230,7 @@ MonoBehaviour:
   keyTree:
   - binDay
   - firstBlackBin
-  value: {fileID: 0}
+  value: {fileID: 1828294198}
 --- !u!1 &2035679216
 GameObject:
   m_ObjectHideFlags: 0
@@ -24482,7 +24482,7 @@ MonoBehaviour:
   keyTree:
   - binDay
   - firstGreenBin
-  value: {fileID: 0}
+  value: {fileID: 618466623}
 --- !u!1 &2137432123
 GameObject:
   m_ObjectHideFlags: 0
@@ -24602,7 +24602,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2102257273}
-        m_MethodName: Save
+        m_MethodName: SaveToConfig
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using SimpleJSON;
+using System.Collections.Generic;
 
 namespace Dialog
 {
@@ -8,15 +8,25 @@ namespace Dialog
 		/// <summary>
 		/// Called from a Unity button, saves all the settings objects to the config file.
 		/// </summary>
-		public void Save()
+		public void SaveToConfig()
 		{
 			Config config = Config.instance;
 			List<Setting> settings = new List<Setting>(FindObjectsOfType<Setting>());
 
 			foreach (Setting setting in settings)
 			{
-				print("Key: " + setting.GetKey());
-				print("Value: " + setting.GetValue());
+				if (!setting.GetValue().Equals(""))
+				{
+					JSONNode node = config.GetConfig();
+
+					// Find the correct node to update
+					foreach (string key in setting.GetKeyTree())
+					{
+						node = node[key];
+					}
+
+					config.Replace(node, setting.GetValue());
+				}
 			}
 		}
 	}

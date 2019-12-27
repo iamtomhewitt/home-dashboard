@@ -14,9 +14,9 @@ public class Setting : MonoBehaviour
 	/// E.g. apiKeys->googleCalendars->someone@gmail.com would return the key someone@gmail.com
 	/// </summary>
 	/// <returns></returns>
-	public string GetKey()
+	public string[] GetKeyTree()
 	{
-		return keyTree[keyTree.Length -1];
+		return keyTree;
 	}
 
 	public string GetValue()
