@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SimpleJSON;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -8,6 +9,21 @@ public class Setting : MonoBehaviour
 {
 	[SerializeField] private string[] keyTree;
 	[SerializeField] private InputField value;
+
+	private void Start()
+	{
+		Config config = Config.instance;
+
+		JSONNode node = config.GetConfig();
+
+		// Find the correct node to update
+		foreach (string key in keyTree)
+		{
+			node = node[key];
+		}
+
+		value.text = node.Value;
+	}
 
 	/// <summary>
 	/// Returns the key of the value of the tree.
