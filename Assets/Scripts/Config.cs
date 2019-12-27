@@ -16,10 +16,12 @@ public class Config : MonoBehaviour
 
 	private JSONNode root;
 
+	private string filename = "/config.json";
+
 	private void Awake()
 	{
 		instance = this;
-		string filePath = Application.persistentDataPath + "/config.json";
+		string filePath = Application.persistentDataPath + filename;
 
 		if (configFile != null)
 		{
@@ -52,7 +54,7 @@ public class Config : MonoBehaviour
 
 	public void SaveToFile()
 	{
-		string filePath = Application.persistentDataPath + "/config.json";
+		string filePath = Application.persistentDataPath + filename;
 		StreamWriter writer = new StreamWriter(filePath, false);
 		writer.Write(root.ToString());
 		writer.Close();
