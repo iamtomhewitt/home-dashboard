@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0.248, y: 0}
-  m_SizeDelta: {x: 19.917, y: 2.419}
+  m_SizeDelta: {x: 19.917, y: 3}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7321161314555440772
 CanvasRenderer:
@@ -64,7 +64,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d9f34d8218de7804b9cbc0e3167c9854, type: 3}
     m_FontSize: 2
     m_FontStyle: 1
     m_BestFit: 0
@@ -112,7 +112,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -0.93, y: 0}
-  m_SizeDelta: {x: 9.669, y: 2.419}
+  m_SizeDelta: {x: 9.669, y: 3}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &7321161315315073999
 CanvasRenderer:
@@ -141,7 +141,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d9f34d8218de7804b9cbc0e3167c9854, type: 3}
     m_FontSize: 2
     m_FontStyle: 1
     m_BestFit: 0
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 7321161315731493424}
   - component: {fileID: 7321161315731493455}
   m_Layer: 5
-  m_Name: Event (1)
+  m_Name: Google Calendar Event
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 27.318, y: 2.419}
+  m_SizeDelta: {x: 27.318, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7321161315731493424
 CanvasRenderer:

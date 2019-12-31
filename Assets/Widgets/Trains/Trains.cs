@@ -15,7 +15,7 @@ namespace Train
 		private string apiToken;
 		private string stationCode;
 
-		private int maxDestinationLength = 10;
+		private int maxDestinationLength = 11;
 
 		private void Start()
 		{
@@ -57,6 +57,8 @@ namespace Train
 				yield break;
 			}
 
+			int lastRowNumber = 0;
+
 			for (int i = 0; i < json["trainServices"].Count; i++)
 			{
 				if (json["trainServices"].Count == i)
@@ -75,6 +77,29 @@ namespace Train
 
 				entry.GetDestinationText().text = locationName;
 				entry.GetTimeText().text = trainService["std"] + " (" + trainService["etd"] + ")";
+
+				lastRowNumber++;
+			}
+
+			for (int i = 0; i < json["busServices"].Count; i++)
+			{
+				if (json["busServices"].Count == i)
+				{
+					yield break;
+				}
+
+				TrainEntry entry = trainEntries[lastRowNumber];
+				JSONNode trainService = json["busServices"][i];
+				string locationName = trainService["destination"][0]["locationName"];
+
+				if (locationName.Length > maxDestinationLength)
+				{
+					locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
+				}
+
+				entry.GetDestinationText().text = locationName;
+				entry.GetTimeText().text = trainService["std"] + " (Bus)";
+				lastRowNumber++;
 			}
 		}
 	}
