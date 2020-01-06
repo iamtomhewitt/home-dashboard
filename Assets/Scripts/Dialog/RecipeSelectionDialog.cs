@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
+using System.Collections;
+using SimpleJSON;
 
 namespace Dialog
 {
 	public class RecipeSelectionDialog : Dialog
 	{
-		[SerializeField] private GameObject recipeEntryPrefab;
+		[SerializeField] private RecipeEntry recipeEntryPrefab;
 		[SerializeField] private Transform scrollViewContent;
 
 		private string freeTextRecipe;
@@ -18,11 +21,27 @@ namespace Dialog
 		}
 
 		/// <summary>
-		/// Populates the scroll view with <code>RecipeEntry</code> objects.
+		/// Populates the scroll view with recipes retrieved from the recipe manager on Heroku.
 		/// </summary>
 		public void PopulateRecipes()
 		{
-			print("TODO");
+			StartCoroutine(PopulateRecipesRoutine());
+		}
+
+		private IEnumerator PopulateRecipesRoutine()
+		{
+			string url = "https://home-dashboard-recipe-manager.herokuapp.com/recipes";
+
+			UnityWebRequest request = UnityWebRequest.Get(url);
+			yield return request.SendWebRequest();
+			string response = request.downloadHandler.text;
+
+			JSONNode json = JSON.Parse(response);
+
+			for (int i = 0; i < json["recipes"].AsArray.Count; i++)
+			{
+				Instantiate(recipeEntryPrefab.gameObject, scrollViewContent).GetComponent<RecipeEntry>().SetText(json["recipes"][i]["name"]);
+			}
 		}
 
 		public string GetFreeTextRecipeName()
