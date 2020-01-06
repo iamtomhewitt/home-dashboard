@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -350,13 +350,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1007645122899283064}
   m_TextComponent: {fileID: 1007645124800369223}
   m_Placeholder: {fileID: 1007645123086983895}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 1007645123297982648}
   - component: {fileID: 1007645123297982649}
   m_Layer: 5
-  m_Name: Type Dropdown
+  m_Name: Category Dropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: {fileID: 1007645124416541726}
   quantity: {fileID: 1007645122899283065}
-  type: {fileID: 1007645123297982649}
+  category: {fileID: 1007645123297982649}
   weight: {fileID: 1007645124016539205}
 --- !u!1 &1007645123660333285
 GameObject:
@@ -2079,7 +2079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
