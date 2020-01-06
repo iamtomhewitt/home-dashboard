@@ -923,7 +923,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1681651720}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRecipe
         m_Mode: 1
         m_Arguments:
@@ -2686,7 +2686,6 @@ GameObject:
   - component: {fileID: 299540457}
   - component: {fileID: 299540460}
   - component: {fileID: 299540459}
-  - component: {fileID: 299540458}
   m_Layer: 5
   m_Name: Recipe Card (6)
   m_TagString: Untagged
@@ -2715,23 +2714,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.553, y: 0.8573}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &299540458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299540456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1d027ef70eaa947b65909534adaf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipeData:
-    day: Sunday
-    recipeName: 
-  recipeText: {fileID: 907066135}
-  dayLabel: {fileID: 1516808915}
 --- !u!114 &299540459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3635,7 +3617,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 624086194}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRecipe
         m_Mode: 1
         m_Arguments:
@@ -4124,7 +4106,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 299540458}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRecipe
         m_Mode: 1
         m_Arguments:
@@ -4301,7 +4283,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1814684621}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRecipe
         m_Mode: 1
         m_Arguments:
@@ -4569,7 +4551,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1920043809}
   m_HandleRect: {fileID: 1920043808}
   m_Direction: 2
-  m_Value: 1.0000002
+  m_Value: 1.0000006
   m_Size: 0.7404387
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7202,7 +7184,6 @@ GameObject:
   - component: {fileID: 624086193}
   - component: {fileID: 624086196}
   - component: {fileID: 624086195}
-  - component: {fileID: 624086194}
   m_Layer: 5
   m_Name: Recipe Card (4)
   m_TagString: Untagged
@@ -7231,23 +7212,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.553, y: 0.8573}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &624086194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624086192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1d027ef70eaa947b65909534adaf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipeData:
-    day: Friday
-    recipeName: 
-  recipeText: {fileID: 311405007}
-  dayLabel: {fileID: 1646434105}
 --- !u!114 &624086195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7501,7 +7465,6 @@ GameObject:
   - component: {fileID: 628252424}
   - component: {fileID: 628252427}
   - component: {fileID: 628252426}
-  - component: {fileID: 628252425}
   m_Layer: 5
   m_Name: Recipe Card (5)
   m_TagString: Untagged
@@ -7530,23 +7493,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.553, y: 0.8573}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &628252425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628252423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1d027ef70eaa947b65909534adaf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipeData:
-    day: Saturday
-    recipeName: 
-  recipeText: {fileID: 1855191379}
-  dayLabel: {fileID: 1472377100}
 --- !u!114 &628252426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11637,7 +11583,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1525053365}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRecipe
         m_Mode: 1
         m_Arguments:
@@ -17466,7 +17412,6 @@ GameObject:
   - component: {fileID: 1525053364}
   - component: {fileID: 1525053367}
   - component: {fileID: 1525053366}
-  - component: {fileID: 1525053365}
   m_Layer: 5
   m_Name: Recipe Card
   m_TagString: Untagged
@@ -17495,23 +17440,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.553, y: 0.8573}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1525053365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525053363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1d027ef70eaa947b65909534adaf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipeData:
-    day: Monday
-    recipeName: 
-  recipeText: {fileID: 1671802409}
-  dayLabel: {fileID: 1787500905}
 --- !u!114 &1525053366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17810,7 +17738,6 @@ GameObject:
   - component: {fileID: 1597925298}
   - component: {fileID: 1597925301}
   - component: {fileID: 1597925300}
-  - component: {fileID: 1597925299}
   m_Layer: 5
   m_Name: Recipe Card (1)
   m_TagString: Untagged
@@ -17839,23 +17766,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.553, y: 0.8573}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1597925299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597925297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1d027ef70eaa947b65909534adaf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipeData:
-    day: Tuesday
-    recipeName: 
-  recipeText: {fileID: 740692682}
-  dayLabel: {fileID: 508370983}
 --- !u!114 &1597925300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19327,7 +19237,6 @@ GameObject:
   - component: {fileID: 1681651719}
   - component: {fileID: 1681651722}
   - component: {fileID: 1681651721}
-  - component: {fileID: 1681651720}
   m_Layer: 5
   m_Name: Recipe Card (2)
   m_TagString: Untagged
@@ -19356,23 +19265,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.553, y: 0.8573}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1681651720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681651718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1d027ef70eaa947b65909534adaf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipeData:
-    day: Wednesday
-    recipeName: 
-  recipeText: {fileID: 1709868146}
-  dayLabel: {fileID: 338434506}
 --- !u!114 &1681651721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20976,7 +20868,6 @@ GameObject:
   - component: {fileID: 1814684620}
   - component: {fileID: 1814684623}
   - component: {fileID: 1814684622}
-  - component: {fileID: 1814684621}
   m_Layer: 5
   m_Name: Recipe Card (3)
   m_TagString: Untagged
@@ -21005,23 +20896,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2.553, y: 0.8573}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1814684621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814684619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a1d027ef70eaa947b65909534adaf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipeData:
-    day: Thursday
-    recipeName: 
-  recipeText: {fileID: 212478546}
-  dayLabel: {fileID: 137732360}
 --- !u!114 &1814684622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21416,7 +21290,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1597925299}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRecipe
         m_Mode: 1
         m_Arguments:
@@ -21496,7 +21370,6 @@ MonoBehaviour:
   title: Food Planner
   repeatRate: 10
   timeUnit: 2
-  recipeCards: []
   shoppingList: {fileID: 713499689}
   filePath: 
 --- !u!1001 &1840057599
@@ -23518,7 +23391,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 628252425}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRecipe
         m_Mode: 1
         m_Arguments:
