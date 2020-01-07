@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 1007645122899283064}
   - component: {fileID: 1007645122899283065}
   m_Layer: 5
-  m_Name: Quantity
+  m_Name: Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientName: {fileID: 1007645124416541726}
-  quantity: {fileID: 1007645122899283065}
+  amount: {fileID: 1007645122899283065}
   category: {fileID: 1007645123297982649}
   weight: {fileID: 1007645124016539205}
 --- !u!1 &1007645123660333285

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class NewIngredientEntry : MonoBehaviour
 {
 	[SerializeField] private InputField ingredientName;
-	[SerializeField] private InputField quantity;
+	[SerializeField] private InputField amount;
 	[SerializeField] private Dropdown category;
 	[SerializeField] private Dropdown weight;
 
@@ -13,18 +13,18 @@ public class NewIngredientEntry : MonoBehaviour
 		return ingredientName.text;
 	}
 
-	public string GetQuantity()
+	public string GetAmount()
 	{
-		return quantity.text;
+		return amount.text;
 	}
 
 	public string GetCategory()
 	{
-		return category.itemText.text;
+		return category.options[category.value].text;
 	}
 
 	public string GetWeight()
 	{
-		return weight.itemText.text;
+		return weight.options[weight.value].text;
 	}
 }

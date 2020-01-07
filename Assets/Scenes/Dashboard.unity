@@ -7750,6 +7750,7 @@ MonoBehaviour:
   newIngredientEntry: {fileID: 1007645123536298326, guid: 33eb9437f13837744aa388b11d9681ab,
     type: 3}
   newIngredientsContent: {fileID: 1549560554}
+  recipeName: {fileID: 1558764178}
 --- !u!1 &780111076
 GameObject:
   m_ObjectHideFlags: 0
@@ -21213,14 +21214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a6c1149a1e8074a9c0b632dd7ebbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipes:
-  - {fileID: 11400000, guid: 8092d1f34f83e1940a963699da152852, type: 2}
-  - {fileID: 11400000, guid: c01972659a3690840b011991c64b2915, type: 2}
-  - {fileID: 11400000, guid: 8cf2ad805130d534488d75c28b5670b1, type: 2}
-  - {fileID: 11400000, guid: ac25b1add987dd949b702bad88f2200c, type: 2}
-  - {fileID: 11400000, guid: 01dfe8de39844784285a46948c7e847f, type: 2}
-  - {fileID: 11400000, guid: 7a1b19e65b45f7840ae1e59b04f1bc72, type: 2}
-  - {fileID: 11400000, guid: 6deca5f4700146042a39048ebb55da37, type: 2}
 --- !u!4 &1853071334
 Transform:
   m_ObjectHideFlags: 0
