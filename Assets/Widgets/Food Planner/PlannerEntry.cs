@@ -1,12 +1,15 @@
-﻿using Dialog;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Dialog;
+using System;
 
 namespace FoodPlannerWidget
 {
 	public class PlannerEntry : MonoBehaviour
 	{
+		[SerializeField] private Text recipe;
+
 		/// <summary>
 		/// Called from a Unity button when the planner entry is clicked on.
 		/// </summary>
@@ -29,9 +32,7 @@ namespace FoodPlannerWidget
 
 			if (dialog.GetResult() == DialogResult.FINISHED)
 			{
-				//recipeText.text = dialog.GetSelectedRecipe() != null ? dialog.GetSelectedRecipe().name : dialog.GetFreeTextRecipeName();
-				//UpdateRecipeDataName();
-				//FindObjectOfType<FoodPlanner>().SaveToFile();
+				recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
 				yield break;
 			}
 		}

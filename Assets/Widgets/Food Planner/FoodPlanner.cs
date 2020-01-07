@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-
 using Dialog;
 using Dialog.OnlineLists;
 
@@ -13,12 +9,9 @@ namespace FoodPlannerWidget
 	{
 		[Header("Food Planner Settings")]
 		[SerializeField] private AddItemDialog shoppingList;
-		[SerializeField] private string filePath;
 
 		private void Start()
 		{
-			filePath = Path.Combine(Application.persistentDataPath, "foodplanner.json");
-
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}

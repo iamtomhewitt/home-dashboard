@@ -197,11 +197,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2612392186649539569}
-        m_MethodName: 
+        m_MethodName: Select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -219,4 +219,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf8f20ceb1bf524d8a75c19ebf40623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 2612392185924439780}
+  recipe: {fileID: 2612392185924439780}

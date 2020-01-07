@@ -11,14 +11,8 @@ namespace Dialog
 		[SerializeField] private RecipeEntry recipeEntryPrefab;
 		[SerializeField] private Transform scrollViewContent;
 
+		private string selectedRecipe;
 		private string freeTextRecipe;
-
-		public void SelectFreeTextRecipe(InputField freeTextInput)
-		{
-			freeTextRecipe = freeTextInput.text;
-			SetResult(DialogResult.FINISHED);
-			Hide();
-		}
 
 		/// <summary>
 		/// Populates the scroll view with recipes retrieved from the recipe manager on Heroku.
@@ -39,13 +33,17 @@ namespace Dialog
 			string response = request.downloadHandler.text;
 
 			JSONNode json = JSON.Parse(response);
-
 			for (int i = 0; i < json["recipes"].AsArray.Count; i++)
 			{
-				Instantiate(recipeEntryPrefab.gameObject, scrollViewContent).GetComponent<RecipeEntry>().SetText(json["recipes"][i]["name"]);
+				RecipeEntry entry = Instantiate(recipeEntryPrefab.gameObject, scrollViewContent).GetComponent<RecipeEntry>();
+				entry.SetText(json["recipes"][i]["name"]);
+				entry.SetParentDialog(this);
 			}
 		}
 
+		/// <summary>
+		/// Stops duplicate recipes showing.
+		/// </summary>
 		private void ClearExistingRecipes()
 		{
 			foreach (Transform child in scrollViewContent)
@@ -54,9 +52,30 @@ namespace Dialog
 			}
 		}
 
+		public void SelectFreeTextRecipe(InputField freeTextInput)
+		{
+			freeTextRecipe = freeTextInput.text;
+			selectedRecipe = "";
+			SetResult(DialogResult.FINISHED);
+			Hide();
+		}
+
+		public void SelectRecipe(string recipe)
+		{
+			freeTextRecipe = "";
+			selectedRecipe = recipe;
+			SetResult(DialogResult.FINISHED);
+			Hide();
+		}
+
 		public string GetFreeTextRecipeName()
 		{
 			return freeTextRecipe;
+		}
+
+		public string GetSelectedRecipe()
+		{
+			return selectedRecipe;
 		}
 	}
 }
