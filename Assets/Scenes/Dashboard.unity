@@ -871,8 +871,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1620280993}
   - {fileID: 2001373728}
+  - {fileID: 1620280993}
   m_Father: {fileID: 311034357}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16982,8 +16982,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0947001, y: 0}
-  m_SizeDelta: {x: 5.2125, y: 6.354}
+  m_AnchoredPosition: {x: 0.00000023841858, y: 0}
+  m_SizeDelta: {x: 6.354, y: 6.354}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1518211051
 MonoBehaviour:
@@ -17029,7 +17029,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 741027008}
-        m_MethodName: ClearNewIngredients
+        m_MethodName: RefreshDialog
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17041,6 +17041,28 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 741027008}
         m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 311034360}
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 311034360}
+        m_MethodName: PopulateRecipes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17989,13 +18011,13 @@ RectTransform:
   m_Children:
   - {fileID: 894609673}
   m_Father: {fileID: 93240576}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 9.949, y: 9.949}
-  m_Pivot: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.00000071525574, y: -0.00000011920929}
+  m_SizeDelta: {x: 8.1289, y: 9}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1620280994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18399,7 +18421,7 @@ GameObject:
   - component: {fileID: 1638539066}
   - component: {fileID: 1638539065}
   m_Layer: 5
-  m_Name: OK Button
+  m_Name: Add Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22616,7 +22638,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OK
+  m_Text: Add
 --- !u!222 &1993311951
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22655,7 +22677,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 93240576}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}

@@ -62,12 +62,12 @@ namespace Dialog
 		/// <summary>
 		/// Clears out the new ingredients to stop additional ingredients being leaked into the next recipe. Called when the dialog is hidden.
 		/// </summary>
-		public void ClearNewIngredients()
+		public void RefreshDialog()
 		{
-			NewIngredientEntry[] newIngredients = FindObjectsOfType<NewIngredientEntry>();
-			foreach (NewIngredientEntry newIngredient in newIngredients)
+			recipeName.text = "";
+			foreach (NewIngredientEntry i in FindObjectsOfType<NewIngredientEntry>())
 			{
-				Destroy(newIngredient.gameObject);
+				Destroy(i.gameObject);
 			}
 		}
 	}

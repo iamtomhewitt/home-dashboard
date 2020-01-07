@@ -30,6 +30,8 @@ namespace Dialog
 
 		private IEnumerator PopulateRecipesRoutine()
 		{
+			ClearExistingRecipes();
+
 			string url = "https://home-dashboard-recipe-manager.herokuapp.com/recipes";
 
 			UnityWebRequest request = UnityWebRequest.Get(url);
@@ -41,6 +43,14 @@ namespace Dialog
 			for (int i = 0; i < json["recipes"].AsArray.Count; i++)
 			{
 				Instantiate(recipeEntryPrefab.gameObject, scrollViewContent).GetComponent<RecipeEntry>().SetText(json["recipes"][i]["name"]);
+			}
+		}
+
+		private void ClearExistingRecipes()
+		{
+			foreach (Transform child in scrollViewContent)
+			{
+				Destroy(child.gameObject);
 			}
 		}
 
