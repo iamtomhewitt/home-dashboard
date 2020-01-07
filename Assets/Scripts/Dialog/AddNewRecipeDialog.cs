@@ -12,6 +12,7 @@ namespace Dialog
 		[SerializeField] private GameObject newIngredientEntry;
 		[SerializeField] private Transform newIngredientsContent;
 		[SerializeField] private InputField recipeName;
+		[SerializeField] private Text status;
 
 		/// <summary>
 		/// Called from a Unity button to add a new ingredient to the add new recipe dialog.
@@ -56,7 +57,9 @@ namespace Dialog
 			request.SetRequestHeader("Content-Type", "application/json");
 
 			yield return request.SendWebRequest();
-			string response = request.downloadHandler.text;
+
+			JSONNode response = JSON.Parse(request.downloadHandler.text);
+			status.text = response["message"];
 		}
 
 		/// <summary>
@@ -65,6 +68,8 @@ namespace Dialog
 		public void RefreshDialog()
 		{
 			recipeName.text = "";
+			status.text = "";
+
 			foreach (NewIngredientEntry i in FindObjectsOfType<NewIngredientEntry>())
 			{
 				Destroy(i.gameObject);
