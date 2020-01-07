@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Dialog
 {
-	public class AddNewRecipeDialog : MonoBehaviour
+	public class AddNewRecipeDialog : Dialog
 	{
 		[SerializeField] private GameObject newIngredientEntry;
 		[SerializeField] private Transform newIngredientsContent;
@@ -57,6 +57,18 @@ namespace Dialog
 
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
+		}
+
+		/// <summary>
+		/// Clears out the new ingredients to stop additional ingredients being leaked into the next recipe. Called when the dialog is hidden.
+		/// </summary>
+		public void ClearNewIngredients()
+		{
+			NewIngredientEntry[] newIngredients = FindObjectsOfType<NewIngredientEntry>();
+			foreach (NewIngredientEntry newIngredient in newIngredients)
+			{
+				Destroy(newIngredient.gameObject);
+			}
 		}
 	}
 }
