@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
+using System.Collections.Generic;
 using Dialog;
 using Dialog.OnlineLists;
-using UnityEngine.Networking;
 using SimpleJSON;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FoodPlannerWidget
 {
@@ -54,7 +53,7 @@ namespace FoodPlannerWidget
 
 			if (dialog.GetResult() == DialogResult.YES)
 			{
-				List<Ingredient> savedIngredients = new List<Ingredient>();
+				List<Ingredient> ingredients = new List<Ingredient>();
 
 				// For each day
 				PlannerEntry[] plannerEntries = FindObjectsOfType<PlannerEntry>();
@@ -65,13 +64,20 @@ namespace FoodPlannerWidget
 					yield return request.SendWebRequest();
 
 					JSONNode responseJson = JSON.Parse(request.downloadHandler.text);
+					
+					if (responseJson["status"] == 404)
+					{
+						// A free text recipe may have been entered, so there will be no ingredients to add, therefore just move onto the next recipe
+						continue;
+					}
+
 					for (int i = 0; i < responseJson["recipe"]["ingredients"].AsArray.Count; i++)
 					{
 						JSONNode node = responseJson["recipe"]["ingredients"][i];
 						Ingredient ingredient = new Ingredient(node["name"], node["category"], node["weight"], node["amount"]);
 
 						// Update the existing ingredient if it exists
-						Ingredient existingIngredient = savedIngredients.Find(x => x.name.Equals(ingredient.name) && x.weight.Equals(ingredient.weight));
+						Ingredient existingIngredient = ingredients.Find(x => x.name.Equals(ingredient.name) && x.weight.Equals(ingredient.weight));
 
 						if (existingIngredient != null)
 						{
@@ -81,19 +87,19 @@ namespace FoodPlannerWidget
 						}
 						else
 						{
-							savedIngredients.Add(ingredient);
+							ingredients.Add(ingredient);
 						}
 					}
 				}
 
-				foreach (Ingredient ingredient in savedIngredients)
+				foreach (Ingredient ingredient in ingredients)
 				{
 					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
 				}
 
-				yield return null;
 				dialog.Hide();
 				dialog.None();
+				yield break;
 			}
 		}
 	}
