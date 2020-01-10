@@ -15,7 +15,7 @@ namespace Train
 		private string apiToken;
 		private string stationCode;
 
-		private int maxDestinationLength = 11;
+		private int maxDestinationLength = 10;
 
 		private void Start()
 		{
