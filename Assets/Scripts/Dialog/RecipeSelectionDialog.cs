@@ -1,60 +1,79 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using Recipes;
-using Recipes.ScriptableObjects;
-using Recipes.UI;
+using System.Collections;
+using SimpleJSON;
 
 namespace Dialog
 {
 	public class RecipeSelectionDialog : Dialog
 	{
-		[SerializeField] private GameObject recipeEntryPrefab;
+		[SerializeField] private RecipeEntry recipeEntryPrefab;
 		[SerializeField] private Transform scrollViewContent;
 
-		private Recipe selectedRecipe;
-
+		private string selectedRecipe;
 		private string freeTextRecipe;
 
-		public void SelectFreeTextRecipe(InputField freeTextInput)
+		/// <summary>
+		/// Populates the scroll view with recipes retrieved from the recipe manager on Heroku.
+		/// </summary>
+		public void PopulateRecipes()
 		{
-			freeTextRecipe = freeTextInput.text;
-			selectedRecipe = null;
-			SetResult(DialogResult.FINISHED);
-			Hide();
+			StartCoroutine(PopulateRecipesRoutine());
+		}
+
+		private IEnumerator PopulateRecipesRoutine()
+		{
+			ClearExistingRecipes();
+
+			UnityWebRequest request = Postman.CreateGetRequest(RecipeManagerEndpoints.RECIPES);
+			yield return request.SendWebRequest();
+			string response = request.downloadHandler.text;
+
+			JSONNode json = JSON.Parse(response);
+			for (int i = 0; i < json["recipes"].AsArray.Count; i++)
+			{
+				RecipeEntry entry = Instantiate(recipeEntryPrefab.gameObject, scrollViewContent).GetComponent<RecipeEntry>();
+				entry.SetText(json["recipes"][i]["name"]);
+				entry.SetParentDialog(this);
+			}
 		}
 
 		/// <summary>
-		/// Populates the scroll view with <code>RecipeEntry</code> objects.
+		/// Stops duplicate recipes showing.
 		/// </summary>
-		public void PopulateRecipes()
+		private void ClearExistingRecipes()
 		{
 			foreach (Transform child in scrollViewContent)
 			{
 				Destroy(child.gameObject);
 			}
-
-			List<string> recipeNames = RecipeDatabase.instance.GetRecipeNames();
-
-			foreach (string recipeName in recipeNames)
-			{
-				Instantiate(recipeEntryPrefab, scrollViewContent).GetComponent<RecipeEntry>().SetButtonText(recipeName);
-			}
 		}
 
-		public Recipe GetSelectedRecipe()
+		public void SelectFreeTextRecipe(InputField freeTextInput)
 		{
-			return selectedRecipe;
+			freeTextRecipe = freeTextInput.text;
+			selectedRecipe = "";
+			SetResult(DialogResult.FINISHED);
+			Hide();
 		}
 
-		public void SetSelectedRecipe(Recipe recipe)
+		public void SelectRecipe(string recipe)
 		{
+			freeTextRecipe = "";
 			selectedRecipe = recipe;
+			SetResult(DialogResult.FINISHED);
+			Hide();
 		}
 
 		public string GetFreeTextRecipeName()
 		{
 			return freeTextRecipe;
+		}
+
+		public string GetSelectedRecipe()
+		{
+			return selectedRecipe;
 		}
 	}
 }
