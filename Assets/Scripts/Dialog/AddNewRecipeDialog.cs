@@ -1,6 +1,5 @@
 ﻿using SimpleJSON;
 using System.Collections;
-using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -29,11 +28,9 @@ namespace Dialog
 
 		private IEnumerator UploadNewRecipeRoutine()
 		{
-			string url = "https://home-dashboard-recipe-manager.herokuapp.com/recipes/add";
-
 			NewIngredientEntry[] newIngredients = FindObjectsOfType<NewIngredientEntry>();
 
-			JSONObject jsonData = new JSONObject();
+			JSONObject json = new JSONObject();
 			JSONArray ingredientsArray = new JSONArray();
 
 			foreach (NewIngredientEntry newIngredient in newIngredients)
@@ -46,16 +43,10 @@ namespace Dialog
 				ingredientsArray.Add(ingredientJson);
 			}
 
-			jsonData.Add("name", recipeName.text);
-			jsonData.Add("ingredients", ingredientsArray);
+			json.Add("name", recipeName.text);
+			json.Add("ingredients", ingredientsArray);
 
-			UnityWebRequest request = UnityWebRequest.Post(url, "POST");
-			byte[] body = Encoding.UTF8.GetBytes(jsonData.ToString());
-
-			request.uploadHandler = new UploadHandlerRaw(body);
-			request.downloadHandler = new DownloadHandlerBuffer();
-			request.SetRequestHeader("Content-Type", "application/json");
-
+			UnityWebRequest request = Postman.CreatePostRequest(RecipeManagerEndpoints.RECIPES_ADD, json);
 			yield return request.SendWebRequest();
 
 			JSONNode response = JSON.Parse(request.downloadHandler.text);

@@ -26,9 +26,7 @@ namespace Dialog
 		{
 			ClearExistingRecipes();
 
-			string url = "https://home-dashboard-recipe-manager.herokuapp.com/recipes";
-
-			UnityWebRequest request = UnityWebRequest.Get(url);
+			UnityWebRequest request = Postman.CreateGetRequest(RecipeManagerEndpoints.RECIPES);
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 

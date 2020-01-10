@@ -49,20 +49,12 @@ namespace FoodPlannerWidget
 				recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
 
 				// Now update the planner online
-				string url = "https://home-dashboard-recipe-manager.herokuapp.com/planner/add";
 				JSONObject json = new JSONObject();
 				json.Add("recipe", recipe.text);
 				json.Add("day", day.ToString());
 
-				UnityWebRequest request = UnityWebRequest.Post(url, "POST");
-				byte[] body = Encoding.UTF8.GetBytes(json.ToString());
-
-				request.uploadHandler = new UploadHandlerRaw(body);
-				request.downloadHandler = new DownloadHandlerBuffer();
-				request.SetRequestHeader("Content-Type", "application/json");
-
+				UnityWebRequest request = Postman.CreatePostRequest(RecipeManagerEndpoints.PLANNER_ADD, json);
 				yield return request.SendWebRequest();
-				print(request.downloadHandler.text);
 
 				yield break;
 			}
