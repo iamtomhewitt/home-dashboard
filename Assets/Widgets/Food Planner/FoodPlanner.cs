@@ -65,7 +65,7 @@ namespace FoodPlannerWidget
 					yield return request.SendWebRequest();
 
 					JSONNode responseJson = JSON.Parse(request.downloadHandler.text);
-					for (int i=0; i<responseJson["recipe"]["ingredients"].AsArray.Count; i++)
+					for (int i = 0; i < responseJson["recipe"]["ingredients"].AsArray.Count; i++)
 					{
 						JSONNode node = responseJson["recipe"]["ingredients"][i];
 						Ingredient ingredient = new Ingredient(node["name"], node["category"], node["weight"], node["amount"]);
@@ -86,11 +86,9 @@ namespace FoodPlannerWidget
 					}
 				}
 
-				print("\n===\n");
-				print("Here what we are going to upload:");
 				foreach (Ingredient ingredient in savedIngredients)
 				{
-					print(ingredient.name + " " + ingredient.amount + " " + ingredient.weight);
+					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
 				}
 
 				yield return null;
