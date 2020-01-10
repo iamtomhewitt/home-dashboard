@@ -14,7 +14,7 @@ namespace FoodPlannerWidget
 		[SerializeField] private Text dayText;
 		[SerializeField] private Text recipe;
 
-		private void Start()
+		private IEnumerator Start()
 		{
 			string label = "";
 			foreach (char c in day.ToString().Substring(0, 3).ToUpper())
@@ -22,6 +22,14 @@ namespace FoodPlannerWidget
 				label += c + "\n";
 			}
 			dayText.text = label;
+
+			JSONObject json = new JSONObject();
+			json.Add("day", day.ToString());
+
+			UnityWebRequest request = Postman.CreateGetRequest(RecipeManagerEndpoints.PLANNER + "?day=" + day.ToString());
+			yield return request.SendWebRequest();
+
+			recipe.text = JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
 		}
 
 		/// <summary>
