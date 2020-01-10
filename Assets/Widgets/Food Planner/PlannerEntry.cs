@@ -68,6 +68,11 @@ namespace FoodPlannerWidget
 			}
 		}
 
+		public string GetRecipeName()
+		{
+			return recipe.text;
+		}
+
 		private enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
 	}
 }
