@@ -350,13 +350,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1007645122899283064}
   m_TextComponent: {fileID: 1007645124800369223}
   m_Placeholder: {fileID: 1007645123086983895}
-  m_ContentType: 2
+  m_ContentType: 3
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 4
+  m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 1
+  m_CharacterValidation: 2
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -483,7 +483,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: teaspoon
+  m_Text: grams
 --- !u!1 &1007645123083930519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,13 +1686,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: grams
+      m_Image: {fileID: 0}
+    - m_Text: quantity
+      m_Image: {fileID: 0}
     - m_Text: teaspoon
       m_Image: {fileID: 0}
     - m_Text: tablespoon
       m_Image: {fileID: 0}
     - m_Text: mls
-      m_Image: {fileID: 0}
-    - m_Text: grams
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

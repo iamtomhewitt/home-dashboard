@@ -13,9 +13,9 @@ public class NewIngredientEntry : MonoBehaviour
 		return ingredientName.text;
 	}
 
-	public int GetAmount()
+	public double GetAmount()
 	{
-		return int.Parse(amount.text);
+		return double.Parse(amount.text);
 	}
 
 	public string GetCategory()
