@@ -3,15 +3,15 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using Dialog;
-using Dialog.OnlineLists;
 using SimpleJSON;
+using OnlineLists;
 
 namespace FoodPlannerWidget
 {
 	public class FoodPlanner : Widget
 	{
 		[Header("Food Planner Settings")]
-		[SerializeField] private AddItemDialog shoppingList;
+		[SerializeField] private OnlineList shoppingList;
 
 		private void Start()
 		{
@@ -81,8 +81,8 @@ namespace FoodPlannerWidget
 
 						if (existingIngredient != null)
 						{
-							int amount = existingIngredient.amount;
-							int amountToAdd = node["amount"];
+							double amount = existingIngredient.amount;
+							double amountToAdd = node["amount"];
 							existingIngredient.amount = amount + amountToAdd;
 						}
 						else
@@ -94,6 +94,7 @@ namespace FoodPlannerWidget
 
 				foreach (Ingredient ingredient in ingredients)
 				{
+					yield return new WaitForSeconds(0.1f);
 					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
 				}
 
@@ -109,9 +110,9 @@ namespace FoodPlannerWidget
 		public string name;
 		public string category;
 		public string weight;
-		public int amount;
+		public double amount;
 
-		public Ingredient(string name, string category, string weight, int amount)
+		public Ingredient(string name, string category, string weight, double amount)
 		{
 			this.name = name;
 			this.category = category;
