@@ -24,4 +24,20 @@ public class Postman : MonoBehaviour
 
 		return request;
 	}
+
+	public static UnityWebRequest CreateTodoistRequest(string url, string json, string apiKey, string uuid)
+	{
+		UnityWebRequest request = new UnityWebRequest(url, "POST");
+
+		byte[] jsonToSend = new UTF8Encoding().GetBytes(json);
+
+		request.uploadHandler = new UploadHandlerRaw(jsonToSend);
+		request.downloadHandler = new DownloadHandlerBuffer();
+
+		request.SetRequestHeader("Content-Type", "application/json");
+		request.SetRequestHeader("Authorization", "Bearer " + apiKey);
+		request.SetRequestHeader("X-Request-Id", uuid);
+
+		return request;
+	}
 }

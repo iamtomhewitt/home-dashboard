@@ -22715,7 +22715,7 @@ MonoBehaviour:
   title: Food Planner
   repeatRate: 10
   timeUnit: 2
-  shoppingList: {fileID: 713499689}
+  shoppingList: {fileID: 1870469004}
 --- !u!1 &1838696828
 GameObject:
   m_ObjectHideFlags: 0
