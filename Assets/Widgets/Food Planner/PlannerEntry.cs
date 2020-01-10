@@ -58,7 +58,7 @@ namespace FoodPlannerWidget
 
 				// Now update the planner online
 				JSONObject json = new JSONObject();
-				json.Add("recipe", recipe.text);
+				json.Add("recipe", string.IsNullOrEmpty(recipe.text) ? " " : recipe.text);
 				json.Add("day", day.ToString());
 
 				UnityWebRequest request = Postman.CreatePostRequest(RecipeManagerEndpoints.PLANNER_ADD, json);
