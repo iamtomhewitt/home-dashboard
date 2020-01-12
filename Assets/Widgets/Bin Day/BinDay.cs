@@ -28,6 +28,9 @@ namespace BinDay
 
 		public override void Run()
 		{
+			firstGreenBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstGreenBin"], "dd-MM-yyyy", null);
+			firstBlackBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstBlackBin"], "dd-MM-yyyy", null);
+			
 			DateTime today = DateTime.Today;
 			DateTime tomorrow = today.AddDays(1);
 

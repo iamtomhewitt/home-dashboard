@@ -39,6 +39,7 @@ namespace OnlineLists
 
 		public override void Run()
 		{
+			apiKey = Config.instance.GetConfig()["apiKeys"]["todoist"];
 			StartCoroutine(Fade(RunRoutine, 1f));
 			this.UpdateLastUpdatedText();
 		}
@@ -88,7 +89,6 @@ namespace OnlineLists
 			Config config = FindObjectOfType<Config>();
 
 			string url = "https://api.todoist.com/rest/v1/tasks";
-			string apiKey = config.GetConfig()["apiKeys"]["todoist"];
 			string projectId = config.GetConfig()["todoist"][listType.ToString()];
 			string uuid = System.Guid.NewGuid().ToString();
 			string json = "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";

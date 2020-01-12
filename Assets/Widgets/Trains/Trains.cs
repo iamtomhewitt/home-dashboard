@@ -28,6 +28,7 @@ namespace Train
 
 		public override void Run()
 		{
+			apiToken = Config.instance.GetConfig()["apiKeys"]["trains"];
 			StartCoroutine(Fade(PopulateEntries, 1f));
 			this.UpdateLastUpdatedText();
 		}
