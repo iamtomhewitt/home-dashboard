@@ -47,7 +47,7 @@ namespace FoodPlannerWidget
 			dialog.SetResult(DialogResult.NONE);
 			dialog.PopulateRecipes();
 
-			while (dialog.GetResult() != DialogResult.FINISHED)
+			while (dialog.GetResult() != DialogResult.FINISHED && dialog.GetResult() != DialogResult.CANCEL)
 			{
 				yield return null;
 			}
