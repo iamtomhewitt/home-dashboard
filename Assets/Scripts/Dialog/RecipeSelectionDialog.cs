@@ -75,5 +75,11 @@ namespace Dialog
 		{
 			return selectedRecipe;
 		}
+
+		public void HideAndCancelResult()
+		{
+			Hide();
+			Cancel();
+		}
 	}
 }
