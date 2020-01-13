@@ -10,7 +10,8 @@
 	},
 	"binDay": {
 		"firstGreenBin": "dd-MM-YYYY",
-		"firstBlackBin": "dd-MM-YYYY"
+		"firstBlackBin": "dd-MM-YYYY",
+		"repeatRateInDays": 14
 	},
 	"todoist": {
 		"TODO": "project_id",
