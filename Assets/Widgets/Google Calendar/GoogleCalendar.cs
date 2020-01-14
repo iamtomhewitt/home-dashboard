@@ -28,6 +28,7 @@ namespace GoogleCalendar
 
 		public override void Run()
 		{
+			apiKey = Config.instance.GetConfig()["apiKeys"]["googleCalendars"][gmailAddress];
 			StartCoroutine(Fade(RunRoutine, 1f));
 			this.UpdateLastUpdatedText();
 		}

@@ -28,6 +28,7 @@ namespace BBCNews
 
 		public override void Run()
 		{
+			apiKey = Config.instance.GetConfig()["apiKeys"]["bbcNews"];
 			StartCoroutine(RequestHeadlines());
 			this.UpdateLastUpdatedText();
 		}

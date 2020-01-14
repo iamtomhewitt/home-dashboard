@@ -34,6 +34,9 @@ namespace WeatherForecast
 
 		public override void Run()
 		{
+			apiKey 		= Config.instance.GetConfig()["apiKeys"]["weather"];
+			latitude 	= Config.instance.GetConfig()["weather"]["latitude"];
+			longitude 	= Config.instance.GetConfig()["weather"]["longitude"];
 			StartCoroutine(RunRoutine());
 			this.UpdateLastUpdatedText();
 		}
