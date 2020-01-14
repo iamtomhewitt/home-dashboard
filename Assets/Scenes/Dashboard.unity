@@ -13494,8 +13494,8 @@ MonoBehaviour:
   widgetColour: {r: 0.2627451, g: 0.627451, b: 0.2784314, a: 1}
   textColour: {r: 1, g: 1, b: 1, a: 1}
   title: Trains | Horsforth
-  repeatRate: 15
-  timeUnit: 0
+  repeatRate: 1
+  timeUnit: 1
   canvasGroup: {fileID: 1323832137}
   fadeSpeed: 2
   fadeInDelay: 0.15
@@ -17210,7 +17210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.4870007, y: -0.088}
+  m_AnchoredPosition: {x: 3.4870007, y: -0.08799982}
   m_SizeDelta: {x: 41.95, y: -2.993}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1487824643
