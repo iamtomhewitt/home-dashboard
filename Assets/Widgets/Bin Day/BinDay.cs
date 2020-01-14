@@ -23,7 +23,7 @@ namespace BinDay
 		{
 			firstGreenBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstGreenBin"], "dd-MM-yyyy", null);
 			firstBlackBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstBlackBin"], "dd-MM-yyyy", null);
-			repeatRateInDays = Config.instance.GetConfig()["binDay"]["repeatRate"];
+			repeatRateInDays = Config.instance.GetConfig()["binDay"]["repeatRateInDays"];
 
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
@@ -33,7 +33,7 @@ namespace BinDay
 		{
 			firstGreenBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstGreenBin"], "dd-MM-yyyy", null);
 			firstBlackBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstBlackBin"], "dd-MM-yyyy", null);
-			repeatRateInDays = Config.instance.GetConfig()["binDay"]["repeatRate"];
+			repeatRateInDays = Config.instance.GetConfig()["binDay"]["repeatRateInDays"];
 
 			DateTime today = DateTime.Today;
 			DateTime tomorrow = today.AddDays(1);
