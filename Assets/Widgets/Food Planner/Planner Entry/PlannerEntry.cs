@@ -3,8 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using Dialog;
 using UnityEngine.Networking;
-using System.Text;
 using SimpleJSON;
+using Requests;
 
 namespace FoodPlannerWidget
 {

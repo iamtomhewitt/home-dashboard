@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Dialog;
 using SimpleJSON;
 using OnlineLists;
+using Requests;
 
 namespace FoodPlannerWidget
 {
