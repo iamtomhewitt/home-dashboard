@@ -3,6 +3,8 @@ using UnityEngine.Networking;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
+using Requests;
+using System;
 
 namespace Train
 {
@@ -45,9 +47,7 @@ namespace Train
 
 			int numberOfResults = trainEntries.Length;
 
-			string url = "https://huxley.apphb.com/departures/" + stationCode + "/" + numberOfResults + "?accessToken=" + apiToken;
-
-			UnityWebRequest request = UnityWebRequest.Get(url);
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES(stationCode, numberOfResults, apiToken));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 
@@ -60,18 +60,24 @@ namespace Train
 				yield break;
 			}
 
-			int lastRowNumber = 0;
-
-			for (int i = 0; i < json["trainServices"].Count; i++)
+			for (int i = 0; i< json["timetable"].Count; i++)
 			{
-				if (json["trainServices"].Count == i)
+				if (json["timetable"].Count == i)
 				{
 					yield break;
 				}
 
 				TrainEntry entry = trainEntries[i];
-				JSONNode trainService = json["trainServices"][i];
-				string locationName = trainService["destination"][0]["locationName"];
+				JSONNode trainService = json["timetable"][i];
+
+				string locationName = trainService["destination"];
+				string scheduledDepartTime = DateTime.Parse(trainService["scheduledDepartTime"]).ToString("HH:mm");
+				string actualDepartTime = trainService["actualDepartTime"] == null ? scheduledDepartTime : DateTime.Parse(trainService["actualDepartTime"]).ToString("HH:mm");
+
+				if (actualDepartTime.Equals(scheduledDepartTime))
+				{
+					actualDepartTime = "On time";
+				}
 
 				if (locationName.Length > maxDestinationLength)
 				{
@@ -79,31 +85,59 @@ namespace Train
 				}
 
 				entry.GetDestinationText().text = locationName;
-				entry.GetTimeText().text = trainService["std"] + " (" + trainService["etd"] + ")";
-
-				lastRowNumber++;
+				entry.GetTimeText().text = scheduledDepartTime + " (" + actualDepartTime + ")";
 			}
 
-			for (int i = 0; i < json["busServices"].Count; i++)
-			{
-				if (json["busServices"].Count == i)
-				{
-					yield break;
-				}
 
-				TrainEntry entry = trainEntries[lastRowNumber];
-				JSONNode trainService = json["busServices"][i];
-				string locationName = trainService["destination"][0]["locationName"];
 
-				if (locationName.Length > maxDestinationLength)
-				{
-					locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
-				}
 
-				entry.GetDestinationText().text = locationName;
-				entry.GetTimeText().text = trainService["std"] + " (Bus)";
-				lastRowNumber++;
-			}
+
+
+
+			//int lastRowNumber = 0;
+
+			//for (int i = 0; i < json["trainServices"].Count; i++)
+			//{
+			//	if (json["trainServices"].Count == i)
+			//	{
+			//		yield break;
+			//	}
+
+			//	TrainEntry entry = trainEntries[i];
+			//	JSONNode trainService = json["trainServices"][i];
+			//	string locationName = trainService["destination"][0]["locationName"];
+
+			//	if (locationName.Length > maxDestinationLength)
+			//	{
+			//		locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
+			//	}
+
+			//	entry.GetDestinationText().text = locationName;
+			//	entry.GetTimeText().text = trainService["std"] + " (" + trainService["etd"] + ")";
+
+			//	lastRowNumber++;
+			//}
+
+			//for (int i = 0; i < json["busServices"].Count; i++)
+			//{
+			//	if (json["busServices"].Count == i)
+			//	{
+			//		yield break;
+			//	}
+
+			//	TrainEntry entry = trainEntries[lastRowNumber];
+			//	JSONNode trainService = json["busServices"][i];
+			//	string locationName = trainService["destination"][0]["locationName"];
+
+			//	if (locationName.Length > maxDestinationLength)
+			//	{
+			//		locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
+			//	}
+
+			//	entry.GetDestinationText().text = locationName;
+			//	entry.GetTimeText().text = trainService["std"] + " (Bus)";
+			//	lastRowNumber++;
+			//}
 		}
 	}
 }
