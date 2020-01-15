@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
+using Requests;
 
 namespace WeatherForecast
 {
@@ -43,9 +44,7 @@ namespace WeatherForecast
 
 		private IEnumerator RunRoutine()
 		{
-			string url = "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude + "?units=uk";
-
-			UnityWebRequest request = UnityWebRequest.Get(url);
+			UnityWebRequest request = UnityWebRequest.Get(Endpoints.WEATHER(apiKey, latitude, longitude));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 

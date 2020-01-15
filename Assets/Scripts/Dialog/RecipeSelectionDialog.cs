@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
 using SimpleJSON;
+using Requests;
 
 namespace Dialog
 {

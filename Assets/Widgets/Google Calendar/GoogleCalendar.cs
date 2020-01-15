@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
+using Requests;
 
 namespace GoogleCalendar
 {
@@ -37,12 +38,8 @@ namespace GoogleCalendar
 		{
 			string today = DateTime.Now.ToString("yyyy-MM-dd");
 			string future = DateTime.Now.AddMonths(6).ToString("yyyy-MM-dd");
-
-			string url = "https://www.googleapis.com/calendar/v3/calendars/" + gmailAddress +
-							"/events?orderBy=startTime&singleEvents=true&timeMax=" + future + "T10:00:00-07:00&timeMin=" + today + "T10:00:00-07:00&key=" +
-							apiKey;
-
-			UnityWebRequest request = UnityWebRequest.Get(url);
+			
+			UnityWebRequest request = UnityWebRequest.Get(Endpoints.GOOGLE_CALENDAR(gmailAddress, future, today, apiKey));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 
