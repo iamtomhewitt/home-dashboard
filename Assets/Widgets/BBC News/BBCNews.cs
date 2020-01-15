@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
+using Requests;
 
 namespace BBCNews
 {
@@ -35,9 +36,7 @@ namespace BBCNews
 
 		private IEnumerator RequestHeadlines()
 		{
-			string url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=" + apiKey;
-
-			UnityWebRequest request = UnityWebRequest.Get(url);
+			UnityWebRequest request = UnityWebRequest.Get(Endpoints.BBC_NEWS(apiKey));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 

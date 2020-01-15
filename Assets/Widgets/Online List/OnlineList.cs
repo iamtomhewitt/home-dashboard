@@ -48,9 +48,8 @@ namespace OnlineLists
 		private IEnumerator RunRoutine()
 		{
 			string projectId = Config.instance.GetConfig()["todoist"][listType.ToString()];
-			string url = "https://api.todoist.com/rest/v1/tasks?project_id=" + projectId;
 
-			UnityWebRequest request = UnityWebRequest.Get(url);
+			UnityWebRequest request = UnityWebRequest.Get(Endpoints.TODOIST_PROJECT(projectId));
 			request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
@@ -58,7 +57,7 @@ namespace OnlineLists
 			bool ok = request.error == null ? true : false;
 			if (!ok)
 			{
-				WidgetLogger.instance.Log(this, "Error: " + request.error + "\n URL: " + url);
+				WidgetLogger.instance.Log(this, "Error: " + request.error + "\n URL: " + Endpoints.TODOIST_PROJECT(projectId));
 				yield break;
 			}
 
@@ -89,12 +88,11 @@ namespace OnlineLists
 		{
 			Config config = FindObjectOfType<Config>();
 
-			string url = "https://api.todoist.com/rest/v1/tasks";
 			string projectId = config.GetConfig()["todoist"][listType.ToString()];
 			string uuid = System.Guid.NewGuid().ToString();
 			string json = "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";
 
-			UnityWebRequest request = Postman.CreateTodoistRequest(url, json, apiKey, uuid);
+			UnityWebRequest request = Postman.CreateTodoistRequest(Endpoints.TODOIST_TASKS, json, apiKey, uuid);
 			yield return request.SendWebRequest();
 
 			bool ok = request.error == null ? true : false;
