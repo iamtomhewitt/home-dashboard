@@ -26,7 +26,7 @@ namespace FoodPlannerWidget
 			JSONObject json = new JSONObject();
 			json.Add("day", day.ToString());
 
-			UnityWebRequest request = Postman.CreateGetRequest(RecipeManagerEndpoints.PLANNER + "?day=" + day.ToString());
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString());
 			yield return request.SendWebRequest();
 
 			recipe.text = JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
@@ -61,7 +61,7 @@ namespace FoodPlannerWidget
 				json.Add("recipe", string.IsNullOrEmpty(recipe.text) ? " " : recipe.text);
 				json.Add("day", day.ToString());
 
-				UnityWebRequest request = Postman.CreatePostRequest(RecipeManagerEndpoints.PLANNER_ADD, json);
+				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, json);
 				yield return request.SendWebRequest();
 
 				yield break;

@@ -61,7 +61,7 @@ namespace FoodPlannerWidget
 				foreach (PlannerEntry entry in plannerEntries)
 				{
 					// Get the ingredients by recipe
-					UnityWebRequest request = Postman.CreateGetRequest(RecipeManagerEndpoints.RECIPES + "?name=" + entry.GetRecipeName());
+					UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES + "?name=" + entry.GetRecipeName());
 					yield return request.SendWebRequest();
 
 					JSONNode responseJson = JSON.Parse(request.downloadHandler.text);
