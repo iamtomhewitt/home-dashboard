@@ -54,6 +54,8 @@ namespace FoodPlannerWidget
 
 			if (dialog.GetResult() == DialogResult.YES)
 			{
+				dialog.Hide();
+
 				List<Ingredient> ingredients = new List<Ingredient>();
 
 				// For each day
@@ -99,7 +101,6 @@ namespace FoodPlannerWidget
 					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
 				}
 
-				dialog.Hide();
 				dialog.None();
 				yield break;
 			}
