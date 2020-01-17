@@ -1,0 +1,62 @@
+﻿using System.Collections;
+using UnityEngine;
+
+public class RotatingWidget : MonoBehaviour
+{
+	[Header("Rotating Settings")]
+	[SerializeField] private CanvasGroup widgetOneCanvasGroup;
+	[SerializeField] private CanvasGroup widgetTwoCanvasGroup;
+
+	[SerializeField] private bool onAtStart;
+	[SerializeField] private float timeBetweenRotation;
+	[SerializeField] private float fadeSpeed;
+
+	private void Start()
+	{
+		widgetOneCanvasGroup.alpha = onAtStart ? 1f : 0f;
+		widgetTwoCanvasGroup.alpha = onAtStart ? 0f : 1f;
+
+		InvokeRepeating("Switch", timeBetweenRotation, timeBetweenRotation);
+	}
+	
+	private void Switch()
+	{
+		StartCoroutine(SwitchRoutine());
+	}
+
+	private IEnumerator SwitchRoutine()
+	{
+		StartCoroutine(Fade(widgetOneCanvasGroup, onAtStart));
+		StartCoroutine(Fade(widgetTwoCanvasGroup, !onAtStart));
+		onAtStart = !onAtStart;
+
+		yield return null;
+	}
+
+	private IEnumerator Fade(CanvasGroup widget, bool fadeOut)
+	{
+		print("Starting fade");
+		widget.alpha = fadeOut ? 1f : 0f;
+
+		if (fadeOut)
+		{
+			print(widget.name + " fading out");
+
+			while (widget.alpha > 0f)
+			{
+				widget.alpha -= Time.deltaTime * fadeSpeed;
+				yield return null;
+			}
+		}
+		else
+		{
+			print(widget.name + " fading in");
+
+			while (widget.alpha < 1f)
+			{
+				widget.alpha += Time.deltaTime * fadeSpeed;
+				yield return null;
+			}
+		}
+	}
+}
