@@ -13,6 +13,9 @@
 		"firstBlackBin": "dd-MM-YYYY",
 		"repeatRateInDays": 14
 	},
+	"splitwise": {
+		"groupId": "your_id"
+	},
 	"todoist": {
 		"TODO": "project_id",
 		"Shopping": "project_id"
