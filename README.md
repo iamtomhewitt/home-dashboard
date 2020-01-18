@@ -48,11 +48,6 @@ I've also incorporated a set of predefined recipes from what we eat often. Press
 
 The recipes and planner is stored on an [api I built](https://github.com/iamtomhewitt/home-dashboard-recipe-manager).
 
-## 💡 Potential Widget / General Ideas
-
-### Rotating Widgets
-As it stands the dashboard is a bit constrained for room. Suggest that any future widgets can sit over the top of another widget, and switch with another widget in its place. E.g. the Google Calendar widgets could be combined into one and switch between calendars every `x` seconds.
-
 ## 👷‍♂️ Getting Started
 Have the dashboard and need a hand setting it up? Follow [this guide](GETTING&#32;STARTED.md)!
 
