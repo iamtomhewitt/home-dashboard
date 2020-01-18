@@ -11,22 +11,26 @@ public class Splitwise : Widget
 	[SerializeField] private Text groupName;
 	[SerializeField] private Text people;
 	[SerializeField] private Text amount;
+
+	private string groupId;
 	
 	private void Start()
     {
         this.Initialise();
+		groupId = Config.instance.GetConfig()["splitwise"]["groupId"];
 		InvokeRepeating("Run", 0f, RepeatRateInSeconds());
     }
 
     public override void Run()
 	{
+		groupId = Config.instance.GetConfig()["splitwise"]["groupId"];
 		StartCoroutine(RunRoutine());
 		this.UpdateLastUpdatedText();
 	}
 
 	private IEnumerator RunRoutine()
 	{
-		UnityWebRequest request = Postman.CreateGetRequest(Endpoints.SPLITWISE(""));
+		UnityWebRequest request = Postman.CreateGetRequest(Endpoints.SPLITWISE(groupId));
 		yield return request.SendWebRequest();
 
 		JSONNode json = JSON.Parse(request.downloadHandler.text);
