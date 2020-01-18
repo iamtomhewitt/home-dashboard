@@ -34,5 +34,10 @@
 		{
 			return "https://api.darksky.net/forecast/" + apiKey + "/" + latitude + "," + longitude + "?units=uk";
 		}
+
+		public static string SPLITWISE(string groupId)
+		{
+			return "https://home-dashboard-splitwise-mngr.herokuapp.com/group?groupId=" + groupId;
+		}
 	}
 }
