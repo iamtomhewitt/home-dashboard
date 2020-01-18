@@ -38,9 +38,11 @@ Forecast for now, and the next four days.
 ### 🚂 Trains
 A scrollable widget showing the latest trains from my local stations, showing any cancellations or delays. It uses an [api I built](https://github.com/iamtomhewitt/home-dashboard-train-manager).
 
-
 ### 🚮 Bin Day
 An alert to show if the bin needs putting out. Changes colour based on which bin to put out.
+
+### 💰 Splitwise
+A widget that shows the amounts owed in our Splitwise group.
 
 ### 🥘 Food Planner
 An editable set of 'cards' to show what we're having for our evening meal for the week.
