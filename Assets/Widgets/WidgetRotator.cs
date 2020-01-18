@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-/// <summary>
-/// Fades two widgets with canvas groups between each other, so you can display two widgets on top of each other.
-/// </summary>
-public class WidgetRotator : MonoBehaviour
+public class RotatingWidget : MonoBehaviour
 {
+	[Header("Rotating Settings")]
 	[SerializeField] private CanvasGroup widgetOneCanvasGroup;
 	[SerializeField] private CanvasGroup widgetTwoCanvasGroup;
 
@@ -37,10 +35,13 @@ public class WidgetRotator : MonoBehaviour
 
 	private IEnumerator Fade(CanvasGroup widget, bool fadeOut)
 	{
+		print("Starting fade");
 		widget.alpha = fadeOut ? 1f : 0f;
 
 		if (fadeOut)
 		{
+			print(widget.name + " fading out");
+
 			while (widget.alpha > 0f)
 			{
 				widget.alpha -= Time.deltaTime * fadeSpeed;
@@ -49,6 +50,8 @@ public class WidgetRotator : MonoBehaviour
 		}
 		else
 		{
+			print(widget.name + " fading in");
+
 			while (widget.alpha < 1f)
 			{
 				widget.alpha += Time.deltaTime * fadeSpeed;
