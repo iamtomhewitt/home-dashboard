@@ -33,26 +33,14 @@
             "repeatRate": 10,
             "repeatTime": "hours"
         },
-        "googleCalendars": [
-            {
-                "a@gmail.com": {
-                    "title": "Tom's Calendar",
-                    "colour": "#4285F4",
-                    "textColour": "#FFFFFF",
-                    "repeatRate": 30,
-                    "repeatTime": "minutes",
-                    "apiKey": "key"
-                },
-                "b@gmail.com": {
-                    "title": "Lauren's Calendar",
-                    "colour": "#E67C73",
-                    "textColour": "#FFFFFF",
-                    "repeatRate": 30,
-                    "repeatTime": "minutes",
-                    "apiKey": "key"
-                }
-            }
-        ],
+		"someone@gmail.com": {
+			"title": "Tom's Calendar",
+			"colour": "#4285F4",
+			"textColour": "#FFFFFF",
+			"repeatRate": 30,
+			"repeatTime": "minutes",
+			"apiKey": ""
+		},
         "shoppingList": {
             "title": "Shopping List",
             "colour": "#BDA7FF",
