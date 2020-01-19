@@ -1395,11 +1395,7 @@ MonoBehaviour:
   titleText: {fileID: 1294223238}
   lastUpdatedText: {fileID: 1370069683}
   widgetBackground: {fileID: 1421464344}
-  widgetColour: {r: 0.011764706, g: 0.6627451, b: 0.95686275, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Bin Day
-  repeatRate: 2
-  timeUnit: 2
+  widgetConfigKey: binDay
   greenBinColour: {r: 0.4, g: 0.73333335, b: 0.41568628, a: 1}
   blackBinColour: {r: 0.14901961, g: 0.19607843, b: 0.21960784, a: 1}
   noBinColour: {r: 0.011764706, g: 0.6627451, b: 0.95686275, a: 1}
@@ -1764,11 +1760,7 @@ MonoBehaviour:
   titleText: {fileID: 1694735703}
   lastUpdatedText: {fileID: 1035907068}
   widgetBackground: {fileID: 934806362}
-  widgetColour: {r: 0.49411765, g: 0.34117648, b: 0.7607843, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Clock
-  repeatRate: 1
-  timeUnit: 0
+  widgetConfigKey: clock
   clockText: {fileID: 1024095214}
   dateText: {fileID: 1035907068}
 --- !u!224 &175449572 stripped
@@ -8621,11 +8613,7 @@ MonoBehaviour:
   titleText: {fileID: 1181040627}
   lastUpdatedText: {fileID: 303868772}
   widgetBackground: {fileID: 1863358513}
-  widgetColour: {r: 1, g: 0.5851397, b: 0, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Weather
-  repeatRate: 10
-  timeUnit: 1
+  widgetConfigKey: weather
   currentSummary: {fileID: 1304677431}
   currentIcon: {fileID: 1840678961}
   currentTemperature: {fileID: 1294488463}
@@ -13870,11 +13858,7 @@ MonoBehaviour:
   titleText: {fileID: 1777598884}
   lastUpdatedText: {fileID: 451464715}
   widgetBackground: {fileID: 313698520}
-  widgetColour: {r: 0.2627451, g: 0.627451, b: 0.2784314, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Trains | Horsforth
-  repeatRate: 1
-  timeUnit: 1
+  widgetConfigKey: trains
   canvasGroup: {fileID: 1323832137}
   fadeSpeed: 2
   fadeInDelay: 0.15
@@ -13946,16 +13930,11 @@ MonoBehaviour:
   titleText: {fileID: 21951181}
   lastUpdatedText: {fileID: 2069436462}
   widgetBackground: {fileID: 117701915}
-  widgetColour: {r: 0.73333335, g: 0.09803922, b: 0.09803922, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: BBC News
-  repeatRate: 30
-  timeUnit: 1
+  widgetConfigKey: bbcNews
   canvasGroup: {fileID: 1242877119}
   fadeSpeed: 2
   fadeInDelay: 0.15
   entry: {fileID: 1242877118}
-  secondsBetweenArticles: 45
 --- !u!225 &1281220136
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -15130,11 +15109,7 @@ MonoBehaviour:
   titleText: {fileID: 1350823874}
   lastUpdatedText: {fileID: 1044596090}
   widgetBackground: {fileID: 4952171}
-  widgetColour: {r: 0.9019608, g: 0.4862745, b: 0.4509804, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Lauren's Calendar
-  repeatRate: 30
-  timeUnit: 1
+  widgetConfigKey: googleCalendars
   canvasGroup: {fileID: 631731418}
   fadeSpeed: 2
   fadeInDelay: 0.15
@@ -17704,11 +17679,7 @@ MonoBehaviour:
   titleText: {fileID: 753762687}
   lastUpdatedText: {fileID: 1884851903}
   widgetBackground: {fileID: 1226793208}
-  widgetColour: {r: 0.31585974, g: 0.735849, b: 0.60985225, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Splitwise
-  repeatRate: 2
-  timeUnit: 2
+  widgetConfigKey: splitwise
   groupName: {fileID: 1344566077}
   people: {fileID: 86609771}
   amount: {fileID: 703842354}
@@ -21069,11 +21040,7 @@ MonoBehaviour:
   titleText: {fileID: 2100874576}
   lastUpdatedText: {fileID: 1026808051}
   widgetBackground: {fileID: 1078735995}
-  widgetColour: {r: 0.1882353, g: 0.24705882, b: 0.62352943, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: TODO
-  repeatRate: 10
-  timeUnit: 1
+  widgetConfigKey: todoList
   canvasGroup: {fileID: 1253615069}
   fadeSpeed: 2
   fadeInDelay: 0.15
@@ -21617,11 +21584,7 @@ MonoBehaviour:
   titleText: {fileID: 1391962098}
   lastUpdatedText: {fileID: 1393389610}
   widgetBackground: {fileID: 76039609}
-  widgetColour: {r: 0.2611092, g: 0.11743506, b: 0.8584906, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Food Planner
-  repeatRate: 10
-  timeUnit: 2
+  widgetConfigKey: foodPlanner
   shoppingList: {fileID: 1870469004}
 --- !u!1001 &1840057599
 PrefabInstance:
@@ -22157,11 +22120,7 @@ MonoBehaviour:
   titleText: {fileID: 1267951969}
   lastUpdatedText: {fileID: 1361240389}
   widgetBackground: {fileID: 463602838}
-  widgetColour: {r: 0.7411765, g: 0.6556604, b: 1, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Shopping List
-  repeatRate: 10
-  timeUnit: 1
+  widgetConfigKey: shoppingList
   canvasGroup: {fileID: 466969349}
   fadeSpeed: 2
   fadeInDelay: 0.15
@@ -24016,11 +23975,7 @@ MonoBehaviour:
   titleText: {fileID: 334245801}
   lastUpdatedText: {fileID: 534575787}
   widgetBackground: {fileID: 261114590}
-  widgetColour: {r: 0.25882354, g: 0.52156866, b: 0.95686275, a: 1}
-  textColour: {r: 1, g: 1, b: 1, a: 1}
-  title: Tom's Calendar
-  repeatRate: 30
-  timeUnit: 1
+  widgetConfigKey: googleCalendars
   canvasGroup: {fileID: 1314918149}
   fadeSpeed: 2
   fadeInDelay: 0.15
