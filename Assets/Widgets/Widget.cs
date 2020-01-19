@@ -12,7 +12,7 @@ public abstract class Widget : MonoBehaviour
 	[SerializeField] private Text titleText;
 	[SerializeField] private Text lastUpdatedText;
 	[SerializeField] private Image widgetBackground;
-	[SerializeField] private string widgetConfigName;
+	[SerializeField] private string widgetConfigKey;
 
 	private Color widgetColour;
 	private Color textColour;
@@ -21,10 +21,11 @@ public abstract class Widget : MonoBehaviour
 	private string timeUnit;
 
 	public abstract void Run();
+	public abstract void ReloadConfig();
 
 	public void Initialise()
 	{
-		JSONNode config = Config.instance.GetConfig()["widgets"][widgetConfigName];
+		JSONNode config = Config.instance.GetConfig()["widgets"][widgetConfigKey];
 		
 		widgetColour= ToColour(config["colour"]);
 		textColour 	= ToColour(config["textColour"]);
@@ -100,10 +101,15 @@ public abstract class Widget : MonoBehaviour
 		return title;
 	}
 
+	public string GetWidgetConfigKey()
+	{
+		return widgetConfigKey;
+	}
+
 	private Color ToColour(string hex)
 	{
 		Color colour;
-		
+
 		if (ColorUtility.TryParseHtmlString(hex, out colour))
 		{
             return colour;
