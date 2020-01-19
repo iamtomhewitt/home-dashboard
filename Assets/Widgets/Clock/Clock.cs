@@ -16,6 +16,8 @@ namespace Clock
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
+		public override void ReloadConfig() {}
+
 		public override void Run()
 		{
 			clockText.text = DateTime.Now.ToString("HH:mm:ss");

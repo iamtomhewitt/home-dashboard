@@ -25,19 +25,23 @@ namespace WeatherForecast
 
 		private void Start()
 		{
-			apiKey 		= Config.instance.GetConfig()["apiKeys"]["weather"];
-			latitude 	= Config.instance.GetConfig()["weather"]["latitude"];
-			longitude 	= Config.instance.GetConfig()["weather"]["longitude"];
-
+			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()]["weather"];
+
+			apiKey 		= config["apiKey"];
+			latitude 	= config["latitude"];
+			longitude 	= config["longitude"];
+		}
+
 		public override void Run()
 		{
-			apiKey 		= Config.instance.GetConfig()["apiKeys"]["weather"];
-			latitude 	= Config.instance.GetConfig()["weather"]["latitude"];
-			longitude 	= Config.instance.GetConfig()["weather"]["longitude"];
+			this.ReloadConfig();
 			StartCoroutine(RunRoutine());
 			this.UpdateLastUpdatedText();
 		}
@@ -46,9 +50,8 @@ namespace WeatherForecast
 		{
 			UnityWebRequest request = UnityWebRequest.Get(Endpoints.WEATHER(apiKey, latitude, longitude));
 			yield return request.SendWebRequest();
-			string response = request.downloadHandler.text;
 
-			JSONNode json = JSON.Parse(response);
+			JSONNode json = JSON.Parse(request.downloadHandler.text);
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)

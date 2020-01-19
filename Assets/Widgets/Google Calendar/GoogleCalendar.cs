@@ -21,15 +21,20 @@ namespace GoogleCalendar
 
 		private void Start()
 		{
-			apiKey = Config.instance.GetConfig()["apiKeys"]["googleCalendars"][gmailAddress];
-
+			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetConfig()["widgets"][this.GetWidgetConfigKey()];
+			apiKey = config[gmailAddress]["apiKey"];
+		}
+
 		public override void Run()
 		{
-			apiKey = Config.instance.GetConfig()["apiKeys"]["googleCalendars"][gmailAddress];
+			this.ReloadConfig();
 			StartCoroutine(Fade(RunRoutine, 1f));
 			this.UpdateLastUpdatedText();
 		}

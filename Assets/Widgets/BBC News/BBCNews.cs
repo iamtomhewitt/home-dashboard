@@ -11,25 +11,32 @@ namespace BBCNews
 	{
 		[Header("BBC News Settings")]
 		[SerializeField] private BBCNewsEntry entry;
-		[SerializeField] private float secondsBetweenArticles = 60f;
 
 		private JSONNode json;
 
 		private string apiKey;
+		private float secondsBetweenArticles;
 		private int currentArticleIndex = 0;
 
 		private void Start()
 		{
+			this.ReloadConfig();
 			this.Initialise();
-			apiKey = Config.instance.GetConfig()["apiKeys"]["bbcNews"];
 
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);			
 		}
 
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()]["bbcNews"];
+			apiKey = config["apiKey"];
+			secondsBetweenArticles = config["apiKey"];
+		}
+
 		public override void Run()
 		{
-			apiKey = Config.instance.GetConfig()["apiKeys"]["bbcNews"];
+			this.ReloadConfig();
 			StartCoroutine(RequestHeadlines());
 			this.UpdateLastUpdatedText();
 		}

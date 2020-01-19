@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using SimpleJSON;
 
 namespace BinDay
 {
@@ -21,19 +22,22 @@ namespace BinDay
 
 		private void Start()
 		{
-			firstGreenBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstGreenBin"], "dd-MM-yyyy", null);
-			firstBlackBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstBlackBin"], "dd-MM-yyyy", null);
-			repeatRateInDays = Config.instance.GetConfig()["binDay"]["repeatRateInDays"];
-
+			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()]["binDay"];
+			firstGreenBinDay = DateTime.ParseExact(config["firstGreenBin"], "dd-MM-yyyy", null);
+			firstBlackBinDay = DateTime.ParseExact(config["firstBlackBin"], "dd-MM-yyyy", null);
+			repeatRateInDays = config["repeatRateInDays"];
+		}
+
 		public override void Run()
 		{
-			firstGreenBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstGreenBin"], "dd-MM-yyyy", null);
-			firstBlackBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstBlackBin"], "dd-MM-yyyy", null);
-			repeatRateInDays = Config.instance.GetConfig()["binDay"]["repeatRateInDays"];
+			this.ReloadConfig();
 
 			DateTime today = DateTime.Today;
 			DateTime tomorrow = today.AddDays(1);

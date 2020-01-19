@@ -11,6 +11,11 @@ namespace OnlineLists
 		[SerializeField] private Text nameText;
 		[SerializeField] private string taskId;
 
+		public void SetNameText(string text)
+		{
+			nameText.text = text;
+		}
+
 		public Text GetNameText()
 		{
 			return nameText;
