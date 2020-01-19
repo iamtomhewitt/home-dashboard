@@ -2,45 +2,45 @@
     "widgets": {
         "bbcNews": {
             "title": "BBC News",
-            "colour": "colour",
-            "textColour": "colour",
-            "repeatRate": 15,
+            "colour": "#BB1919",
+            "textColour": "#FFFFFF",
+            "repeatRate": 30,
             "repeatTime": "minutes",
-            "secondsBetweenArticles": "60",
+            "secondsBetweenArticles": 45,
             "apiKey": "<key>"
         },
         "binDay": {
             "title": "Bin Day",
-            "colour": "colour",
-            "textColour": "colour",
-            "repeatRate": 15,
-            "repeatTime": "minutes",
-            "firstGreenBin": "dd-MM-YYYY",
-            "firstBlackBin": "dd-MM-YYYY",
+            "colour": "#03A9F4",
+            "textColour": "#FFFFFF",
+            "repeatRate": 2,
+            "repeatTime": "hours",
+            "firstGreenBin": "07-10-2019",
+            "firstBlackBin": "14-10-2019",
             "repeatRateInDays": 14
         },
         "foodPlanner": {
             "title": "Food Planner",
-            "colour": "colour",
-            "textColour": "colour",
-            "repeatRate": 15,
-            "repeatTime": "minutes"
+            "colour": "#431EDB",
+            "textColour": "#FFFFFF",
+            "repeatRate": 10,
+            "repeatTime": "hours"
         },
         "googleCalendars": [
             {
-                "gmailAddress": {
-                    "title": "Calendar",
-                    "colour": "colour",
-                    "textColour": "colour",
-                    "repeatRate": 15,
+                "a@gmail.com": {
+                    "title": "Tom's Calendar",
+                    "colour": "#4285F4",
+                    "textColour": "#FFFFFF",
+                    "repeatRate": 30,
                     "repeatTime": "minutes",
                     "apiKey": "key"
                 },
-                "anotherGmailAddress": {
-                    "title": "Calendar",
-                    "colour": "colour",
-                    "textColour": "colour",
-                    "repeatRate": 15,
+                "b@gmail.com": {
+                    "title": "Lauren's Calendar",
+                    "colour": "#E67C73",
+                    "textColour": "#FFFFFF",
+                    "repeatRate": 30,
                     "repeatTime": "minutes",
                     "apiKey": "key"
                 }
@@ -48,45 +48,44 @@
         ],
         "shoppingList": {
             "title": "Shopping List",
-            "colour": "colour",
-            "textColour": "colour",
-            "repeatRate": 15,
+            "colour": "#BDA7FF",
+            "textColour": "#FFFFFF",
+            "repeatRate": 10,
             "repeatTime": "minutes",
             "todoistId": "id",
             "apiKey": "key"
         },
         "todoList": {
             "title": "TODO List",
-            "colour": "colour",
-            "textColour": "colour",
-            "repeatRate": 15,
+            "colour": "#303F9F",
+            "textColour": "#FFFFFF",
+            "repeatRate": 10,
             "repeatTime": "minutes",
             "todoistId": "id",
             "apiKey": "key"
         },
         "splitwise": {
             "title": "Splitwise",
-            "colour": "colour",
-            "textColour": "colour",
-            "repeatRate": 15,
-            "repeatTime": "minutes",
-            "apiKey": "key"
+            "colour": "#51BC9C",
+            "textColour": "#FFFFFF",
+            "repeatRate": 2,
+            "repeatTime": "hours",
+            "groupId": "groupId"
         },
         "trains": {
             "title": "Trains",
-            "colour": "colour",
-            "textColour": "colour",
-            "repeatRate": 15,
+            "colour": "#43A047",
+            "textColour": "#FFFFFF",
+            "repeatRate": 1,
             "repeatTime": "minutes",
             "apiKey": "key",
-            "stationCode": "code",
-            "numberOfResults": 10
+            "stationCode": "HRS"
         },
         "weather": {
             "title": "Weather",
-            "colour": "colour",
-            "textColour": "colour",
-            "repeatRate": 15,
+            "colour": "#FF9500",
+            "textColour": "#FFFFFF",
+            "repeatRate": 10,
             "repeatTime": "minutes",
             "apiKey": "key",
             "latitude": "lat",
