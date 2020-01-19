@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using SimpleJSON;
 
 /// <summary>
 /// The base of all widgets, sharing all common variables.
@@ -11,16 +12,26 @@ public abstract class Widget : MonoBehaviour
 	[SerializeField] private Text titleText;
 	[SerializeField] private Text lastUpdatedText;
 	[SerializeField] private Image widgetBackground;
-	[SerializeField] private Color widgetColour;
-	[SerializeField] private Color textColour;
-	[SerializeField] private string title;
-	[SerializeField] private float repeatRate;
-	[SerializeField] private TimeUnit timeUnit;
+	[SerializeField] private string widgetConfigName;
+
+	private Color widgetColour;
+	private Color textColour;
+	private string title;
+	private float repeatRate;
+	private string timeUnit;
 
 	public abstract void Run();
 
 	public void Initialise()
 	{
+		JSONNode config = Config.instance.GetConfig()["widgets"][widgetConfigName];
+		
+		widgetColour= ToColour(config["colour"]);
+		textColour 	= ToColour(config["textColour"]);
+		title 		= config["title"];
+		repeatRate 	= config["repeatRate"];
+		timeUnit 	= config["repeatTime"];
+
 		UpdateLastUpdatedText();
 		SetTitleText(title);
 		SetColour(widgetColour);
@@ -33,19 +44,19 @@ public abstract class Widget : MonoBehaviour
 
 		switch (timeUnit)
 		{
-			case TimeUnit.Seconds:
+			case "seconds":
 				seconds = repeatRate;
 				break;
 
-			case TimeUnit.Minutes:
+			case "minutes":
 				seconds = repeatRate * 60f;
 				break;
 
-			case TimeUnit.Hours:
+			case "hours":
 				seconds = repeatRate * 3600f;
 				break;
 
-			case TimeUnit.Days:
+			case "days":
 				seconds = repeatRate * 86400f;
 				break;
 
@@ -54,8 +65,6 @@ public abstract class Widget : MonoBehaviour
 				seconds = 600f;
 				break;
 		}
-
-		// print(amount + " " + unit + ": " + seconds + " seconds");
 
 		return seconds;
 	}
@@ -91,12 +100,17 @@ public abstract class Widget : MonoBehaviour
 		return title;
 	}
 
-	[System.Serializable]
-	public enum TimeUnit
+	private Color ToColour(string hex)
 	{
-		Seconds,
-		Minutes,
-		Hours,
-		Days
+		Color colour;
+		
+		if (ColorUtility.TryParseHtmlString(hex, out colour))
+		{
+            return colour;
+		}
+		else
+		{
+			return Color.white;
+		}
 	}
 }
