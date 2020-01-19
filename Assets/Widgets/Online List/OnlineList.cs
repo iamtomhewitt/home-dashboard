@@ -77,6 +77,7 @@ namespace OnlineLists
 				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
 				e.SetNameText(task["content"].Value);
 				e.SetTaskId(task["id"].Value);
+				e.SetApiKey(apiKey);
 			}
 		}
 
@@ -90,9 +91,6 @@ namespace OnlineLists
 
 		private IEnumerator AddItemRoutine(string item)
 		{
-			Config config = FindObjectOfType<Config>();
-
-			string projectId = config.GetConfig()["todoist"][listType.ToString()];
 			string uuid = System.Guid.NewGuid().ToString();
 			string json = "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";
 
