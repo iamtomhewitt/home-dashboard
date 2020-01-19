@@ -18,7 +18,14 @@
             "firstGreenBin": "07-10-2019",
             "firstBlackBin": "14-10-2019",
             "repeatRateInDays": 14
-        },
+		},
+		"clock": {
+            "title": "Clock",
+            "colour": "#03A9F4",
+            "textColour": "#FFFFFF",
+            "repeatRate": 1,
+			"repeatTime": "seconds"
+		},
         "foodPlanner": {
             "title": "Food Planner",
             "colour": "#431EDB",
