@@ -43,7 +43,7 @@ public class Config : MonoBehaviour
 
 	public JSONNode GetConfig()
 	{
-		return root;
+		return root["widgets"];
 	}
 
 	public void Replace(JSONNode key, string value)

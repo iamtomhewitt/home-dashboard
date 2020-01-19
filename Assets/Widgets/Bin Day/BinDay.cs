@@ -29,7 +29,7 @@ namespace BinDay
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()]["binDay"];
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
 			firstGreenBinDay = DateTime.ParseExact(config["firstGreenBin"], "dd-MM-yyyy", null);
 			firstBlackBinDay = DateTime.ParseExact(config["firstBlackBin"], "dd-MM-yyyy", null);
 			repeatRateInDays = config["repeatRateInDays"];

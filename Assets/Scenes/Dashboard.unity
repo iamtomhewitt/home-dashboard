@@ -23975,7 +23975,7 @@ MonoBehaviour:
   titleText: {fileID: 334245801}
   lastUpdatedText: {fileID: 534575787}
   widgetBackground: {fileID: 261114590}
-  widgetConfigKey: googleCalendars
+  widgetConfigKey: tommhewitt@gmail.com
   canvasGroup: {fileID: 1314918149}
   fadeSpeed: 2
   fadeInDelay: 0.15
