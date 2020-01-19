@@ -32,8 +32,7 @@ namespace WeatherForecast
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()]["weather"];
-
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
 			apiKey 		= config["apiKey"];
 			latitude 	= config["latitude"];
 			longitude 	= config["longitude"];

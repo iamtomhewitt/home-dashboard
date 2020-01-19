@@ -28,8 +28,8 @@ namespace GoogleCalendar
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()["widgets"][this.GetWidgetConfigKey()];
-			apiKey = config[gmailAddress]["apiKey"];
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			apiKey = config["apiKey"];
 		}
 
 		public override void Run()
@@ -44,7 +44,7 @@ namespace GoogleCalendar
 			string today = DateTime.Now.ToString("yyyy-MM-dd");
 			string future = DateTime.Now.AddMonths(6).ToString("yyyy-MM-dd");
 			
-			UnityWebRequest request = UnityWebRequest.Get(Endpoints.GOOGLE_CALENDAR(gmailAddress, future, today, apiKey));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.GOOGLE_CALENDAR(gmailAddress, future, today, apiKey));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 

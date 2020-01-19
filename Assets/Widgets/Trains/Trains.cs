@@ -28,7 +28,7 @@ namespace Train
 
 		public override void ReloadConfig()
 		{
-			config = Config.instance.GetConfig()[this.GetWidgetConfigKey()]["trains"];
+			config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
 			apiToken 	= config["apiKey"];
 			stationCode = config["stationCode"];
 		}

@@ -31,7 +31,7 @@ namespace OnlineLists
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()][listType.ToString()];
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 			projectId = config["todoistId"];
 		}
@@ -124,5 +124,5 @@ namespace OnlineLists
 		}
 	}
 
-	public enum TodoistList { TODO, Shopping };
+	public enum TodoistList { todoList, shoppingList };
 }

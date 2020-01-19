@@ -29,9 +29,9 @@ namespace BBCNews
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()]["bbcNews"];
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
-			secondsBetweenArticles = config["apiKey"];
+			secondsBetweenArticles = config["secondsBetweenArticles"];
 		}
 
 		public override void Run()

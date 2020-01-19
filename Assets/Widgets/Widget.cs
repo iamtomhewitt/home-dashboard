@@ -25,7 +25,7 @@ public abstract class Widget : MonoBehaviour
 
 	public void Initialise()
 	{
-		JSONNode config = Config.instance.GetConfig()["widgets"][widgetConfigKey];
+		JSONNode config = Config.instance.GetConfig()[widgetConfigKey];
 		
 		widgetColour= ToColour(config["colour"]);
 		textColour 	= ToColour(config["textColour"]);
@@ -62,7 +62,7 @@ public abstract class Widget : MonoBehaviour
 				break;
 
 			default:
-				print("Unknown unit: " + timeUnit);
+				Debug.Log("Unknown unit: " + timeUnit);
 				seconds = 600f;
 				break;
 		}
