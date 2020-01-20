@@ -12,6 +12,7 @@ namespace Dialog
 		{
 			Config config = Config.instance;
 			List<Setting> settings = new List<Setting>(FindObjectsOfType<Setting>());
+			List<Widget> widgets = new List<Widget>(FindObjectsOfType<Widget>());
 
 			foreach (Setting setting in settings)
 			{
@@ -27,6 +28,11 @@ namespace Dialog
 
 					config.Replace(node, setting.GetValue());
 				}
+			}
+
+			foreach (Widget widget in widgets)
+			{
+				widget.Initialise();
 			}
 		}
 	}
