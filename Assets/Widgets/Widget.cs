@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using SimpleJSON;
 
 /// <summary>
 /// The base of all widgets, sharing all common variables.
@@ -11,16 +12,27 @@ public abstract class Widget : MonoBehaviour
 	[SerializeField] private Text titleText;
 	[SerializeField] private Text lastUpdatedText;
 	[SerializeField] private Image widgetBackground;
-	[SerializeField] private Color widgetColour;
-	[SerializeField] private Color textColour;
-	[SerializeField] private string title;
-	[SerializeField] private float repeatRate;
-	[SerializeField] private TimeUnit timeUnit;
+	[SerializeField] private string widgetConfigKey;
+
+	private Color widgetColour;
+	private Color textColour;
+	private string title;
+	private float repeatRate;
+	private string timeUnit;
 
 	public abstract void Run();
+	public abstract void ReloadConfig();
 
 	public void Initialise()
 	{
+		JSONNode config = Config.instance.GetConfig()[widgetConfigKey];
+		
+		widgetColour= ToColour(config["colour"]);
+		textColour 	= ToColour(config["textColour"]);
+		title 		= config["title"];
+		repeatRate 	= config["repeatRate"];
+		timeUnit 	= config["repeatTime"];
+
 		UpdateLastUpdatedText();
 		SetTitleText(title);
 		SetColour(widgetColour);
@@ -33,29 +45,27 @@ public abstract class Widget : MonoBehaviour
 
 		switch (timeUnit)
 		{
-			case TimeUnit.Seconds:
+			case "seconds":
 				seconds = repeatRate;
 				break;
 
-			case TimeUnit.Minutes:
+			case "minutes":
 				seconds = repeatRate * 60f;
 				break;
 
-			case TimeUnit.Hours:
+			case "hours":
 				seconds = repeatRate * 3600f;
 				break;
 
-			case TimeUnit.Days:
+			case "days":
 				seconds = repeatRate * 86400f;
 				break;
 
 			default:
-				print("Unknown unit: " + timeUnit);
+				Debug.Log("Unknown unit: " + timeUnit);
 				seconds = 600f;
 				break;
 		}
-
-		// print(amount + " " + unit + ": " + seconds + " seconds");
 
 		return seconds;
 	}
@@ -91,12 +101,22 @@ public abstract class Widget : MonoBehaviour
 		return title;
 	}
 
-	[System.Serializable]
-	public enum TimeUnit
+	public string GetWidgetConfigKey()
 	{
-		Seconds,
-		Minutes,
-		Hours,
-		Days
+		return widgetConfigKey;
+	}
+
+	private Color ToColour(string hex)
+	{
+		Color colour;
+
+		if (ColorUtility.TryParseHtmlString(hex, out colour))
+		{
+            return colour;
+		}
+		else
+		{
+			return Color.white;
+		}
 	}
 }

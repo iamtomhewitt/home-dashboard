@@ -20,10 +20,9 @@ namespace FoodPlannerWidget
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
-		public override void Run()
-		{
-			// Nothing to do!
-		}
+		public override void ReloadConfig() {}
+
+		public override void Run() {}
 
 		/// <summary>
 		/// Adds all the ingredients from all the recipes to the shopping list.

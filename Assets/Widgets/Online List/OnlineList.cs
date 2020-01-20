@@ -19,14 +19,28 @@ namespace OnlineLists
 
 		private List<string> itemsNotUploaded = new List<string>();
 		private string apiKey;
+		private string projectId;
 
 		private void Start()
 		{
-			apiKey = Config.instance.GetConfig()["apiKeys"]["todoist"];
-
+			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 			InvokeRepeating("UploadMissingItems", 30f, 10f);
+		}
+
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			apiKey = config["apiKey"];
+			projectId = config["todoistId"];
+		}
+
+		public override void Run()
+		{
+			this.ReloadConfig();
+			StartCoroutine(Fade(RunRoutine, 1f));
+			this.UpdateLastUpdatedText();
 		}
 
 		private void UploadMissingItems()
@@ -38,21 +52,11 @@ namespace OnlineLists
 			}
 		}
 
-		public override void Run()
-		{
-			apiKey = Config.instance.GetConfig()["apiKeys"]["todoist"];
-			StartCoroutine(Fade(RunRoutine, 1f));
-			this.UpdateLastUpdatedText();
-		}
-
 		private IEnumerator RunRoutine()
 		{
-			string projectId = Config.instance.GetConfig()["todoist"][listType.ToString()];
-
-			UnityWebRequest request = UnityWebRequest.Get(Endpoints.TODOIST_PROJECT(projectId));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TODOIST_PROJECT(projectId));
 			request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 			yield return request.SendWebRequest();
-			string response = request.downloadHandler.text;
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)
@@ -67,12 +71,13 @@ namespace OnlineLists
 				Destroy(g.gameObject);
 			}
 
-			JSONNode json = JSON.Parse(response);
+			JSONNode json = JSON.Parse(request.downloadHandler.text);
 			foreach (JSONNode task in json)
 			{
 				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
-				e.GetNameText().text = task["content"].Value;
+				e.SetNameText(task["content"].Value);
 				e.SetTaskId(task["id"].Value);
+				e.SetApiKey(apiKey);
 			}
 		}
 
@@ -86,9 +91,6 @@ namespace OnlineLists
 
 		private IEnumerator AddItemRoutine(string item)
 		{
-			Config config = FindObjectOfType<Config>();
-
-			string projectId = config.GetConfig()["todoist"][listType.ToString()];
 			string uuid = System.Guid.NewGuid().ToString();
 			string json = "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";
 
@@ -120,5 +122,5 @@ namespace OnlineLists
 		}
 	}
 
-	public enum TodoistList { TODO, Shopping };
+	public enum TodoistList { todoList, shoppingList };
 }

@@ -12,7 +12,7 @@ namespace Train
 	{
 		[Header("Train Settings")]
 		[SerializeField] private TrainEntry[] trainEntries;
-		private JSONNode json;
+		private JSONNode config;
 
 		private string apiToken;
 		private string stationCode;
@@ -20,19 +20,22 @@ namespace Train
 		private int maxDestinationLength = 10;
 
 		private void Start()
-		{
-			apiToken 	= Config.instance.GetConfig()["apiKeys"]["trains"];
-			stationCode = Config.instance.GetConfig()["trains"]["stationCode"];
-			
+		{			
+			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
+		public override void ReloadConfig()
+		{
+			config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			apiToken 	= config["apiKey"];
+			stationCode = config["stationCode"];
+		}
+
 		public override void Run()
 		{
-			apiToken = Config.instance.GetConfig()["apiKeys"]["trains"];
-			stationCode = Config.instance.GetConfig()["trains"]["stationCode"];
-
+			this.ReloadConfig();
 			StartCoroutine(Fade(PopulateEntries, 1f));
 			this.UpdateLastUpdatedText();
 		}
@@ -51,7 +54,7 @@ namespace Train
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 
-			json = JSON.Parse(response);
+			JSONNode json = JSON.Parse(response);
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)

@@ -16,14 +16,20 @@ public class Splitwise : Widget
 	
 	private void Start()
     {
+		this.ReloadConfig();
         this.Initialise();
-		groupId = Config.instance.GetConfig()["splitwise"]["groupId"];
 		InvokeRepeating("Run", 0f, RepeatRateInSeconds());
     }
 
+	public override void ReloadConfig()
+	{
+		JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+		groupId = config["groupId"];
+	}
+
     public override void Run()
 	{
-		groupId = Config.instance.GetConfig()["splitwise"]["groupId"];
+		this.ReloadConfig();
 		StartCoroutine(RunRoutine());
 		this.UpdateLastUpdatedText();
 	}
