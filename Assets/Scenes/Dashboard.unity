@@ -8330,8 +8330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
   - bbcNews
+  - apiKey
   value: {fileID: 261337605}
 --- !u!1 &362884053
 GameObject:
@@ -10302,7 +10302,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1920043809}
   m_HandleRect: {fileID: 1920043808}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000002
   m_Size: 0.515451
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -41781,8 +41781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
   - bbcNews
+  - secondsBetweenArticles
   value: {fileID: 208993962}
 --- !u!1 &1601423860
 GameObject:
@@ -42944,8 +42944,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
   - bbcNews
+  - textColour
   value: {fileID: 398346246}
 --- !u!1 &1671605209
 GameObject:
@@ -47450,8 +47450,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
   - bbcNews
+  - repeatRate
   value: {fileID: 1402145674}
 --- !u!1 &1848710160
 GameObject:
@@ -49993,8 +49993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configFile: {fileID: 4900000, guid: c3435ac72635ad34399cea81350ea9d8, type: 3}
-  configFileTemplate: {fileID: 4900000, guid: 9d96f2a7fae199647a4357c16422d5d4, type: 3}
+  configFile: {fileID: 4900000, guid: 44454a10ff2d54964932a0a670be6fe7, type: 3}
+  configFileTemplate: {fileID: 4900000, guid: d2caa4d30bb3c45908ed15e900fbcc29, type: 3}
 --- !u!4 &1944233603
 Transform:
   m_ObjectHideFlags: 0
@@ -50553,8 +50553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
   - bbcNews
+  - colour
   value: {fileID: 652053493}
 --- !u!1 &1974547653
 GameObject:
@@ -52430,8 +52430,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
   - bbcNews
+  - repeatTime
   value: {fileID: 1130266537}
 --- !u!1 &2029329639
 GameObject:
