@@ -1199,13 +1199,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 27887610}
   m_TextComponent: {fileID: 452720335}
   m_Placeholder: {fileID: 201146416}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -1768,8 +1768,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - tommhewitt@gmail.com
+  - repeatTime
   value: {fileID: 1301803614}
 --- !u!1 &70545276
 GameObject:
@@ -3022,8 +3022,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - laurencolesyt@gmail.com
+  - repeatTime
   value: {fileID: 434504480}
 --- !u!1 &111556904
 GameObject:
@@ -3778,8 +3778,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - tommhewitt@gmail.com
+  - apiKey
   value: {fileID: 275553741}
 --- !u!1 &147287299
 GameObject:
@@ -11158,8 +11158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - tommhewitt@gmail.com
+  - repeatRate
   value: {fileID: 1539391070}
 --- !u!1 &451464713
 GameObject:
@@ -12765,8 +12765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - tommhewitt@gmail.com
+  - textColour
   value: {fileID: 1684294870}
 --- !u!1 &485637333
 GameObject:
@@ -14937,8 +14937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - laurencolesyt@gmail.com
+  - textColour
   value: {fileID: 261442903}
 --- !u!224 &597464902 stripped
 RectTransform:
@@ -16073,8 +16073,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - tommhewitt@gmail.com
+  - colour
   value: {fileID: 1105607872}
 --- !u!1 &645736517
 GameObject:
@@ -19536,8 +19536,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - laurencolesyt@gmail.com
+  - repeatRate
   value: {fileID: 27887609}
 --- !u!1 &787986253
 GameObject:
@@ -28516,7 +28516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyTree:
   - clock
-  - repeateTime
+  - repeatTime
   value: {fileID: 1366668811}
 --- !u!1 &1148680747
 GameObject:
@@ -37877,8 +37877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - laurencolesyt@gmail.com
+  - colour
   value: {fileID: 882463324}
 --- !u!1 &1473838657
 GameObject:
@@ -40052,13 +40052,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1539391071}
   m_TextComponent: {fileID: 667444357}
   m_Placeholder: {fileID: 1832836353}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -40969,8 +40969,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - laurencolesyt@gmail.com
+  - apiKey
   value: {fileID: 800288996}
 --- !u!1 &1574873907
 GameObject:
