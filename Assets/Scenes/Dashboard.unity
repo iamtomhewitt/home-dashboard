@@ -1307,8 +1307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - binDay
+  - firstGreenBin
   value: {fileID: 808304117}
 --- !u!1 &30088316
 GameObject:
@@ -4914,13 +4914,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 208993963}
   m_TextComponent: {fileID: 1948694615}
   m_Placeholder: {fileID: 1809989741}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -11050,13 +11050,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 437254668}
   m_TextComponent: {fileID: 1460827633}
   m_Placeholder: {fileID: 944452541}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -11628,13 +11628,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 457254195}
   m_TextComponent: {fileID: 1848710162}
   m_Placeholder: {fileID: 1499944510}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -11736,8 +11736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - binDay
+  - firstBlackBin
   value: {fileID: 20120034}
 --- !u!1001 &461566857
 PrefabInstance:
@@ -13046,8 +13046,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - binDay
+  - colour
   value: {fileID: 688582992}
 --- !u!1 &508529041
 GameObject:
@@ -13520,8 +13520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - binDay
+  - repeatRateInDays
   value: {fileID: 457254194}
 --- !u!1 &529747597
 GameObject:
@@ -22167,7 +22167,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Seconds Between Articles
+  m_Text: First Green Bin Date
 --- !u!222 &916397379
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22377,8 +22377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - binDay
+  - repeatRate
   value: {fileID: 437254667}
 --- !u!1 &923125477
 GameObject:
@@ -25377,7 +25377,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 1
+  m_Spacing: 50
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -27410,7 +27410,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Seconds Between Articles
+  m_Text: Repeat Rate In Days
 --- !u!222 &1106984530
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36151,13 +36151,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1402145675}
   m_TextComponent: {fileID: 501044084}
   m_Placeholder: {fileID: 839838751}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -41040,7 +41040,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Seconds Between Articles
+  m_Text: First Black Bin Date
 --- !u!222 &1574873910
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -50137,8 +50137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - binDay
+  - repeatTime
   value: {fileID: 1775674759}
 --- !u!1 &1962798043
 GameObject:
@@ -51494,8 +51494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - binDay
+  - textColour
   value: {fileID: 1543973423}
 --- !u!1 &1998787817
 GameObject:
