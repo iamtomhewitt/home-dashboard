@@ -12,9 +12,7 @@ public class Setting : MonoBehaviour
 
 	private void Start()
 	{
-		Config config = Config.instance;
-
-		JSONNode node = config.GetConfig();
+		JSONNode node = Config.instance.GetConfig();
 
 		// Find the correct node to update
 		foreach (string key in keyTree)
@@ -29,7 +27,6 @@ public class Setting : MonoBehaviour
 	/// Returns the key of the value of the tree.
 	/// E.g. apiKeys->googleCalendars->someone@gmail.com would return the key someone@gmail.com
 	/// </summary>
-	/// <returns></returns>
 	public string[] GetKeyTree()
 	{
 		return keyTree;

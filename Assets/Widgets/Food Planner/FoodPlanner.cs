@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Dialog;
 using SimpleJSON;
 using OnlineLists;
+using Requests;
 
 namespace FoodPlannerWidget
 {
@@ -19,10 +20,9 @@ namespace FoodPlannerWidget
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
-		public override void Run()
-		{
-			// Nothing to do!
-		}
+		public override void ReloadConfig() {}
+
+		public override void Run() {}
 
 		/// <summary>
 		/// Adds all the ingredients from all the recipes to the shopping list.
@@ -53,6 +53,8 @@ namespace FoodPlannerWidget
 
 			if (dialog.GetResult() == DialogResult.YES)
 			{
+				dialog.Hide();
+
 				List<Ingredient> ingredients = new List<Ingredient>();
 
 				// For each day
@@ -60,7 +62,7 @@ namespace FoodPlannerWidget
 				foreach (PlannerEntry entry in plannerEntries)
 				{
 					// Get the ingredients by recipe
-					UnityWebRequest request = Postman.CreateGetRequest(RecipeManagerEndpoints.RECIPES + "?name=" + entry.GetRecipeName());
+					UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES + "?name=" + entry.GetRecipeName());
 					yield return request.SendWebRequest();
 
 					JSONNode responseJson = JSON.Parse(request.downloadHandler.text);
@@ -98,7 +100,6 @@ namespace FoodPlannerWidget
 					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
 				}
 
-				dialog.Hide();
 				dialog.None();
 				yield break;
 			}

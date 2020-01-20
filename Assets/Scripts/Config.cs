@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using SimpleJSON;
 using System.IO;
+using Dialog;
 
 /// <summary>
 /// Access config as JSON via this component. <para/>
@@ -26,16 +27,17 @@ public class Config : MonoBehaviour
 		if (configFile != null)
 		{
 			root = JSON.Parse(configFile.text);
+			SaveToFile();
 		}
 		else if (File.Exists(filePath))
 		{
-			print("A config file has already been created at: " + filePath + ", using that one.");
+			Debug.Log("A config file has already been created at: " + filePath + ", using that one.");
 			string contents = GetFileContents(filePath);
 			root = JSON.Parse(contents);
 		}
 		else
 		{
-			print("A config file has not been specified, creating one.");
+			Debug.Log("A config file has not been specified, creating one.");
 			CreateNewFile(filePath);
 			root = JSON.Parse(configFileTemplate.text);
 		}
@@ -43,7 +45,7 @@ public class Config : MonoBehaviour
 
 	public JSONNode GetConfig()
 	{
-		return root;
+		return root["widgets"];
 	}
 
 	public void Replace(JSONNode key, string value)

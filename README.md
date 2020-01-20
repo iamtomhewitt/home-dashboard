@@ -36,21 +36,19 @@ A widget that cycles headlines every minute. New headlines are fetched over time
 Forecast for now, and the next four days.
 
 ### 🚂 Trains
-A scrollable widget showing the latest trains from my local stations, showing any cancellations or delays.
+A scrollable widget showing the latest trains from my local stations, showing any cancellations or delays. It uses an [api I built](https://github.com/iamtomhewitt/home-dashboard-train-manager).
 
 ### 🚮 Bin Day
 An alert to show if the bin needs putting out. Changes colour based on which bin to put out.
+
+### 💰 Splitwise
+A widget that shows the amounts owed in our Splitwise group. It uses an [api I built](https://github.com/iamtomhewitt/home-dashboard-splitwise-manager).
 
 ### 🥘 Food Planner
 An editable set of 'cards' to show what we're having for our evening meal for the week.
 I've also incorporated a set of predefined recipes from what we eat often. Pressing the button at the bottom of the planner will add every single ingredient from all the predefined recipes for that week to the shopping list widget, so you can plan your weekly shop based on what you are eating. Duplicate ingredients are also removed, so if you have a recipe of 200g of chicken, and another recipe with 400g of chicken, then 600g of chicken is added to your shopping list.
 
 The recipes and planner is stored on an [api I built](https://github.com/iamtomhewitt/home-dashboard-recipe-manager).
-
-## 💡 Potential Widget / General Ideas
-
-### Rotating Widgets
-As it stands the dashboard is a bit constrained for room. Suggest that any future widgets can sit over the top of another widget, and switch with another widget in its place. E.g. the Google Calendar widgets could be combined into one and switch between calendars every `x` seconds.
 
 ## 👷‍♂️ Getting Started
 Have the dashboard and need a hand setting it up? Follow [this guide](GETTING&#32;STARTED.md)!

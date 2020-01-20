@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using SimpleJSON;
 
 namespace BinDay
 {
@@ -17,17 +18,27 @@ namespace BinDay
 		private DateTime firstGreenBinDay;
 		private DateTime firstBlackBinDay;
 
+		private int repeatRateInDays;
+
 		private void Start()
 		{
-			firstGreenBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstGreenBin"], "dd-MM-yyyy", null);
-			firstBlackBinDay = DateTime.ParseExact(Config.instance.GetConfig()["binDay"]["firstBlackBin"], "dd-MM-yyyy", null);
-
+			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			firstGreenBinDay = DateTime.ParseExact(config["firstGreenBin"], "dd-MM-yyyy", null);
+			firstBlackBinDay = DateTime.ParseExact(config["firstBlackBin"], "dd-MM-yyyy", null);
+			repeatRateInDays = config["repeatRateInDays"];
+		}
+
 		public override void Run()
 		{
+			this.ReloadConfig();
+
 			DateTime today = DateTime.Today;
 			DateTime tomorrow = today.AddDays(1);
 
@@ -84,7 +95,7 @@ namespace BinDay
 		{
 			DateTime today = DateTime.Today;
 			int days = (int)(today - firstBinDate).TotalDays;
-			int remainder = days % 14;
+			int remainder = days % repeatRateInDays;
 			return today.AddDays(-remainder);
 		}
 

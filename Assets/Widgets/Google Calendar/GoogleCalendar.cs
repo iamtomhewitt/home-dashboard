@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
+using Requests;
 
 namespace GoogleCalendar
 {
@@ -20,14 +21,20 @@ namespace GoogleCalendar
 
 		private void Start()
 		{
-			apiKey = Config.instance.GetConfig()["apiKeys"]["googleCalendars"][gmailAddress];
-
+			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			apiKey = config["apiKey"];
+		}
+
 		public override void Run()
 		{
+			this.ReloadConfig();
 			StartCoroutine(Fade(RunRoutine, 1f));
 			this.UpdateLastUpdatedText();
 		}
@@ -36,12 +43,8 @@ namespace GoogleCalendar
 		{
 			string today = DateTime.Now.ToString("yyyy-MM-dd");
 			string future = DateTime.Now.AddMonths(6).ToString("yyyy-MM-dd");
-
-			string url = "https://www.googleapis.com/calendar/v3/calendars/" + gmailAddress +
-							"/events?orderBy=startTime&singleEvents=true&timeMax=" + future + "T10:00:00-07:00&timeMin=" + today + "T10:00:00-07:00&key=" +
-							apiKey;
-
-			UnityWebRequest request = UnityWebRequest.Get(url);
+			
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.GOOGLE_CALENDAR(gmailAddress, future, today, apiKey));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 

@@ -10,7 +10,6 @@ namespace Dialog
 		{
 			[SerializeField] private OnlineList list;
 			[SerializeField] private Text statusText;
-			[SerializeField] private TodoistList listType;
 
 			/// <summary>
 			/// Called from a button.

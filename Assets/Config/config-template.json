@@ -1,26 +1,90 @@
 {
-	"apiKeys": {
-		"bbcNews": "your_key",
-		"googleCalendars": {
-			"your_gmail_address": "your_key"
+    "widgets": {
+        "bbcNews": {
+            "title": "BBC News",
+            "colour": "#BB1919",
+            "textColour": "#FFFFFF",
+            "repeatRate": 30,
+            "repeatTime": "minutes",
+            "secondsBetweenArticles": 45,
+            "apiKey": "<key>"
+        },
+        "binDay": {
+            "title": "Bin Day",
+            "colour": "#03A9F4",
+            "textColour": "#FFFFFF",
+            "repeatRate": 2,
+            "repeatTime": "hours",
+            "firstGreenBin": "07-10-2019",
+            "firstBlackBin": "14-10-2019",
+            "repeatRateInDays": 14
 		},
-		"todoist": "your_key",
-		"trains": "your_key",
-		"weather": "your_key"
-	},
-	"binDay": {
-		"firstGreenBin": "dd-MM-YYYY",
-		"firstBlackBin": "dd-MM-YYYY"
-	},
-	"todoist": {
-		"TODO": "project_id",
-		"Shopping": "project_id"
-	},
-	"trains": {
-		"stationCode": "station_code"
-	},
-	"weather": {
-		"latitude": "number",
-		"longitude": "number"
-	}
+		"clock": {
+            "title": "Clock",
+            "colour": "#03A9F4",
+            "textColour": "#FFFFFF",
+            "repeatRate": 1,
+			"repeatTime": "seconds"
+		},
+        "foodPlanner": {
+            "title": "Food Planner",
+            "colour": "#431EDB",
+            "textColour": "#FFFFFF",
+            "repeatRate": 10,
+            "repeatTime": "hours"
+        },
+		"someone@gmail.com": {
+			"title": "Tom's Calendar",
+			"colour": "#4285F4",
+			"textColour": "#FFFFFF",
+			"repeatRate": 30,
+			"repeatTime": "minutes",
+			"apiKey": ""
+		},
+        "shoppingList": {
+            "title": "Shopping List",
+            "colour": "#BDA7FF",
+            "textColour": "#FFFFFF",
+            "repeatRate": 10,
+            "repeatTime": "minutes",
+            "todoistId": "id",
+            "apiKey": "key"
+        },
+        "todoList": {
+            "title": "TODO List",
+            "colour": "#303F9F",
+            "textColour": "#FFFFFF",
+            "repeatRate": 10,
+            "repeatTime": "minutes",
+            "todoistId": "id",
+            "apiKey": "key"
+        },
+        "splitwise": {
+            "title": "Splitwise",
+            "colour": "#51BC9C",
+            "textColour": "#FFFFFF",
+            "repeatRate": 2,
+            "repeatTime": "hours",
+            "groupId": "groupId"
+        },
+        "trains": {
+            "title": "Trains",
+            "colour": "#43A047",
+            "textColour": "#FFFFFF",
+            "repeatRate": 1,
+            "repeatTime": "minutes",
+            "apiKey": "key",
+            "stationCode": "HRS"
+        },
+        "weather": {
+            "title": "Weather",
+            "colour": "#FF9500",
+            "textColour": "#FFFFFF",
+            "repeatRate": 10,
+            "repeatTime": "minutes",
+            "apiKey": "key",
+            "latitude": "lat",
+            "longitude": "long"
+        }
+    }
 }

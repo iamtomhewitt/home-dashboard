@@ -3,6 +3,8 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
 using Dialog;
+using Requests;
+using SimpleJSON;
 
 namespace OnlineLists
 {
@@ -10,6 +12,13 @@ namespace OnlineLists
 	{
 		[SerializeField] private Text nameText;
 		[SerializeField] private string taskId;
+
+		private string apiKey;
+
+		public void SetNameText(string text)
+		{
+			nameText.text = text;
+		}
 
 		public Text GetNameText()
 		{
@@ -19,6 +28,11 @@ namespace OnlineLists
 		public void SetTaskId(string id)
 		{
 			taskId = id;
+		}
+
+		public void SetApiKey(string apiKey)
+		{
+			this.apiKey = apiKey;
 		}
 
 		// Called from the 'X' button
@@ -50,9 +64,8 @@ namespace OnlineLists
 				dialog.Hide();
 
 				string url = "https://api.todoist.com/rest/v1/tasks/" + taskId + "/close";
-				string apiKey = Config.instance.GetConfig()["apiKeys"]["todoist"];
 
-				UnityWebRequest request = UnityWebRequest.Post(url, "");
+				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.TODOIST_TASKS + "/" + taskId + "/close", new JSONObject());
 				request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 				yield return request.SendWebRequest();
 

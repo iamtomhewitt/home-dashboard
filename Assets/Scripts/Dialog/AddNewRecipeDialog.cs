@@ -1,4 +1,5 @@
-﻿using SimpleJSON;
+﻿using Requests;
+using SimpleJSON;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -46,7 +47,7 @@ namespace Dialog
 			json.Add("name", recipeName.text);
 			json.Add("ingredients", ingredientsArray);
 
-			UnityWebRequest request = Postman.CreatePostRequest(RecipeManagerEndpoints.RECIPES_ADD, json);
+			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.RECIPES_ADD, json);
 			yield return request.SendWebRequest();
 
 			JSONNode response = JSON.Parse(request.downloadHandler.text);

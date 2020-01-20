@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
 using SimpleJSON;
+using Requests;
 
 namespace Dialog
 {
@@ -26,7 +27,7 @@ namespace Dialog
 		{
 			ClearExistingRecipes();
 
-			UnityWebRequest request = Postman.CreateGetRequest(RecipeManagerEndpoints.RECIPES);
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES);
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 
@@ -54,6 +55,7 @@ namespace Dialog
 		{
 			freeTextRecipe = freeTextInput.text;
 			selectedRecipe = "";
+			freeTextInput.text = "";
 			SetResult(DialogResult.FINISHED);
 			Hide();
 		}

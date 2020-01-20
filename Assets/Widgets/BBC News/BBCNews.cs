@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
+using Requests;
 
 namespace BBCNews
 {
@@ -10,33 +11,39 @@ namespace BBCNews
 	{
 		[Header("BBC News Settings")]
 		[SerializeField] private BBCNewsEntry entry;
-		[SerializeField] private float secondsBetweenArticles = 60f;
 
 		private JSONNode json;
 
 		private string apiKey;
+		private float secondsBetweenArticles;
 		private int currentArticleIndex = 0;
 
 		private void Start()
 		{
+			this.ReloadConfig();
 			this.Initialise();
-			apiKey = Config.instance.GetConfig()["apiKeys"]["bbcNews"];
 
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);			
 		}
 
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			apiKey = config["apiKey"];
+			secondsBetweenArticles = config["secondsBetweenArticles"];
+		}
+
 		public override void Run()
 		{
+			this.ReloadConfig();
 			StartCoroutine(RequestHeadlines());
 			this.UpdateLastUpdatedText();
 		}
 
 		private IEnumerator RequestHeadlines()
 		{
-			string url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=" + apiKey;
-
-			UnityWebRequest request = UnityWebRequest.Get(url);
+			UnityWebRequest request = UnityWebRequest.Get(Endpoints.BBC_NEWS(apiKey));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 
