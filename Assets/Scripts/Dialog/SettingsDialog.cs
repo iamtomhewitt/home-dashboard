@@ -15,7 +15,7 @@ namespace Dialog
 
 			foreach (Setting setting in settings)
 			{
-				if (!setting.GetValue().Equals(""))
+				if (!string.IsNullOrEmpty(setting.GetValue()))
 				{
 					JSONNode node = config.GetConfig();
 

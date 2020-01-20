@@ -31,13 +31,13 @@ public class Config : MonoBehaviour
 		}
 		else if (File.Exists(filePath))
 		{
-			WidgetLogger.instance.Log("A config file has already been created at: " + filePath + ", using that one.");
+			Debug.Log("A config file has already been created at: " + filePath + ", using that one.");
 			string contents = GetFileContents(filePath);
 			root = JSON.Parse(contents);
 		}
 		else
 		{
-			WidgetLogger.instance.Log("A config file has not been specified, creating one.");
+			Debug.Log("A config file has not been specified, creating one.");
 			CreateNewFile(filePath);
 			root = JSON.Parse(configFileTemplate.text);
 		}
