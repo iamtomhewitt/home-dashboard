@@ -14112,8 +14112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - splitwise
+  - repeatRate
   value: {fileID: 1743935228}
 --- !u!1 &553089209
 GameObject:
@@ -16821,7 +16821,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Repeat Time
+  m_Text: Group ID
 --- !u!222 &671492229
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24164,8 +24164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - splitwise
+  - groupId
   value: {fileID: 747930157}
 --- !u!1 &976092396
 GameObject:
@@ -45253,13 +45253,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1743935229}
   m_TextComponent: {fileID: 1529619342}
   m_Placeholder: {fileID: 1551721887}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -45515,8 +45515,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - splitwise
+  - textColour
   value: {fileID: 1679215702}
 --- !u!224 &1749437073 stripped
 RectTransform:
@@ -49871,8 +49871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - splitwise
+  - colour
   value: {fileID: 575025978}
 --- !u!1 &1938625552
 GameObject:
@@ -49925,8 +49925,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - splitwise
+  - repeatTime
   value: {fileID: 1840456001}
 --- !u!1 &1940725946
 GameObject:
