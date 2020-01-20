@@ -8607,13 +8607,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 367719214}
   m_TextComponent: {fileID: 1998787819}
   m_Placeholder: {fileID: 1112066146}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -19405,8 +19405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - clock
+  - colour
   value: {fileID: 217014414}
 --- !u!1 &774999088
 GameObject:
@@ -28515,8 +28515,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - clock
+  - repeateTime
   value: {fileID: 1366668811}
 --- !u!1 &1148680747
 GameObject:
@@ -29259,8 +29259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - clock
+  - repeatRate
   value: {fileID: 367719213}
 --- !u!1 &1192603192
 GameObject:
@@ -30029,8 +30029,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyTree:
-  - apiKeys
-  - bbcNews
+  - clock
+  - textColour
   value: {fileID: 382762575}
 --- !u!1 &1221279079
 GameObject:
