@@ -42,9 +42,14 @@ public class Config : MonoBehaviour
 		}
 	}
 
-	public JSONNode GetConfig()
+	public JSONNode GetWidgetConfig()
 	{
 		return root["widgets"];
+	}
+
+	public JSONNode GetDialogConfig()
+	{
+		return root["dialogs"];
 	}
 
 	public void Replace(JSONNode key, string value)

@@ -20,15 +20,15 @@ namespace FoodPlannerWidget
 		{
 			this.Initialise();
 
-			JSONNode config = Config.instance.GetConfig()[GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
 
 			addButton.color = Utils.Darken(GetWidgetColour());
 
 			foreach (PlannerEntry planner in FindObjectsOfType<PlannerEntry>())
 			{
 				planner.SetDayTextColour(GetTextColour());
-				planner.SetRecipeTextColour(ToColour(config["plannerTextColour"]));
-				planner.SetRecipeBackgroundColour(ToColour(config["plannerBackgroundColour"]));
+				planner.SetRecipeTextColour(Utils.ToColour(config["plannerTextColour"]));
+				planner.SetRecipeBackgroundColour(Utils.ToColour(config["plannerBackgroundColour"]));
 				planner.SetDayBackgroundColour(Utils.Lighten(GetWidgetColour()));
 			}
 

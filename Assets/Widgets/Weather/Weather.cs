@@ -33,7 +33,7 @@ namespace WeatherForecast
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey 		= config["apiKey"];
 			latitude 	= config["latitude"];
 			longitude 	= config["longitude"];
@@ -64,7 +64,7 @@ namespace WeatherForecast
 			currentSummary.color = GetTextColour();
 
 			currentIcon.sprite = GetSpriteForName(json["currently"]["icon"]);
-			currentIcon.color = ToColour(spriteColour);
+			currentIcon.color = Utils.ToColour(spriteColour);
 
 			currentTemperature.text = Mathf.RoundToInt((float)json["currently"]["temperature"]).ToString() + "°";
 			currentTemperature.color = GetTextColour();
@@ -79,7 +79,7 @@ namespace WeatherForecast
 
 				entry.SetDayText(date.DayOfWeek.ToString());
 				entry.SetIconSprite(GetSpriteForName(day["icon"]));
-				entry.SetColour(ToColour(spriteColour));
+				entry.SetColour(Utils.ToColour(spriteColour));
 				entry.SetTemperatureHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
 				entry.SetTemperatureLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
 			}

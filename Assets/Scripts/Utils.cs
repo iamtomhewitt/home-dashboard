@@ -16,4 +16,18 @@ public class Utils
 	{
 		return Color.Lerp(colour, Color.black, 0.3f);
 	}
+
+	public static Color ToColour(string hex)
+	{
+		Color colour;
+
+		if (ColorUtility.TryParseHtmlString(hex, out colour))
+		{
+            return colour;
+		}
+		else
+		{
+			return Color.white;
+		}
+	}
 }

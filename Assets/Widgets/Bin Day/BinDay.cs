@@ -29,13 +29,13 @@ namespace BinDay
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			firstGreenBinDay = DateTime.ParseExact(config["firstGreenBin"], "dd-MM-yyyy", null);
 			firstBlackBinDay = DateTime.ParseExact(config["firstBlackBin"], "dd-MM-yyyy", null);
 			repeatRateInDays = config["repeatRateInDays"];
-			greenBinColour = ToColour(config["greenBinColour"]);
-			blackBinColour = ToColour(config["blackBinColour"]);
-			noBinColour = ToColour(config["noBinColour"]);
+			greenBinColour = Utils.ToColour(config["greenBinColour"]);
+			blackBinColour = Utils.ToColour(config["blackBinColour"]);
+			noBinColour = Utils.ToColour(config["noBinColour"]);
 		}
 
 		public override void Run()

@@ -12,7 +12,7 @@ public class Setting : MonoBehaviour
 
 	private void Start()
 	{
-		JSONNode node = Config.instance.GetConfig();
+		JSONNode node = Config.instance.GetWidgetConfig();
 
 		// Find the correct node to update
 		foreach (string key in keyTree)

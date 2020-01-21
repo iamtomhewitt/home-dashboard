@@ -25,10 +25,10 @@ public abstract class Widget : MonoBehaviour
 
 	public void Initialise()
 	{
-		JSONNode config = Config.instance.GetConfig()[widgetConfigKey];
+		JSONNode config = Config.instance.GetWidgetConfig()[widgetConfigKey];
 		
-		widgetColour= ToColour(config["colour"]);
-		textColour 	= ToColour(config["textColour"]);
+		widgetColour= Utils.ToColour(config["colour"]);
+		textColour 	= Utils.ToColour(config["textColour"]);
 		title 		= config["title"];
 		repeatRate 	= config["repeatRate"];
 		timeUnit 	= config["repeatTime"];
@@ -115,19 +115,5 @@ public abstract class Widget : MonoBehaviour
 	public string GetWidgetConfigKey()
 	{
 		return widgetConfigKey;
-	}
-
-	public Color ToColour(string hex)
-	{
-		Color colour;
-
-		if (ColorUtility.TryParseHtmlString(hex, out colour))
-		{
-            return colour;
-		}
-		else
-		{
-			return Color.white;
-		}
 	}
 }
