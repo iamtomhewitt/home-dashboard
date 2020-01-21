@@ -23,6 +23,7 @@ namespace Dialog
 			Color textColour = Utils.ToColour(config["textColour"]);
 
 			SetDialogTitleColour(textColour);
+			SetTopBarColour(mainColour);
 			SetHideButtonColour(mainColour, textColour);
 
 			yesButton.GetComponent<Image>().color = mainColour;

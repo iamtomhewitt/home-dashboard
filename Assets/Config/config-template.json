@@ -97,14 +97,5 @@
 		"confirm": {
 			"mainColour": "",
 			"textColour": ""
-		},
-		"logger": {
-			"mainColour": "",
-			"textColour": ""
-		},
-		"settings": {
-			"mainColour": "",
-			"textColour": ""
 		}
-	}
 }

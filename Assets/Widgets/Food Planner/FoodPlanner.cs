@@ -50,6 +50,7 @@ namespace FoodPlannerWidget
 		private IEnumerator AddToShoppingListRoutine()
 		{
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
+			dialog.ApplyColours();
 			dialog.Show();
 			dialog.None();
 			dialog.SetInfoMessage("Add all ingredients from each recipe to the shopping list?");
