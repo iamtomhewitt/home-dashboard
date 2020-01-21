@@ -38,6 +38,10 @@ namespace BBCNews
 		{
 			this.ReloadConfig();
 			StartCoroutine(RequestHeadlines());
+
+			this.SetWidgetColour(GetWidgetColour());
+			entry.SetTextColour(GetTextColour());
+
 			this.UpdateLastUpdatedText();
 		}
 
