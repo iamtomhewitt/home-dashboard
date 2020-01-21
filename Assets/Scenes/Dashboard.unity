@@ -42455,7 +42455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topBarColour: {fileID: 1453742097}
   dialogTitle: {fileID: 1686534440}
-  hideButton: {fileID: 0}
+  hideButton: {fileID: 2126595011}
   infoText: {fileID: 380420347}
   yesButton: {fileID: 519467226}
   noButton: {fileID: 1108178850}
