@@ -27071,6 +27071,8 @@ MonoBehaviour:
   - {fileID: 1360675078}
   - {fileID: 1360859882}
   - {fileID: 226463854}
+  scrollbarBackground: {fileID: 419324818}
+  scrollbarHandle: {fileID: 1920043809}
 --- !u!1 &1275581300
 GameObject:
   m_ObjectHideFlags: 0
