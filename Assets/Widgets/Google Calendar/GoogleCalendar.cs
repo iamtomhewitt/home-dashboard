@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using SimpleJSON;
@@ -13,6 +14,8 @@ namespace GoogleCalendar
 		[Header("Google Calendar Settings")]
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
 		[SerializeField] private Transform scrollParent;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
 		[SerializeField] private string gmailAddress;
 
 		private JSONNode json;
@@ -84,6 +87,9 @@ namespace GoogleCalendar
 				eventEntry.SetDateTextColour(GetTextColour());
 				eventEntry.SetNameTextColour(GetTextColour());
 			}
+
+			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
+			scrollbarHandle.color = Utils.Lighten(GetWidgetColour(), 0.1f);
 		}
 	}
 }
