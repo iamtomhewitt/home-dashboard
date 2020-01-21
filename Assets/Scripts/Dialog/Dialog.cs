@@ -10,9 +10,8 @@ namespace Dialog
 	{
 		[Header("Dialog Settings")]
 		[SerializeField] private Image topBarColour;
-		[SerializeField] private Image hideButtonColour;
-		[SerializeField] private Text hideButtonText;
 		[SerializeField] private Text dialogTitle;
+		[SerializeField] private Button hideButton;
 
 		private DialogResult result;
 
@@ -26,14 +25,10 @@ namespace Dialog
 			dialogTitle.color = colour;
 		}
 
-		public void SetHideButtonTextColour(Color colour)
+		public void SetHideButtonColour(Color mainColour, Color textColour)
 		{
-			hideButtonText.color = colour;
-		}
-
-		public void SetHideButtonColour(Color colour)
-		{
-			hideButtonColour.color = colour;
+			hideButton.GetComponent<Image>().color = mainColour;
+			hideButton.GetComponentInChildren<Text>().color = textColour;
 		}
 
 		public DialogResult GetResult()

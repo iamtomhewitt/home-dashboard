@@ -6300,9 +6300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBarColour: {fileID: 0}
-  hideButtonColour: {fileID: 0}
-  hideButtonText: {fileID: 0}
   dialogTitle: {fileID: 0}
+  hideButton: {fileID: 0}
   recipeEntryPrefab: {fileID: 2612392186649539569, guid: dc7389160c967e7498e0c93c9414372c,
     type: 3}
   scrollViewContent: {fileID: 1490282456}
@@ -15802,9 +15801,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBarColour: {fileID: 298947502}
-  hideButtonColour: {fileID: 480320921}
-  hideButtonText: {fileID: 373544591}
   dialogTitle: {fileID: 1382790621}
+  hideButton: {fileID: 480320920}
   addButtonColour: {fileID: 1921489746}
   addButtonText: {fileID: 689909188}
   statusText: {fileID: 1345734257}
@@ -16129,9 +16127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBarColour: {fileID: 0}
-  hideButtonColour: {fileID: 0}
-  hideButtonText: {fileID: 0}
   dialogTitle: {fileID: 0}
+  hideButton: {fileID: 0}
   newIngredientEntry: {fileID: 1007645123536298326, guid: 33eb9437f13837744aa388b11d9681ab,
     type: 3}
   newIngredientsContent: {fileID: 1549560554}
@@ -19907,9 +19904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBarColour: {fileID: 0}
-  hideButtonColour: {fileID: 0}
-  hideButtonText: {fileID: 0}
   dialogTitle: {fileID: 0}
+  hideButton: {fileID: 0}
   log: {fileID: 1537583778}
 --- !u!1 &927733291
 GameObject:
@@ -42458,12 +42454,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBarColour: {fileID: 1453742097}
-  hideButtonColour: {fileID: 2126595012}
-  hideButtonText: {fileID: 1980166637}
   dialogTitle: {fileID: 1686534440}
+  hideButton: {fileID: 0}
   infoText: {fileID: 380420347}
-  yesButton: {fileID: 0}
-  noButton: {fileID: 0}
+  yesButton: {fileID: 519467226}
+  noButton: {fileID: 1108178850}
 --- !u!1 &1870469001
 GameObject:
   m_ObjectHideFlags: 0
@@ -47431,9 +47426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBarColour: {fileID: 0}
-  hideButtonColour: {fileID: 0}
-  hideButtonText: {fileID: 0}
   dialogTitle: {fileID: 0}
+  hideButton: {fileID: 0}
 --- !u!1 &2118230370
 GameObject:
   m_ObjectHideFlags: 0
@@ -47527,9 +47521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topBarColour: {fileID: 717354463}
-  hideButtonColour: {fileID: 1324325010}
-  hideButtonText: {fileID: 1679914238}
   dialogTitle: {fileID: 396567805}
+  hideButton: {fileID: 1324325009}
   addButtonColour: {fileID: 1601423863}
   addButtonText: {fileID: 1198032793}
   statusText: {fileID: 1435083302}

@@ -38,8 +38,7 @@ namespace Dialog
 			{
 				SetTopBarColour(widget.GetWidgetColour());
 				SetDialogTitleColour(widget.GetTextColour());
-				SetHideButtonTextColour(widget.GetTextColour());
-				SetHideButtonColour(widget.GetWidgetColour());
+				SetHideButtonColour(widget.GetWidgetColour(), widget.GetTextColour());
 				addButtonColour.color = widget.GetWidgetColour();
 				addButtonText.color = widget.GetTextColour();
 			}
