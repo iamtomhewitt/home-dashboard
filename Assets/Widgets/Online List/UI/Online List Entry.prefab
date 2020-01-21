@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 6896525837205753152}
+  removeButtonText: {fileID: 8070238037126011397}
   taskId: 
 --- !u!222 &7959397068062363433
 CanvasRenderer:

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using SimpleJSON;
 using System.IO;
-using Dialog;
 
 /// <summary>
 /// Access config as JSON via this component. <para/>

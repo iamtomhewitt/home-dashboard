@@ -11,6 +11,7 @@ namespace OnlineLists
 	public class OnlineListEntry : MonoBehaviour
 	{
 		[SerializeField] private Text nameText;
+		[SerializeField] private Text removeButtonText;
 		[SerializeField] private string taskId;
 
 		private string apiKey;
@@ -18,6 +19,11 @@ namespace OnlineLists
 		public void SetNameText(string text)
 		{
 			nameText.text = text;
+		}
+
+		public void SetNameTextColour(Color colour)
+		{
+			nameText.color = colour;
 		}
 
 		public Text GetNameText()
@@ -33,6 +39,11 @@ namespace OnlineLists
 		public void SetApiKey(string apiKey)
 		{
 			this.apiKey = apiKey;
+		}
+
+		public void SetRemoveButtonTextColour(Color colour)
+		{
+			removeButtonText.color = colour;
 		}
 
 		// Called from the 'X' button

@@ -8097,7 +8097,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1417317358}
   m_HandleRect: {fileID: 1417317357}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8729,8 +8729,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1920043809}
   m_HandleRect: {fileID: 1920043808}
   m_Direction: 2
-  m_Value: 1.0000002
-  m_Size: 0.515451
+  m_Value: 1
+  m_Size: 0.5154509
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10623,7 +10623,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1585299581}
   m_HandleRect: {fileID: 1585299580}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -40119,6 +40119,9 @@ MonoBehaviour:
   content: {fileID: 879678591}
   statusText: {fileID: 1435083302}
   listType: 0
+  addButton: {fileID: 1427047689}
+  scrollbarBackground: {fileID: 267346967}
+  scrollbarHandle: {fileID: 1086319288}
 --- !u!1 &1763916958
 GameObject:
   m_ObjectHideFlags: 0
@@ -42474,6 +42477,9 @@ MonoBehaviour:
   content: {fileID: 537251640}
   statusText: {fileID: 1345734257}
   listType: 1
+  addButton: {fileID: 1400614310}
+  scrollbarBackground: {fileID: 430204154}
+  scrollbarHandle: {fileID: 1674227128}
 --- !u!224 &1878106864 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8932881662907039469, guid: 2b808b19c90da494e918dbbeaa29bb95,
@@ -45155,7 +45161,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1556487574}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.14060754
+  m_Size: 0.14060752
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

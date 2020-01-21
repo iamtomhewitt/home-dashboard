@@ -16,6 +16,9 @@ namespace OnlineLists
 		[SerializeField] private Transform content;
 		[SerializeField] private Text statusText;
 		[SerializeField] private TodoistList listType;
+		[SerializeField] private Image addButton;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
 
 		private List<string> itemsNotUploaded = new List<string>();
 		private string apiKey;
@@ -26,7 +29,7 @@ namespace OnlineLists
 			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-			InvokeRepeating("UploadMissingItems", 30f, 10f);
+			InvokeRepeating("UploadMissingItems", 30f, 30f);
 		}
 
 		public override void ReloadConfig()
@@ -76,9 +79,15 @@ namespace OnlineLists
 			{
 				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
 				e.SetNameText(task["content"].Value);
+				e.SetNameTextColour(GetTextColour());
+				e.SetRemoveButtonTextColour(GetTextColour());
 				e.SetTaskId(task["id"].Value);
 				e.SetApiKey(apiKey);
 			}
+
+			addButton.color = Utils.Darken(GetWidgetColour());
+			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
+			scrollbarHandle.color = Utils.Lighten(GetWidgetColour());
 		}
 
 		/// <summary>
