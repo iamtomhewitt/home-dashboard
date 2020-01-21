@@ -1,6 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace Clock
 {
@@ -13,10 +13,17 @@ namespace Clock
 		private void Start()
 		{
 			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
+			InvokeRepeating("Run", 1f, RepeatRateInSeconds());
+
+			// Reload the config in an Invoke method as we don't want to reload config every second
+			InvokeRepeating("ReloadConfig", 2f, 3600f);
 		}
 
-		public override void ReloadConfig() {}
+		public override void ReloadConfig() 
+		{
+			clockText.color = GetTextColour();
+			dateText.color = GetTextColour();
+		}
 
 		public override void Run()
 		{

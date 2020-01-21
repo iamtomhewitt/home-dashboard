@@ -122,7 +122,6 @@ public abstract class Widget : MonoBehaviour
 		}
 		else
 		{
-			print('o');
 			return Color.white;
 		}
 	}
