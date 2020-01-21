@@ -4,7 +4,7 @@ public class Utils
 {
 	public static Color Lighten(Color colour)
 	{
-		return Color.Lerp(colour, Color.white, 0.3f);
+		return Lighten(colour, 0.3f);
 	}
 
 	public static Color Lighten(Color colour, float amount)

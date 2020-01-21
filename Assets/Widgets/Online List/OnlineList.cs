@@ -12,11 +12,12 @@ namespace OnlineLists
 	public class OnlineList : FadingWidget
 	{
 		[Header("Online List Settings")]
+		[SerializeField] private TodoistList listType;
 		[SerializeField] private OnlineListEntry entryPrefab;
 		[SerializeField] private Transform content;
 		[SerializeField] private Text statusText;
-		[SerializeField] private TodoistList listType;
-		[SerializeField] private Image addButton;
+		[SerializeField] private Text addButtonText;
+		[SerializeField] private Image addButtonColour;
 		[SerializeField] private Image scrollbarBackground;
 		[SerializeField] private Image scrollbarHandle;
 
@@ -85,7 +86,8 @@ namespace OnlineLists
 				e.SetApiKey(apiKey);
 			}
 
-			addButton.color = Utils.Darken(GetWidgetColour());
+			addButtonColour.color = Utils.Darken(GetWidgetColour());
+			addButtonText.color = GetTextColour();
 			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
 			scrollbarHandle.color = Utils.Lighten(GetWidgetColour());
 		}
