@@ -92,5 +92,19 @@
             "longitude": "long",
 			"spriteColour": "#FFFFF"
         }
-    }
+	},
+	"dialogs": {
+		"confirm": {
+			"mainColour": "",
+			"textColour": ""
+		},
+		"logger": {
+			"mainColour": "",
+			"textColour": ""
+		},
+		"settings": {
+			"mainColour": "",
+			"textColour": ""
+		}
+	}
 }
