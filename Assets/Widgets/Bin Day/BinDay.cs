@@ -33,6 +33,9 @@ namespace BinDay
 			firstGreenBinDay = DateTime.ParseExact(config["firstGreenBin"], "dd-MM-yyyy", null);
 			firstBlackBinDay = DateTime.ParseExact(config["firstBlackBin"], "dd-MM-yyyy", null);
 			repeatRateInDays = config["repeatRateInDays"];
+			greenBinColour = ToColour(config["greenBinColour"]);
+			blackBinColour = ToColour(config["blackBinColour"]);
+			noBinColour = ToColour(config["noBinColour"]);
 		}
 
 		public override void Run()
@@ -49,23 +52,23 @@ namespace BinDay
 
 			if (today == nextBlackBinDay || today == lastBlackBinDay)
 			{
-				Display("Black bin today!", FontStyle.Bold, blackBinColour, Lighten(blackBinColour));
+				Display("Black bin today!", FontStyle.Bold, blackBinColour, Utils.Lighten(blackBinColour));
 			}
 			else if (today == nextGreenBinDay || today == lastGreenBinDay)
 			{
-				Display("Green bin today!", FontStyle.Bold, greenBinColour, Darken(greenBinColour));
+				Display("Green bin today!", FontStyle.Bold, greenBinColour, Utils.Darken(greenBinColour));
 			}
 			else if (tomorrow == nextBlackBinDay || tomorrow == lastBlackBinDay)
 			{
-				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour, Lighten(blackBinColour));
+				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour, Utils.Lighten(blackBinColour));
 			}
 			else if (tomorrow == nextGreenBinDay || tomorrow == lastGreenBinDay)
 			{
-				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour, Darken(greenBinColour));
+				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour, Utils.Darken(greenBinColour));
 			}
 			else
 			{
-				Display("No bins today!", FontStyle.Normal, noBinColour, Darken(noBinColour));
+				Display("No bins today!", FontStyle.Normal, noBinColour, Utils.Darken(noBinColour));
 			}
 
 			this.UpdateLastUpdatedText();
@@ -74,21 +77,10 @@ namespace BinDay
 		private void Display(string message, FontStyle style, Color widgetColour, Color logoColour)
 		{
 			text.text = message;
+			text.color = GetTextColour();
 			text.fontStyle = style;
 			logo.color = logoColour;
 			this.SetWidgetColour(widgetColour);
-		}
-
-		private Color Darken(Color colour)
-		{
-			float multiplier = 0.75f;
-			return new Color(colour.r * multiplier, colour.g * multiplier, colour.b * multiplier, 1f);
-		}
-
-		private Color Lighten(Color colour)
-		{
-			float multiplier = 2f;
-			return new Color(colour.r * multiplier, colour.g * multiplier, colour.b * multiplier, 1f);
 		}
 
 		private DateTime GetLastBinDate(DateTime firstBinDate)
