@@ -17,5 +17,15 @@ namespace GoogleCalendar
 		{
 			return dateText;
 		}
+
+		public void SetNameTextColour(Color colour)
+		{
+			nameText.color = colour;
+		}
+
+		public void SetDateTextColour(Color colour)
+		{
+			dateText.color = colour;
+		}
 	}
 }

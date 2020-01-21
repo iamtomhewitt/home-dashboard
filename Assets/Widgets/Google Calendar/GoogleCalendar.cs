@@ -81,6 +81,8 @@ namespace GoogleCalendar
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
 				eventEntry.GetNameText().text = item["summary"];
 				eventEntry.GetDateText().text = time.ToString("dd MMM");
+				eventEntry.SetDateTextColour(GetTextColour());
+				eventEntry.SetNameTextColour(GetTextColour());
 			}
 		}
 	}
