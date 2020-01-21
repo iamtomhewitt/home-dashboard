@@ -29,12 +29,14 @@
             "repeatRate": 1,
 			"repeatTime": "seconds"
 		},
-        "foodPlanner": {
-            "title": "Food Planner",
-            "colour": "#431EDB",
-            "textColour": "#FFFFFF",
-            "repeatRate": 10,
-            "repeatTime": "hours"
+        "foodPlanner":{
+            "title":"Food Planner",
+            "colour":"#431EDB",
+            "textColour":"#FFFFFF",
+            "repeatRate":10,
+			"repeatTime":"hours",
+			"plannerBackgroundColour":"#FFFFFF",
+			"plannerTextColour": "#000000"
         },
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",

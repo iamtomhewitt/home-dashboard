@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Dialog;
@@ -13,10 +14,24 @@ namespace FoodPlannerWidget
 	{
 		[Header("Food Planner Settings")]
 		[SerializeField] private OnlineList shoppingList;
+		[SerializeField] private Image addButton;
 
 		private void Start()
 		{
 			this.Initialise();
+
+			JSONNode config = Config.instance.GetConfig()[GetWidgetConfigKey()];
+
+			addButton.color = Utils.Darken(GetWidgetColour());
+
+			foreach (PlannerEntry planner in FindObjectsOfType<PlannerEntry>())
+			{
+				planner.SetDayTextColour(GetTextColour());
+				planner.SetRecipeTextColour(ToColour(config["plannerTextColour"]));
+				planner.SetRecipeBackgroundColour(ToColour(config["plannerBackgroundColour"]));
+				planner.SetDayBackgroundColour(Utils.Lighten(GetWidgetColour()));
+			}
+
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 

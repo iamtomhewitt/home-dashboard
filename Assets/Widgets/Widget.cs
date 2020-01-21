@@ -36,7 +36,8 @@ public abstract class Widget : MonoBehaviour
 		UpdateLastUpdatedText();
 		SetTitleText(title);
 		SetWidgetColour(widgetColour);
-		SetTextColour(textColour);
+		SetLastUpdatedTextColour(textColour);
+		SetTitleTextColour(textColour);
 	}
 
 	public float RepeatRateInSeconds()
@@ -91,10 +92,14 @@ public abstract class Widget : MonoBehaviour
 		return widgetColour;
 	}
 	
-	private void SetTextColour(Color colour)
+	private void SetLastUpdatedTextColour(Color colour)
+	{
+		lastUpdatedText.color = colour;
+	}
+	
+	public void SetTitleTextColour(Color colour)
 	{
 		titleText.color = colour;
-		lastUpdatedText.color = colour;
 	}
 
 	public Color GetTextColour()
