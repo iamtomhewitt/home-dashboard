@@ -76,7 +76,7 @@ namespace BinDay
 			text.text = message;
 			text.fontStyle = style;
 			logo.color = logoColour;
-			this.SetColour(widgetColour);
+			this.SetWidgetColour(widgetColour);
 		}
 
 		private Color Darken(Color colour)

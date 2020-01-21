@@ -35,7 +35,7 @@ public abstract class Widget : MonoBehaviour
 
 		UpdateLastUpdatedText();
 		SetTitleText(title);
-		SetColour(widgetColour);
+		SetWidgetColour(widgetColour);
 		SetTextColour(textColour);
 	}
 
@@ -73,6 +73,7 @@ public abstract class Widget : MonoBehaviour
 	public void UpdateLastUpdatedText()
 	{
 		lastUpdatedText.text = "Last Updated: " + DateTime.Now.ToString("HH:mm");
+		lastUpdatedText.color = textColour;
 	}
 
 	private void SetTitleText(string s)
@@ -80,20 +81,25 @@ public abstract class Widget : MonoBehaviour
 		titleText.text = s;
 	}
 
-	public void SetColour(Color colour)
+	public void SetWidgetColour(Color colour)
 	{
 		widgetBackground.color = colour;
 	}
 
+	public Color GetWidgetColour()
+	{
+		return widgetColour;
+	}
+	
 	private void SetTextColour(Color colour)
 	{
 		titleText.color = colour;
 		lastUpdatedText.color = colour;
 	}
 
-	public Color GetWidgetColour()
+	public Color GetTextColour()
 	{
-		return widgetColour;
+		return textColour;
 	}
 
 	public string GetWidgetTitle()
@@ -106,7 +112,7 @@ public abstract class Widget : MonoBehaviour
 		return widgetConfigKey;
 	}
 
-	private Color ToColour(string hex)
+	public Color ToColour(string hex)
 	{
 		Color colour;
 
@@ -116,6 +122,7 @@ public abstract class Widget : MonoBehaviour
 		}
 		else
 		{
+			print('o');
 			return Color.white;
 		}
 	}

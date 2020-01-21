@@ -84,7 +84,8 @@
             "repeatTime": "minutes",
             "apiKey": "key",
             "latitude": "lat",
-            "longitude": "long"
+            "longitude": "long",
+			"spriteColour": "#FFFFF"
         }
     }
 }
