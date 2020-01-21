@@ -8,8 +8,11 @@ namespace Dialog
 	{
 		public class AddItemDialog : Dialog
 		{
-			[SerializeField] private OnlineList list;
+			[Header("Add Item Settings")]
+			[SerializeField] private Image addButtonColour;
+			[SerializeField] private Text addButtonText;
 			[SerializeField] private Text statusText;
+			[SerializeField] private OnlineList list;
 
 			/// <summary>
 			/// Called from a button.
@@ -26,6 +29,19 @@ namespace Dialog
 			{
 				list.AddItem(input.text);
 				input.text = "";
+			}
+
+			/// <summary>
+			/// Called from a Unity button when the dialog is shown (in this case, when pressing Add Item on an OnlineList)
+			/// </summary>
+			public void ApplyColours(Widget widget)
+			{
+				SetTopBarColour(widget.GetWidgetColour());
+				SetDialogTitleColour(widget.GetTextColour());
+				SetHideButtonTextColour(widget.GetTextColour());
+				SetHideButtonColour(widget.GetWidgetColour());
+				addButtonColour.color = widget.GetWidgetColour();
+				addButtonText.color = widget.GetTextColour();
 			}
 		}
 	}

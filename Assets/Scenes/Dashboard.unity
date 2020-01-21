@@ -6299,6 +6299,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a331a060e2112a748b5b21e564a7b957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topBarColour: {fileID: 0}
+  hideButtonColour: {fileID: 0}
+  hideButtonText: {fileID: 0}
+  dialogTitle: {fileID: 0}
   recipeEntryPrefab: {fileID: 2612392186649539569, guid: dc7389160c967e7498e0c93c9414372c,
     type: 3}
   scrollViewContent: {fileID: 1490282456}
@@ -15797,8 +15801,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0924e6291575c04bb777c983313ac8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list: {fileID: 1870469004}
+  topBarColour: {fileID: 298947502}
+  hideButtonColour: {fileID: 480320921}
+  hideButtonText: {fileID: 373544591}
+  dialogTitle: {fileID: 1382790621}
+  addButtonColour: {fileID: 1921489746}
+  addButtonText: {fileID: 689909188}
   statusText: {fileID: 1345734257}
+  list: {fileID: 1870469004}
 --- !u!1 &715590065
 GameObject:
   m_ObjectHideFlags: 0
@@ -16118,6 +16128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570a003e8f9fc7a46942c18b9169774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topBarColour: {fileID: 0}
+  hideButtonColour: {fileID: 0}
+  hideButtonText: {fileID: 0}
+  dialogTitle: {fileID: 0}
   newIngredientEntry: {fileID: 1007645123536298326, guid: 33eb9437f13837744aa388b11d9681ab,
     type: 3}
   newIngredientsContent: {fileID: 1549560554}
@@ -19892,6 +19906,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bc721b4281c8640985d73683e5be1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topBarColour: {fileID: 0}
+  hideButtonColour: {fileID: 0}
+  hideButtonText: {fileID: 0}
+  dialogTitle: {fileID: 0}
   log: {fileID: 1537583778}
 --- !u!1 &927733291
 GameObject:
@@ -28640,6 +28658,8 @@ MonoBehaviour:
   googleCalendarEventPrefab: {fileID: 7321161315731493455, guid: 389f46b08721e724f9bdf1259dd5c519,
     type: 3}
   scrollParent: {fileID: 1040976248}
+  scrollbarBackground: {fileID: 392277740}
+  scrollbarHandle: {fileID: 1417317358}
   gmailAddress: laurencolesyt@gmail.com
 --- !u!1 &1337709919
 GameObject:
@@ -31272,6 +31292,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 713499689}
+        m_MethodName: ApplyColours
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1870469004}
+          m_ObjectArgumentAssemblyTypeName: Widget, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1400614310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32356,6 +32387,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2118230374}
+        m_MethodName: ApplyColours
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1763180177}
+          m_ObjectArgumentAssemblyTypeName: Widget, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -40116,12 +40158,13 @@ MonoBehaviour:
   canvasGroup: {fileID: 1253615069}
   fadeSpeed: 2
   fadeInDelay: 0.15
+  listType: 0
   entryPrefab: {fileID: 8526732701419245916, guid: 3830930bc10367f48aba2d3e7b8c1143,
     type: 3}
   content: {fileID: 879678591}
   statusText: {fileID: 1435083302}
-  listType: 0
-  addButton: {fileID: 1427047689}
+  addButtonText: {fileID: 212071813}
+  addButtonColour: {fileID: 1427047689}
   scrollbarBackground: {fileID: 267346967}
   scrollbarHandle: {fileID: 1086319288}
 --- !u!1 &1763916958
@@ -41200,6 +41243,7 @@ MonoBehaviour:
   widgetBackground: {fileID: 76039609}
   widgetConfigKey: foodPlanner
   shoppingList: {fileID: 1870469004}
+  addButton: {fileID: 1229558779}
 --- !u!1 &1834119896
 GameObject:
   m_ObjectHideFlags: 0
@@ -42334,7 +42378,7 @@ GameObject:
   - component: {fileID: 1867786537}
   - component: {fileID: 1867786539}
   m_Layer: 5
-  m_Name: Remove Item Confirm Dialog
+  m_Name: Confirm Dialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42413,7 +42457,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f22ac28dda29b484db883c7074050462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topBarColour: {fileID: 1453742097}
+  hideButtonColour: {fileID: 2126595012}
+  hideButtonText: {fileID: 1980166637}
+  dialogTitle: {fileID: 1686534440}
   infoText: {fileID: 380420347}
+  yesButton: {fileID: 0}
+  noButton: {fileID: 0}
 --- !u!1 &1870469001
 GameObject:
   m_ObjectHideFlags: 0
@@ -42474,12 +42524,13 @@ MonoBehaviour:
   canvasGroup: {fileID: 466969349}
   fadeSpeed: 2
   fadeInDelay: 0.15
+  listType: 1
   entryPrefab: {fileID: 8526732701419245916, guid: 3830930bc10367f48aba2d3e7b8c1143,
     type: 3}
   content: {fileID: 537251640}
   statusText: {fileID: 1345734257}
-  listType: 1
-  addButton: {fileID: 1400614310}
+  addButtonText: {fileID: 487280474}
+  addButtonColour: {fileID: 1400614310}
   scrollbarBackground: {fileID: 430204154}
   scrollbarHandle: {fileID: 1674227128}
 --- !u!224 &1878106864 stripped
@@ -46372,6 +46423,8 @@ MonoBehaviour:
   googleCalendarEventPrefab: {fileID: 7321161315731493455, guid: 389f46b08721e724f9bdf1259dd5c519,
     type: 3}
   scrollParent: {fileID: 275628701}
+  scrollbarBackground: {fileID: 468320423}
+  scrollbarHandle: {fileID: 1585299581}
   gmailAddress: tommhewitt@gmail.com
 --- !u!1 &2069436460
 GameObject:
@@ -47377,6 +47430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affdd831b1e88c6438c3e33a2fe50227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topBarColour: {fileID: 0}
+  hideButtonColour: {fileID: 0}
+  hideButtonText: {fileID: 0}
+  dialogTitle: {fileID: 0}
 --- !u!1 &2118230370
 GameObject:
   m_ObjectHideFlags: 0
@@ -47469,8 +47526,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0924e6291575c04bb777c983313ac8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list: {fileID: 1763180177}
+  topBarColour: {fileID: 717354463}
+  hideButtonColour: {fileID: 1324325010}
+  hideButtonText: {fileID: 1679914238}
+  dialogTitle: {fileID: 396567805}
+  addButtonColour: {fileID: 1601423863}
+  addButtonText: {fileID: 1198032793}
   statusText: {fileID: 1435083302}
+  list: {fileID: 1763180177}
 --- !u!1 &2126595009
 GameObject:
   m_ObjectHideFlags: 0
