@@ -24,7 +24,7 @@ namespace Dialog
 			{
 				if (!string.IsNullOrEmpty(setting.GetValue()))
 				{
-					JSONNode node = config.GetWidgetConfig();
+					JSONNode node = setting.IsWidgetSetting() ? config.GetWidgetConfig() : config.GetDialogConfig();
 
 					// Find the correct node to update
 					foreach (string key in setting.GetKeyTree())
