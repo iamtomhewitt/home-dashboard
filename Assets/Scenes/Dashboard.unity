@@ -19914,10 +19914,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bc721b4281c8640985d73683e5be1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topBarColour: {fileID: 0}
-  dialogTitle: {fileID: 0}
-  hideButton: {fileID: 0}
+  topBarColour: {fileID: 1369370777}
+  dialogTitle: {fileID: 1898808173}
+  hideButton: {fileID: 94440075}
   log: {fileID: 1537583778}
+  scrollBackground: {fileID: 1114191421}
+  scrollHandle: {fileID: 705097021}
 --- !u!1 &927733291
 GameObject:
   m_ObjectHideFlags: 0
@@ -24101,7 +24103,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.000038146973, y: 0}
-  m_SizeDelta: {x: 1.27, y: 100.76001}
+  m_SizeDelta: {x: 1.27, y: 156.502}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1114191420
 MonoBehaviour:
@@ -24733,8 +24735,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -27.64}
-  m_SizeDelta: {x: -20, y: 35.28}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: -18.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1178797440
 GameObject:
@@ -25627,7 +25629,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -25652,8 +25654,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1206929988}
-        m_MethodName: ShowLog
+      - m_Target: {fileID: 927069750}
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 927069750}
+        m_MethodName: ApplyColours
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,5 +1,4 @@
-﻿using Dialog;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Version : MonoBehaviour
@@ -9,12 +8,4 @@ public class Version : MonoBehaviour
 		Button button = GetComponent<Button>();
 		button.GetComponentInChildren<Text>().text = "Version: " + Application.version;
     }
-	
-	/// <summary>
-	/// Called from a button.
-	/// </summary>
-	public void ShowLog()
-	{
-		FindObjectOfType<WidgetLogger>().Show();
-	}
 }
