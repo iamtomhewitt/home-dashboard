@@ -48473,8 +48473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configFile: {fileID: 0}
-  configFileTemplate: {fileID: 4900000, guid: d2caa4d30bb3c45908ed15e900fbcc29, type: 3}
+  configFile: {fileID: 4900000, guid: c3435ac72635ad34399cea81350ea9d8, type: 3}
+  configFileTemplate: {fileID: 4900000, guid: 9d96f2a7fae199647a4357c16422d5d4, type: 3}
 --- !u!4 &1944233603
 Transform:
   m_ObjectHideFlags: 0
