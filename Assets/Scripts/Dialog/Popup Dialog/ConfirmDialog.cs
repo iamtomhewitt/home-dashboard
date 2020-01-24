@@ -4,28 +4,15 @@ using SimpleJSON;
 
 namespace Dialog
 {
-	public class ConfirmDialog : Dialog
+	public class ConfirmDialog : PopupDialog
 	{
 		[Header("Confirm Settings")]
 		[SerializeField] private Text infoText;
 		[SerializeField] private Button yesButton;
 		[SerializeField] private Button noButton;
 
-		private void Start()
+		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{
-			Hide();
-		}
-
-		public void ApplyColours()
-		{
-			JSONNode config = Config.instance.GetDialogConfig()["confirm"];
-			Color mainColour = Utils.ToColour(config["mainColour"]);
-			Color textColour = Utils.ToColour(config["textColour"]);
-
-			SetDialogTitleColour(textColour);
-			SetTopBarColour(mainColour);
-			SetHideButtonColour(mainColour, textColour);
-
 			yesButton.GetComponent<Image>().color = mainColour;
 			yesButton.GetComponentInChildren<Text>().color = textColour;
 

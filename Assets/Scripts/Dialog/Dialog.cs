@@ -15,6 +15,14 @@ namespace Dialog
 
 		private DialogResult result;
 
+		public abstract void ApplyColours();
+		public abstract void ApplyAdditionalColours(Color mainColour, Color textColour);
+
+		private void Start()
+		{
+			Hide();
+		}
+
 		public void SetTopBarColour(Color colour)
 		{
 			topBarColour.color = colour;
@@ -94,6 +102,7 @@ namespace Dialog
 		/// </summary>
 		public void Show()
 		{
+			ApplyColours();
 			GetComponent<RectTransform>().localPosition = Vector2.zero;
 		}
 	}

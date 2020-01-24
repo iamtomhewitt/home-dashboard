@@ -5,11 +5,20 @@ using SimpleJSON;
 
 namespace Dialog
 {
-	public class SettingsDialog : Dialog
+	public class SettingsDialog : PopupDialog
 	{
 		[SerializeField] private Button saveButton;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
+
+		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
+		{
+			saveButton.GetComponent<Image>().color = mainColour;
+			saveButton.GetComponentInChildren<Text>().color = textColour;
+
+			scrollBackground.color = Utils.Darken(mainColour);
+			scrollHandle.color = Utils.Lighten(mainColour);
+		}
 
 		/// <summary>
 		/// Called from a Unity button, saves all the settings objects to the config file.
@@ -40,25 +49,6 @@ namespace Dialog
 			{
 				widget.Initialise();
 			}
-		}
-
-		/// <summary>
-		/// Called from a Unity button.
-		/// </summary>
-		public void ApplyColours()
-		{
-			JSONNode config = Config.instance.GetDialogConfig()["settings"];
-
-			Color mainColour = Utils.ToColour(config["mainColour"]);
-			Color textColour = Utils.ToColour(config["textColour"]);
-
-			SetTopBarColour(mainColour);
-			SetDialogTitleColour(textColour);
-			SetHideButtonColour(mainColour, textColour);
-			scrollBackground.color = Utils.Darken(mainColour);
-			scrollHandle.color = Utils.Lighten(mainColour);
-			saveButton.GetComponent<Image>().color = mainColour;
-			saveButton.GetComponentInChildren<Text>().color = textColour;
 		}
 	}
 }

@@ -7,10 +7,13 @@ using Requests;
 
 namespace Dialog
 {
-	public class RecipeSelectionDialog : Dialog
+	public class RecipeSelectionDialog : PopupDialog
 	{
 		[SerializeField] private RecipeEntry recipeEntryPrefab;
 		[SerializeField] private Transform scrollViewContent;
+		[SerializeField] private Button selectButton;
+		[SerializeField] private Image scrollBackground;
+		[SerializeField] private Image scrollHandle;
 
 		private string selectedRecipe;
 		private string freeTextRecipe;
@@ -82,6 +85,14 @@ namespace Dialog
 		{
 			Hide();
 			SetCancel();
+		}
+
+		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
+		{
+			selectButton.GetComponent<Image>().color = mainColour;
+			selectButton.GetComponentInChildren<Text>().color = textColour;
+			scrollBackground.color = Utils.Darken(mainColour);
+			scrollHandle.color = Utils.Lighten(mainColour);
 		}
 	}
 }

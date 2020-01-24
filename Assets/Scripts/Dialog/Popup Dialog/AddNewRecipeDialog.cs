@@ -1,14 +1,19 @@
-﻿using Requests;
-using SimpleJSON;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System.Collections;
+using Requests;
+using SimpleJSON;
 
 namespace Dialog
 {
-	public class AddNewRecipeDialog : Dialog
+	public class AddNewRecipeDialog : PopupDialog
 	{
+		[Header("Add New Recipe Dialog Settings")]
+		[SerializeField] private Button addRecipeButton;
+		[SerializeField] private Button addIngredientButton;
+		[SerializeField] private Image scrollBackground;
+		[SerializeField] private Image scrollHandle;
 		[SerializeField] private GameObject newIngredientEntry;
 		[SerializeField] private Transform newIngredientsContent;
 		[SerializeField] private InputField recipeName;
@@ -66,6 +71,18 @@ namespace Dialog
 			{
 				Destroy(i.gameObject);
 			}
+		}
+
+		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
+		{
+			addIngredientButton.GetComponent<Image>().color = mainColour;
+			addIngredientButton.GetComponentInChildren<Text>().color = textColour;
+
+			addRecipeButton.GetComponent<Image>().color = mainColour;
+			addRecipeButton.GetComponentInChildren<Text>().color = textColour;
+
+			scrollBackground.color = Utils.Darken(mainColour);
+			scrollHandle.color = Utils.Lighten(mainColour);
 		}
 	}
 }

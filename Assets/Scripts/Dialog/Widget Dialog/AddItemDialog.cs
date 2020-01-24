@@ -6,7 +6,7 @@ namespace Dialog
 {
 	namespace OnlineLists
 	{
-		public class AddItemDialog : Dialog
+		public class AddItemDialog : WidgetDialog
 		{
 			[Header("Add Item Settings")]
 			[SerializeField] private Image addButtonColour;
@@ -31,16 +31,10 @@ namespace Dialog
 				input.text = "";
 			}
 
-			/// <summary>
-			/// Called from a Unity button when the dialog is shown (in this case, when pressing Add Item on an OnlineList)
-			/// </summary>
-			public void ApplyColours(Widget widget)
+			public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 			{
-				SetTopBarColour(widget.GetWidgetColour());
-				SetDialogTitleColour(widget.GetTextColour());
-				SetHideButtonColour(widget.GetWidgetColour(), widget.GetTextColour());
-				addButtonColour.color = widget.GetWidgetColour();
-				addButtonText.color = widget.GetTextColour();
+				addButtonColour.color = mainColour;
+				addButtonText.color = textColour;
 			}
 		}
 	}
