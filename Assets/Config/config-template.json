@@ -94,9 +94,21 @@
         }
 	},
 	"dialogs": {
+		"addNewRecipe": {
+			"mainColour": "#E55353",
+			"textColour": "#FFFFFF"
+		},
 		"confirm": {
-			"mainColour": "",
-			"textColour": ""
+			"mainColour": "#309F36",
+			"textColour": "#FFFFFF"
+		},
+		"logs": {
+			"mainColour": "#FF9F00",
+			"textColour": "#FFFFFF"
+		},
+		"settings": {
+			"mainColour": "#58BAC8",
+			"textColour": "#FFFFFF"
 		}
 	}
 }

@@ -7379,12 +7379,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a331a060e2112a748b5b21e564a7b957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topBarColour: {fileID: 0}
-  dialogTitle: {fileID: 0}
-  hideButton: {fileID: 0}
+  topBarColour: {fileID: 93240577}
+  dialogTitle: {fileID: 2001373729}
+  hideButton: {fileID: 1620280994}
+  configKey: selectRecipe
   recipeEntryPrefab: {fileID: 2612392186649539569, guid: dc7389160c967e7498e0c93c9414372c,
     type: 3}
   scrollViewContent: {fileID: 1490282456}
+  freeTextButton: {fileID: 1934787579}
+  addRecipeButton: {fileID: 932480375}
+  freeTextInput: {fileID: 1340221788}
+  scrollBackground: {fileID: 850228667}
+  scrollHandle: {fileID: 1633478919}
 --- !u!1 &311365071
 GameObject:
   m_ObjectHideFlags: 0
@@ -17840,6 +17846,7 @@ MonoBehaviour:
   topBarColour: {fileID: 298947502}
   dialogTitle: {fileID: 1382790621}
   hideButton: {fileID: 480320920}
+  parentWidget: {fileID: 0}
   addButtonColour: {fileID: 1921489746}
   addButtonText: {fileID: 689909188}
   statusText: {fileID: 1345734257}
@@ -18112,7 +18119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: 0}
+  m_AnchoredPosition: {x: -119, y: 0}
   m_SizeDelta: {x: 7.738, y: 7.856}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &741027006
@@ -18163,9 +18170,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570a003e8f9fc7a46942c18b9169774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topBarColour: {fileID: 0}
-  dialogTitle: {fileID: 0}
-  hideButton: {fileID: 0}
+  topBarColour: {fileID: 1285005561}
+  dialogTitle: {fileID: 1659245635}
+  hideButton: {fileID: 1518211051}
+  configKey: addNewRecipe
+  addRecipeButton: {fileID: 1638539065}
+  addIngredientButton: {fileID: 683324716}
+  scrollBackground: {fileID: 1932287972}
+  scrollHandle: {fileID: 1453861276}
   newIngredientEntry: {fileID: 1007645123536298326, guid: 33eb9437f13837744aa388b11d9681ab,
     type: 3}
   newIngredientsContent: {fileID: 1549560554}
@@ -22388,6 +22400,7 @@ MonoBehaviour:
   topBarColour: {fileID: 1369370777}
   dialogTitle: {fileID: 1898808173}
   hideButton: {fileID: 94440075}
+  configKey: 
   log: {fileID: 1537583778}
   scrollBackground: {fileID: 1114191421}
   scrollHandle: {fileID: 705097021}
@@ -38488,7 +38501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 63, y: 0}
   m_SizeDelta: {x: 126, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1537583777
@@ -41047,8 +41060,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.26, y: -0.5}
-  m_SizeDelta: {x: 8.52, y: -1}
+  m_AnchoredPosition: {x: -0.26, y: 0}
+  m_SizeDelta: {x: 8.52, y: 0.0000038147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633478919
 MonoBehaviour:
@@ -41099,7 +41112,7 @@ GameObject:
   - component: {fileID: 1638539066}
   - component: {fileID: 1638539065}
   m_Layer: 5
-  m_Name: Add Button
+  m_Name: Add Recipe Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47118,6 +47131,7 @@ MonoBehaviour:
   topBarColour: {fileID: 1453742097}
   dialogTitle: {fileID: 1686534440}
   hideButton: {fileID: 2126595011}
+  configKey: confirm
   infoText: {fileID: 380420347}
   yesButton: {fileID: 519467226}
   noButton: {fileID: 1108178850}
@@ -53080,6 +53094,7 @@ MonoBehaviour:
   topBarColour: {fileID: 1604308973}
   dialogTitle: {fileID: 6340610}
   hideButton: {fileID: 626761012}
+  configKey: 
   saveButton: {fileID: 2143621650}
   scrollBackground: {fileID: 1999273951}
   scrollHandle: {fileID: 1556487575}
@@ -53178,6 +53193,7 @@ MonoBehaviour:
   topBarColour: {fileID: 717354463}
   dialogTitle: {fileID: 396567805}
   hideButton: {fileID: 1324325009}
+  parentWidget: {fileID: 0}
   addButtonColour: {fileID: 1601423863}
   addButtonText: {fileID: 1198032793}
   statusText: {fileID: 1435083302}
