@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using SimpleJSON;
 using System.IO;
-using Dialog;
 
 /// <summary>
 /// Access config as JSON via this component. <para/>
@@ -43,9 +42,14 @@ public class Config : MonoBehaviour
 		}
 	}
 
-	public JSONNode GetConfig()
+	public JSONNode GetWidgetConfig()
 	{
 		return root["widgets"];
+	}
+
+	public JSONNode GetDialogConfig()
+	{
+		return root["dialogs"];
 	}
 
 	public void Replace(JSONNode key, string value)

@@ -1,18 +1,19 @@
-﻿using SimpleJSON;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using SimpleJSON;
 
 /// <summary>
 /// A key lavel and value input field on the settings page.
 /// </summary>
 public class Setting : MonoBehaviour
 {
-	[SerializeField] private string[] keyTree;
 	[SerializeField] private InputField value;
+	[SerializeField] private bool widgetSetting;
+	[SerializeField] private string[] keyTree;
 
 	private void Start()
 	{
-		JSONNode node = Config.instance.GetConfig();
+		JSONNode node = widgetSetting ? Config.instance.GetWidgetConfig() : Config.instance.GetDialogConfig();
 
 		// Find the correct node to update
 		foreach (string key in keyTree)
@@ -35,5 +36,10 @@ public class Setting : MonoBehaviour
 	public string GetValue()
 	{
 		return value.text;
+	}
+
+	public bool IsWidgetSetting()
+	{
+		return widgetSetting;
 	}
 }

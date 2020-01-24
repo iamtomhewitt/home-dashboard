@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
@@ -12,6 +13,9 @@ namespace Train
 	{
 		[Header("Train Settings")]
 		[SerializeField] private TrainEntry[] trainEntries;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
+
 		private JSONNode config;
 
 		private string apiToken;
@@ -28,7 +32,7 @@ namespace Train
 
 		public override void ReloadConfig()
 		{
-			config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiToken 	= config["apiKey"];
 			stationCode = config["stationCode"];
 		}
@@ -36,7 +40,11 @@ namespace Train
 		public override void Run()
 		{
 			this.ReloadConfig();
+			
 			StartCoroutine(Fade(PopulateEntries, 1f));
+			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
+			scrollbarHandle.color = Utils.Lighten(GetWidgetColour());
+
 			this.UpdateLastUpdatedText();
 		}
 
@@ -89,6 +97,7 @@ namespace Train
 
 				entry.GetDestinationText().text = locationName;
 				entry.GetTimeText().text = scheduledDepartTime + " (" + actualDepartTime + ")";
+				entry.SetTextColour(GetTextColour());
 			}
 		}
 	}

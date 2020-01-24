@@ -22,6 +22,7 @@ namespace WeatherForecast
 		private string apiKey;
 		private string latitude;
 		private string longitude;
+		private string spriteColour;
 
 		private void Start()
 		{
@@ -32,10 +33,11 @@ namespace WeatherForecast
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey 		= config["apiKey"];
 			latitude 	= config["latitude"];
 			longitude 	= config["longitude"];
+			spriteColour= config["spriteColour"];
 		}
 
 		public override void Run()
@@ -59,8 +61,13 @@ namespace WeatherForecast
 			}
 
 			currentSummary.text = json["currently"]["summary"];
+			currentSummary.color = GetTextColour();
+
 			currentIcon.sprite = GetSpriteForName(json["currently"]["icon"]);
+			currentIcon.color = Utils.ToColour(spriteColour);
+
 			currentTemperature.text = Mathf.RoundToInt((float)json["currently"]["temperature"]).ToString() + "°";
+			currentTemperature.color = GetTextColour();
 
 			for (int i = 0; i < weatherEntries.Length; i++)
 			{
@@ -72,6 +79,7 @@ namespace WeatherForecast
 
 				entry.SetDayText(date.DayOfWeek.ToString());
 				entry.SetIconSprite(GetSpriteForName(day["icon"]));
+				entry.SetColour(Utils.ToColour(spriteColour));
 				entry.SetTemperatureHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
 				entry.SetTemperatureLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
 			}

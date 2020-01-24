@@ -11,6 +11,7 @@ namespace OnlineLists
 	public class OnlineListEntry : MonoBehaviour
 	{
 		[SerializeField] private Text nameText;
+		[SerializeField] private Text removeButtonText;
 		[SerializeField] private string taskId;
 
 		private string apiKey;
@@ -18,6 +19,11 @@ namespace OnlineLists
 		public void SetNameText(string text)
 		{
 			nameText.text = text;
+		}
+
+		public void SetNameTextColour(Color colour)
+		{
+			nameText.color = colour;
 		}
 
 		public Text GetNameText()
@@ -35,6 +41,11 @@ namespace OnlineLists
 			this.apiKey = apiKey;
 		}
 
+		public void SetRemoveButtonTextColour(Color colour)
+		{
+			removeButtonText.color = colour;
+		}
+
 		// Called from the 'X' button
 		public void Remove()
 		{
@@ -44,6 +55,7 @@ namespace OnlineLists
 		private IEnumerator RemoveRoutine()
 		{
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
+			dialog.ApplyColours();
 			dialog.Show();
 			dialog.SetInfoMessage("Remove '<b>" + nameText.text + "</b>'?");
 			dialog.None();
@@ -63,7 +75,7 @@ namespace OnlineLists
 			{
 				dialog.Hide();
 
-				string url = "https://api.todoist.com/rest/v1/tasks/" + taskId + "/close";
+				string url = Endpoints.TODOIST_TASKS + "/" + taskId + "/close";
 
 				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.TODOIST_TASKS + "/" + taskId + "/close", new JSONObject());
 				request.SetRequestHeader("Authorization", "Bearer " + apiKey);

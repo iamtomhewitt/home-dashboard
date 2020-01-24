@@ -13,6 +13,8 @@ namespace FoodPlannerWidget
 		[SerializeField] private Day day;
 		[SerializeField] private Text dayText;
 		[SerializeField] private Text recipe;
+		[SerializeField] private Image recipeBackground;
+		[SerializeField] private Image dayBackground;
 
 		private IEnumerator Start()
 		{
@@ -71,6 +73,26 @@ namespace FoodPlannerWidget
 		public string GetRecipeName()
 		{
 			return recipe.text;
+		}
+
+		public void SetRecipeTextColour(Color colour)
+		{
+			recipe.color = colour;
+		}
+
+		public void SetDayTextColour(Color colour)
+		{
+			dayText.color = colour;
+		}
+
+		public void SetRecipeBackgroundColour(Color colour)
+		{
+			recipeBackground.color = colour;
+		}
+
+		public void SetDayBackgroundColour(Color colour)
+		{
+			dayBackground.color = colour;
 		}
 
 		private enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }

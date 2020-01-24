@@ -29,7 +29,7 @@ namespace BBCNews
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 			secondsBetweenArticles = config["secondsBetweenArticles"];
 		}
@@ -38,6 +38,10 @@ namespace BBCNews
 		{
 			this.ReloadConfig();
 			StartCoroutine(RequestHeadlines());
+
+			this.SetWidgetColour(GetWidgetColour());
+			entry.SetTextColour(GetTextColour());
+
 			this.UpdateLastUpdatedText();
 		}
 

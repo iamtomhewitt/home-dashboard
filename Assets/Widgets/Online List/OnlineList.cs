@@ -12,10 +12,14 @@ namespace OnlineLists
 	public class OnlineList : FadingWidget
 	{
 		[Header("Online List Settings")]
+		[SerializeField] private TodoistList listType;
 		[SerializeField] private OnlineListEntry entryPrefab;
 		[SerializeField] private Transform content;
 		[SerializeField] private Text statusText;
-		[SerializeField] private TodoistList listType;
+		[SerializeField] private Text addButtonText;
+		[SerializeField] private Image addButtonColour;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
 
 		private List<string> itemsNotUploaded = new List<string>();
 		private string apiKey;
@@ -26,12 +30,12 @@ namespace OnlineLists
 			this.ReloadConfig();
 			this.Initialise();
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-			InvokeRepeating("UploadMissingItems", 30f, 10f);
+			InvokeRepeating("UploadMissingItems", 30f, 30f);
 		}
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 			projectId = config["todoistId"];
 		}
@@ -76,9 +80,16 @@ namespace OnlineLists
 			{
 				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
 				e.SetNameText(task["content"].Value);
+				e.SetNameTextColour(GetTextColour());
+				e.SetRemoveButtonTextColour(GetTextColour());
 				e.SetTaskId(task["id"].Value);
 				e.SetApiKey(apiKey);
 			}
+
+			addButtonColour.color = Utils.Darken(GetWidgetColour());
+			addButtonText.color = GetTextColour();
+			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
+			scrollbarHandle.color = Utils.Lighten(GetWidgetColour());
 		}
 
 		/// <summary>

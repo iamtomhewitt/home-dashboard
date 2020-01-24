@@ -17,5 +17,11 @@ namespace Train
 		{
 			return timeText;
 		}
+
+		public void SetTextColour(Color colour)
+		{
+			destinationText.color = colour;
+			timeText.color = colour;
+		}
 	}
 }

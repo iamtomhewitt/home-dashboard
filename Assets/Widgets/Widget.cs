@@ -25,18 +25,19 @@ public abstract class Widget : MonoBehaviour
 
 	public void Initialise()
 	{
-		JSONNode config = Config.instance.GetConfig()[widgetConfigKey];
+		JSONNode config = Config.instance.GetWidgetConfig()[widgetConfigKey];
 		
-		widgetColour= ToColour(config["colour"]);
-		textColour 	= ToColour(config["textColour"]);
+		widgetColour= Utils.ToColour(config["colour"]);
+		textColour 	= Utils.ToColour(config["textColour"]);
 		title 		= config["title"];
 		repeatRate 	= config["repeatRate"];
 		timeUnit 	= config["repeatTime"];
 
 		UpdateLastUpdatedText();
 		SetTitleText(title);
-		SetColour(widgetColour);
-		SetTextColour(textColour);
+		SetWidgetColour(widgetColour);
+		SetLastUpdatedTextColour(textColour);
+		SetTitleTextColour(textColour);
 	}
 
 	public float RepeatRateInSeconds()
@@ -73,6 +74,7 @@ public abstract class Widget : MonoBehaviour
 	public void UpdateLastUpdatedText()
 	{
 		lastUpdatedText.text = "Last Updated: " + DateTime.Now.ToString("HH:mm");
+		lastUpdatedText.color = textColour;
 	}
 
 	private void SetTitleText(string s)
@@ -80,20 +82,29 @@ public abstract class Widget : MonoBehaviour
 		titleText.text = s;
 	}
 
-	public void SetColour(Color colour)
+	public void SetWidgetColour(Color colour)
 	{
 		widgetBackground.color = colour;
-	}
-
-	private void SetTextColour(Color colour)
-	{
-		titleText.color = colour;
-		lastUpdatedText.color = colour;
 	}
 
 	public Color GetWidgetColour()
 	{
 		return widgetColour;
+	}
+	
+	private void SetLastUpdatedTextColour(Color colour)
+	{
+		lastUpdatedText.color = colour;
+	}
+	
+	public void SetTitleTextColour(Color colour)
+	{
+		titleText.color = colour;
+	}
+
+	public Color GetTextColour()
+	{
+		return textColour;
 	}
 
 	public string GetWidgetTitle()
@@ -104,19 +115,5 @@ public abstract class Widget : MonoBehaviour
 	public string GetWidgetConfigKey()
 	{
 		return widgetConfigKey;
-	}
-
-	private Color ToColour(string hex)
-	{
-		Color colour;
-
-		if (ColorUtility.TryParseHtmlString(hex, out colour))
-		{
-            return colour;
-		}
-		else
-		{
-			return Color.white;
-		}
 	}
 }

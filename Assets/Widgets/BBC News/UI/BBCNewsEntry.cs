@@ -15,6 +15,12 @@ namespace BBCNews
 			return title;
 		}
 
+		public void SetTextColour(Color colour)
+		{
+			title.color = colour;
+			description.color = colour;
+		}
+
 		public Text GetDescription()
 		{
 			return description;

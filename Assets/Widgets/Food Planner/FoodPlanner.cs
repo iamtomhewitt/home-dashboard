@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Dialog;
@@ -13,10 +14,24 @@ namespace FoodPlannerWidget
 	{
 		[Header("Food Planner Settings")]
 		[SerializeField] private OnlineList shoppingList;
+		[SerializeField] private Image addButton;
 
 		private void Start()
 		{
 			this.Initialise();
+
+			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
+
+			addButton.color = Utils.Darken(GetWidgetColour());
+
+			foreach (PlannerEntry planner in FindObjectsOfType<PlannerEntry>())
+			{
+				planner.SetDayTextColour(GetTextColour());
+				planner.SetRecipeTextColour(Utils.ToColour(config["plannerTextColour"]));
+				planner.SetRecipeBackgroundColour(Utils.ToColour(config["plannerBackgroundColour"]));
+				planner.SetDayBackgroundColour(Utils.Lighten(GetWidgetColour()));
+			}
+
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
@@ -35,6 +50,7 @@ namespace FoodPlannerWidget
 		private IEnumerator AddToShoppingListRoutine()
 		{
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
+			dialog.ApplyColours();
 			dialog.Show();
 			dialog.None();
 			dialog.SetInfoMessage("Add all ingredients from each recipe to the shopping list?");

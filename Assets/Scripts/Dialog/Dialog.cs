@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Dialog
 {
@@ -7,7 +8,28 @@ namespace Dialog
 	/// </summary>
 	public abstract class Dialog : MonoBehaviour
 	{
+		[Header("Dialog Settings")]
+		[SerializeField] private Image topBarColour;
+		[SerializeField] private Text dialogTitle;
+		[SerializeField] private Button hideButton;
+
 		private DialogResult result;
+
+		public void SetTopBarColour(Color colour)
+		{
+			topBarColour.color = colour;
+		}
+
+		public void SetDialogTitleColour(Color colour)
+		{
+			dialogTitle.color = colour;
+		}
+
+		public void SetHideButtonColour(Color mainColour, Color textColour)
+		{
+			hideButton.GetComponent<Image>().color = mainColour;
+			hideButton.GetComponentInChildren<Text>().color = textColour;
+		}
 
 		public DialogResult GetResult()
 		{
@@ -17,6 +39,16 @@ namespace Dialog
 		public void SetResult(DialogResult result)
 		{
 			this.result = result;
+		}
+
+		public void Cancel()
+		{
+			result = DialogResult.CANCEL;
+		}
+
+		public void None()
+		{
+			result = DialogResult.NONE;
 		}
 
 		/// <summary>
@@ -33,16 +65,6 @@ namespace Dialog
 		public void Show()
 		{
 			GetComponent<RectTransform>().localPosition = Vector2.zero;
-		}
-
-		public void Cancel()
-		{
-			result = DialogResult.CANCEL;
-		}
-
-		public void None()
-		{
-			result = DialogResult.NONE;
 		}
 	}
 

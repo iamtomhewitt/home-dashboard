@@ -9,16 +9,19 @@
             "secondsBetweenArticles": 45,
             "apiKey": "<key>"
         },
-        "binDay": {
-            "title": "Bin Day",
-            "colour": "#03A9F4",
-            "textColour": "#FFFFFF",
-            "repeatRate": 2,
-            "repeatTime": "hours",
-            "firstGreenBin": "07-10-2019",
-            "firstBlackBin": "14-10-2019",
-            "repeatRateInDays": 14
-		},
+        "binDay":{
+            "title":"Bin Day",
+            "colour":"#03A9F4",
+            "textColour":"#FFFFFF",
+            "repeatRate":2,
+            "repeatTime":"hours",
+            "firstGreenBin":"07-10-2019",
+            "firstBlackBin":"14-10-2019",
+			"repeatRateInDays":14,
+			"greenBinColour":"#66BB6A",
+			"blackBinColour":"#263238",
+			"noBinColour":"#03A9F4"
+        },
 		"clock": {
             "title": "Clock",
             "colour": "#03A9F4",
@@ -26,12 +29,14 @@
             "repeatRate": 1,
 			"repeatTime": "seconds"
 		},
-        "foodPlanner": {
-            "title": "Food Planner",
-            "colour": "#431EDB",
-            "textColour": "#FFFFFF",
-            "repeatRate": 10,
-            "repeatTime": "hours"
+        "foodPlanner":{
+            "title":"Food Planner",
+            "colour":"#431EDB",
+            "textColour":"#FFFFFF",
+            "repeatRate":10,
+			"repeatTime":"hours",
+			"plannerBackgroundColour":"#FFFFFF",
+			"plannerTextColour": "#000000"
         },
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",
@@ -84,7 +89,14 @@
             "repeatTime": "minutes",
             "apiKey": "key",
             "latitude": "lat",
-            "longitude": "long"
+            "longitude": "long",
+			"spriteColour": "#FFFFF"
         }
-    }
+	},
+	"dialogs": {
+		"confirm": {
+			"mainColour": "",
+			"textColour": ""
+		}
+	}
 }

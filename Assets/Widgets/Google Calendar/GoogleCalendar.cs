@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using SimpleJSON;
@@ -13,6 +14,8 @@ namespace GoogleCalendar
 		[Header("Google Calendar Settings")]
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
 		[SerializeField] private Transform scrollParent;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
 		[SerializeField] private string gmailAddress;
 
 		private JSONNode json;
@@ -28,7 +31,7 @@ namespace GoogleCalendar
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 		}
 
@@ -81,7 +84,12 @@ namespace GoogleCalendar
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
 				eventEntry.GetNameText().text = item["summary"];
 				eventEntry.GetDateText().text = time.ToString("dd MMM");
+				eventEntry.SetDateTextColour(GetTextColour());
+				eventEntry.SetNameTextColour(GetTextColour());
 			}
+
+			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
+			scrollbarHandle.color = Utils.Lighten(GetWidgetColour(), 0.1f);
 		}
 	}
 }
