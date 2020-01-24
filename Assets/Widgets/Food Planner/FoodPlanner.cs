@@ -52,7 +52,7 @@ namespace FoodPlannerWidget
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
 			dialog.ApplyColours();
 			dialog.Show();
-			dialog.None();
+			dialog.SetNone();
 			dialog.SetInfoMessage("Add all ingredients from each recipe to the shopping list?");
 
 			while (dialog.GetResult() == DialogResult.NONE)
@@ -63,7 +63,7 @@ namespace FoodPlannerWidget
 			if (dialog.GetResult() == DialogResult.NO)
 			{
 				dialog.Hide();
-				dialog.None();
+				dialog.SetNone();
 				yield break;
 			}
 
@@ -116,7 +116,7 @@ namespace FoodPlannerWidget
 					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
 				}
 
-				dialog.None();
+				dialog.SetNone();
 				yield break;
 			}
 		}

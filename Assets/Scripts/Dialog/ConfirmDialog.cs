@@ -37,15 +37,5 @@ namespace Dialog
 		{
 			infoText.text = message;
 		}
-
-		public void Yes()
-		{
-			SetResult(DialogResult.YES);
-		}
-
-		public void No()
-		{
-			SetResult(DialogResult.NO);
-		}
 	}
 }

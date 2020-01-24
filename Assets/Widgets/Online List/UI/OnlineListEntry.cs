@@ -58,7 +58,7 @@ namespace OnlineLists
 			dialog.ApplyColours();
 			dialog.Show();
 			dialog.SetInfoMessage("Remove '<b>" + nameText.text + "</b>'?");
-			dialog.None();
+			dialog.SetNone();
 
 			while (dialog.GetResult() == DialogResult.NONE)
 			{

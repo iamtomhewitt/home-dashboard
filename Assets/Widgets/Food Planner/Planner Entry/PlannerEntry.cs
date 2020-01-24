@@ -46,7 +46,7 @@ namespace FoodPlannerWidget
 		{
 			RecipeSelectionDialog dialog = FindObjectOfType<RecipeSelectionDialog>();
 			dialog.Show();
-			dialog.SetResult(DialogResult.NONE);
+			dialog.SetNone();
 			dialog.PopulateRecipes();
 
 			while (dialog.GetResult() != DialogResult.FINISHED && dialog.GetResult() != DialogResult.CANCEL)

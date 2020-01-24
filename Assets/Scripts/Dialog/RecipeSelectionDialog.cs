@@ -56,7 +56,7 @@ namespace Dialog
 			freeTextRecipe = freeTextInput.text;
 			selectedRecipe = "";
 			freeTextInput.text = "";
-			SetResult(DialogResult.FINISHED);
+			SetFinished();
 			Hide();
 		}
 
@@ -64,7 +64,7 @@ namespace Dialog
 		{
 			freeTextRecipe = "";
 			selectedRecipe = recipe;
-			SetResult(DialogResult.FINISHED);
+			SetFinished();
 			Hide();
 		}
 
@@ -81,7 +81,7 @@ namespace Dialog
 		public void HideAndCancelResult()
 		{
 			Hide();
-			Cancel();
+			SetCancel();
 		}
 	}
 }

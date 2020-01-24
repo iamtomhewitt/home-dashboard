@@ -36,19 +36,29 @@ namespace Dialog
 			return result;
 		}
 
-		public void SetResult(DialogResult result)
-		{
-			this.result = result;
-		}
-
-		public void Cancel()
+		public void SetCancel()
 		{
 			result = DialogResult.CANCEL;
 		}
 
-		public void None()
+		public void SetNone()
 		{
 			result = DialogResult.NONE;
+		}
+
+		public void SetYes()
+		{
+			result = DialogResult.YES;
+		}
+
+		public void SetNo()
+		{
+			result = DialogResult.NO;
+		}
+
+		public void SetFinished()
+		{
+			result = DialogResult.FINISHED;
 		}
 
 		/// <summary>
