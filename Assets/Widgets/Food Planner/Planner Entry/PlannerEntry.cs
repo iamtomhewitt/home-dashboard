@@ -49,12 +49,12 @@ namespace FoodPlannerWidget
 			dialog.SetNone();
 			dialog.PopulateRecipes();
 
-			while (dialog.GetResult() != DialogResult.FINISHED && dialog.GetResult() != DialogResult.CANCEL)
+			while (!dialog.IsFinished() && !dialog.IsCancel())
 			{
 				yield return null;
 			}
 
-			if (dialog.GetResult() == DialogResult.FINISHED)
+			if (dialog.IsFinished())
 			{
 				recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
 

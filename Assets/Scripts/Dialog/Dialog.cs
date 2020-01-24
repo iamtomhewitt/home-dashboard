@@ -31,14 +31,14 @@ namespace Dialog
 			hideButton.GetComponentInChildren<Text>().color = textColour;
 		}
 
-		public DialogResult GetResult()
-		{
-			return result;
-		}
-
 		public void SetCancel()
 		{
 			result = DialogResult.CANCEL;
+		}
+
+		public bool IsCancel()
+		{
+			return result == DialogResult.CANCEL;
 		}
 
 		public void SetNone()
@@ -46,9 +46,19 @@ namespace Dialog
 			result = DialogResult.NONE;
 		}
 
+		public bool IsNone()
+		{
+			return result == DialogResult.NONE;
+		}
+
 		public void SetYes()
 		{
 			result = DialogResult.YES;
+		}
+
+		public bool IsYes()
+		{
+			return result == DialogResult.YES;
 		}
 
 		public void SetNo()
@@ -56,9 +66,19 @@ namespace Dialog
 			result = DialogResult.NO;
 		}
 
+		public bool IsNo()
+		{
+			return result == DialogResult.NO;
+		}
+
 		public void SetFinished()
 		{
 			result = DialogResult.FINISHED;
+		}
+
+		public bool IsFinished()
+		{
+			return result == DialogResult.FINISHED;
 		}
 
 		/// <summary>

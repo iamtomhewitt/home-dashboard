@@ -55,19 +55,19 @@ namespace FoodPlannerWidget
 			dialog.SetNone();
 			dialog.SetInfoMessage("Add all ingredients from each recipe to the shopping list?");
 
-			while (dialog.GetResult() == DialogResult.NONE)
+			while (dialog.IsNone())
 			{
 				yield return null;
 			}
 
-			if (dialog.GetResult() == DialogResult.NO)
+			if (dialog.IsNo())
 			{
 				dialog.Hide();
 				dialog.SetNone();
 				yield break;
 			}
 
-			if (dialog.GetResult() == DialogResult.YES)
+			if (dialog.IsYes())
 			{
 				dialog.Hide();
 

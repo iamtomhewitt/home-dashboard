@@ -60,18 +60,18 @@ namespace OnlineLists
 			dialog.SetInfoMessage("Remove '<b>" + nameText.text + "</b>'?");
 			dialog.SetNone();
 
-			while (dialog.GetResult() == DialogResult.NONE)
+			while (dialog.IsNone())
 			{
 				yield return null;
 			}
 
-			if (dialog.GetResult() == DialogResult.NO || dialog.GetResult() == DialogResult.CANCEL)
+			if (dialog.IsNo() || dialog.IsCancel())
 			{
 				dialog.Hide();
 				yield break;
 			}
 
-			if (dialog.GetResult() == DialogResult.YES)
+			if (dialog.IsYes())
 			{
 				dialog.Hide();
 
