@@ -52,6 +52,7 @@ namespace BBCNews
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				yield break;
 			}
 
 			json = JSON.Parse(response);

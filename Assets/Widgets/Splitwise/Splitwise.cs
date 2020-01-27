@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using Requests;
 using SimpleJSON;
+using Dialog;
 
 public class Splitwise : Widget
 {
@@ -31,6 +32,13 @@ public class Splitwise : Widget
 	{
 		UnityWebRequest request = Postman.CreateGetRequest(Endpoints.SPLITWISE(groupId));
 		yield return request.SendWebRequest();
+
+		bool ok = request.error == null ? true : false;
+		if (!ok)
+		{
+			WidgetLogger.instance.Log(this, "Error: " + request.error);
+			yield break;
+		}
 
 		JSONNode json = JSON.Parse(request.downloadHandler.text);
 		JSONNode exp = json["expenses"][0];
