@@ -35,7 +35,6 @@ public class RotatingWidget : MonoBehaviour
 
 	private IEnumerator Fade(CanvasGroup widget, bool fadeOut)
 	{
-		print("Starting fade");
 		widget.alpha = fadeOut ? 1f : 0f;
 
 		if (fadeOut)
@@ -50,8 +49,6 @@ public class RotatingWidget : MonoBehaviour
 		}
 		else
 		{
-			print(widget.name + " fading in");
-
 			while (widget.alpha < 1f)
 			{
 				widget.alpha += Time.deltaTime * fadeSpeed;
