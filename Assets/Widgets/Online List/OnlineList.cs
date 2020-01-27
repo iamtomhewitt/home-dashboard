@@ -86,10 +86,10 @@ namespace OnlineLists
 				e.SetApiKey(apiKey);
 			}
 
-			addButtonColour.color = Utils.Darken(GetWidgetColour());
+			addButtonColour.color = Colours.Darken(GetWidgetColour());
 			addButtonText.color = GetTextColour();
-			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
-			scrollbarHandle.color = Utils.Lighten(GetWidgetColour());
+			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+			scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
 		}
 
 		/// <summary>

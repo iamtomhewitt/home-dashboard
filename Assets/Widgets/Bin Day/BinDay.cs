@@ -33,9 +33,9 @@ namespace BinDay
 			firstGreenBinDay = DateTime.ParseExact(config["firstGreenBin"], "dd-MM-yyyy", null);
 			firstBlackBinDay = DateTime.ParseExact(config["firstBlackBin"], "dd-MM-yyyy", null);
 			repeatRateInDays = config["repeatRateInDays"];
-			greenBinColour = Utils.ToColour(config["greenBinColour"]);
-			blackBinColour = Utils.ToColour(config["blackBinColour"]);
-			noBinColour = Utils.ToColour(config["noBinColour"]);
+			greenBinColour = Colours.ToColour(config["greenBinColour"]);
+			blackBinColour = Colours.ToColour(config["blackBinColour"]);
+			noBinColour = Colours.ToColour(config["noBinColour"]);
 		}
 
 		public override void Run()
@@ -52,23 +52,23 @@ namespace BinDay
 
 			if (today == nextBlackBinDay || today == lastBlackBinDay)
 			{
-				Display("Black bin today!", FontStyle.Bold, blackBinColour, Utils.Lighten(blackBinColour));
+				Display("Black bin today!", FontStyle.Bold, blackBinColour, Colours.Lighten(blackBinColour));
 			}
 			else if (today == nextGreenBinDay || today == lastGreenBinDay)
 			{
-				Display("Green bin today!", FontStyle.Bold, greenBinColour, Utils.Darken(greenBinColour));
+				Display("Green bin today!", FontStyle.Bold, greenBinColour, Colours.Darken(greenBinColour));
 			}
 			else if (tomorrow == nextBlackBinDay || tomorrow == lastBlackBinDay)
 			{
-				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour, Utils.Lighten(blackBinColour));
+				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour, Colours.Lighten(blackBinColour));
 			}
 			else if (tomorrow == nextGreenBinDay || tomorrow == lastGreenBinDay)
 			{
-				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour, Utils.Darken(greenBinColour));
+				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour, Colours.Darken(greenBinColour));
 			}
 			else
 			{
-				Display("No bins today!", FontStyle.Normal, noBinColour, Utils.Darken(noBinColour));
+				Display("No bins today!", FontStyle.Normal, noBinColour, Colours.Darken(noBinColour));
 			}
 
 			this.UpdateLastUpdatedText();

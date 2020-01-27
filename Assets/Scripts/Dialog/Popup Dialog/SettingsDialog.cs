@@ -16,8 +16,8 @@ namespace Dialog
 			saveButton.GetComponent<Image>().color = mainColour;
 			saveButton.GetComponentInChildren<Text>().color = textColour;
 
-			scrollBackground.color = Utils.Darken(mainColour);
-			scrollHandle.color = Utils.Lighten(mainColour);
+			scrollBackground.color = Colours.Darken(mainColour);
+			scrollHandle.color = Colours.Lighten(mainColour);
 		}
 
 		/// <summary>

@@ -88,8 +88,8 @@ namespace GoogleCalendar
 				eventEntry.SetNameTextColour(GetTextColour());
 			}
 
-			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
-			scrollbarHandle.color = Utils.Lighten(GetWidgetColour(), 0.1f);
+			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+			scrollbarHandle.color = Colours.Lighten(GetWidgetColour(), 0.1f);
 		}
 	}
 }

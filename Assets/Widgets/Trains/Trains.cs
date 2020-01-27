@@ -42,8 +42,8 @@ namespace Train
 			this.ReloadConfig();
 			
 			StartCoroutine(Fade(PopulateEntries, 1f));
-			scrollbarBackground.color = Utils.Darken(GetWidgetColour());
-			scrollbarHandle.color = Utils.Lighten(GetWidgetColour());
+			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+			scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
 
 			this.UpdateLastUpdatedText();
 		}

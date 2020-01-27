@@ -64,7 +64,7 @@ namespace WeatherForecast
 			currentSummary.color = GetTextColour();
 
 			currentIcon.sprite = GetSpriteForName(json["currently"]["icon"]);
-			currentIcon.color = Utils.ToColour(spriteColour);
+			currentIcon.color = Colours.ToColour(spriteColour);
 
 			currentTemperature.text = Mathf.RoundToInt((float)json["currently"]["temperature"]).ToString() + "°";
 			currentTemperature.color = GetTextColour();
@@ -79,7 +79,7 @@ namespace WeatherForecast
 
 				entry.SetDayText(date.DayOfWeek.ToString());
 				entry.SetIconSprite(GetSpriteForName(day["icon"]));
-				entry.SetColour(Utils.ToColour(spriteColour));
+				entry.SetColour(Colours.ToColour(spriteColour));
 				entry.SetTemperatureHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
 				entry.SetTemperatureLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
 			}

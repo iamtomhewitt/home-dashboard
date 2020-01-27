@@ -22,14 +22,14 @@ namespace FoodPlannerWidget
 
 			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
 
-			addButton.color = Utils.Darken(GetWidgetColour());
+			addButton.color = Colours.Darken(GetWidgetColour());
 
 			foreach (PlannerEntry planner in FindObjectsOfType<PlannerEntry>())
 			{
 				planner.SetDayTextColour(GetTextColour());
-				planner.SetRecipeTextColour(Utils.ToColour(config["plannerTextColour"]));
-				planner.SetRecipeBackgroundColour(Utils.ToColour(config["plannerBackgroundColour"]));
-				planner.SetDayBackgroundColour(Utils.Lighten(GetWidgetColour()));
+				planner.SetRecipeTextColour(Colours.ToColour(config["plannerTextColour"]));
+				planner.SetRecipeBackgroundColour(Colours.ToColour(config["plannerBackgroundColour"]));
+				planner.SetDayBackgroundColour(Colours.Lighten(GetWidgetColour()));
 			}
 
 			InvokeRepeating("Run", 0f, RepeatRateInSeconds());

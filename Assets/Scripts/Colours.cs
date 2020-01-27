@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Utils
+public class Colours
 {
 	public static Color Lighten(Color colour)
 	{

@@ -27,8 +27,8 @@ public abstract class Widget : MonoBehaviour
 	{
 		JSONNode config = Config.instance.GetWidgetConfig()[widgetConfigKey];
 		
-		widgetColour= Utils.ToColour(config["colour"]);
-		textColour 	= Utils.ToColour(config["textColour"]);
+		widgetColour= Colours.ToColour(config["colour"]);
+		textColour 	= Colours.ToColour(config["textColour"]);
 		title 		= config["title"];
 		repeatRate 	= config["repeatRate"];
 		timeUnit 	= config["repeatTime"];

@@ -12,8 +12,8 @@ namespace Dialog
 		{
 			JSONNode config = Config.instance.GetDialogConfig()[configKey];
 
-			Color mainColour = Utils.ToColour(config["mainColour"]);
-			Color textColour = Utils.ToColour(config["textColour"]);
+			Color mainColour = Colours.ToColour(config["mainColour"]);
+			Color textColour = Colours.ToColour(config["textColour"]);
 
 			SetDialogTitleColour(textColour);
 			SetTopBarColour(mainColour);

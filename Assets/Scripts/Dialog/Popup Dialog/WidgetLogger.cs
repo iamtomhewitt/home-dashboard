@@ -54,8 +54,8 @@ namespace Dialog
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{
-			scrollBackground.color = Utils.Darken(mainColour);
-			scrollHandle.color = Utils.Lighten(mainColour);
+			scrollBackground.color = Colours.Darken(mainColour);
+			scrollHandle.color = Colours.Lighten(mainColour);
 		}
 	}
 }
