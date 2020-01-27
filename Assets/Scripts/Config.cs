@@ -25,21 +25,26 @@ public class Config : MonoBehaviour
 
 		if (configFile != null)
 		{
-			root = JSON.Parse(configFile.text);
 			SaveToFile();
+			SetRoot(filePath);
 		}
 		else if (File.Exists(filePath))
 		{
 			Debug.Log("A config file has already been created at: " + filePath + ", using that one.");
-			string contents = GetFileContents(filePath);
-			root = JSON.Parse(contents);
+			SetRoot(filePath);
 		}
 		else
 		{
 			Debug.Log("A config file has not been specified, creating one.");
 			CreateNewFile(filePath);
-			root = JSON.Parse(configFileTemplate.text);
+			SetRoot(filePath);
 		}
+	}
+
+	private void SetRoot(string filePath)
+	{
+		string contents = GetFileContents(filePath);
+		root = JSON.Parse(contents);
 	}
 
 	public JSONNode GetWidgetConfig()
