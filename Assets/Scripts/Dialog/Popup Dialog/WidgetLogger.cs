@@ -5,6 +5,9 @@ using SimpleJSON;
 
 namespace Dialog
 {
+	/// <summary>
+	/// A dialog & logger that logs any messages from widgets.
+	/// </summary>
 	public class WidgetLogger : PopupDialog
 	{
 		[SerializeField] private Text log;

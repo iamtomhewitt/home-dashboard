@@ -7,6 +7,9 @@ using SimpleJSON;
 
 namespace Dialog
 {
+	/// <summary>
+	/// A dialog that adds a new recipe that can be used by the Food Planner.
+	/// </summary>
 	public class AddNewRecipeDialog : PopupDialog
 	{
 		[Header("Add New Recipe Dialog Settings")]

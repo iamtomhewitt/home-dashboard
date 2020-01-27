@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Dialog
 {
 	/// <summary>
-	/// A pop up dialog box on the dashboard.
+	/// A dialog box on the dashboard.
 	/// </summary>
 	public abstract class Dialog : MonoBehaviour
 	{

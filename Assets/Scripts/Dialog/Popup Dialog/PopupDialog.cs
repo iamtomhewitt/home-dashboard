@@ -3,6 +3,9 @@ using SimpleJSON;
 
 namespace Dialog
 {
+	/// <summary>
+	/// A dialog that can be shown from anywhere and is not based on a widget.
+	/// </summary>
 	public abstract class PopupDialog : Dialog
 	{
 		[Header("Popup Dialog Settings")]

@@ -4,6 +4,9 @@ using SimpleJSON;
 
 namespace Dialog
 {
+	/// <summary>
+	/// A Yes/No dialog that can be used to check if an action can be proceeded with.
+	/// </summary>
 	public class ConfirmDialog : PopupDialog
 	{
 		[Header("Confirm Settings")]

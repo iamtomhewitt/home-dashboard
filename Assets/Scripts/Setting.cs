@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using SimpleJSON;
 
 /// <summary>
-/// A key lavel and value input field on the settings page.
+/// A key label and value input field on the settings page.
 /// </summary>
 public class Setting : MonoBehaviour
 {
@@ -23,11 +23,7 @@ public class Setting : MonoBehaviour
 
 		value.text = node.Value;
 	}
-
-	/// <summary>
-	/// Returns the key of the value of the tree.
-	/// E.g. apiKeys->googleCalendars->someone@gmail.com would return the key someone@gmail.com
-	/// </summary>
+	
 	public string[] GetKeyTree()
 	{
 		return keyTree;

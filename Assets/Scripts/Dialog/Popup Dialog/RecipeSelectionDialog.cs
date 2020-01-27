@@ -7,6 +7,9 @@ using Requests;
 
 namespace Dialog
 {
+	/// <summary>
+	/// A dialog that shows all the available recipes to choose from when selecting a recipe for a planner entry on the food planner.
+	/// </summary>
 	public class RecipeSelectionDialog : PopupDialog
 	{
 		[Header("Recipe Selection Dialog Settings")]

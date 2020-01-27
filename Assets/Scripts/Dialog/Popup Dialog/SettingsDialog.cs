@@ -5,6 +5,9 @@ using SimpleJSON;
 
 namespace Dialog
 {
+	/// <summary>
+	/// A dialog that shows the current settings, which can be updated.
+	/// </summary>
 	public class SettingsDialog : PopupDialog
 	{
 		[SerializeField] private Button saveButton;

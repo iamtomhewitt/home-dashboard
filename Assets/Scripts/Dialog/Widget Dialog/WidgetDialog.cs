@@ -2,6 +2,9 @@
 
 namespace Dialog
 {
+	/// <summary>
+	/// A dialog that is based upon a widget.
+	/// </summary>
 	public abstract class WidgetDialog : Dialog
 	{
 		[Header("Widget Dialog Settings")]
