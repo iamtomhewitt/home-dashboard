@@ -12,6 +12,7 @@ public class Splitwise : Widget
 	[SerializeField] private Text groupName;
 	[SerializeField] private Text people;
 	[SerializeField] private Text amount;
+	[SerializeField] private Text allSettledUp;
 
 	private string groupId;
 
@@ -44,7 +45,8 @@ public class Splitwise : Widget
 		JSONNode exp = json["expenses"][0];
 
 		groupName.text = json["groupName"];
-		people.text = exp["who"] + " owes " + exp["owes"];
+		people.text = exp == null ? "" : exp["who"] + " owes " + exp["owes"];
+		allSettledUp.text = exp == null ? "All settled up!" : "";
 		amount.text = exp["amount"];
 	}
 }
