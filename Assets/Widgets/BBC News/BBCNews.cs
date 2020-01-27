@@ -68,8 +68,8 @@ namespace BBCNews
 			string description	= json["articles"][currentArticleIndex]["description"];
 			string url			= json["articles"][currentArticleIndex]["url"];
 
-			entry.GetTitle().text = title;
-			entry.GetDescription().text = description;
+			entry.SetTitle(title);
+			entry.SetDescription(description);
 			entry.SetUrl(url);
 
 			currentArticleIndex++;

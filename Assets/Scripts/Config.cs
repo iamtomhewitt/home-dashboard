@@ -25,6 +25,7 @@ public class Config : MonoBehaviour
 
 		if (configFile != null)
 		{
+			Debug.Log("A config file has been supplied on start up, overwriting config...");
 			SaveToFile();
 			SetRoot(filePath);
 		}
@@ -57,6 +58,9 @@ public class Config : MonoBehaviour
 		return root["dialogs"];
 	}
 
+	/// <summary>
+	/// Replaces a value denoted by the key, and then saves the change.
+	/// </summary>
 	public void Replace(JSONNode key, string value)
 	{
 		key.Value = value;

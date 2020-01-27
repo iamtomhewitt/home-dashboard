@@ -2,9 +2,9 @@
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using SimpleJSON;
 using Dialog;
-using System.Collections.Generic;
 using Requests;
 
 namespace OnlineLists

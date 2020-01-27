@@ -97,9 +97,6 @@ namespace Dialog
 			GetComponent<RectTransform>().localPosition = new Vector2(-100f, transform.position.y);
 		}
 
-		/// <summary>
-		/// Has to be a reposition otherwise other components cannot find this if the Gameobject is deactivated
-		/// </summary>
 		public void Show()
 		{
 			ApplyColours();
@@ -107,12 +104,5 @@ namespace Dialog
 		}
 	}
 
-	public enum DialogResult
-	{
-		YES,
-		NO,
-		CANCEL,
-		NONE,
-		FINISHED
-	}
+	public enum DialogResult { YES, NO, CANCEL, NONE, FINISHED }
 }

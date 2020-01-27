@@ -8,7 +8,7 @@ using SimpleJSON;
 using OnlineLists;
 using Requests;
 
-namespace FoodPlannerWidget
+namespace Planner
 {
 	public class FoodPlanner : Widget
 	{
@@ -79,22 +79,22 @@ namespace FoodPlannerWidget
 					UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES + "?name=" + entry.GetRecipeName());
 					yield return request.SendWebRequest();
 
-					JSONNode responseJson = JSON.Parse(request.downloadHandler.text);
+					JSONNode json = JSON.Parse(request.downloadHandler.text);
 					
-					if (responseJson["status"] == 404)
+					if (json["status"] == 404)
 					{
 						// A free text recipe may have been entered, so there will be no ingredients to add, therefore just move onto the next recipe
 						continue;
 					}
 
-					for (int i = 0; i < responseJson["recipe"]["ingredients"].AsArray.Count; i++)
+					for (int i = 0; i < json["recipe"]["ingredients"].AsArray.Count; i++)
 					{
-						JSONNode node = responseJson["recipe"]["ingredients"][i];
-						Ingredient ingredient = new Ingredient(node["name"], node["category"], node["weight"], node["amount"]);
+						JSONNode node = json["recipe"]["ingredients"][i];
 
-						// Update the existing ingredient if it exists
+						Ingredient ingredient = new Ingredient(node["name"], node["category"], node["weight"], node["amount"]);
 						Ingredient existingIngredient = ingredients.Find(x => x.name.Equals(ingredient.name) && x.weight.Equals(ingredient.weight));
 
+						// Update the existing ingredient if it exists
 						if (existingIngredient != null)
 						{
 							double amount = existingIngredient.amount;

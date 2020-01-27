@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
 using Dialog;
-using UnityEngine.Networking;
 using SimpleJSON;
 using Requests;
 
-namespace FoodPlannerWidget
+namespace Planner
 {
 	public class PlannerEntry : MonoBehaviour
 	{

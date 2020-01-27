@@ -26,11 +26,6 @@ namespace OnlineLists
 			nameText.color = colour;
 		}
 
-		public Text GetNameText()
-		{
-			return nameText;
-		}
-
 		public void SetTaskId(string id)
 		{
 			taskId = id;
@@ -46,7 +41,9 @@ namespace OnlineLists
 			removeButtonText.color = colour;
 		}
 
-		// Called from the 'X' button
+		/// <summary>
+		/// Called from the 'X' button.
+		/// </summary>
 		public void Remove()
 		{
 			StartCoroutine(RemoveRoutine());

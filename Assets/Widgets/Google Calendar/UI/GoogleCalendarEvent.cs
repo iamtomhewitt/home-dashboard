@@ -8,14 +8,14 @@ namespace GoogleCalendar
 		[SerializeField] private Text nameText;
 		[SerializeField] private Text dateText;
 
-		public Text GetNameText()
+		public void SetNameText(string text)
 		{
-			return nameText;
+			nameText.text = text;
 		}
 
-		public Text GetDateText()
+		public void SetDateText(string text)
 		{
-			return dateText;
+			dateText.text = text;
 		}
 
 		public void SetNameTextColour(Color colour)

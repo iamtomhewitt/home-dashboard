@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class RotatingWidget : MonoBehaviour
+public class WidgetRotator : MonoBehaviour
 {
 	[Header("Rotating Settings")]
 	[SerializeField] private CanvasGroup widgetOneCanvasGroup;

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using SimpleJSON;
 
-namespace BinDay
+namespace Bins
 {
 	public class BinDay : Widget
 	{
@@ -86,7 +86,7 @@ namespace BinDay
 
 		private DateTime GetNextBinDate(DateTime lastBinDate)
 		{
-			return lastBinDate.AddDays(14);
+			return lastBinDate.AddDays(repeatRateInDays);
 		}
 	}
 }

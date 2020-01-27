@@ -45,8 +45,8 @@ namespace Train
 		{
 			foreach (TrainEntry entry in trainEntries)
 			{
-				entry.GetDestinationText().text = "";
-				entry.GetTimeText().text = "";
+				entry.SetDestinationText("");
+				entry.SetTimeText("");
 			}
 
 			int numberOfResults = trainEntries.Length;
@@ -88,8 +88,8 @@ namespace Train
 					locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
 				}
 
-				entry.GetDestinationText().text = locationName;
-				entry.GetTimeText().text = scheduledDepartTime + " (" + actualDepartTime + ")";
+				entry.SetDestinationText(locationName);
+				entry.SetTimeText(scheduledDepartTime + " (" + actualDepartTime + ")");
 				entry.SetTextColour(GetTextColour());
 			}
 		}

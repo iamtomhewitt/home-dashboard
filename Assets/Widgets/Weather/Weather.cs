@@ -51,6 +51,7 @@ namespace WeatherForecast
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				yield break;
 			}
 
 			currentSummary.text = json["currently"]["summary"];
@@ -78,6 +79,9 @@ namespace WeatherForecast
 			}
 		}
 
+		/// <summary>
+		///	Get a sprite that matches the weather string.
+		/// </summary>
 		private Sprite GetSpriteForName(string weatherName)
 		{
 			foreach (Sprite weatherSprite in weatherSprites)

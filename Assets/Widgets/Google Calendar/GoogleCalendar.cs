@@ -50,6 +50,7 @@ namespace GoogleCalendar
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				yield break;
 			}
 
 			// Remove old events
@@ -75,8 +76,8 @@ namespace GoogleCalendar
 
 				// And populate
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
-				eventEntry.GetNameText().text = item["summary"];
-				eventEntry.GetDateText().text = time.ToString("dd MMM");
+				eventEntry.SetNameText(item["summary"]);
+				eventEntry.SetDateText(time.ToString("dd MMM"));
 				eventEntry.SetDateTextColour(GetTextColour());
 				eventEntry.SetNameTextColour(GetTextColour());
 			}
