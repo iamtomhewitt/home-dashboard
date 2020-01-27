@@ -26,6 +26,7 @@ public class Config : MonoBehaviour
 		if (configFile != null)
 		{
 			Debug.Log("A config file has been supplied on start up, overwriting config...");
+			root = JSON.Parse(configFile.text);
 			SaveToFile();
 			SetRoot(filePath);
 		}
