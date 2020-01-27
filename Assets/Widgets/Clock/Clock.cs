@@ -10,11 +10,10 @@ namespace Clock
 		[SerializeField] private Text clockText;
 		[SerializeField] private Text dateText;
 
-		private void Start()
+		public override void Start()
 		{
-			this.Initialise();
-			InvokeRepeating("Run", 1f, RepeatRateInSeconds());
-
+			base.Start(); 
+			
 			// Reload the config in an Invoke method as we don't want to reload config every second
 			InvokeRepeating("ReloadConfig", 2f, 3600f);
 		}

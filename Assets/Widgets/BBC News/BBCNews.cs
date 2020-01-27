@@ -18,12 +18,9 @@ namespace BBCNews
 		private float secondsBetweenArticles;
 		private int currentArticleIndex = 0;
 
-		private void Start()
+		public override void Start()
 		{
-			this.ReloadConfig();
-			this.Initialise();
-
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
+			base.Start();
 			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);			
 		}
 

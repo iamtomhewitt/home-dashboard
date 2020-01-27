@@ -24,13 +24,12 @@ namespace OnlineLists
 		private List<string> itemsNotUploaded = new List<string>();
 		private string apiKey;
 		private string projectId;
+		private float missingItemsUploadRate = 30f;
 
-		private void Start()
+		public override void Start()
 		{
-			this.ReloadConfig();
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-			InvokeRepeating("UploadMissingItems", 30f, 30f);
+			base.Start();
+			InvokeRepeating("UploadMissingItems", missingItemsUploadRate, missingItemsUploadRate);
 		}
 
 		public override void ReloadConfig()

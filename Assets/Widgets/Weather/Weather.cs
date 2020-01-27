@@ -24,13 +24,6 @@ namespace WeatherForecast
 		private string longitude;
 		private string spriteColour;
 
-		private void Start()
-		{
-			this.ReloadConfig();
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-		}
-
 		public override void ReloadConfig()
 		{
 			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];

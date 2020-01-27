@@ -16,9 +16,9 @@ namespace FoodPlannerWidget
 		[SerializeField] private OnlineList shoppingList;
 		[SerializeField] private Image addButton;
 
-		private void Start()
+		public override void Start()
 		{
-			this.Initialise();
+			base.Start();
 
 			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
 
@@ -31,8 +31,6 @@ namespace FoodPlannerWidget
 				planner.SetRecipeBackgroundColour(Colours.ToColour(config["plannerBackgroundColour"]));
 				planner.SetDayBackgroundColour(Colours.Lighten(GetWidgetColour()));
 			}
-
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
 		}
 
 		public override void ReloadConfig() {}

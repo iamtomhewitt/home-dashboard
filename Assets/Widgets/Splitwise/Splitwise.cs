@@ -13,13 +13,6 @@ public class Splitwise : Widget
 	[SerializeField] private Text amount;
 
 	private string groupId;
-	
-	private void Start()
-    {
-		this.ReloadConfig();
-        this.Initialise();
-		InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-    }
 
 	public override void ReloadConfig()
 	{

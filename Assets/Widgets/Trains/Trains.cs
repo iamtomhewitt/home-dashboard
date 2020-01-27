@@ -23,13 +23,6 @@ namespace Train
 
 		private int maxDestinationLength = 10;
 
-		private void Start()
-		{			
-			this.ReloadConfig();
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-		}
-
 		public override void ReloadConfig()
 		{
 			config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];

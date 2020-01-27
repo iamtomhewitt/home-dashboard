@@ -23,6 +23,13 @@ public abstract class Widget : MonoBehaviour
 	public abstract void Run();
 	public abstract void ReloadConfig();
 
+	public virtual void Start()
+	{
+		this.ReloadConfig();
+		this.Initialise();
+		InvokeRepeating("Run", 0f, GetRepeatRateInSeconds());
+	}
+
 	public void Initialise()
 	{
 		JSONNode config = Config.instance.GetWidgetConfig()[widgetConfigKey];
@@ -40,7 +47,7 @@ public abstract class Widget : MonoBehaviour
 		SetTitleTextColour(textColour);
 	}
 
-	public float RepeatRateInSeconds()
+	private float GetRepeatRateInSeconds()
 	{
 		float seconds = 0f;
 
