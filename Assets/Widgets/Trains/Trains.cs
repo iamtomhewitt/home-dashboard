@@ -77,10 +77,22 @@ namespace Train
 				string locationName = trainService["destination"];
 				string scheduledDepartTime = DateTime.Parse(trainService["scheduledDepartTime"]).ToString("HH:mm");
 				string actualDepartTime = trainService["actualDepartTime"] == null ? scheduledDepartTime : DateTime.Parse(trainService["actualDepartTime"]).ToString("HH:mm");
+				bool cancelled = trainService["cancelled"];
+				bool busReplacement = trainService["busReplacement"];
 
 				if (actualDepartTime.Equals(scheduledDepartTime))
 				{
 					actualDepartTime = "On time";
+				}
+
+				if (cancelled)
+				{
+					actualDepartTime = "Cancelled";
+				}
+
+				if (busReplacement)
+				{
+					actualDepartTime = "Bus";
 				}
 
 				if (locationName.Length > maxDestinationLength)
