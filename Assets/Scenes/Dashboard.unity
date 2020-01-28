@@ -9265,7 +9265,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1417317358}
   m_HandleRect: {fileID: 1417317357}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9974,8 +9974,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1920043809}
   m_HandleRect: {fileID: 1920043808}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.5154509
+  m_Value: 1.0000002
+  m_Size: 0.515451
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12087,7 +12087,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1585299581}
   m_HandleRect: {fileID: 1585299580}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -17923,7 +17923,7 @@ MonoBehaviour:
   topBarColour: {fileID: 298947502}
   dialogTitle: {fileID: 1382790621}
   hideButton: {fileID: 480320920}
-  parentWidget: {fileID: 0}
+  parentWidget: {fileID: 1870469004}
   addButtonColour: {fileID: 1921489746}
   addButtonText: {fileID: 689909188}
   statusText: {fileID: 1345734257}
@@ -35848,10 +35848,10 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2118230374}
         m_MethodName: ApplyColours
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1763180177}
-          m_ObjectArgumentAssemblyTypeName: Widget, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -50263,7 +50263,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1556487574}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.12227984
+  m_Size: 0.122279845
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -53272,7 +53272,7 @@ MonoBehaviour:
   topBarColour: {fileID: 717354463}
   dialogTitle: {fileID: 396567805}
   hideButton: {fileID: 1324325009}
-  parentWidget: {fileID: 0}
+  parentWidget: {fileID: 1763180177}
   addButtonColour: {fileID: 1601423863}
   addButtonText: {fileID: 1198032793}
   statusText: {fileID: 1435083302}
