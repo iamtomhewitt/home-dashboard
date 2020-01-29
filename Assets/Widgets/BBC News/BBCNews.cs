@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
@@ -11,8 +12,10 @@ namespace BBCNews
 	{
 		[Header("BBC News Settings")]
 		[SerializeField] private BBCNewsEntry entry;
+		[SerializeField] private Image logo;
 
 		private JSONNode json;
+		private Color logoColour;
 
 		private string apiKey;
 		private float secondsBetweenArticles;
@@ -29,6 +32,7 @@ namespace BBCNews
 			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 			secondsBetweenArticles = config["secondsBetweenArticles"];
+			logoColour = Colours.ToColour(config["logoColour"]);
 		}
 
 		public override void Run()
@@ -37,6 +41,7 @@ namespace BBCNews
 			StartCoroutine(RequestHeadlines());
 
 			this.SetWidgetColour(GetWidgetColour());
+			logo.color = logoColour;
 			entry.SetTextColour(GetTextColour());
 
 			this.UpdateLastUpdatedText();

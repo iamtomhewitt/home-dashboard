@@ -43,25 +43,22 @@ namespace Train
 
 		private IEnumerator PopulateEntries()
 		{
-			foreach (TrainEntry entry in trainEntries)
-			{
-				entry.SetDestinationText("");
-				entry.SetTimeText("");
-			}
-
-			int numberOfResults = trainEntries.Length;
-
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES(stationCode, numberOfResults, apiToken));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES(stationCode, trainEntries.Length, apiToken));
 			yield return request.SendWebRequest();
-			string response = request.downloadHandler.text;
 
-			JSONNode json = JSON.Parse(response);
+			JSONNode json = JSON.Parse(request.downloadHandler.text);
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
 				yield break;
+			}
+
+			foreach (TrainEntry entry in trainEntries)
+			{
+				entry.SetDestinationText("");
+				entry.SetTimeText("");
 			}
 
 			for (int i = 0; i< json["timetable"].Count; i++)

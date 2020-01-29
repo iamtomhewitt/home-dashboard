@@ -19,10 +19,12 @@ namespace WeatherForecast
 		[SerializeField] private WeatherEntry[] weatherEntries;
 		[SerializeField] private Sprite[] weatherSprites;
 
+		private Color spriteColour;
+		private Color titleColour;
+
 		private string apiKey;
 		private string latitude;
 		private string longitude;
-		private string spriteColour;
 
 		public override void ReloadConfig()
 		{
@@ -30,7 +32,8 @@ namespace WeatherForecast
 			apiKey 		= config["apiKey"];
 			latitude 	= config["latitude"];
 			longitude 	= config["longitude"];
-			spriteColour= config["spriteColour"];
+			spriteColour= Colours.ToColour(config["spriteColour"]);
+			titleColour	= Colours.ToColour(config["titleColour"]);
 		}
 
 		public override void Run()
@@ -55,10 +58,10 @@ namespace WeatherForecast
 			}
 
 			currentSummary.text = json["currently"]["summary"];
-			currentSummary.color = GetTextColour();
+			currentSummary.color = titleColour;
 
 			currentIcon.sprite = GetSpriteForName(json["currently"]["icon"]);
-			currentIcon.color = Colours.ToColour(spriteColour);
+			currentIcon.color = spriteColour;
 
 			currentTemperature.text = Mathf.RoundToInt((float)json["currently"]["temperature"]).ToString() + "°";
 			currentTemperature.color = GetTextColour();
@@ -72,10 +75,16 @@ namespace WeatherForecast
 				date = date.AddSeconds(day["time"]);
 
 				entry.SetDayText(date.DayOfWeek.ToString());
+				entry.SetDayColour(GetTextColour());
+				
 				entry.SetIconSprite(GetSpriteForName(day["icon"]));
-				entry.SetColour(Colours.ToColour(spriteColour));
-				entry.SetTemperatureHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
-				entry.SetTemperatureLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
+				entry.SetIconColour(spriteColour);
+				
+				entry.SetTempHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
+				entry.SetTempHighColour(GetTextColour());
+				
+				entry.SetTempLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
+				entry.SetTempLowColour(GetTextColour());
 			}
 		}
 

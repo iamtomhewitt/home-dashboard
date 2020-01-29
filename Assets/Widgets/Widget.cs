@@ -16,9 +16,10 @@ public abstract class Widget : MonoBehaviour
 
 	private Color widgetColour;
 	private Color textColour;
+	private Color titleColour;
 	private string title;
-	private float repeatRate;
 	private string timeUnit;
+	private float repeatRate;
 
 	public abstract void Run();
 	public abstract void ReloadConfig();
@@ -36,6 +37,7 @@ public abstract class Widget : MonoBehaviour
 		
 		widgetColour= Colours.ToColour(config["colour"]);
 		textColour 	= Colours.ToColour(config["textColour"]);
+		titleColour	= Colours.ToColour(config["titleColour"]);
 		title 		= config["title"];
 		repeatRate 	= config["repeatRate"];
 		timeUnit 	= config["repeatTime"];
@@ -44,7 +46,7 @@ public abstract class Widget : MonoBehaviour
 		SetTitleText(title);
 		SetWidgetColour(widgetColour);
 		SetLastUpdatedTextColour(textColour);
-		SetTitleTextColour(textColour);
+		SetTitleTextColour(titleColour);
 	}
 
 	private float GetRepeatRateInSeconds()
