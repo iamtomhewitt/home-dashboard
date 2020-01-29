@@ -45,8 +45,8 @@ public class Splitwise : Widget
 		JSONNode exp = json["expenses"][0];
 
 		groupName.text = json["groupName"];
-		people.text = exp == null ? "" : exp["who"] + " owes " + exp["owes"];
-		allSettledUp.text = exp == null ? "All settled up!" : "";
+		people.text 		= exp == null ? "" : exp["who"] + " owes " + exp["owes"];
+		allSettledUp.text 	= exp == null ? "All settled up!" : "";
 		amount.text = exp["amount"];
 	}
 }
