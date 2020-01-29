@@ -20,7 +20,6 @@ namespace WeatherForecast
 		[SerializeField] private Sprite[] weatherSprites;
 
 		private Color spriteColour;
-		private Color titleColour;
 
 		private string apiKey;
 		private string latitude;
@@ -33,7 +32,6 @@ namespace WeatherForecast
 			latitude 	= config["latitude"];
 			longitude 	= config["longitude"];
 			spriteColour= Colours.ToColour(config["spriteColour"]);
-			titleColour	= Colours.ToColour(config["titleColour"]);
 		}
 
 		public override void Run()
@@ -58,13 +56,13 @@ namespace WeatherForecast
 			}
 
 			currentSummary.text = json["currently"]["summary"];
-			currentSummary.color = titleColour;
+			currentSummary.color = GetTitleColour();
 
 			currentIcon.sprite = GetSpriteForName(json["currently"]["icon"]);
 			currentIcon.color = spriteColour;
 
 			currentTemperature.text = Mathf.RoundToInt((float)json["currently"]["temperature"]).ToString() + "°";
-			currentTemperature.color = GetTextColour();
+			currentTemperature.color = GetTitleColour();
 
 			for (int i = 0; i < weatherEntries.Length; i++)
 			{

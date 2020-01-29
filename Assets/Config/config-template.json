@@ -121,5 +121,10 @@
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
 		}
+		},
+		"selectRecipe": {
+			"mainColour": "#58BAC8",
+			"textColour": "#FFFFFF"
+		}
 	}
 }

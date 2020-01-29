@@ -116,6 +116,11 @@ public abstract class Widget : MonoBehaviour
 		return textColour;
 	}
 
+	public Color GetTitleColour()
+	{
+		return titleColour;
+	}
+
 	public string GetWidgetTitle()
 	{
 		return title;

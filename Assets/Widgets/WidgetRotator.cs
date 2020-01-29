@@ -39,8 +39,6 @@ public class WidgetRotator : MonoBehaviour
 
 		if (fadeOut)
 		{
-			print(widget.name + " fading out");
-
 			while (widget.alpha > 0f)
 			{
 				widget.alpha -= Time.deltaTime * fadeSpeed;
