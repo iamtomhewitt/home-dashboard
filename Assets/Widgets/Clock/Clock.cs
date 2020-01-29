@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using SimpleJSON;
 
 namespace Clock
 {
@@ -20,8 +21,9 @@ namespace Clock
 
 		public override void ReloadConfig() 
 		{
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			clockText.color = GetTextColour();
-			dateText.color = GetTextColour();
+			dateText.color = Colours.ToColour(config["dateColour"]);
 		}
 
 		public override void Run()
