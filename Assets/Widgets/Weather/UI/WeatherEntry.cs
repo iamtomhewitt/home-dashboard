@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace WeatherForecast
@@ -22,14 +20,34 @@ namespace WeatherForecast
 			icon.sprite = s;
 		}
 
-		public void SetTemperatureHighText(string s)
+		public void SetTempHighText(string s)
 		{
 			temperatureHigh.text = s;
 		}
 
-		public void SetTemperatureLowText(string s)
+		public void SetTempLowText(string s)
 		{
 			temperatureLow.text = s;
+		}
+
+		public void SetIconColour(Color colour)
+		{
+			icon.color = colour;
+		}
+
+		public void SetDayColour(Color colour)
+		{
+			day.color = colour;
+		}
+
+		public void SetTempHighColour(Color colour)
+		{
+			temperatureHigh.color = colour;
+		}
+
+		public void SetTempLowColour(Color colour)
+		{
+			temperatureLow.color = colour;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
@@ -11,33 +12,38 @@ namespace BBCNews
 	{
 		[Header("BBC News Settings")]
 		[SerializeField] private BBCNewsEntry entry;
+		[SerializeField] private Image logo;
 
 		private JSONNode json;
+		private Color logoColour;
 
 		private string apiKey;
 		private float secondsBetweenArticles;
 		private int currentArticleIndex = 0;
 
-		private void Start()
+		public override void Start()
 		{
-			this.ReloadConfig();
-			this.Initialise();
-
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
+			base.Start();
 			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);			
 		}
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 			secondsBetweenArticles = config["secondsBetweenArticles"];
+			logoColour = Colours.ToColour(config["logoColour"]);
 		}
 
 		public override void Run()
 		{
 			this.ReloadConfig();
 			StartCoroutine(RequestHeadlines());
+
+			this.SetWidgetColour(GetWidgetColour());
+			logo.color = logoColour;
+			entry.SetTextColour(GetTextColour());
+
 			this.UpdateLastUpdatedText();
 		}
 
@@ -51,6 +57,7 @@ namespace BBCNews
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				yield break;
 			}
 
 			json = JSON.Parse(response);
@@ -67,8 +74,8 @@ namespace BBCNews
 			string description	= json["articles"][currentArticleIndex]["description"];
 			string url			= json["articles"][currentArticleIndex]["url"];
 
-			entry.GetTitle().text = title;
-			entry.GetDescription().text = description;
+			entry.SetTitle(title);
+			entry.SetDescription(description);
 			entry.SetUrl(url);
 
 			currentArticleIndex++;

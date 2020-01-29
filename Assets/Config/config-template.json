@@ -4,39 +4,50 @@
             "title": "BBC News",
             "colour": "#BB1919",
             "textColour": "#FFFFFF",
+            "titleColour": "#FFFFFF",
+            "logoColour": "#FFFFFF",
             "repeatRate": 30,
             "repeatTime": "minutes",
             "secondsBetweenArticles": 45,
             "apiKey": "<key>"
         },
-        "binDay": {
-            "title": "Bin Day",
-            "colour": "#03A9F4",
-            "textColour": "#FFFFFF",
-            "repeatRate": 2,
-            "repeatTime": "hours",
-            "firstGreenBin": "07-10-2019",
-            "firstBlackBin": "14-10-2019",
-            "repeatRateInDays": 14
-		},
+        "binDay":{
+            "title":"Bin Day",
+            "colour":"#03A9F4",
+            "textColour":"#FFFFFF",
+            "titleColour":"#FFFFFF",
+            "repeatRate":2,
+            "repeatTime":"hours",
+            "firstGreenBin":"07-10-2019",
+            "firstBlackBin":"14-10-2019",
+			"repeatRateInDays":14,
+			"greenBinColour":"#66BB6A",
+			"blackBinColour":"#263238",
+			"noBinColour":"#03A9F4"
+        },
 		"clock": {
             "title": "Clock",
             "colour": "#03A9F4",
             "textColour": "#FFFFFF",
+            "dateColour": "#FFFFFF",
             "repeatRate": 1,
 			"repeatTime": "seconds"
 		},
-        "foodPlanner": {
-            "title": "Food Planner",
-            "colour": "#431EDB",
-            "textColour": "#FFFFFF",
-            "repeatRate": 10,
-            "repeatTime": "hours"
+        "foodPlanner":{
+            "title":"Food Planner",
+            "colour":"#431EDB",
+            "textColour":"#FFFFFF",
+            "titleColour":"#FFFFFF",
+            "repeatRate":10,
+			"repeatTime":"hours",
+			"plannerBackgroundColour":"#FFFFFF",
+			"plannerTextColour": "#000000"
         },
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",
 			"colour": "#4285F4",
 			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
 			"repeatRate": 30,
 			"repeatTime": "minutes",
 			"apiKey": ""
@@ -45,6 +56,7 @@
             "title": "Shopping List",
             "colour": "#BDA7FF",
             "textColour": "#FFFFFF",
+            "titleColour": "#FFFFFF",
             "repeatRate": 10,
             "repeatTime": "minutes",
             "todoistId": "id",
@@ -54,6 +66,7 @@
             "title": "TODO List",
             "colour": "#303F9F",
             "textColour": "#FFFFFF",
+            "titleColour": "#FFFFFF",
             "repeatRate": 10,
             "repeatTime": "minutes",
             "todoistId": "id",
@@ -63,6 +76,7 @@
             "title": "Splitwise",
             "colour": "#51BC9C",
             "textColour": "#FFFFFF",
+            "titleColour": "#FFFFFF",
             "repeatRate": 2,
             "repeatTime": "hours",
             "groupId": "groupId"
@@ -71,6 +85,7 @@
             "title": "Trains",
             "colour": "#43A047",
             "textColour": "#FFFFFF",
+            "titleColour": "#FFFFFF",
             "repeatRate": 1,
             "repeatTime": "minutes",
             "apiKey": "key",
@@ -80,11 +95,36 @@
             "title": "Weather",
             "colour": "#FF9500",
             "textColour": "#FFFFFF",
+            "titleColour": "#FFFFFF",
             "repeatRate": 10,
             "repeatTime": "minutes",
             "apiKey": "key",
             "latitude": "lat",
-            "longitude": "long"
+            "longitude": "long",
+			"spriteColour": "#FFFFF"
         }
-    }
+	},
+	"dialogs": {
+		"addNewRecipe": {
+			"mainColour": "#E55353",
+			"textColour": "#FFFFFF"
+		},
+		"confirm": {
+			"mainColour": "#309F36",
+			"textColour": "#FFFFFF"
+		},
+		"logs": {
+			"mainColour": "#FF9F00",
+			"textColour": "#FFFFFF"
+		},
+		"settings": {
+			"mainColour": "#58BAC8",
+			"textColour": "#FFFFFF"
+		}
+		},
+		"selectRecipe": {
+			"mainColour": "#58BAC8",
+			"textColour": "#FFFFFF"
+		}
+	}
 }

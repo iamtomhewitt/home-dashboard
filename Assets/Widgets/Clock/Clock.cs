@@ -1,6 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
+using SimpleJSON;
 
 namespace Clock
 {
@@ -10,13 +11,20 @@ namespace Clock
 		[SerializeField] private Text clockText;
 		[SerializeField] private Text dateText;
 
-		private void Start()
+		public override void Start()
 		{
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
+			base.Start(); 
+			
+			// Reload the config in an Invoke method as we don't want to reload config every second
+			InvokeRepeating("ReloadConfig", 2f, 3600f);
 		}
 
-		public override void ReloadConfig() {}
+		public override void ReloadConfig() 
+		{
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			clockText.color = GetTextColour();
+			dateText.color = Colours.ToColour(config["dateColour"]);
+		}
 
 		public override void Run()
 		{

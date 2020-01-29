@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class RotatingWidget : MonoBehaviour
+public class WidgetRotator : MonoBehaviour
 {
 	[Header("Rotating Settings")]
 	[SerializeField] private CanvasGroup widgetOneCanvasGroup;
@@ -35,13 +35,10 @@ public class RotatingWidget : MonoBehaviour
 
 	private IEnumerator Fade(CanvasGroup widget, bool fadeOut)
 	{
-		print("Starting fade");
 		widget.alpha = fadeOut ? 1f : 0f;
 
 		if (fadeOut)
 		{
-			print(widget.name + " fading out");
-
 			while (widget.alpha > 0f)
 			{
 				widget.alpha -= Time.deltaTime * fadeSpeed;
@@ -50,8 +47,6 @@ public class RotatingWidget : MonoBehaviour
 		}
 		else
 		{
-			print(widget.name + " fading in");
-
 			while (widget.alpha < 1f)
 			{
 				widget.alpha += Time.deltaTime * fadeSpeed;

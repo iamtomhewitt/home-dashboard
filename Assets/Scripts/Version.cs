@@ -1,20 +1,13 @@
-﻿using Dialog;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Shows the application version in the bottom left of the dashboard.
+/// </summary>
 public class Version : MonoBehaviour
 {
     private void Start()
     {
-		Button button = GetComponent<Button>();
-		button.GetComponentInChildren<Text>().text = "Version: " + Application.version;
+		GetComponent<Button>().GetComponentInChildren<Text>().text = "Version: " + Application.version;
     }
-	
-	/// <summary>
-	/// Called from a button.
-	/// </summary>
-	public void ShowLog()
-	{
-		FindObjectOfType<WidgetLogger>().Show();
-	}
 }

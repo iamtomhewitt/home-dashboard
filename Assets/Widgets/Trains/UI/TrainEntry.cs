@@ -8,14 +8,20 @@ namespace Train
 		[SerializeField] private Text destinationText;
 		[SerializeField] private Text timeText;
 
-		public Text GetDestinationText()
+		public void SetDestinationText(string text)
 		{
-			return destinationText;
+			destinationText.text = text;
 		}
 
-		public Text GetTimeText()
+		public void SetTimeText(string text)
 		{
-			return timeText;
+			timeText.text = text;
+		}
+
+		public void SetTextColour(Color colour)
+		{
+			destinationText.color = colour;
+			timeText.color = colour;
 		}
 	}
 }

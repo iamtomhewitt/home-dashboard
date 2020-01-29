@@ -16,30 +16,40 @@ public abstract class Widget : MonoBehaviour
 
 	private Color widgetColour;
 	private Color textColour;
+	private Color titleColour;
 	private string title;
-	private float repeatRate;
 	private string timeUnit;
+	private float repeatRate;
 
 	public abstract void Run();
 	public abstract void ReloadConfig();
 
+	public virtual void Start()
+	{
+		this.ReloadConfig();
+		this.Initialise();
+		InvokeRepeating("Run", 0f, GetRepeatRateInSeconds());
+	}
+
 	public void Initialise()
 	{
-		JSONNode config = Config.instance.GetConfig()[widgetConfigKey];
+		JSONNode config = Config.instance.GetWidgetConfig()[widgetConfigKey];
 		
-		widgetColour= ToColour(config["colour"]);
-		textColour 	= ToColour(config["textColour"]);
+		widgetColour= Colours.ToColour(config["colour"]);
+		textColour 	= Colours.ToColour(config["textColour"]);
+		titleColour	= Colours.ToColour(config["titleColour"]);
 		title 		= config["title"];
 		repeatRate 	= config["repeatRate"];
 		timeUnit 	= config["repeatTime"];
 
 		UpdateLastUpdatedText();
 		SetTitleText(title);
-		SetColour(widgetColour);
-		SetTextColour(textColour);
+		SetWidgetColour(widgetColour);
+		SetLastUpdatedTextColour(textColour);
+		SetTitleTextColour(titleColour);
 	}
 
-	public float RepeatRateInSeconds()
+	private float GetRepeatRateInSeconds()
 	{
 		float seconds = 0f;
 
@@ -73,6 +83,7 @@ public abstract class Widget : MonoBehaviour
 	public void UpdateLastUpdatedText()
 	{
 		lastUpdatedText.text = "Last Updated: " + DateTime.Now.ToString("HH:mm");
+		lastUpdatedText.color = textColour;
 	}
 
 	private void SetTitleText(string s)
@@ -80,20 +91,34 @@ public abstract class Widget : MonoBehaviour
 		titleText.text = s;
 	}
 
-	public void SetColour(Color colour)
+	public void SetWidgetColour(Color colour)
 	{
 		widgetBackground.color = colour;
-	}
-
-	private void SetTextColour(Color colour)
-	{
-		titleText.color = colour;
-		lastUpdatedText.color = colour;
 	}
 
 	public Color GetWidgetColour()
 	{
 		return widgetColour;
+	}
+	
+	private void SetLastUpdatedTextColour(Color colour)
+	{
+		lastUpdatedText.color = colour;
+	}
+	
+	public void SetTitleTextColour(Color colour)
+	{
+		titleText.color = colour;
+	}
+
+	public Color GetTextColour()
+	{
+		return textColour;
+	}
+
+	public Color GetTitleColour()
+	{
+		return titleColour;
 	}
 
 	public string GetWidgetTitle()
@@ -104,19 +129,5 @@ public abstract class Widget : MonoBehaviour
 	public string GetWidgetConfigKey()
 	{
 		return widgetConfigKey;
-	}
-
-	private Color ToColour(string hex)
-	{
-		Color colour;
-
-		if (ColorUtility.TryParseHtmlString(hex, out colour))
-		{
-            return colour;
-		}
-		else
-		{
-			return Color.white;
-		}
 	}
 }

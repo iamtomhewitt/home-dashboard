@@ -423,3 +423,5 @@ MonoBehaviour:
   day: 0
   dayText: {fileID: 1013217549669142101}
   recipe: {fileID: 1013217549817886997}
+  recipeBackground: {fileID: 1013217550476370058}
+  dayBackground: {fileID: 1013217549811931802}

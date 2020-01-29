@@ -3,6 +3,7 @@
 	public class Endpoints
 	{
 		private static readonly string RECIPE_MANAGER = "https://home-dashboard-recipe-manager.herokuapp.com";
+		public static readonly string TODOIST_TASKS = "https://api.todoist.com/rest/v1/tasks";
 		public static readonly string RECIPES = RECIPE_MANAGER + "/recipes";
 		public static readonly string RECIPES_ADD = RECIPE_MANAGER + "/recipes/add";
 		public static readonly string PLANNER = RECIPE_MANAGER + "/planner";
@@ -22,8 +23,6 @@
 		{
 			return "https://www.googleapis.com/calendar/v3/calendars/" + gmailAddress + "/events?orderBy=startTime&singleEvents=true&timeMax=" + future + "T10:00:00-07:00&timeMin=" + today + "T10:00:00-07:00&key=" + apiKey;
 		}
-
-		public static readonly string TODOIST_TASKS = "https://api.todoist.com/rest/v1/tasks";
 
 		public static string TODOIST_PROJECT(string id)
 		{

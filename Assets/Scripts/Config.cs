@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using SimpleJSON;
 using System.IO;
-using Dialog;
 
 /// <summary>
 /// Access config as JSON via this component. <para/>
@@ -26,28 +25,43 @@ public class Config : MonoBehaviour
 
 		if (configFile != null)
 		{
+			Debug.Log("A config file has been supplied on start up, overwriting config...");
 			root = JSON.Parse(configFile.text);
 			SaveToFile();
+			SetRoot(filePath);
 		}
 		else if (File.Exists(filePath))
 		{
 			Debug.Log("A config file has already been created at: " + filePath + ", using that one.");
-			string contents = GetFileContents(filePath);
-			root = JSON.Parse(contents);
+			SetRoot(filePath);
 		}
 		else
 		{
 			Debug.Log("A config file has not been specified, creating one.");
 			CreateNewFile(filePath);
-			root = JSON.Parse(configFileTemplate.text);
+			SetRoot(filePath);
 		}
 	}
 
-	public JSONNode GetConfig()
+	private void SetRoot(string filePath)
+	{
+		string contents = GetFileContents(filePath);
+		root = JSON.Parse(contents);
+	}
+
+	public JSONNode GetWidgetConfig()
 	{
 		return root["widgets"];
 	}
 
+	public JSONNode GetDialogConfig()
+	{
+		return root["dialogs"];
+	}
+
+	/// <summary>
+	/// Replaces a value denoted by the key, and then saves the change.
+	/// </summary>
 	public void Replace(JSONNode key, string value)
 	{
 		key.Value = value;

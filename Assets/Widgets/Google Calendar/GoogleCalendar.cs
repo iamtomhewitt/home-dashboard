@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 using SimpleJSON;
@@ -13,22 +14,17 @@ namespace GoogleCalendar
 		[Header("Google Calendar Settings")]
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
 		[SerializeField] private Transform scrollParent;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
 		[SerializeField] private string gmailAddress;
 
 		private JSONNode json;
 
 		private string apiKey;
 
-		private void Start()
-		{
-			this.ReloadConfig();
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-		}
-
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 		}
 
@@ -54,6 +50,7 @@ namespace GoogleCalendar
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				yield break;
 			}
 
 			// Remove old events
@@ -79,9 +76,14 @@ namespace GoogleCalendar
 
 				// And populate
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
-				eventEntry.GetNameText().text = item["summary"];
-				eventEntry.GetDateText().text = time.ToString("dd MMM");
+				eventEntry.SetNameText(item["summary"]);
+				eventEntry.SetDateText(time.ToString("dd MMM"));
+				eventEntry.SetDateTextColour(GetTextColour());
+				eventEntry.SetNameTextColour(GetTextColour());
 			}
+
+			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+			scrollbarHandle.color = Colours.Lighten(GetWidgetColour(), 0.1f);
 		}
 	}
 }

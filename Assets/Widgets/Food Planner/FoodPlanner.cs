@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Dialog;
@@ -7,17 +8,29 @@ using SimpleJSON;
 using OnlineLists;
 using Requests;
 
-namespace FoodPlannerWidget
+namespace Planner
 {
 	public class FoodPlanner : Widget
 	{
 		[Header("Food Planner Settings")]
 		[SerializeField] private OnlineList shoppingList;
+		[SerializeField] private Image addButton;
 
-		private void Start()
+		public override void Start()
 		{
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
+			base.Start();
+
+			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
+
+			addButton.color = Colours.Darken(GetWidgetColour());
+
+			foreach (PlannerEntry planner in FindObjectsOfType<PlannerEntry>())
+			{
+				planner.SetDayTextColour(GetTextColour());
+				planner.SetRecipeTextColour(Colours.ToColour(config["plannerTextColour"]));
+				planner.SetRecipeBackgroundColour(Colours.ToColour(config["plannerBackgroundColour"]));
+				planner.SetDayBackgroundColour(Colours.Lighten(GetWidgetColour()));
+			}
 		}
 
 		public override void ReloadConfig() {}
@@ -35,23 +48,24 @@ namespace FoodPlannerWidget
 		private IEnumerator AddToShoppingListRoutine()
 		{
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
+			dialog.ApplyColours();
 			dialog.Show();
-			dialog.None();
+			dialog.SetNone();
 			dialog.SetInfoMessage("Add all ingredients from each recipe to the shopping list?");
 
-			while (dialog.GetResult() == DialogResult.NONE)
+			while (dialog.IsNone())
 			{
 				yield return null;
 			}
 
-			if (dialog.GetResult() == DialogResult.NO)
+			if (dialog.IsNo())
 			{
 				dialog.Hide();
-				dialog.None();
+				dialog.SetNone();
 				yield break;
 			}
 
-			if (dialog.GetResult() == DialogResult.YES)
+			if (dialog.IsYes())
 			{
 				dialog.Hide();
 
@@ -65,22 +79,22 @@ namespace FoodPlannerWidget
 					UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES + "?name=" + entry.GetRecipeName());
 					yield return request.SendWebRequest();
 
-					JSONNode responseJson = JSON.Parse(request.downloadHandler.text);
+					JSONNode json = JSON.Parse(request.downloadHandler.text);
 					
-					if (responseJson["status"] == 404)
+					if (json["status"] == 404)
 					{
 						// A free text recipe may have been entered, so there will be no ingredients to add, therefore just move onto the next recipe
 						continue;
 					}
 
-					for (int i = 0; i < responseJson["recipe"]["ingredients"].AsArray.Count; i++)
+					for (int i = 0; i < json["recipe"]["ingredients"].AsArray.Count; i++)
 					{
-						JSONNode node = responseJson["recipe"]["ingredients"][i];
-						Ingredient ingredient = new Ingredient(node["name"], node["category"], node["weight"], node["amount"]);
+						JSONNode node = json["recipe"]["ingredients"][i];
 
-						// Update the existing ingredient if it exists
+						Ingredient ingredient = new Ingredient(node["name"], node["category"], node["weight"], node["amount"]);
 						Ingredient existingIngredient = ingredients.Find(x => x.name.Equals(ingredient.name) && x.weight.Equals(ingredient.weight));
 
+						// Update the existing ingredient if it exists
 						if (existingIngredient != null)
 						{
 							double amount = existingIngredient.amount;
@@ -100,7 +114,7 @@ namespace FoodPlannerWidget
 					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
 				}
 
-				dialog.None();
+				dialog.SetNone();
 				yield break;
 			}
 		}

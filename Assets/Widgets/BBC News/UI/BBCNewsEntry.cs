@@ -10,14 +10,20 @@ namespace BBCNews
 
 		private string url;
 
-		public Text GetTitle()
+		public void SetTitle(string t)
 		{
-			return title;
+			title.text = t;
 		}
 
-		public Text GetDescription()
+		public void SetTextColour(Color colour)
 		{
-			return description;
+			title.color = colour;
+			description.color = colour;
+		}
+
+		public void SetDescription(string desc)
+		{
+			description.text = desc;
 		}
 
 		public void SetUrl(string url)

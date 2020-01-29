@@ -11,6 +11,7 @@ namespace OnlineLists
 	public class OnlineListEntry : MonoBehaviour
 	{
 		[SerializeField] private Text nameText;
+		[SerializeField] private Text removeButtonText;
 		[SerializeField] private string taskId;
 
 		private string apiKey;
@@ -20,9 +21,9 @@ namespace OnlineLists
 			nameText.text = text;
 		}
 
-		public Text GetNameText()
+		public void SetNameTextColour(Color colour)
 		{
-			return nameText;
+			nameText.color = colour;
 		}
 
 		public void SetTaskId(string id)
@@ -35,7 +36,14 @@ namespace OnlineLists
 			this.apiKey = apiKey;
 		}
 
-		// Called from the 'X' button
+		public void SetRemoveButtonTextColour(Color colour)
+		{
+			removeButtonText.color = colour;
+		}
+
+		/// <summary>
+		/// Called from the 'X' button.
+		/// </summary>
 		public void Remove()
 		{
 			StartCoroutine(RemoveRoutine());
@@ -44,26 +52,27 @@ namespace OnlineLists
 		private IEnumerator RemoveRoutine()
 		{
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
+			dialog.ApplyColours();
 			dialog.Show();
 			dialog.SetInfoMessage("Remove '<b>" + nameText.text + "</b>'?");
-			dialog.None();
+			dialog.SetNone();
 
-			while (dialog.GetResult() == DialogResult.NONE)
+			while (dialog.IsNone())
 			{
 				yield return null;
 			}
 
-			if (dialog.GetResult() == DialogResult.NO || dialog.GetResult() == DialogResult.CANCEL)
+			if (dialog.IsNo() || dialog.IsCancel())
 			{
 				dialog.Hide();
 				yield break;
 			}
 
-			if (dialog.GetResult() == DialogResult.YES)
+			if (dialog.IsYes())
 			{
 				dialog.Hide();
 
-				string url = "https://api.todoist.com/rest/v1/tasks/" + taskId + "/close";
+				string url = Endpoints.TODOIST_TASKS + "/" + taskId + "/close";
 
 				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.TODOIST_TASKS + "/" + taskId + "/close", new JSONObject());
 				request.SetRequestHeader("Authorization", "Bearer " + apiKey);

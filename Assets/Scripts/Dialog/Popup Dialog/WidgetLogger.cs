@@ -4,9 +4,14 @@ using System;
 
 namespace Dialog
 {
-	public class WidgetLogger : Dialog
+	/// <summary>
+	/// A dialog & logger that logs any messages from widgets.
+	/// </summary>
+	public class WidgetLogger : PopupDialog
 	{
 		[SerializeField] private Text log;
+		[SerializeField] private Image scrollBackground;
+		[SerializeField] private Image scrollHandle;
 
 		public static WidgetLogger instance;
 
@@ -47,6 +52,12 @@ namespace Dialog
 			}
 
 			lastDate = DateTime.Today;
+		}
+
+		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
+		{
+			scrollBackground.color = Colours.Darken(mainColour);
+			scrollHandle.color = Colours.Lighten(mainColour);
 		}
 	}
 }

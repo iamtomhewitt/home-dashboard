@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using System.Collections;
 using Requests;
 using SimpleJSON;
+using Dialog;
 
 public class Splitwise : Widget
 {
@@ -11,19 +12,13 @@ public class Splitwise : Widget
 	[SerializeField] private Text groupName;
 	[SerializeField] private Text people;
 	[SerializeField] private Text amount;
+	[SerializeField] private Text allSettledUp;
 
 	private string groupId;
-	
-	private void Start()
-    {
-		this.ReloadConfig();
-        this.Initialise();
-		InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-    }
 
 	public override void ReloadConfig()
 	{
-		JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+		JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 		groupId = config["groupId"];
 	}
 
@@ -39,11 +34,19 @@ public class Splitwise : Widget
 		UnityWebRequest request = Postman.CreateGetRequest(Endpoints.SPLITWISE(groupId));
 		yield return request.SendWebRequest();
 
+		bool ok = request.error == null ? true : false;
+		if (!ok)
+		{
+			WidgetLogger.instance.Log(this, "Error: " + request.error);
+			yield break;
+		}
+
 		JSONNode json = JSON.Parse(request.downloadHandler.text);
 		JSONNode exp = json["expenses"][0];
 
 		groupName.text = json["groupName"];
-		people.text = exp["who"] + " owes " + exp["owes"];
+		people.text 		= exp == null ? "" : exp["who"] + " owes " + exp["owes"];
+		allSettledUp.text 	= exp == null ? "All settled up!" : "";
 		amount.text = exp["amount"];
 	}
 }

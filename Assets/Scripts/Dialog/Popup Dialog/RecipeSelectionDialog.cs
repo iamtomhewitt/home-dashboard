@@ -4,13 +4,23 @@ using UnityEngine.UI;
 using System.Collections;
 using SimpleJSON;
 using Requests;
+using Planner;
 
 namespace Dialog
 {
-	public class RecipeSelectionDialog : Dialog
+	/// <summary>
+	/// A dialog that shows all the available recipes to choose from when selecting a recipe for a planner entry on the food planner.
+	/// </summary>
+	public class RecipeSelectionDialog : PopupDialog
 	{
+		[Header("Recipe Selection Dialog Settings")]
 		[SerializeField] private RecipeEntry recipeEntryPrefab;
 		[SerializeField] private Transform scrollViewContent;
+		[SerializeField] private Button freeTextButton;
+		[SerializeField] private Button addRecipeButton;
+		[SerializeField] private Image freeTextInput;
+		[SerializeField] private Image scrollBackground;
+		[SerializeField] private Image scrollHandle;
 
 		private string selectedRecipe;
 		private string freeTextRecipe;
@@ -56,7 +66,7 @@ namespace Dialog
 			freeTextRecipe = freeTextInput.text;
 			selectedRecipe = "";
 			freeTextInput.text = "";
-			SetResult(DialogResult.FINISHED);
+			SetFinished();
 			Hide();
 		}
 
@@ -64,7 +74,7 @@ namespace Dialog
 		{
 			freeTextRecipe = "";
 			selectedRecipe = recipe;
-			SetResult(DialogResult.FINISHED);
+			SetFinished();
 			Hide();
 		}
 
@@ -81,7 +91,21 @@ namespace Dialog
 		public void HideAndCancelResult()
 		{
 			Hide();
-			Cancel();
+			SetCancel();
+		}
+
+		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
+		{
+			freeTextButton.GetComponent<Image>().color = mainColour;
+			freeTextButton.GetComponentInChildren<Text>().color = textColour;
+
+			addRecipeButton.GetComponent<Image>().color = mainColour;
+			addRecipeButton.GetComponentInChildren<Text>().color = textColour;
+
+			freeTextInput.color = mainColour;
+
+			scrollBackground.color = Colours.Darken(mainColour);
+			scrollHandle.color = Colours.Lighten(mainColour);
 		}
 	}
 }

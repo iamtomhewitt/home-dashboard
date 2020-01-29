@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using SimpleJSON;
 
-namespace BinDay
+namespace Bins
 {
 	public class BinDay : Widget
 	{
@@ -20,19 +20,15 @@ namespace BinDay
 
 		private int repeatRateInDays;
 
-		private void Start()
-		{
-			this.ReloadConfig();
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-		}
-
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			firstGreenBinDay = DateTime.ParseExact(config["firstGreenBin"], "dd-MM-yyyy", null);
 			firstBlackBinDay = DateTime.ParseExact(config["firstBlackBin"], "dd-MM-yyyy", null);
 			repeatRateInDays = config["repeatRateInDays"];
+			greenBinColour = Colours.ToColour(config["greenBinColour"]);
+			blackBinColour = Colours.ToColour(config["blackBinColour"]);
+			noBinColour = Colours.ToColour(config["noBinColour"]);
 		}
 
 		public override void Run()
@@ -49,23 +45,23 @@ namespace BinDay
 
 			if (today == nextBlackBinDay || today == lastBlackBinDay)
 			{
-				Display("Black bin today!", FontStyle.Bold, blackBinColour, Lighten(blackBinColour));
+				Display("Black bin today!", FontStyle.Bold, blackBinColour, Colours.Lighten(blackBinColour));
 			}
 			else if (today == nextGreenBinDay || today == lastGreenBinDay)
 			{
-				Display("Green bin today!", FontStyle.Bold, greenBinColour, Darken(greenBinColour));
+				Display("Green bin today!", FontStyle.Bold, greenBinColour, Colours.Darken(greenBinColour));
 			}
 			else if (tomorrow == nextBlackBinDay || tomorrow == lastBlackBinDay)
 			{
-				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour, Lighten(blackBinColour));
+				Display("Black bin tomorrow!", FontStyle.Normal, blackBinColour, Colours.Lighten(blackBinColour));
 			}
 			else if (tomorrow == nextGreenBinDay || tomorrow == lastGreenBinDay)
 			{
-				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour, Darken(greenBinColour));
+				Display("Green bin tomorrow!", FontStyle.Normal, greenBinColour, Colours.Darken(greenBinColour));
 			}
 			else
 			{
-				Display("No bins today!", FontStyle.Normal, noBinColour, Darken(noBinColour));
+				Display("No bins today!", FontStyle.Normal, noBinColour, Colours.Darken(noBinColour));
 			}
 
 			this.UpdateLastUpdatedText();
@@ -74,21 +70,10 @@ namespace BinDay
 		private void Display(string message, FontStyle style, Color widgetColour, Color logoColour)
 		{
 			text.text = message;
+			text.color = GetTextColour();
 			text.fontStyle = style;
 			logo.color = logoColour;
-			this.SetColour(widgetColour);
-		}
-
-		private Color Darken(Color colour)
-		{
-			float multiplier = 0.75f;
-			return new Color(colour.r * multiplier, colour.g * multiplier, colour.b * multiplier, 1f);
-		}
-
-		private Color Lighten(Color colour)
-		{
-			float multiplier = 2f;
-			return new Color(colour.r * multiplier, colour.g * multiplier, colour.b * multiplier, 1f);
+			this.SetWidgetColour(widgetColour);
 		}
 
 		private DateTime GetLastBinDate(DateTime firstBinDate)
@@ -101,7 +86,7 @@ namespace BinDay
 
 		private DateTime GetNextBinDate(DateTime lastBinDate)
 		{
-			return lastBinDate.AddDays(14);
+			return lastBinDate.AddDays(repeatRateInDays);
 		}
 	}
 }

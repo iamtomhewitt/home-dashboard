@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
 using Dialog;
-using UnityEngine.Networking;
 using SimpleJSON;
 using Requests;
 
-namespace FoodPlannerWidget
+namespace Planner
 {
 	public class PlannerEntry : MonoBehaviour
 	{
 		[SerializeField] private Day day;
 		[SerializeField] private Text dayText;
 		[SerializeField] private Text recipe;
+		[SerializeField] private Image recipeBackground;
+		[SerializeField] private Image dayBackground;
 
 		private IEnumerator Start()
 		{
@@ -44,15 +46,15 @@ namespace FoodPlannerWidget
 		{
 			RecipeSelectionDialog dialog = FindObjectOfType<RecipeSelectionDialog>();
 			dialog.Show();
-			dialog.SetResult(DialogResult.NONE);
+			dialog.SetNone();
 			dialog.PopulateRecipes();
 
-			while (dialog.GetResult() != DialogResult.FINISHED && dialog.GetResult() != DialogResult.CANCEL)
+			while (!dialog.IsFinished() && !dialog.IsCancel())
 			{
 				yield return null;
 			}
 
-			if (dialog.GetResult() == DialogResult.FINISHED)
+			if (dialog.IsFinished())
 			{
 				recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
 
@@ -71,6 +73,26 @@ namespace FoodPlannerWidget
 		public string GetRecipeName()
 		{
 			return recipe.text;
+		}
+
+		public void SetRecipeTextColour(Color colour)
+		{
+			recipe.color = colour;
+		}
+
+		public void SetDayTextColour(Color colour)
+		{
+			dayText.color = colour;
+		}
+
+		public void SetRecipeBackgroundColour(Color colour)
+		{
+			recipeBackground.color = colour;
+		}
+
+		public void SetDayBackgroundColour(Color colour)
+		{
+			dayBackground.color = colour;
 		}
 
 		private enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }

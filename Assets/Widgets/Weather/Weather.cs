@@ -19,23 +19,19 @@ namespace WeatherForecast
 		[SerializeField] private WeatherEntry[] weatherEntries;
 		[SerializeField] private Sprite[] weatherSprites;
 
+		private Color spriteColour;
+
 		private string apiKey;
 		private string latitude;
 		private string longitude;
 
-		private void Start()
-		{
-			this.ReloadConfig();
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-		}
-
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey 		= config["apiKey"];
 			latitude 	= config["latitude"];
 			longitude 	= config["longitude"];
+			spriteColour= Colours.ToColour(config["spriteColour"]);
 		}
 
 		public override void Run()
@@ -56,11 +52,17 @@ namespace WeatherForecast
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				yield break;
 			}
 
 			currentSummary.text = json["currently"]["summary"];
+			currentSummary.color = GetTitleColour();
+
 			currentIcon.sprite = GetSpriteForName(json["currently"]["icon"]);
+			currentIcon.color = spriteColour;
+
 			currentTemperature.text = Mathf.RoundToInt((float)json["currently"]["temperature"]).ToString() + "°";
+			currentTemperature.color = GetTitleColour();
 
 			for (int i = 0; i < weatherEntries.Length; i++)
 			{
@@ -71,12 +73,22 @@ namespace WeatherForecast
 				date = date.AddSeconds(day["time"]);
 
 				entry.SetDayText(date.DayOfWeek.ToString());
+				entry.SetDayColour(GetTextColour());
+				
 				entry.SetIconSprite(GetSpriteForName(day["icon"]));
-				entry.SetTemperatureHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
-				entry.SetTemperatureLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
+				entry.SetIconColour(spriteColour);
+				
+				entry.SetTempHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
+				entry.SetTempHighColour(GetTextColour());
+				
+				entry.SetTempLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
+				entry.SetTempLowColour(GetTextColour());
 			}
 		}
 
+		/// <summary>
+		///	Get a sprite that matches the weather string.
+		/// </summary>
 		private Sprite GetSpriteForName(string weatherName)
 		{
 			foreach (Sprite weatherSprite in weatherSprites)

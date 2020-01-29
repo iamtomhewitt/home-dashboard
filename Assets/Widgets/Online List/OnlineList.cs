@@ -2,9 +2,9 @@
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using SimpleJSON;
 using Dialog;
-using System.Collections.Generic;
 using Requests;
 
 namespace OnlineLists
@@ -12,26 +12,29 @@ namespace OnlineLists
 	public class OnlineList : FadingWidget
 	{
 		[Header("Online List Settings")]
+		[SerializeField] private TodoistList listType;
 		[SerializeField] private OnlineListEntry entryPrefab;
 		[SerializeField] private Transform content;
 		[SerializeField] private Text statusText;
-		[SerializeField] private TodoistList listType;
+		[SerializeField] private Text addButtonText;
+		[SerializeField] private Image addButtonColour;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
 
 		private List<string> itemsNotUploaded = new List<string>();
 		private string apiKey;
 		private string projectId;
+		private float missingItemsUploadRate = 30f;
 
-		private void Start()
+		public override void Start()
 		{
-			this.ReloadConfig();
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-			InvokeRepeating("UploadMissingItems", 30f, 10f);
+			base.Start();
+			InvokeRepeating("UploadMissingItems", missingItemsUploadRate, missingItemsUploadRate);
 		}
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 			projectId = config["todoistId"];
 		}
@@ -76,9 +79,16 @@ namespace OnlineLists
 			{
 				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
 				e.SetNameText(task["content"].Value);
+				e.SetNameTextColour(GetTextColour());
+				e.SetRemoveButtonTextColour(GetTextColour());
 				e.SetTaskId(task["id"].Value);
 				e.SetApiKey(apiKey);
 			}
+
+			addButtonColour.color = Colours.Darken(GetWidgetColour());
+			addButtonText.color = GetTextColour();
+			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+			scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
 		}
 
 		/// <summary>

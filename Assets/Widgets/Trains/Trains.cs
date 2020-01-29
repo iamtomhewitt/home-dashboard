@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System.Collections;
 using SimpleJSON;
 using Dialog;
@@ -12,6 +13,9 @@ namespace Train
 	{
 		[Header("Train Settings")]
 		[SerializeField] private TrainEntry[] trainEntries;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
+
 		private JSONNode config;
 
 		private string apiToken;
@@ -19,16 +23,9 @@ namespace Train
 
 		private int maxDestinationLength = 10;
 
-		private void Start()
-		{			
-			this.ReloadConfig();
-			this.Initialise();
-			InvokeRepeating("Run", 0f, RepeatRateInSeconds());
-		}
-
 		public override void ReloadConfig()
 		{
-			config = Config.instance.GetConfig()[this.GetWidgetConfigKey()];
+			config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiToken 	= config["apiKey"];
 			stationCode = config["stationCode"];
 		}
@@ -36,31 +33,32 @@ namespace Train
 		public override void Run()
 		{
 			this.ReloadConfig();
+			
 			StartCoroutine(Fade(PopulateEntries, 1f));
+			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+			scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
+
 			this.UpdateLastUpdatedText();
 		}
 
 		private IEnumerator PopulateEntries()
 		{
-			foreach (TrainEntry entry in trainEntries)
-			{
-				entry.GetDestinationText().text = "";
-				entry.GetTimeText().text = "";
-			}
-
-			int numberOfResults = trainEntries.Length;
-
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES(stationCode, numberOfResults, apiToken));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES(stationCode, trainEntries.Length, apiToken));
 			yield return request.SendWebRequest();
-			string response = request.downloadHandler.text;
 
-			JSONNode json = JSON.Parse(response);
+			JSONNode json = JSON.Parse(request.downloadHandler.text);
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)
 			{
 				WidgetLogger.instance.Log(this, "Error: " + request.error);
 				yield break;
+			}
+
+			foreach (TrainEntry entry in trainEntries)
+			{
+				entry.SetDestinationText("");
+				entry.SetTimeText("");
 			}
 
 			for (int i = 0; i< json["timetable"].Count; i++)
@@ -76,10 +74,22 @@ namespace Train
 				string locationName = trainService["destination"];
 				string scheduledDepartTime = DateTime.Parse(trainService["scheduledDepartTime"]).ToString("HH:mm");
 				string actualDepartTime = trainService["actualDepartTime"] == null ? scheduledDepartTime : DateTime.Parse(trainService["actualDepartTime"]).ToString("HH:mm");
+				bool cancelled = trainService["cancelled"];
+				bool busReplacement = trainService["busReplacement"];
 
 				if (actualDepartTime.Equals(scheduledDepartTime))
 				{
 					actualDepartTime = "On time";
+				}
+
+				if (cancelled)
+				{
+					actualDepartTime = "Cancelled";
+				}
+
+				if (busReplacement)
+				{
+					actualDepartTime = "Bus";
 				}
 
 				if (locationName.Length > maxDestinationLength)
@@ -87,8 +97,9 @@ namespace Train
 					locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
 				}
 
-				entry.GetDestinationText().text = locationName;
-				entry.GetTimeText().text = scheduledDepartTime + " (" + actualDepartTime + ")";
+				entry.SetDestinationText(locationName);
+				entry.SetTimeText(scheduledDepartTime + " (" + actualDepartTime + ")");
+				entry.SetTextColour(GetTextColour());
 			}
 		}
 	}
