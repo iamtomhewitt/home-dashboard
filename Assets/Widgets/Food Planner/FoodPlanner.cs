@@ -81,7 +81,7 @@ namespace Planner
 
 					JSONNode json = JSON.Parse(request.downloadHandler.text);
 					
-					if (json["status"] == 404)
+					if (json["status"] == 400)
 					{
 						// A free text recipe may have been entered, so there will be no ingredients to add, therefore just move onto the next recipe
 						continue;
