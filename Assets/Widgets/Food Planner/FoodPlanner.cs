@@ -75,8 +75,11 @@ namespace Planner
 				PlannerEntry[] plannerEntries = FindObjectsOfType<PlannerEntry>();
 				foreach (PlannerEntry entry in plannerEntries)
 				{
+					JSONObject body = new JSONObject();
+					body.Add("apiKey", Config.instance.GetWidgetConfig()[GetWidgetConfigKey()]["apiKey"]);
+
 					// Get the ingredients by recipe
-					UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES + "?name=" + entry.GetRecipeName());
+					UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES + "?name=" + entry.GetRecipeName(), body);
 					yield return request.SendWebRequest();
 
 					JSONNode json = JSON.Parse(request.downloadHandler.text);

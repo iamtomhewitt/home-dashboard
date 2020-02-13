@@ -16,8 +16,12 @@ namespace Planner
 		[SerializeField] private Image recipeBackground;
 		[SerializeField] private Image dayBackground;
 
+		private string configKey;
+
 		private IEnumerator Start()
 		{
+			configKey = FindObjectOfType<FoodPlanner>().GetWidgetConfigKey();
+			
 			string label = "";
 			foreach (char c in day.ToString().Substring(0, 3).ToUpper())
 			{
@@ -26,9 +30,9 @@ namespace Planner
 			dayText.text = label;
 
 			JSONObject json = new JSONObject();
-			json.Add("day", day.ToString());
+			json.Add("apiKey", Config.instance.GetWidgetConfig()[configKey]["apiKey"]);
 
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString());
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString(), json);
 			yield return request.SendWebRequest();
 
 			recipe.text = JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
@@ -62,6 +66,7 @@ namespace Planner
 				JSONObject json = new JSONObject();
 				json.Add("recipe", string.IsNullOrEmpty(recipe.text) ? " " : recipe.text);
 				json.Add("day", day.ToString());
+				json.Add("apiKey", Config.instance.GetWidgetConfig()[configKey]["apiKey"]);
 
 				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, json);
 				yield return request.SendWebRequest();
