@@ -15,24 +15,24 @@ namespace Requests
 			return UnityWebRequest.Get(url);
 		}
 
-		public static UnityWebRequest CreateGetRequest(string url, JSONObject json)
+		public static UnityWebRequest CreateGetRequest(string url, JSONObject body)
 		{
 			UnityWebRequest request = UnityWebRequest.Get(url);
-			byte[] body = Encoding.UTF8.GetBytes(json.ToString());
+			byte[] bytes = Encoding.UTF8.GetBytes(body.ToString());
 
-			request.uploadHandler = new UploadHandlerRaw(body);
+			request.uploadHandler = new UploadHandlerRaw(bytes);
 			request.downloadHandler = new DownloadHandlerBuffer();
 			request.SetRequestHeader("Content-Type", "application/json");
 
 			return request;
 		}
 
-		public static UnityWebRequest CreatePostRequest(string url, JSONObject json)
+		public static UnityWebRequest CreatePostRequest(string url, JSONObject body)
 		{
 			UnityWebRequest request = UnityWebRequest.Post(url, "POST");
-			byte[] body = Encoding.UTF8.GetBytes(json.ToString());
+			byte[] bytes = Encoding.UTF8.GetBytes(body.ToString());
 
-			request.uploadHandler = new UploadHandlerRaw(body);
+			request.uploadHandler = new UploadHandlerRaw(bytes);
 			request.downloadHandler = new DownloadHandlerBuffer();
 			request.SetRequestHeader("Content-Type", "application/json");
 
@@ -42,7 +42,6 @@ namespace Requests
 		public static UnityWebRequest CreateTodoistRequest(string url, string json, string apiKey, string uuid)
 		{
 			UnityWebRequest request = new UnityWebRequest(url, "POST");
-
 			byte[] jsonToSend = new UTF8Encoding().GetBytes(json);
 
 			request.uploadHandler = new UploadHandlerRaw(jsonToSend);
