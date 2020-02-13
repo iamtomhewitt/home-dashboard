@@ -3,11 +3,16 @@
 	public class Endpoints
 	{
 		private static readonly string RECIPE_MANAGER = "https://home-dashboard-recipe-manager.herokuapp.com";
+		
 		public static readonly string TODOIST_TASKS = "https://api.todoist.com/rest/v1/tasks";
-		public static readonly string RECIPES = RECIPE_MANAGER + "/recipes";
 		public static readonly string RECIPES_ADD = RECIPE_MANAGER + "/recipes/add";
 		public static readonly string PLANNER = RECIPE_MANAGER + "/planner";
 		public static readonly string PLANNER_ADD = RECIPE_MANAGER + "/planner/add";
+
+		public static string RECIPES(string apiKey)
+		{
+			return RECIPE_MANAGER + "/recipes?apiKey=" + apiKey;
+		}
 
 		public static string TRAIN_DEPARTURES(string stationCode, int numberOfResults, string apiKey)
 		{

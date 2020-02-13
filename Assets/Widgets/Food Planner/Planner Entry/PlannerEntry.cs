@@ -29,10 +29,7 @@ namespace Planner
 			}
 			dayText.text = label;
 
-			JSONObject json = new JSONObject();
-			json.Add("apiKey", Config.instance.GetWidgetConfig()[configKey]["apiKey"]);
-
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString(), json);
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString() + "&apiKey=" + Config.instance.GetWidgetConfig()[configKey]["apiKey"]);
 			yield return request.SendWebRequest();
 
 			recipe.text = JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
