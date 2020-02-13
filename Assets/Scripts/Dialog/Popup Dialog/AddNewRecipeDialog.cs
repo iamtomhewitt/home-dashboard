@@ -5,6 +5,7 @@ using System.Collections;
 using Requests;
 using SimpleJSON;
 using Planner;
+using Json;
 
 namespace Dialog
 {
@@ -40,24 +41,17 @@ namespace Dialog
 		{
 			NewIngredientEntry[] newIngredients = FindObjectsOfType<NewIngredientEntry>();
 
-			JSONObject json = new JSONObject();
 			JSONArray ingredientsArray = new JSONArray();
-
 			foreach (NewIngredientEntry newIngredient in newIngredients)
 			{
-				JSONObject ingredientJson = new JSONObject();
-				ingredientJson.Add("name", newIngredient.GetIngredientName());
-				ingredientJson.Add("category", newIngredient.GetCategory());
-				ingredientJson.Add("amount", newIngredient.GetAmount());
-				ingredientJson.Add("weight", newIngredient.GetWeight());
+				JSONObject ingredientJson = JsonBody.RECIPE_INGREDIENT(newIngredient.GetIngredientName(), newIngredient.GetAmount(), newIngredient.GetWeight(), newIngredient.GetCategory());
 				ingredientsArray.Add(ingredientJson);
 			}
 
-			json.Add("name", recipeName.text);
-			json.Add("ingredients", ingredientsArray);
-			json.Add("apiKey", Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"]);
+			string apiKey = Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"];
+			JSONObject body = JsonBody.RECIPE_ADD(recipeName.text, ingredientsArray, apiKey);
 
-			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.RECIPES_ADD, json);
+			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.RECIPES_ADD, body);
 			yield return request.SendWebRequest();
 
 			JSONNode response = JSON.Parse(request.downloadHandler.text);
