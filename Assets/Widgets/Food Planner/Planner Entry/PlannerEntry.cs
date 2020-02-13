@@ -5,6 +5,7 @@ using System.Collections;
 using Dialog;
 using SimpleJSON;
 using Requests;
+using Json;
 
 namespace Planner
 {
@@ -62,12 +63,8 @@ namespace Planner
 				recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
 
 				// Now update the planner online
-				JSONObject json = new JSONObject();
-				json.Add("recipe", string.IsNullOrEmpty(recipe.text) ? " " : recipe.text);
-				json.Add("day", day.ToString());
-				json.Add("apiKey", apiKey);
-
-				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, json);
+				JSONObject body = JsonBody.PLANNER_ADD(string.IsNullOrEmpty(recipe.text) ? " " : recipe.text, day.ToString(), apiKey);
+				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
 				yield return request.SendWebRequest();
 
 				yield break;
@@ -84,12 +81,8 @@ namespace Planner
 
 		private IEnumerator ClearRecipeRoutine()
 		{
-			JSONObject json = new JSONObject();
-			json.Add("recipe", " ");
-			json.Add("day", day.ToString());
-			json.Add("apiKey", apiKey);
-
-			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, json);
+			JSONObject body = JsonBody.PLANNER_ADD(" ", day.ToString(), apiKey);
+			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
 			yield return request.SendWebRequest();
 
 			JSONNode response = JSON.Parse(request.downloadHandler.text);
