@@ -91,8 +91,7 @@
             "repeatRate": 1,
             "repeatTime": "minutes",
             "apiKey": "key",
-            "stationCode": "HRS",
-			"apiKey": ""
+            "stationCode": "HRS"
         },
         "weather": {
             "title": "Weather",
