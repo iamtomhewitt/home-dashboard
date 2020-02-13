@@ -37,7 +37,7 @@ namespace Dialog
 		{
 			ClearExistingRecipes();
 
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES);
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES(Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"]));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 

@@ -76,7 +76,7 @@ namespace Planner
 				foreach (PlannerEntry entry in plannerEntries)
 				{
 					// Get the ingredients by recipe
-					UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES + "?name=" + entry.GetRecipeName());
+					UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES(Config.instance.GetWidgetConfig()[GetWidgetConfigKey()]["apiKey"]) + "&name=" + entry.GetRecipeName());
 					yield return request.SendWebRequest();
 
 					JSONNode json = JSON.Parse(request.downloadHandler.text);
