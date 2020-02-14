@@ -1,7 +1,8 @@
-using SimpleJSON;
-
-namespace Json
+namespace SimpleJSON
 {
+	/// <summary>
+	/// Constructs bodys of API requests.
+	/// </summary>
 	public class JsonBody
 	{
 		public static JSONObject AddToPlanner(string recipe, string day, string apiKey)
