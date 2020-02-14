@@ -44,12 +44,12 @@ namespace Dialog
 			JSONArray ingredientsArray = new JSONArray();
 			foreach (NewIngredientEntry newIngredient in newIngredients)
 			{
-				JSONObject ingredientJson = JsonBody.RECIPE_INGREDIENT(newIngredient.GetIngredientName(), newIngredient.GetAmount(), newIngredient.GetWeight(), newIngredient.GetCategory());
+				JSONObject ingredientJson = JsonBody.RecipeIngredient(newIngredient.GetIngredientName(), newIngredient.GetAmount(), newIngredient.GetWeight(), newIngredient.GetCategory());
 				ingredientsArray.Add(ingredientJson);
 			}
 
 			string apiKey = Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"];
-			JSONObject body = JsonBody.RECIPE_ADD(recipeName.text, ingredientsArray, apiKey);
+			JSONObject body = JsonBody.AddRecipe(recipeName.text, ingredientsArray, apiKey);
 
 			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.RECIPES_ADD, body);
 			yield return request.SendWebRequest();

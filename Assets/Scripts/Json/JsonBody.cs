@@ -4,7 +4,7 @@ namespace Json
 {
 	public class JsonBody
 	{
-		public static JSONObject PLANNER_ADD(string recipe, string day, string apiKey)
+		public static JSONObject AddToPlanner(string recipe, string day, string apiKey)
 		{
 			JSONObject json = new JSONObject();
 			json.Add("recipe", " ");
@@ -13,7 +13,7 @@ namespace Json
 			return json;
 		}
 
-		public static JSONObject RECIPE_ADD(string name, JSONArray ingredients, string apiKey)
+		public static JSONObject AddRecipe(string name, JSONArray ingredients, string apiKey)
 		{
 			JSONObject json = new JSONObject();
 			json.Add("name", name);
@@ -22,7 +22,7 @@ namespace Json
 			return json;
 		}
 
-		public static JSONObject RECIPE_INGREDIENT(string name, double amount, string weight, string category)
+		public static JSONObject RecipeIngredient(string name, double amount, string weight, string category)
 		{
 			JSONObject json = new JSONObject();
 			json.Add("name", name);

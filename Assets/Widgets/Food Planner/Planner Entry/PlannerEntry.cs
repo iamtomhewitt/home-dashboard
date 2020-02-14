@@ -63,7 +63,7 @@ namespace Planner
 				recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
 
 				// Now update the planner online
-				JSONObject body = JsonBody.PLANNER_ADD(string.IsNullOrEmpty(recipe.text) ? " " : recipe.text, day.ToString(), apiKey);
+				JSONObject body = JsonBody.AddToPlanner(string.IsNullOrEmpty(recipe.text) ? " " : recipe.text, day.ToString(), apiKey);
 				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
 				yield return request.SendWebRequest();
 
@@ -81,7 +81,7 @@ namespace Planner
 
 		private IEnumerator ClearRecipeRoutine()
 		{
-			JSONObject body = JsonBody.PLANNER_ADD(" ", day.ToString(), apiKey);
+			JSONObject body = JsonBody.AddToPlanner(" ", day.ToString(), apiKey);
 			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
 			yield return request.SendWebRequest();
 
