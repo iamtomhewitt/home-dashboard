@@ -15,11 +15,13 @@ public class Splitwise : Widget
 	[SerializeField] private Text allSettledUp;
 
 	private string groupId;
+	private string apiKey;
 
 	public override void ReloadConfig()
 	{
 		JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 		groupId = config["groupId"];
+		apiKey = config["apiKey"];
 	}
 
     public override void Run()
@@ -31,7 +33,7 @@ public class Splitwise : Widget
 
 	private IEnumerator RunRoutine()
 	{
-		UnityWebRequest request = Postman.CreateGetRequest(Endpoints.SPLITWISE(groupId));
+		UnityWebRequest request = Postman.CreateGetRequest(Endpoints.SPLITWISE(groupId, apiKey));
 		yield return request.SendWebRequest();
 
 		bool ok = request.error == null ? true : false;

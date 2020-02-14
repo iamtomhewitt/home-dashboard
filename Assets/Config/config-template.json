@@ -41,7 +41,8 @@
             "repeatRate":10,
 			"repeatTime":"hours",
 			"plannerBackgroundColour":"#FFFFFF",
-			"plannerTextColour": "#000000"
+			"plannerTextColour": "#000000",
+			"apiKey": ""
         },
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",
@@ -79,7 +80,8 @@
             "titleColour": "#FFFFFF",
             "repeatRate": 2,
             "repeatTime": "hours",
-            "groupId": "groupId"
+            "groupId": "groupId",
+			"apiKey": ""
         },
         "trains": {
             "title": "Trains",

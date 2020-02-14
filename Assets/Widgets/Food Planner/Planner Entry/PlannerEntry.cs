@@ -16,8 +16,14 @@ namespace Planner
 		[SerializeField] private Image recipeBackground;
 		[SerializeField] private Image dayBackground;
 
+		private string configKey;
+		private string apiKey;
+
 		private IEnumerator Start()
 		{
+			configKey = FindObjectOfType<FoodPlanner>().GetWidgetConfigKey();
+			apiKey = Config.instance.GetWidgetConfig()[configKey]["apiKey"];
+			
 			string label = "";
 			foreach (char c in day.ToString().Substring(0, 3).ToUpper())
 			{
@@ -25,10 +31,7 @@ namespace Planner
 			}
 			dayText.text = label;
 
-			JSONObject json = new JSONObject();
-			json.Add("day", day.ToString());
-
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString());
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString() + "&apiKey=" + Config.instance.GetWidgetConfig()[configKey]["apiKey"]);
 			yield return request.SendWebRequest();
 
 			recipe.text = JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
@@ -62,11 +65,41 @@ namespace Planner
 				JSONObject json = new JSONObject();
 				json.Add("recipe", string.IsNullOrEmpty(recipe.text) ? " " : recipe.text);
 				json.Add("day", day.ToString());
+				json.Add("apiKey", apiKey);
 
 				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, json);
 				yield return request.SendWebRequest();
 
 				yield break;
+			}
+		}
+
+		/// <summary>
+		/// Quick method to clear the entry
+		/// </summary>
+		public void ClearRecipe()
+		{
+			StartCoroutine(ClearRecipeRoutine());
+		}
+
+		private IEnumerator ClearRecipeRoutine()
+		{
+			JSONObject json = new JSONObject();
+			json.Add("recipe", " ");
+			json.Add("day", day.ToString());
+			json.Add("apiKey", apiKey);
+
+			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, json);
+			yield return request.SendWebRequest();
+
+			JSONNode response = JSON.Parse(request.downloadHandler.text);
+			if(response["status"] == 200)
+			{
+				recipe.text = "";
+			}
+			else
+			{
+				WidgetLogger.instance.Log("Could not clear recipe: " + response["message"]);
 			}
 		}
 
