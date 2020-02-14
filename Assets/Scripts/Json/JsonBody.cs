@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace SimpleJSON
 {
 	/// <summary>
@@ -31,6 +34,14 @@ namespace SimpleJSON
 			json.Add("weight", weight);
 			json.Add("category", category);
 			return json;
+		}
+
+		/// <summary>
+		/// Has to return a string as SimpleJSON cannot use longs yet.
+		/// </summary>
+		public static string TodoistTask(string item, string projectId)
+		{
+			return "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";
 		}
 	}
 }
