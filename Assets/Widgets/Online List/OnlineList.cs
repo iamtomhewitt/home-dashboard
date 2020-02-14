@@ -102,9 +102,11 @@ namespace OnlineLists
 		private IEnumerator AddItemRoutine(string item)
 		{
 			string uuid = System.Guid.NewGuid().ToString();
-			string json = "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";
+			string body = JsonBody.TodoistTask(item, projectId);
 
-			UnityWebRequest request = Postman.CreateTodoistRequest(Endpoints.TODOIST_TASKS, json, apiKey, uuid);
+			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.TODOIST_TASKS, body);
+			request.SetRequestHeader("Authorization", "Bearer " + apiKey);
+			request.SetRequestHeader("X-Request-Id", uuid);
 			yield return request.SendWebRequest();
 
 			bool ok = request.error == null ? true : false;
