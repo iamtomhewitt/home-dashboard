@@ -25,7 +25,9 @@ namespace Dialog
 		private void DynamicallyCreateDialog()
 		{
 			JSONNode widgets = Config.instance.GetWidgetConfig();
+			JSONNode dialogs = Config.instance.GetDialogConfig();
 
+			// Populate widgets
 			foreach (KeyValuePair<string, JSONNode> widget in (JSONObject)widgets)
 			{
 				string widgetKey = widget.Key;
@@ -47,6 +49,31 @@ namespace Dialog
 					setting.SetKeyTree(keyTree);
 					setting.SetValue(value);
 					setting.SetKeyLabel(key);
+					setting.SetWidgetSetting(true);
+					setting.gameObject.name = setting.GetKeyLabel();
+				}
+			}
+
+			// Populate dialogs
+			foreach (KeyValuePair<string, JSONNode> dialog in (JSONObject)dialogs)
+			{
+				string dialogKey = dialog.Key;
+
+				Text title = Instantiate(titlePrefab, contentParent).GetComponent<Text>();
+				title.text = Utility.CamelCaseToSentence(dialogKey) + " Dialog";
+				title.gameObject.name = title.text + " Title";
+
+				foreach (KeyValuePair<string, JSONNode> kvp in (JSONObject)dialog)
+				{
+					string key = kvp.Key;
+					string value = kvp.Value;
+					string[] keyTree = new string[] { dialogKey, key };
+
+					Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
+					setting.SetKeyTree(keyTree);
+					setting.SetValue(value);
+					setting.SetKeyLabel(key);
+					setting.SetWidgetSetting(false);
 					setting.gameObject.name = setting.GetKeyLabel();
 				}
 			}
