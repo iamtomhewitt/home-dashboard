@@ -35,6 +35,19 @@ namespace Dialog
 					string key = kvp.Key;
 					string value = kvp.Value;
 					string[] keyTree = new string[] { widgetKey, key };
+
+					if (key.Equals("title"))
+					{
+						Text title = Instantiate(titlePrefab, contentParent).GetComponent<Text>();
+						title.text = value;
+						title.gameObject.name = value + " Title";
+					}
+
+					Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
+					setting.SetKeyTree(keyTree);
+					setting.SetValue(value);
+					setting.SetKeyLabel(key);
+					setting.gameObject.name = key + " Setting";
 				}
 			}
 		}
