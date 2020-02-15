@@ -48,12 +48,7 @@ public class Setting : MonoBehaviour
 
 	public void SetKeyLabel(string text)
 	{
-		// Capitalise first letter
-		text = char.ToUpper(text[0]) + text.Substring(1);
-
-		// Now split into words
-		Regex r = new Regex(@"(?<=[A-Z])(?=[A-Z][a-z]) | (?<=[^A-Z])(?=[A-Z]) | (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
-		keyLabel.text = r.Replace(text, " ");
+		keyLabel.text = Utility.CamelCaseToSentence(text);
 	}
 
 	public string GetKeyLabel()
