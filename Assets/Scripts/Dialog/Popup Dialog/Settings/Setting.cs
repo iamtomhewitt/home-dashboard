@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// A key label and value input field on the settings page.
 /// </summary>
 public class Setting : MonoBehaviour
 {
+	[SerializeField] private Text keyLabel;
 	[SerializeField] private InputField value;
 	[SerializeField] private bool widgetSetting;
 	[SerializeField] private string[] keyTree;
@@ -29,13 +31,38 @@ public class Setting : MonoBehaviour
 		return keyTree;
 	}
 
+	public void SetKeyTree(string[] tree)
+	{
+		keyTree = tree;
+	}
+
 	public string GetValue()
 	{
 		return value.text;
 	}
 
+	public void SetValue(string value)
+	{
+		this.value.text = value;
+	}
+
+	public void SetKeyLabel(string text)
+	{
+		keyLabel.text = Utility.CamelCaseToSentence(text);
+	}
+
+	public string GetKeyLabel()
+	{
+		return keyLabel.text;
+	}
+
 	public bool IsWidgetSetting()
 	{
 		return widgetSetting;
+	}
+
+	public void SetWidgetSetting(bool widgetSetting)
+	{
+		this.widgetSetting = widgetSetting;
 	}
 }
