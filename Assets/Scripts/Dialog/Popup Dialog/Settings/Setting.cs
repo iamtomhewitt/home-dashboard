@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// A key label and value input field on the settings page.
@@ -47,7 +48,12 @@ public class Setting : MonoBehaviour
 
 	public void SetKeyLabel(string text)
 	{
-		keyLabel.text = text;
+		// Capitalise first letter
+		text = char.ToUpper(text[0]) + text.Substring(1);
+
+		// Now split into words
+		Regex r = new Regex(@"(?<=[A-Z])(?=[A-Z][a-z]) | (?<=[^A-Z])(?=[A-Z]) | (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
+		keyLabel.text = r.Replace(text, " ");
 	}
 
 	public bool IsWidgetSetting()
