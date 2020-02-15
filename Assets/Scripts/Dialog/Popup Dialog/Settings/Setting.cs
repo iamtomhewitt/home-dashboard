@@ -65,4 +65,9 @@ public class Setting : MonoBehaviour
 	{
 		return widgetSetting;
 	}
+
+	public void SetWidgetSetting(bool widgetSetting)
+	{
+		this.widgetSetting = widgetSetting;
+	}
 }
