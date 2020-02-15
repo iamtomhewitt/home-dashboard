@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17454bd771569a64dbe05d60c1eedcc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyLabel: {fileID: 6082320629804662942}
   value: {fileID: 6082320630606711326}
   widgetSetting: 1
   keyTree: []

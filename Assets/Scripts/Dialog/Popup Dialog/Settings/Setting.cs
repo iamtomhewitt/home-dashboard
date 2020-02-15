@@ -7,6 +7,7 @@ using SimpleJSON;
 /// </summary>
 public class Setting : MonoBehaviour
 {
+	[SerializeField] private Text keyLabel;
 	[SerializeField] private InputField value;
 	[SerializeField] private bool widgetSetting;
 	[SerializeField] private string[] keyTree;
@@ -42,6 +43,11 @@ public class Setting : MonoBehaviour
 	public void SetValue(string value)
 	{
 		this.value.text = value;
+	}
+
+	public void SetKeyLabel(string text)
+	{
+		keyLabel.text = text;
 	}
 
 	public bool IsWidgetSetting()
