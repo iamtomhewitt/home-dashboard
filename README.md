@@ -55,10 +55,3 @@ Have the dashboard and need a hand setting it up? Follow [this guide](GETTING&#3
 
 ## 💻 Development
 Know how to use Unity3D and want to build your own dashboard? Follow [this guide](DEVELOPMENT.md)!
-
-
-<br>
-
-------------
-
-<div align="center">❤ Icon made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

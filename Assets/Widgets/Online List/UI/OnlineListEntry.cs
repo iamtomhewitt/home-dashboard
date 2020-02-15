@@ -73,8 +73,7 @@ namespace OnlineLists
 				dialog.Hide();
 
 				string url = Endpoints.TODOIST_TASKS + "/" + taskId + "/close";
-
-				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.TODOIST_TASKS + "/" + taskId + "/close", new JSONObject());
+				UnityWebRequest request = Postman.CreatePostRequest(url, new JSONObject());
 				request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 				yield return request.SendWebRequest();
 
