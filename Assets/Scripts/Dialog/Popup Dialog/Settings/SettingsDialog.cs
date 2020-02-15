@@ -40,17 +40,10 @@ namespace Dialog
 
 					if (key.Equals("title"))
 					{
-						Text title = Instantiate(titlePrefab, contentParent).GetComponent<Text>();
-						title.text = value;
-						title.gameObject.name = value + " Title";
+						CreateTitle(value);
 					}
 
-					Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
-					setting.SetKeyTree(keyTree);
-					setting.SetValue(value);
-					setting.SetKeyLabel(key);
-					setting.SetWidgetSetting(true);
-					setting.gameObject.name = setting.GetKeyLabel();
+					CreateSetting(keyTree, key, value, true);
 				}
 			}
 
@@ -58,25 +51,37 @@ namespace Dialog
 			foreach (KeyValuePair<string, JSONNode> dialog in (JSONObject)dialogs)
 			{
 				string dialogKey = dialog.Key;
-
-				Text title = Instantiate(titlePrefab, contentParent).GetComponent<Text>();
-				title.text = Utility.CamelCaseToSentence(dialogKey) + " Dialog";
-				title.gameObject.name = title.text + " Title";
+				
+				CreateTitle(Utility.CamelCaseToSentence(dialogKey) + " Dialog");
 
 				foreach (KeyValuePair<string, JSONNode> kvp in (JSONObject)dialog)
 				{
-					string key = kvp.Key;
-					string value = kvp.Value;
-					string[] keyTree = new string[] { dialogKey, key };
-
-					Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
-					setting.SetKeyTree(keyTree);
-					setting.SetValue(value);
-					setting.SetKeyLabel(key);
-					setting.SetWidgetSetting(false);
-					setting.gameObject.name = setting.GetKeyLabel();
+					CreateSetting(new string[] { dialogKey, kvp.Key }, kvp.Key, kvp.Value, false);
 				}
 			}
+		}
+
+		/// <summary>
+		/// Creates a header based on the config.
+		/// </summary>
+		private void CreateTitle(string value)
+		{
+			Text title = Instantiate(titlePrefab, contentParent).GetComponent<Text>();
+			title.text = value;
+			title.gameObject.name = title.text + " Title";
+		}
+
+		/// <summary>
+		/// Creates a key value setting based on the config.
+		/// </summary>
+		private void CreateSetting(string[] keyTree, string key, string value, bool isWidgetSetting)
+		{
+			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
+			setting.SetKeyTree(keyTree);
+			setting.SetKeyLabel(key);
+			setting.SetValue(value);
+			setting.SetWidgetSetting(isWidgetSetting);
+			setting.gameObject.name = setting.GetKeyLabel();
 		}
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
