@@ -10,9 +10,34 @@ namespace Dialog
 	/// </summary>
 	public class SettingsDialog : PopupDialog
 	{
+		[SerializeField] private GameObject titlePrefab;
+		[SerializeField] private GameObject settingPrefab;
+		[SerializeField] private Transform contentParent;
 		[SerializeField] private Button saveButton;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
+
+		private void Start()
+		{
+			DynamicallyCreateDialog();
+		}
+
+		private void DynamicallyCreateDialog()
+		{
+			JSONNode widgets = Config.instance.GetWidgetConfig();
+
+			foreach (KeyValuePair<string, JSONNode> widget in (JSONObject)widgets)
+			{
+				string widgetKey = widget.Key;
+
+				foreach (KeyValuePair<string, JSONNode> kvp in (JSONObject)widget)
+				{
+					string key = kvp.Key;
+					string value = kvp.Value;
+					string[] keyTree = new string[] { widgetKey, key };
+				}
+			}
+		}
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{

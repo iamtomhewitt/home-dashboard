@@ -29,9 +29,19 @@ public class Setting : MonoBehaviour
 		return keyTree;
 	}
 
+	public void SetKeyTree(string[] tree)
+	{
+		keyTree = tree;
+	}
+
 	public string GetValue()
 	{
 		return value.text;
+	}
+
+	public void SetValue(string value)
+	{
+		this.value.text = value;
 	}
 
 	public bool IsWidgetSetting()
