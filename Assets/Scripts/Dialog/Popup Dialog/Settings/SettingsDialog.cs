@@ -47,7 +47,7 @@ namespace Dialog
 					setting.SetKeyTree(keyTree);
 					setting.SetValue(value);
 					setting.SetKeyLabel(key);
-					setting.gameObject.name = key + " Setting";
+					setting.gameObject.name = setting.GetKeyLabel();
 				}
 			}
 		}

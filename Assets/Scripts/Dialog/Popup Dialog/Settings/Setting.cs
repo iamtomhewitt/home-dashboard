@@ -56,6 +56,11 @@ public class Setting : MonoBehaviour
 		keyLabel.text = r.Replace(text, " ");
 	}
 
+	public string GetKeyLabel()
+	{
+		return keyLabel.text;
+	}
+
 	public bool IsWidgetSetting()
 	{
 		return widgetSetting;
