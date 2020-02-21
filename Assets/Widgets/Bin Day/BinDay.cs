@@ -26,14 +26,56 @@ namespace Bins
 		{
 			this.ReloadConfig();
 
+			DateTime today = DateTime.Today;
+			DateTime tomorrow = today.AddDays(1);
+
+			bool stopProcessing = false;
+
 			foreach(JSONNode bin in bins)
 			{
-				print (bin);
+				// If the first bin in the config is active, and we carry on processing, 
+				// then the next time around the widget will show 'no bins today' 
+				if (stopProcessing)
+				{
+					break;
+				}
+
+				DateTime firstBinDay = DateTime.ParseExact(bin["firstDate"], "dd-MM-yyyy", null);
+				int repeatRateInDays = bin["repeatRateInDays"];
+				string binName = bin["name"];
+
+				DateTime lastBinDay = GetLastBinDate(firstBinDay, repeatRateInDays);
+				DateTime nextBinDay = GetNextBinDate(lastBinDay, repeatRateInDays);
+
+				Color binColour = Colours.ToColour(bin["binColour"]);
+
+				if (IsBin(today, nextBinDay, lastBinDay))
+				{
+					Display(binName + " bin today!", FontStyle.Bold, binColour, Colours.Lighten(binColour));
+					stopProcessing = true;
+				}
+				else if (IsBin(tomorrow, nextBinDay, lastBinDay))
+				{
+					Display(binName + " bin tomorrow!", FontStyle.Normal, binColour, Colours.Lighten(binColour));
+					stopProcessing = true;
+				}
+				else
+				{
+					Display("No bins today!", FontStyle.Normal, noBinColour, Colours.Darken(noBinColour));
+				}
 			}
+
+			this.UpdateLastUpdatedText();
+		}
+
+		private bool IsBin(DateTime date, DateTime next, DateTime last)
+		{
+			return (next == date || last == date);
 		}
 
 		private void Display(string message, FontStyle style, Color widgetColour, Color logoColour)
 		{
+			print (message);
 			text.text = message;
 			text.color = GetTextColour();
 			text.fontStyle = style;
