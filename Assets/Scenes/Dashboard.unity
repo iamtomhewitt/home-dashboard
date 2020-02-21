@@ -6537,6 +6537,8 @@ MonoBehaviour:
   widgetConfigKey: journeyPlanner
   scrollContent: {fileID: 725524383}
   entry: {fileID: 9067714497953877905, guid: c656642ec03f34faea11c03b0247c34f, type: 3}
+  scrollbarBackground: {fileID: 1927014537}
+  scrollbarHandle: {fileID: 706098868}
 --- !u!225 &715397946
 CanvasGroup:
   m_ObjectHideFlags: 0

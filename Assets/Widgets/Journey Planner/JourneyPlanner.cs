@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using System.Collections;
 using Requests;
 using SimpleJSON;
@@ -8,8 +9,11 @@ namespace JourneyPlanner
 {
 	public class JourneyPlanner : Widget
 	{
+		[Header("Journey Planner Settings")]
 		[SerializeField] private Transform scrollContent;
 		[SerializeField] private JourneyPlannerEntry entry;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
 
 		private JSONNode config;
 		private JSONNode journeys;
@@ -20,6 +24,8 @@ namespace JourneyPlanner
 			config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 			journeys = config["journeys"];
+			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+			scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
 		}
 
 		public override void Run()
