@@ -66,9 +66,17 @@
             "titleColour":"#FFFFFF",
             "repeatRate":1,
 			"repeatTime":"hours",
-			"startPoint": "<lat>,<long>",
-			"endPoint": "<lat>,<long>",
-			"apiKey": "<key>"
+			"apiKey": "<key>",
+			"journeys": [
+				{
+					"startPoint": "<lat long>",
+					"endPoint": "<lat long>"
+				},
+				{
+					"startPoint": "<lat long>",
+					"endPoint": "<lat long>"
+				}
+			]
 		},
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",
