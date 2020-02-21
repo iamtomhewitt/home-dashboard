@@ -75,7 +75,6 @@ namespace Bins
 
 		private void Display(string message, FontStyle style, Color widgetColour, Color logoColour)
 		{
-			print (message);
 			text.text = message;
 			text.color = GetTextColour();
 			text.fontStyle = style;
