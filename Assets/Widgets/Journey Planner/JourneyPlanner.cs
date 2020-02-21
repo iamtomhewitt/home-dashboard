@@ -11,7 +11,8 @@ namespace JourneyPlanner
 	{
 		[Header("Journey Planner Settings")]
 		[SerializeField] private Transform scrollContent;
-		[SerializeField] private JourneyPlannerEntry entry;
+		[SerializeField] private JourneyPlannerEntry scrollEntry;
+		[SerializeField] private JourneyPlannerEntry singleEntry;
 		[SerializeField] private Image scrollbarBackground;
 		[SerializeField] private Image scrollbarHandle;
 
@@ -47,7 +48,9 @@ namespace JourneyPlanner
 
 				int durationWithTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
 
-				Instantiate(entry, scrollContent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic));
+				GameObject prefab = journeys.Count == 1 ? singleEntry.gameObject : scrollEntry.gameObject;
+				Transform parent = journeys.Count == 1 ? this.transform : scrollContent;
+				Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic));
 			}
 		}
 
