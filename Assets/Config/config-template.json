@@ -44,7 +44,7 @@
 			"plannerTextColour": "#000000",
 			"apiKey": ""
 		},
-		"maps": {
+		"journeyPlanner": {
 			"startPoint": "<lat>,<long>",
 			"endPoint": "<lat>,<long>",
 			"apiKey": "<key>"
