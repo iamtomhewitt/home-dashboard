@@ -18,12 +18,27 @@
             "titleColour":"#FFFFFF",
             "repeatRate":2,
             "repeatTime":"hours",
-            "firstGreenBin":"07-10-2019",
-            "firstBlackBin":"14-10-2019",
-			"repeatRateInDays":14,
-			"greenBinColour":"#66BB6A",
-			"blackBinColour":"#263238",
-			"noBinColour":"#03A9F4"
+			"noBinColour":"#03A9F4",
+			"bins" : [
+				{
+					"name": "<colour>",
+					"firstDate": "01-01-2020",
+					"repeatRateInDays": 14,
+					"binColour": "#FF0000"
+				},
+				{
+					"name": "<colour>",
+					"firstDate": "01-01-2020",
+					"repeatRateInDays": 14,
+					"binColour": "#FF0000"
+				},
+				{
+					"name": "<colour>",
+					"firstDate": "01-01-2020",
+					"repeatRateInDays": 14,
+					"binColour": "#FF0000"
+				}
+			]
         },
 		"clock": {
             "title": "Clock",
