@@ -60,6 +60,12 @@
 			"apiKey": ""
 		},
 		"journeyPlanner": {
+			"title":"Journey Planner",
+            "colour":"#431EDB",
+            "textColour":"#FFFFFF",
+            "titleColour":"#FFFFFF",
+            "repeatRate":1,
+			"repeatTime":"hours",
 			"startPoint": "<lat>,<long>",
 			"endPoint": "<lat>,<long>",
 			"apiKey": "<key>"
