@@ -41,7 +41,6 @@ Logs/
 /.vs/home-dashboard/v15/Server/sqlite3/storage.ide
 /.vs/home-dashboard/v15/Server/sqlite3/storage.ide-shm
 /.vs/home-dashboard/v15/Server/sqlite3/storage.ide-wal
-/Packages
 /Assets/config.json
 /Assets/config.json.meta
 
