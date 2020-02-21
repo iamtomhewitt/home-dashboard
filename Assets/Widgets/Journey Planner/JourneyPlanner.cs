@@ -4,78 +4,81 @@ using System.Collections;
 using Requests;
 using SimpleJSON;
 
-public class JourneyPlanner : Widget
+namespace JourneyPlanner
 {
-	private JSONNode config;
-	private JSONNode journeys;
-	private string apiKey;
-
-	public override void ReloadConfig()
+	public class JourneyPlanner : Widget
 	{
-		config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
-		apiKey = config["apiKey"];
-		journeys = config["journeys"];
-	}
+		[SerializeField] private Transform scrollContent;
+		[SerializeField] private JourneyPlannerEntry entry;
 
-	public override void Run()
-	{
-		this.ReloadConfig();
+		private JSONNode config;
+		private JSONNode journeys;
+		private string apiKey;
 
-		StartCoroutine(RunRoutine());
-
-		this.UpdateLastUpdatedText();
-	}
-
-	private IEnumerator RunRoutine()
-	{
-		foreach (JSONNode journey in journeys)
+		public override void ReloadConfig()
 		{
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.JOURNEY_PLANNER(journey["startPoint"], journey["endPoint"], apiKey));
-			yield return request.SendWebRequest();
-			JSONNode json = JSON.Parse(request.downloadHandler.text);
-
-			int durationNormal = json["resourceSets"][0]["resources"][0]["travelDuration"];
-			int durationTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
-
-			print(journey["name"]);
-			print(ConvertToTimeString(durationNormal));
-			print(ConvertToTimeString(durationTraffic));
-		}
-	}
-
-	/// <summary>
-	/// Passing 3468 seconds will return "57 minutes"
-	/// </summary>
-	private string ConvertToTimeString(int durationInSeconds)
-	{
-		string timeString = "";
-		
-		int day = durationInSeconds / (24 * 3600);
-
-		durationInSeconds = durationInSeconds % (24 * 3600);
-		int hour = durationInSeconds / 3600;
-
-		durationInSeconds %= 3600;
-		int minutes = durationInSeconds / 60;
-
-		durationInSeconds %= 60;
-		int seconds = durationInSeconds;
-
-		if (day > 0)
-		{
-			timeString += day + " days ";
+			config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			apiKey = config["apiKey"];
+			journeys = config["journeys"];
 		}
 
-		if (hour > 0)
+		public override void Run()
 		{
-			timeString += hour + " hours ";
+			this.ReloadConfig();
+
+			StartCoroutine(RunRoutine());
+
+			this.UpdateLastUpdatedText();
 		}
 
-		if (minutes > 0)
+		private IEnumerator RunRoutine()
 		{
-			timeString += minutes + " minutes";
+			foreach (JSONNode journey in journeys)
+			{
+				UnityWebRequest request = Postman.CreateGetRequest(Endpoints.JOURNEY_PLANNER(journey["startPoint"], journey["endPoint"], apiKey));
+				yield return request.SendWebRequest();
+				JSONNode json = JSON.Parse(request.downloadHandler.text);
+
+				int durationWithTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
+
+				Instantiate(entry, scrollContent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic));
+			}
 		}
 
-		return timeString;
+		/// <summary>
+		/// Passing 3468 seconds will return "57 minutes"
+		/// </summary>
+		private string ConvertToTimeString(int durationInSeconds)
+		{
+			string timeString = "";
+			
+			int day = durationInSeconds / (24 * 3600);
+
+			durationInSeconds = durationInSeconds % (24 * 3600);
+			int hour = durationInSeconds / 3600;
+
+			durationInSeconds %= 3600;
+			int minutes = durationInSeconds / 60;
+
+			durationInSeconds %= 60;
+			int seconds = durationInSeconds;
+
+			if (day > 0)
+			{
+				timeString += day + " days ";
+			}
+
+			if (hour > 0)
+			{
+				timeString += hour + " hours ";
+			}
+
+			if (minutes > 0)
+			{
+				timeString += minutes + " minutes";
+			}
+
+			return timeString;
+		}
 	}
 }
