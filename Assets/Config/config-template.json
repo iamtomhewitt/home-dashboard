@@ -43,7 +43,12 @@
 			"plannerBackgroundColour":"#FFFFFF",
 			"plannerTextColour": "#000000",
 			"apiKey": ""
-        },
+		},
+		"maps": {
+			"startPoint": "<lat>,<long>",
+			"endPoint": "<lat>,<long>",
+			"apiKey": "<key>"
+		},
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",
 			"colour": "#4285F4",
