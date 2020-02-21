@@ -69,10 +69,12 @@
 			"apiKey": "<key>",
 			"journeys": [
 				{
+					"name": "Work",
 					"startPoint": "<lat long>",
 					"endPoint": "<lat long>"
 				},
 				{
+					"name": "School",
 					"startPoint": "<lat long>",
 					"endPoint": "<lat long>"
 				}
