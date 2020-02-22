@@ -17,6 +17,7 @@ namespace JourneyPlanner
 		[SerializeField] private Image scrollbarHandle;
 		[SerializeField] private Color heavyTrafficColour;
 		[SerializeField] private Color mediumTrafficColour;
+		[SerializeField] private Color noTrafficColour;
 
 		private JSONNode journeys;
 		private string apiKey;
@@ -53,18 +54,20 @@ namespace JourneyPlanner
 				int durationWithTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
 				int timeDifference = durationWithTraffic - duration;
 
+				Color iconColour = noTrafficColour;
+
 				if (timeDifference > FIFTEEN_MINS && timeDifference < THIRTY_MINS)
 				{
-					this.SetWidgetColour(mediumTrafficColour);
+					iconColour = mediumTrafficColour;
 				}
 				else if (timeDifference > THIRTY_MINS)
 				{
-					this.SetWidgetColour(heavyTrafficColour);
+					iconColour = heavyTrafficColour;
 				}
 
 				GameObject prefab = journeys.Count == 1 ? singleEntry.gameObject : scrollEntry.gameObject;
 				Transform parent = journeys.Count == 1 ? this.transform : scrollContent;
-				Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic));
+				Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic), iconColour);
 			}
 		}
 
@@ -88,17 +91,17 @@ namespace JourneyPlanner
 
 			if (day > 0)
 			{
-				timeString += day + " days ";
+				timeString += day + "d ";
 			}
 
 			if (hour > 0)
 			{
-				timeString += hour + " hours ";
+				timeString += hour + "h ";
 			}
 
 			if (minutes > 0)
 			{
-				timeString += minutes + " minutes";
+				timeString += minutes + "m ";
 			}
 
 			return timeString;
