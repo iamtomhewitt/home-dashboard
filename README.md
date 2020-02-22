@@ -23,6 +23,9 @@ The current set of widgets on my dashboard are:
 ### 🕒 Clock
 A clock showing the date and time.
 
+### 🚗 Journey Planner
+Shows the journey time from my house to a certain destination. Changes colour based on the amount of traffic. Can list multiple journeys.
+
 ### 📆 Google Calendars
 A scrollable widget showing mine and my partners calendar for the next three months. Any edits to calendar events are done through the Google Calendar app itself and not the dashboard.
 
