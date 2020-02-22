@@ -18,12 +18,27 @@
             "titleColour":"#FFFFFF",
             "repeatRate":2,
             "repeatTime":"hours",
-            "firstGreenBin":"07-10-2019",
-            "firstBlackBin":"14-10-2019",
-			"repeatRateInDays":14,
-			"greenBinColour":"#66BB6A",
-			"blackBinColour":"#263238",
-			"noBinColour":"#03A9F4"
+			"noBinColour":"#03A9F4",
+			"bins" : [
+				{
+					"name": "<colour>",
+					"firstDate": "01-01-2020",
+					"repeatRateInDays": 14,
+					"binColour": "#FF0000"
+				},
+				{
+					"name": "<colour>",
+					"firstDate": "01-01-2020",
+					"repeatRateInDays": 14,
+					"binColour": "#FF0000"
+				},
+				{
+					"name": "<colour>",
+					"firstDate": "01-01-2020",
+					"repeatRateInDays": 14,
+					"binColour": "#FF0000"
+				}
+			]
         },
 		"clock": {
             "title": "Clock",
@@ -43,7 +58,28 @@
 			"plannerBackgroundColour":"#FFFFFF",
 			"plannerTextColour": "#000000",
 			"apiKey": ""
-        },
+		},
+		"journeyPlanner": {
+			"title":"Journey Planner",
+            "colour":"#431EDB",
+            "textColour":"#FFFFFF",
+            "titleColour":"#FFFFFF",
+            "repeatRate":1,
+			"repeatTime":"hours",
+			"apiKey": "<key>",
+			"journeys": [
+				{
+					"name": "Work",
+					"startPoint": "<lat long>",
+					"endPoint": "<lat long>"
+				},
+				{
+					"name": "School",
+					"startPoint": "<lat long>",
+					"endPoint": "<lat long>"
+				}
+			]
+		},
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",
 			"colour": "#4285F4",

@@ -3,7 +3,7 @@
 	public class Endpoints
 	{
 		private static readonly string RECIPE_MANAGER = "https://home-dashboard-recipe-manager.herokuapp.com";
-		
+
 		public static readonly string TODOIST_TASKS = "https://api.todoist.com/rest/v1/tasks";
 		public static readonly string RECIPES_ADD = RECIPE_MANAGER + "/recipes/add";
 		public static readonly string PLANNER = RECIPE_MANAGER + "/planner";
@@ -42,6 +42,11 @@
 		public static string SPLITWISE(string groupId, string apiKey)
 		{
 			return "https://home-dashboard-splitwise-mngr.herokuapp.com/group?groupId=" + groupId + "&apiKey=" + apiKey;
+		}
+
+		public static string JOURNEY_PLANNER(string start, string end, string apiKey)
+		{
+			return "http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0=" + start + "&wp.1=" + end + "&key=" + apiKey + "&distanceUnit=mi";
 		}
 	}
 }
