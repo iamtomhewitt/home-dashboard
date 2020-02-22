@@ -36,7 +36,7 @@ Scrollable list widgets - one for TODOs, and one for the shopping list. The list
 A widget that cycles headlines every minute. New headlines are fetched over time. Tapping on the BBC news widget opens up the displayed headline on the BBC news website.
 
 ### ☀ Weather
-Forecast for now, and the next four days.
+Forecast for now, and the next four days. It uses an [api I built](https://github.com/iamtomhewitt/home-dashboard-weather-manager).
 
 ### 🚂 Trains
 A scrollable widget showing the latest trains from my local stations, showing any cancellations or delays. It uses an [api I built](https://github.com/iamtomhewitt/home-dashboard-train-manager).
@@ -52,9 +52,3 @@ An editable set of 'cards' to show what we're having for our evening meal for th
 I've also incorporated a set of predefined recipes from what we eat often. Pressing the button at the bottom of the planner will add every single ingredient from all the predefined recipes for that week to the shopping list widget, so you can plan your weekly shop based on what you are eating. Duplicate ingredients are also removed, so if you have a recipe of 200g of chicken, and another recipe with 400g of chicken, then 600g of chicken is added to your shopping list.
 
 The recipes and planner is stored on an [api I built](https://github.com/iamtomhewitt/home-dashboard-recipe-manager).
-
-## 👷‍♂️ Getting Started
-Have the dashboard and need a hand setting it up? Follow [this guide](GETTING&#32;STARTED.md)!
-
-## 💻 Development
-Know how to use Unity3D and want to build your own dashboard? Follow [this guide](DEVELOPMENT.md)!
