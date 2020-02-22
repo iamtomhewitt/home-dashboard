@@ -15,14 +15,17 @@ namespace JourneyPlanner
 		[SerializeField] private JourneyPlannerEntry singleEntry;
 		[SerializeField] private Image scrollbarBackground;
 		[SerializeField] private Image scrollbarHandle;
+		[SerializeField] private Color heavyTrafficColour;
+		[SerializeField] private Color mediumTrafficColour;
 
-		private JSONNode config;
 		private JSONNode journeys;
 		private string apiKey;
+		private const int FIFTEEN_MINS = 900; 
+		private const int THIRTY_MINS = 1800; 
 
 		public override void ReloadConfig()
 		{
-			config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
 			journeys = config["journeys"];
 			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
@@ -46,11 +49,24 @@ namespace JourneyPlanner
 				yield return request.SendWebRequest();
 				JSONNode json = JSON.Parse(request.downloadHandler.text);
 
+				int duration			= json["resourceSets"][0]["resources"][0]["travelDuration"];
 				int durationWithTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
+				int timeDifference = durationWithTraffic - duration;
+
+				Color textColor = Color.white;
+
+				if (timeDifference > FIFTEEN_MINS && timeDifference < THIRTY_MINS)
+				{
+					textColor = mediumTrafficColour;
+				}
+				else if (timeDifference > THIRTY_MINS)
+				{
+					textColor = heavyTrafficColour;
+				}
 
 				GameObject prefab = journeys.Count == 1 ? singleEntry.gameObject : scrollEntry.gameObject;
 				Transform parent = journeys.Count == 1 ? this.transform : scrollContent;
-				Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic));
+				Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic), textColor);
 			}
 		}
 
