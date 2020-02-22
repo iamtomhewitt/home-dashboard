@@ -3331,7 +3331,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1920043809}
   m_HandleRect: {fileID: 1920043808}
   m_Direction: 2
-  m_Value: 1.0000002
+  m_Value: 1
   m_Size: 0.515451
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6542,6 +6542,8 @@ MonoBehaviour:
     type: 3}
   scrollbarBackground: {fileID: 1927014537}
   scrollbarHandle: {fileID: 706098868}
+  heavyTrafficColour: {r: 0.86666673, g: 0.098039225, b: 0.1137255, a: 1}
+  mediumTrafficColour: {r: 1, g: 0.67058825, b: 0.20392159, a: 1}
 --- !u!225 &715397946
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -16099,8 +16101,8 @@ RectTransform:
   m_Father: {fileID: 1423408864}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 63, y: 0}
   m_SizeDelta: {x: 126, y: 0}
   m_Pivot: {x: 0.5, y: 1}
@@ -20352,7 +20354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configFile: {fileID: 4900000, guid: 379ec488390f84192834c14584090a5f, type: 3}
+  configFile: {fileID: 4900000, guid: c3435ac72635ad34399cea81350ea9d8, type: 3}
   configFileTemplate: {fileID: 4900000, guid: 9d96f2a7fae199647a4357c16422d5d4, type: 3}
 --- !u!4 &1944233603
 Transform:
@@ -20639,7 +20641,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1556487575}
   m_HandleRect: {fileID: 1556487574}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
