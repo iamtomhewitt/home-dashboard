@@ -36,7 +36,7 @@
 
 		public static string WEATHER(string apiKey, string latitude, string longitude)
 		{
-			return "https://home-dashboard-weather-manager.herokuapp.com/weather?apiKey=" + apiKey + "&latitude=" + latitude + "&longitude=" + longitude;
+			return string.Format("https://api.darksky.net/forecast/{0}/{1},{2}?units=uk", apiKey, latitude, longitude);
 		}
 
 		public static string SPLITWISE(string groupId, string apiKey)

@@ -55,21 +55,26 @@ namespace WeatherForecast
 				yield break;
 			}
 
-			currentSummary.text = json["current"]["summary"];
+			JSONNode currentWeather = json["currently"];
+			JSONNode weeklyWeather = json["daily"]["data"];
+
+			currentSummary.text = currentWeather["summary"];
 			currentSummary.color = GetTitleColour();
 
-			currentIcon.sprite = GetSpriteForName(json["current"]["icon"]);
+			currentIcon.sprite = GetSpriteForName(currentWeather["icon"]);
 			currentIcon.color = spriteColour;
 
-			currentTemperature.text = Mathf.RoundToInt((float)json["current"]["temperature"]).ToString() + "°";
+			currentTemperature.text = Mathf.RoundToInt((float)currentWeather["temperature"]).ToString() + "°";
 			currentTemperature.color = GetTitleColour();
 
 			for (int i = 0; i < weatherEntries.Length; i++)
 			{
-				JSONNode day = json["week"][i];
+				JSONNode day = weeklyWeather[i+1];
 				WeatherEntry entry = weatherEntries[i];
 
-				entry.SetDayText(day["day"]);
+				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(day["time"]);
+ 
+				entry.SetDayText(date.DayOfWeek.ToString());
 				entry.SetDayColour(GetTextColour());
 				
 				entry.SetIconSprite(GetSpriteForName(day["icon"]));
