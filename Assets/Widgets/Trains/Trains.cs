@@ -17,7 +17,7 @@ namespace Train
         [SerializeField] private Image scrollbarHandle;
 
         private JSONNode config;
-		private SortedDictionary<string, string> timetable =  new SortedDictionary<string, string>();
+        private SortedDictionary<string, string> timetable = new SortedDictionary<string, string>();
         private string apiToken;
         private string stationCode;
         private int maxDestinationLength = 10;
@@ -62,16 +62,16 @@ namespace Train
 
             int lastRowNumber = 0;
 
-			PopulateTimetable(json, "trainServices");
-			PopulateTimetable(json, "busServices");
+            PopulateTimetable(json, "trainServices");
+            PopulateTimetable(json, "busServices");
 
-			foreach	(KeyValuePair<string, string> x in timetable)
-			{
-				TrainEntry entry = trainEntries[lastRowNumber];
-				entry.SetDestinationText(x.Value);
+            foreach (KeyValuePair<string, string> x in timetable)
+            {
+                TrainEntry entry = trainEntries[lastRowNumber];
+                entry.SetDestinationText(x.Value);
                 entry.SetTimeText(x.Key);
-				lastRowNumber++;
-			}
+                lastRowNumber++;
+            }
         }
 
         private void PopulateTimetable(JSONNode json, string key)
@@ -81,15 +81,15 @@ namespace Train
                 JSONNode trainService = json[key][i];
 
                 string locationName = trainService["destination"][0]["locationName"];
-				string time = key.Equals("busServices") ? trainService["std"] + " (Bus)" : trainService["std"] + " (" + trainService["etd"] + ")";
-				string estimatedDeparture = trainService["std"];
+                string time = key.Equals("busServices") ? trainService["std"] + " (Bus)" : trainService["std"] + " (" + trainService["etd"] + ")";
+                string estimatedDeparture = trainService["std"];
 
                 if (locationName.Length > maxDestinationLength)
                 {
                     locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
                 }
 
-				timetable.Add(time, locationName);
+                timetable.Add(time, locationName);
             }
         }
     }
