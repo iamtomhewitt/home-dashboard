@@ -16,7 +16,7 @@
 
 		public static string TRAIN_DEPARTURES(string stationCode, int numberOfResults, string apiKey)
 		{
-			return "https://home-dashboard-train-manager.herokuapp.com/departures?stationCode=" + stationCode + "&numberOfResults=" + numberOfResults + "&apiKey=" + apiKey;
+			return string.Format("https://huxley.apphb.com/departures/{0}/{1}?accessToken={2}", stationCode, numberOfResults, apiKey);
 		}
 
 		public static string BBC_NEWS(string apiKey)

@@ -23,5 +23,10 @@ namespace Train
 			destinationText.color = colour;
 			timeText.color = colour;
 		}
+
+		public override string ToString()
+		{
+			return string.Format("Destination: {0}, Time: {1}", destinationText.text, timeText.text);
+		}
 	}
 }

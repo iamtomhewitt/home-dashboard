@@ -5,102 +5,92 @@ using System.Collections;
 using SimpleJSON;
 using Dialog;
 using Requests;
-using System;
 
 namespace Train
 {
-	public class Trains : FadingWidget
-	{
-		[Header("Train Settings")]
-		[SerializeField] private TrainEntry[] trainEntries;
-		[SerializeField] private Image scrollbarBackground;
-		[SerializeField] private Image scrollbarHandle;
+    public class Trains : FadingWidget
+    {
+        [Header("Train Settings")]
+        [SerializeField] private TrainEntry[] trainEntries;
+        [SerializeField] private Image scrollbarBackground;
+        [SerializeField] private Image scrollbarHandle;
 
-		private JSONNode config;
+        private JSONNode config;
 
-		private string apiToken;
-		private string stationCode;
+        private string apiToken;
+        private string stationCode;
 
-		private int maxDestinationLength = 10;
+        private int maxDestinationLength = 10;
+		private int lastRowNumber = 0;
 
-		public override void ReloadConfig()
-		{
-			config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
-			apiToken 	= config["apiKey"];
-			stationCode = config["stationCode"];
-		}
+        public override void ReloadConfig()
+        {
+            config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+            apiToken = config["apiKey"];
+            stationCode = config["stationCode"];
+        }
 
-		public override void Run()
-		{
-			this.ReloadConfig();
-			
-			StartCoroutine(Fade(PopulateEntries, 1f));
-			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
-			scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
+        public override void Run()
+        {
+            this.ReloadConfig();
 
-			this.UpdateLastUpdatedText();
-		}
+            StartCoroutine(Fade(RunRoutine, 1f));
+            scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+            scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
 
-		private IEnumerator PopulateEntries()
-		{
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES(stationCode, trainEntries.Length, apiToken));
-			yield return request.SendWebRequest();
+            this.UpdateLastUpdatedText();
+        }
 
-			JSONNode json = JSON.Parse(request.downloadHandler.text);
+        private IEnumerator RunRoutine()
+        {
+            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES("SAL", trainEntries.Length, apiToken));
+            yield return request.SendWebRequest();
 
-			bool ok = request.error == null ? true : false;
-			if (!ok)
-			{
-				WidgetLogger.instance.Log(this, "Error: " + request.error);
-				yield break;
-			}
+            JSONNode json = JSON.Parse(request.downloadHandler.text);
 
-			foreach (TrainEntry entry in trainEntries)
-			{
-				entry.SetDestinationText("");
-				entry.SetTimeText("");
-			}
+            bool ok = request.error == null ? true : false;
+            if (!ok)
+            {
+                WidgetLogger.instance.Log(this, "Error: " + request.error);
+                yield break;
+            }
 
-			for (int i = 0; i< json["timetable"].Count; i++)
-			{
-				if (json["timetable"].Count == i)
-				{
-					yield break;
-				}
+            foreach (TrainEntry entry in trainEntries)
+            {
+                entry.SetDestinationText("");
+                entry.SetTimeText("");
+            }
 
-				TrainEntry entry = trainEntries[i];
-				JSONNode trainService = json["timetable"][i];
+            lastRowNumber = 0;
 
-				string locationName = trainService["destination"];
-				string scheduledDepartTime = DateTime.Parse(trainService["scheduledDepartTime"]).ToString("HH:mm");
-				string actualDepartTime = trainService["actualDepartTime"] == null ? scheduledDepartTime : DateTime.Parse(trainService["actualDepartTime"]).ToString("HH:mm");
-				bool cancelled = trainService["cancelled"];
-				bool busReplacement = trainService["busReplacement"];
+			yield return PopulateEntries(json, "trainServices");
+			yield return PopulateEntries(json, "busServices");
+        }
 
-				if (actualDepartTime.Equals(scheduledDepartTime))
-				{
-					actualDepartTime = "On time";
-				}
+        private IEnumerator PopulateEntries(JSONNode json, string key)
+        {
+            for (int i = 0; i < json[key].Count; i++)
+            {
+                if (json[key].Count == i)
+                {
+                    yield break;
+                }
 
-				if (cancelled)
-				{
-					actualDepartTime = "Cancelled";
-				}
+                TrainEntry entry = trainEntries[lastRowNumber];
+                JSONNode trainService = json[key][i];
+                string locationName = trainService["destination"][0]["locationName"];
+				string time = key.Equals("busServices") ? trainService["std"] + " (Bus)" : trainService["std"] + " (" + trainService["etd"] + ")";
 
-				if (busReplacement)
-				{
-					actualDepartTime = "Bus";
-				}
-
-				if (locationName.Length > maxDestinationLength)
-				{
-					locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
-				}
-
+                if (locationName.Length > maxDestinationLength)
+                {
+                    locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
+                }
+                
 				entry.SetDestinationText(locationName);
-				entry.SetTimeText(scheduledDepartTime + " (" + actualDepartTime + ")");
-				entry.SetTextColour(GetTextColour());
-			}
-		}
-	}
+                entry.SetTimeText(time);
+
+                lastRowNumber++;
+            }
+        }
+    }
 }
