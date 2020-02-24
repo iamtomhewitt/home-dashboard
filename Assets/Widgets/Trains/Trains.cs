@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using SimpleJSON;
 using Dialog;
 using Requests;
@@ -16,12 +17,10 @@ namespace Train
         [SerializeField] private Image scrollbarHandle;
 
         private JSONNode config;
-
+		private SortedDictionary<string, string> timetable =  new SortedDictionary<string, string>();
         private string apiToken;
         private string stationCode;
-
         private int maxDestinationLength = 10;
-		private int lastRowNumber = 0;
 
         public override void ReloadConfig()
         {
@@ -43,7 +42,7 @@ namespace Train
 
         private IEnumerator RunRoutine()
         {
-            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES("SAL", trainEntries.Length, apiToken));
+            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES(stationCode, trainEntries.Length, apiToken));
             yield return request.SendWebRequest();
 
             JSONNode json = JSON.Parse(request.downloadHandler.text);
@@ -61,35 +60,36 @@ namespace Train
                 entry.SetTimeText("");
             }
 
-            lastRowNumber = 0;
+            int lastRowNumber = 0;
 
-			yield return PopulateEntries(json, "trainServices");
-			yield return PopulateEntries(json, "busServices");
+			PopulateTimetable(json, "trainServices");
+			PopulateTimetable(json, "busServices");
+
+			foreach	(KeyValuePair<string, string> x in timetable)
+			{
+				TrainEntry entry = trainEntries[lastRowNumber];
+				entry.SetDestinationText(x.Value);
+                entry.SetTimeText(x.Key);
+				lastRowNumber++;
+			}
         }
 
-        private IEnumerator PopulateEntries(JSONNode json, string key)
+        private void PopulateTimetable(JSONNode json, string key)
         {
             for (int i = 0; i < json[key].Count; i++)
             {
-                if (json[key].Count == i)
-                {
-                    yield break;
-                }
-
-                TrainEntry entry = trainEntries[lastRowNumber];
                 JSONNode trainService = json[key][i];
+
                 string locationName = trainService["destination"][0]["locationName"];
 				string time = key.Equals("busServices") ? trainService["std"] + " (Bus)" : trainService["std"] + " (" + trainService["etd"] + ")";
+				string estimatedDeparture = trainService["std"];
 
                 if (locationName.Length > maxDestinationLength)
                 {
                     locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
                 }
-                
-				entry.SetDestinationText(locationName);
-                entry.SetTimeText(time);
 
-                lastRowNumber++;
+				timetable.Add(time, locationName);
             }
         }
     }
