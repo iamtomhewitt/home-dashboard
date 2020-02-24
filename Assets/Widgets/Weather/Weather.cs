@@ -9,95 +9,100 @@ using Requests;
 
 namespace WeatherForecast
 {
-	public class Weather : Widget
-	{
-		[Header("Weather Settings")]
-		[SerializeField] private Text currentSummary;
-		[SerializeField] private Image currentIcon;
-		[SerializeField] private Text currentTemperature;
+    public class Weather : Widget
+    {
+        [Header("Weather Settings")]
+        [SerializeField] private Text currentSummary;
+        [SerializeField] private Image currentIcon;
+        [SerializeField] private Text currentTemperature;
 
-		[SerializeField] private WeatherEntry[] weatherEntries;
-		[SerializeField] private Sprite[] weatherSprites;
+        [SerializeField] private WeatherEntry[] weatherEntries;
+        [SerializeField] private Sprite[] weatherSprites;
 
-		private Color spriteColour;
+        private Color spriteColour;
 
-		private string apiKey;
-		private string latitude;
-		private string longitude;
+        private string apiKey;
+        private string latitude;
+        private string longitude;
 
-		public override void ReloadConfig()
-		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
-			apiKey 		= config["apiKey"];
-			latitude 	= config["latitude"];
-			longitude 	= config["longitude"];
-			spriteColour= Colours.ToColour(config["spriteColour"]);
-		}
+        public override void ReloadConfig()
+        {
+            JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+            apiKey = config["apiKey"];
+            latitude = config["latitude"];
+            longitude = config["longitude"];
+            spriteColour = Colours.ToColour(config["spriteColour"]);
+        }
 
-		public override void Run()
-		{
-			this.ReloadConfig();
-			StartCoroutine(RunRoutine());
-			this.UpdateLastUpdatedText();
-		}
+        public override void Run()
+        {
+            this.ReloadConfig();
+            StartCoroutine(RunRoutine());
+            this.UpdateLastUpdatedText();
+        }
 
-		private IEnumerator RunRoutine()
-		{
-			UnityWebRequest request = UnityWebRequest.Get(Endpoints.WEATHER(apiKey, latitude, longitude));
-			yield return request.SendWebRequest();
+        private IEnumerator RunRoutine()
+        {
+            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.WEATHER(apiKey, latitude, longitude));
+            yield return request.SendWebRequest();
 
-			JSONNode json = JSON.Parse(request.downloadHandler.text);
+            JSONNode json = JSON.Parse(request.downloadHandler.text);
 
-			bool ok = request.error == null ? true : false;
-			if (!ok)
-			{
-				WidgetLogger.instance.Log(this, "Error: " + request.error);
-				yield break;
-			}
+            bool ok = request.error == null ? true : false;
+            if (!ok)
+            {
+                WidgetLogger.instance.Log(this, "Error: " + request.error);
+                yield break;
+            }
 
-			currentSummary.text = json["current"]["summary"];
-			currentSummary.color = GetTitleColour();
+            JSONNode currentWeather = json["currently"];
+            JSONNode weeklyWeather = json["daily"]["data"];
 
-			currentIcon.sprite = GetSpriteForName(json["current"]["icon"]);
-			currentIcon.color = spriteColour;
+            currentSummary.text = currentWeather["summary"];
+            currentSummary.color = GetTitleColour();
 
-			currentTemperature.text = Mathf.RoundToInt((float)json["current"]["temperature"]).ToString() + "°";
-			currentTemperature.color = GetTitleColour();
+            currentIcon.sprite = GetSpriteForName(currentWeather["icon"]);
+            currentIcon.color = spriteColour;
 
-			for (int i = 0; i < weatherEntries.Length; i++)
-			{
-				JSONNode day = json["week"][i];
-				WeatherEntry entry = weatherEntries[i];
+            currentTemperature.text = Mathf.RoundToInt((float)currentWeather["temperature"]).ToString() + "°";
+            currentTemperature.color = GetTitleColour();
 
-				entry.SetDayText(day["day"]);
-				entry.SetDayColour(GetTextColour());
-				
-				entry.SetIconSprite(GetSpriteForName(day["icon"]));
-				entry.SetIconColour(spriteColour);
-				
-				entry.SetTempHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
-				entry.SetTempHighColour(GetTextColour());
-				
-				entry.SetTempLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
-				entry.SetTempLowColour(GetTextColour());
-			}
-		}
+            for (int i = 0; i < weatherEntries.Length; i++)
+            {
+                JSONNode day = weeklyWeather[i + 1];
+                WeatherEntry entry = weatherEntries[i];
 
-		/// <summary>
-		///	Get a sprite that matches the weather string.
-		/// </summary>
-		private Sprite GetSpriteForName(string weatherName)
-		{
-			foreach (Sprite weatherSprite in weatherSprites)
-			{
-				if (weatherSprite.name == weatherName)
-				{
-					return weatherSprite;
-				}
-			}
+                DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(day["time"]);
 
-			WidgetLogger.instance.Log(this, "Could not find: " + weatherName);
-			return null;
-		}
-	}
+                entry.SetDayText(date.DayOfWeek.ToString());
+                entry.SetDayColour(GetTextColour());
+
+                entry.SetIconSprite(GetSpriteForName(day["icon"]));
+                entry.SetIconColour(spriteColour);
+
+                entry.SetTempHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
+                entry.SetTempHighColour(GetTextColour());
+
+                entry.SetTempLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
+                entry.SetTempLowColour(GetTextColour());
+            }
+        }
+
+        /// <summary>
+        ///	Get a sprite that matches the weather string.
+        /// </summary>
+        private Sprite GetSpriteForName(string weatherName)
+        {
+            foreach (Sprite weatherSprite in weatherSprites)
+            {
+                if (weatherSprite.name == weatherName)
+                {
+                    return weatherSprite;
+                }
+            }
+
+            WidgetLogger.instance.Log(this, "Could not find: " + weatherName);
+            return null;
+        }
+    }
 }
