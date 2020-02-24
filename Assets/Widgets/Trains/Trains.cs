@@ -62,6 +62,7 @@ namespace Train
 
             int lastRowNumber = 0;
 
+            timetable.Clear();
             PopulateTimetable(json, "trainServices");
             PopulateTimetable(json, "busServices");
 
