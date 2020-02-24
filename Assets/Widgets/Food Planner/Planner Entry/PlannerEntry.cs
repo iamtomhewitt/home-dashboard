@@ -34,7 +34,7 @@ namespace Planner
 			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString() + "&apiKey=" + Config.instance.GetWidgetConfig()[configKey]["apiKey"]);
 			yield return request.SendWebRequest();
 
-			recipe.text = JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
+			recipe.text = (request.responseCode == 503) ? "Service Unavailable" : (string)JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
 		}
 
 		/// <summary>

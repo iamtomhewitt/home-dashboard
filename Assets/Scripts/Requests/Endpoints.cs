@@ -11,7 +11,7 @@
 
         public static string RECIPES(string apiKey)
         {
-            return RECIPE_MANAGER + "/recipes?apiKey=" + apiKey;
+            return string.Format("{0}/recipes?apiKey={1}", RECIPE_MANAGER, apiKey);
         }
 
         public static string TRAIN_DEPARTURES(string stationCode, int numberOfResults, string apiKey)
@@ -21,17 +21,17 @@
 
         public static string BBC_NEWS(string apiKey)
         {
-            return "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=" + apiKey;
+            return string.Format("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey={0}", apiKey);
         }
 
         public static string GOOGLE_CALENDAR(string gmailAddress, string future, string today, string apiKey)
         {
-            return "https://www.googleapis.com/calendar/v3/calendars/" + gmailAddress + "/events?orderBy=startTime&singleEvents=true&timeMax=" + future + "T10:00:00-07:00&timeMin=" + today + "T10:00:00-07:00&key=" + apiKey;
+            return string.Format("https://www.googleapis.com/calendar/v3/calendars/{0}/events?orderBy=startTime&singleEvents=true&timeMax={1}T10:00:00-07:00&timeMin={2}T10:00:00-07:00&key={3}", gmailAddress, future, today, apiKey);
         }
 
         public static string TODOIST_PROJECT(string id)
         {
-            return "https://api.todoist.com/rest/v1/tasks?project_id=" + id;
+            return string.Format("https://api.todoist.com/rest/v1/tasks?project_id={0}", id);
         }
 
         public static string WEATHER(string apiKey, string latitude, string longitude)
@@ -41,12 +41,12 @@
 
         public static string SPLITWISE(string groupId, string apiKey)
         {
-            return "https://home-dashboard-splitwise-mngr.herokuapp.com/group?groupId=" + groupId + "&apiKey=" + apiKey;
+            return string.Format("https://home-dashboard-splitwise-mngr.herokuapp.com/group?groupId={0}&apiKey={1}", groupId, apiKey);
         }
 
         public static string JOURNEY_PLANNER(string start, string end, string apiKey)
         {
-            return "http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0=" + start + "&wp.1=" + end + "&key=" + apiKey + "&distanceUnit=mi";
+            return string.Format("http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0={0}&wp.1={1}&key={2}&distanceUnit=mi", start, end, apiKey);
         }
     }
 }
