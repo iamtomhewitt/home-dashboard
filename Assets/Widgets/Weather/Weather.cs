@@ -43,7 +43,7 @@ namespace WeatherForecast
 
 		private IEnumerator RunRoutine()
 		{
-			UnityWebRequest request = UnityWebRequest.Get(Endpoints.WEATHER(apiKey, latitude, longitude));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.WEATHER(apiKey, latitude, longitude));
 			yield return request.SendWebRequest();
 
 			JSONNode json = JSON.Parse(request.downloadHandler.text);
