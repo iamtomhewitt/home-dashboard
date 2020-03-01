@@ -57,7 +57,8 @@
 			"repeatTime":"hours",
 			"plannerBackgroundColour":"#FFFFFF",
 			"plannerTextColour": "#000000",
-			"apiKey": ""
+			"apiKey": "",
+			"plannerId": ""
 		},
 		"journeyPlanner": {
 			"title":"Journey Planner",
