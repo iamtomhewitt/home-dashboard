@@ -8,12 +8,13 @@ namespace SimpleJSON
 	/// </summary>
 	public class JsonBody
 	{
-		public static JSONObject AddToPlanner(string recipe, string day, string apiKey)
+		public static JSONObject AddToPlanner(string recipe, string day, string apiKey, string plannerId)
 		{
 			JSONObject json = new JSONObject();
 			json.Add("recipe", recipe);
 			json.Add("day", day);
 			json.Add("apiKey", apiKey);
+			json.Add("plannerId", plannerId);
 			return json;
 		}
 
