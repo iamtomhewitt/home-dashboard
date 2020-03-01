@@ -8,118 +8,129 @@ using Requests;
 
 namespace Planner
 {
-	public class PlannerEntry : MonoBehaviour
-	{
-		[SerializeField] private Day day;
-		[SerializeField] private Text dayText;
-		[SerializeField] private Text recipe;
-		[SerializeField] private Image recipeBackground;
-		[SerializeField] private Image dayBackground;
+    public class PlannerEntry : MonoBehaviour
+    {
+        [SerializeField] private Day day;
+        [SerializeField] private Text dayText;
+        [SerializeField] private Text recipe;
+        [SerializeField] private Image recipeBackground;
+        [SerializeField] private Image dayBackground;
 
-		private string configKey;
-		private string apiKey;
+        private JSONNode config;
+        private string configKey;
+        private string apiKey;
+        private string plannerId;
 
-		private IEnumerator Start()
-		{
-			configKey = FindObjectOfType<FoodPlanner>().GetWidgetConfigKey();
-			apiKey = Config.instance.GetWidgetConfig()[configKey]["apiKey"];
-			
-			string label = "";
-			foreach (char c in day.ToString().Substring(0, 3).ToUpper())
-			{
-				label += c + "\n";
-			}
-			dayText.text = label;
+        private IEnumerator Start()
+        {
+            configKey = FindObjectOfType<FoodPlanner>().GetWidgetConfigKey();
+            config = Config.instance.GetWidgetConfig();
+            apiKey = config[configKey]["apiKey"];
+            plannerId = config[configKey]["plannerId"];
 
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER + "?day=" + day.ToString() + "&apiKey=" + Config.instance.GetWidgetConfig()[configKey]["apiKey"]);
-			yield return request.SendWebRequest();
+            string label = "";
+            foreach (char c in day.ToString().Substring(0, 3).ToUpper())
+            {
+                label += c + "\n";
+            }
+            dayText.text = label;
 
-			recipe.text = (request.responseCode == 503) ? "Service Unavailable" : (string)JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
-		}
+            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER(day.ToString(), plannerId, apiKey));
+            yield return request.SendWebRequest();
 
-		/// <summary>
-		/// Called from a Unity button when the planner entry is clicked on.
-		/// </summary>
-		public void SelectRecipe()
-		{
-			StartCoroutine(SelectRecipeRoutine());
-		}
+            bool ok = request.error == null ? true : false;
+            if (!ok)
+            {
+                WidgetLogger.instance.Log("Error: " + (string)JSON.Parse(request.downloadHandler.text)["message"]);
+                yield break;
+            }
 
-		public IEnumerator SelectRecipeRoutine()
-		{
-			RecipeSelectionDialog dialog = FindObjectOfType<RecipeSelectionDialog>();
-			dialog.Show();
-			dialog.SetNone();
-			dialog.PopulateRecipes();
+            recipe.text = (request.responseCode == 503) ? "Service Unavailable" : (string)JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
+        }
 
-			while (!dialog.IsFinished() && !dialog.IsCancel())
-			{
-				yield return null;
-			}
+        /// <summary>
+        /// Called from a Unity button when the planner entry is clicked on.
+        /// </summary>
+        public void SelectRecipe()
+        {
+            StartCoroutine(SelectRecipeRoutine());
+        }
 
-			if (dialog.IsFinished())
-			{
-				recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
+        public IEnumerator SelectRecipeRoutine()
+        {
+            RecipeSelectionDialog dialog = FindObjectOfType<RecipeSelectionDialog>();
+            dialog.Show();
+            dialog.SetNone();
+            dialog.PopulateRecipes();
 
-				// Now update the planner online
-				JSONObject body = JsonBody.AddToPlanner(string.IsNullOrEmpty(recipe.text) ? " " : recipe.text, day.ToString(), apiKey);
-				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
-				yield return request.SendWebRequest();
+            while (!dialog.IsFinished() && !dialog.IsCancel())
+            {
+                yield return null;
+            }
 
-				yield break;
-			}
-		}
+            if (dialog.IsFinished())
+            {
+                recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
 
-		/// <summary>
-		/// Quick method to clear the entry
-		/// </summary>
-		public void ClearRecipe()
-		{
-			StartCoroutine(ClearRecipeRoutine());
-		}
+                // Now update the planner online
+                JSONObject body = JsonBody.AddToPlanner(string.IsNullOrEmpty(recipe.text) ? " " : recipe.text, day.ToString(), apiKey, plannerId);
+                UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
+                yield return request.SendWebRequest();
 
-		private IEnumerator ClearRecipeRoutine()
-		{
-			JSONObject body = JsonBody.AddToPlanner(" ", day.ToString(), apiKey);
-			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
-			yield return request.SendWebRequest();
+                yield break;
+            }
+        }
 
-			JSONNode response = JSON.Parse(request.downloadHandler.text);
-			if(response["status"] == 200)
-			{
-				recipe.text = "";
-			}
-			else
-			{
-				WidgetLogger.instance.Log("Could not clear recipe: " + response["message"]);
-			}
-		}
+        /// <summary>
+        /// Quick method to clear the entry
+        /// </summary>
+        public void ClearRecipe()
+        {
+            StartCoroutine(ClearRecipeRoutine());
+        }
 
-		public string GetRecipeName()
-		{
-			return recipe.text;
-		}
+        private IEnumerator ClearRecipeRoutine()
+        {
+            JSONObject body = JsonBody.AddToPlanner(" ", day.ToString(), apiKey, plannerId);
+            UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
+            yield return request.SendWebRequest();
 
-		public void SetRecipeTextColour(Color colour)
-		{
-			recipe.color = colour;
-		}
+            JSONNode response = JSON.Parse(request.downloadHandler.text);
+            if (response["status"] == 200)
+            {
+                recipe.text = "";
+            }
+            else
+            {
+                WidgetLogger.instance.Log("Could not clear recipe: " + response["message"]);
+            }
+        }
 
-		public void SetDayTextColour(Color colour)
-		{
-			dayText.color = colour;
-		}
+        public string GetRecipeName()
+        {
+            return recipe.text;
+        }
 
-		public void SetRecipeBackgroundColour(Color colour)
-		{
-			recipeBackground.color = colour;
-		}
+        public void SetRecipeTextColour(Color colour)
+        {
+            recipe.color = colour;
+        }
 
-		public void SetDayBackgroundColour(Color colour)
-		{
-			dayBackground.color = colour;
-		}
+        public void SetDayTextColour(Color colour)
+        {
+            dayText.color = colour;
+        }
 
-		private enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
-	}
+        public void SetRecipeBackgroundColour(Color colour)
+        {
+            recipeBackground.color = colour;
+        }
+
+        public void SetDayBackgroundColour(Color colour)
+        {
+            dayBackground.color = colour;
+        }
+
+        private enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
+    }
 }

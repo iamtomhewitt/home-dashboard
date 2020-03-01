@@ -6,8 +6,17 @@
 
         public static readonly string TODOIST_TASKS = "https://api.todoist.com/rest/v1/tasks";
         public static readonly string RECIPES_ADD = RECIPE_MANAGER + "/recipes/add";
-        public static readonly string PLANNER = RECIPE_MANAGER + "/planner";
         public static readonly string PLANNER_ADD = RECIPE_MANAGER + "/planner/add";
+
+		public static string PLANNER(string day, string plannerId, string apiKey)
+		{
+			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", RECIPE_MANAGER, apiKey, plannerId);
+			if (!string.IsNullOrEmpty(day))
+			{
+				s += string.Format("&day={0}", day);
+			}
+			return s;
+		}
 
         public static string RECIPES(string apiKey)
         {
