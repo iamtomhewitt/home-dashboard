@@ -3163,7 +3163,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1585299581}
   m_HandleRect: {fileID: 1585299580}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15958,7 +15958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configFile: {fileID: 0}
+  configFile: {fileID: 4900000, guid: 89415908169464edf91f40e05fb6bd93, type: 3}
   configFileTemplate: {fileID: 4900000, guid: 9d96f2a7fae199647a4357c16422d5d4, type: 3}
 --- !u!4 &1944233603
 Transform:
@@ -16558,7 +16558,7 @@ GameObject:
   - component: {fileID: 2062732454}
   - component: {fileID: 2062732455}
   m_Layer: 5
-  m_Name: Google Calendar Tom
+  m_Name: Google Calendar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16603,7 +16603,7 @@ MonoBehaviour:
   titleText: {fileID: 334245801}
   lastUpdatedText: {fileID: 534575787}
   widgetBackground: {fileID: 261114590}
-  widgetConfigKey: tommhewitt@gmail.com
+  widgetConfigKey: mycjets@gmail.com
   canvasGroup: {fileID: 1314918149}
   fadeSpeed: 2
   fadeInDelay: 0.15
@@ -16612,7 +16612,7 @@ MonoBehaviour:
   scrollParent: {fileID: 275628701}
   scrollbarBackground: {fileID: 468320423}
   scrollbarHandle: {fileID: 1585299581}
-  gmailAddress: tommhewitt@gmail.com
+  gmailAddress: mycjets@gmail.com
 --- !u!1 &2069436460
 GameObject:
   m_ObjectHideFlags: 0
