@@ -3163,7 +3163,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1585299581}
   m_HandleRect: {fileID: 1585299580}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -15958,7 +15958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configFile: {fileID: 4900000, guid: 89415908169464edf91f40e05fb6bd93, type: 3}
+  configFile: {fileID: 4900000, guid: d5d5aa71ade81444d9d70730d39a5bc5, type: 3}
   configFileTemplate: {fileID: 4900000, guid: 9d96f2a7fae199647a4357c16422d5d4, type: 3}
 --- !u!4 &1944233603
 Transform:
@@ -16245,7 +16245,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1556487575}
   m_HandleRect: {fileID: 1556487574}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
