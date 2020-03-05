@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using SimpleJSON;
+using TMPro;
 
 /// <summary>
 /// The base of all widgets, sharing all common variables.
@@ -9,8 +10,8 @@ using SimpleJSON;
 public abstract class Widget : MonoBehaviour
 {
 	[Header("Widget Settings")]
-	[SerializeField] private Text titleText;
-	[SerializeField] private Text lastUpdatedText;
+	[SerializeField] private TMP_Text titleText;
+	[SerializeField] private TMP_Text lastUpdatedText;
 	[SerializeField] private Image widgetBackground;
 	[SerializeField] private string widgetConfigKey;
 
