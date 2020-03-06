@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 namespace Train
 {
     public class TrainEntry : MonoBehaviour
     {
-        [SerializeField] private Text destinationText;
-        [SerializeField] private Text timeText;
+        [SerializeField] private TMP_Text destinationText;
+        [SerializeField] private TMP_Text timeText;
 
         public void SetDestinationText(string text)
         {
