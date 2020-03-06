@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using OnlineLists;
+using TMPro;
 
 namespace Dialog
 {
@@ -11,8 +12,8 @@ namespace Dialog
 	{
 		[Header("Add Item Settings")]
 		[SerializeField] private Image addButtonColour;
-		[SerializeField] private Text addButtonText;
-		[SerializeField] private Text statusText;
+		[SerializeField] private TMP_Text addButtonText;
+		[SerializeField] private TMP_Text statusText;
 		
 		private OnlineList list;
 
