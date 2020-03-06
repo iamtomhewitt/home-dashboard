@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace JourneyPlanner
 {
 	public class JourneyPlannerEntry : MonoBehaviour
 	{
-		[SerializeField] private Text journeyName;
-		[SerializeField] private Text journeyTime;
+		[SerializeField] private TMP_Text journeyName;
+		[SerializeField] private TMP_Text journeyTime;
 		[SerializeField] private Image icon;
 
 		public void Initialise(string journeyName, string journeyTime, Color iconColour)
