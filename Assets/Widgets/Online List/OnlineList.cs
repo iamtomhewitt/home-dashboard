@@ -123,7 +123,10 @@ namespace OnlineLists
 
 			Refresh();
 
-			addDialog.SetStatusText(string.Format("'{0}' uploaded!", item));
+			if (addDialog != null)
+			{
+				addDialog.SetStatusText(string.Format("'{0}' uploaded!", item));
+			}
 		}
 
 		/// <summary>
@@ -145,6 +148,11 @@ namespace OnlineLists
 			addDialog.ResetStatusText();
 			addDialog.ApplyColours();
 			addDialog.Show();
+		}
+
+		public TodoistList GetListType()
+		{
+			return listType;
 		}
 	}
 
