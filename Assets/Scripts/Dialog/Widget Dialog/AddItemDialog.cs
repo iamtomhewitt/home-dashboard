@@ -13,7 +13,8 @@ namespace Dialog
 		[SerializeField] private Image addButtonColour;
 		[SerializeField] private Text addButtonText;
 		[SerializeField] private Text statusText;
-		[SerializeField] private OnlineList list;
+		
+		private OnlineList list;
 
 		/// <summary>
 		/// Called from a button.
@@ -21,6 +22,16 @@ namespace Dialog
 		public void ResetStatusText()
 		{
 			statusText.text = "";
+		}
+
+		public void SetStatusText(string text)
+		{
+			statusText.text = text;
+		}
+
+		public void SetOnlineList(OnlineList list)
+		{
+			this.list = list;
 		}
 
 		/// <summary>
