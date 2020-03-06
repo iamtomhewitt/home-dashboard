@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System;
 using SimpleJSON;
+using TMPro;
 
 namespace Clock
 {
 	public class Clock : Widget
 	{
 		[Header("Clock Settings")]
-		[SerializeField] private Text clockText;
-		[SerializeField] private Text dateText;
+		[SerializeField] private TMP_Text clockText;
+		[SerializeField] private TMP_Text dateText;
 
 		public override void Start()
 		{
