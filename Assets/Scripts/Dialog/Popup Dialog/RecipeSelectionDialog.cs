@@ -62,7 +62,7 @@ namespace Dialog
 			}
 		}
 
-		public void SelectFreeTextRecipe(InputField freeTextInput)
+		public void SelectFreeTextRecipe(TMP_InputField freeTextInput)
 		{
 			freeTextRecipe = freeTextInput.text;
 			selectedRecipe = "";
