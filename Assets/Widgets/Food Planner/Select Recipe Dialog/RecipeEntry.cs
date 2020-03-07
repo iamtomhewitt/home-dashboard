@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using Dialog;
+using TMPro;
 
 namespace Planner
 {
@@ -9,7 +9,7 @@ namespace Planner
 	/// </summary>
 	public class RecipeEntry : MonoBehaviour
 	{
-		[SerializeField] private Text recipe;
+		[SerializeField] private TMP_Text recipe;
 
 		private RecipeSelectionDialog dialog;
 
