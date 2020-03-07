@@ -5,6 +5,7 @@ using System.Collections;
 using SimpleJSON;
 using Requests;
 using Planner;
+using TMPro;
 
 namespace Dialog
 {
@@ -97,10 +98,10 @@ namespace Dialog
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{
 			freeTextButton.GetComponent<Image>().color = mainColour;
-			freeTextButton.GetComponentInChildren<Text>().color = textColour;
+			freeTextButton.GetComponentInChildren<TMP_Text>().color = textColour;
 
 			addRecipeButton.GetComponent<Image>().color = mainColour;
-			addRecipeButton.GetComponentInChildren<Text>().color = textColour;
+			addRecipeButton.GetComponentInChildren<TMP_Text>().color = textColour;
 
 			freeTextInput.color = mainColour;
 
