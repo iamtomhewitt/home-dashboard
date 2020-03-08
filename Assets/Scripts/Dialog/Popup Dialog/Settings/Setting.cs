@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using SimpleJSON;
-using System.Text.RegularExpressions;
+using TMPro;
 
 /// <summary>
 /// A key label and value input field on the settings page.
 /// </summary>
 public class Setting : MonoBehaviour
 {
-	[SerializeField] private Text keyLabel;
+	[SerializeField] private TMP_Text keyLabel;
 	[SerializeField] private InputField value;
 	[SerializeField] private bool widgetSetting;
 	[SerializeField] private string[] keyTree;
