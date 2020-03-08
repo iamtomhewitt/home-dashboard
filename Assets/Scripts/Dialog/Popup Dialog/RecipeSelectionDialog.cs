@@ -108,5 +108,10 @@ namespace Dialog
 			scrollBackground.color = Colours.Darken(mainColour);
 			scrollHandle.color = Colours.Lighten(mainColour);
 		}
+
+		public void ShowAddNewRecipeDialog()
+		{
+			FindObjectOfType<AddNewRecipeDialog>().Show();
+		}
 	}
 }
