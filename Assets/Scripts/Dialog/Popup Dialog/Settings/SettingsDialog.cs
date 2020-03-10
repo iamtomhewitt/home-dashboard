@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using SimpleJSON;
+using TMPro;
 
 namespace Dialog
 {
@@ -66,7 +67,7 @@ namespace Dialog
 		/// </summary>
 		private void CreateTitle(string value)
 		{
-			Text title = Instantiate(titlePrefab, contentParent).GetComponent<Text>();
+			TMP_Text title = Instantiate(titlePrefab, contentParent).GetComponent<TMP_Text>();
 			title.text = value;
 			title.gameObject.name = title.text + " Title";
 		}
@@ -87,7 +88,7 @@ namespace Dialog
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{
 			saveButton.GetComponent<Image>().color = mainColour;
-			saveButton.GetComponentInChildren<Text>().color = textColour;
+			saveButton.GetComponentInChildren<TMP_Text>().color = textColour;
 
 			scrollBackground.color = Colours.Darken(mainColour);
 			scrollHandle.color = Colours.Lighten(mainColour);

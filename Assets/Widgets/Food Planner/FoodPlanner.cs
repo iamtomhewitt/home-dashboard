@@ -7,13 +7,13 @@ using Dialog;
 using SimpleJSON;
 using OnlineLists;
 using Requests;
+using System.Linq;
 
 namespace Planner
 {
 	public class FoodPlanner : Widget
 	{
 		[Header("Food Planner Settings")]
-		[SerializeField] private OnlineList shoppingList;
 		[SerializeField] private Image addButton;
 
 		public override void Start()
@@ -69,6 +69,7 @@ namespace Planner
 			{
 				dialog.Hide();
 
+				OnlineList shoppingList = FindObjectsOfType<OnlineList>().Where(x => x.GetListType().Equals(TodoistList.shoppingList)).First();
 				List<Ingredient> ingredients = new List<Ingredient>();
 
 				// For each day

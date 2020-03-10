@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Dialog
 {
@@ -10,7 +11,7 @@ namespace Dialog
 	{
 		[Header("Dialog Settings")]
 		[SerializeField] private Image topBarColour;
-		[SerializeField] private Text dialogTitle;
+		[SerializeField] private TMP_Text dialogTitle;
 		[SerializeField] private Button hideButton;
 
 		private DialogResult result;
@@ -36,7 +37,7 @@ namespace Dialog
 		public void SetHideButtonColour(Color mainColour, Color textColour)
 		{
 			hideButton.GetComponent<Image>().color = mainColour;
-			hideButton.GetComponentInChildren<Text>().color = textColour;
+			hideButton.GetComponentInChildren<TMP_Text>().color = textColour;
 		}
 
 		public void SetCancel()

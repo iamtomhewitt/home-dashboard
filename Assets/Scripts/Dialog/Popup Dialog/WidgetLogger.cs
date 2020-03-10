@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 namespace Dialog
 {
@@ -9,7 +10,7 @@ namespace Dialog
 	/// </summary>
 	public class WidgetLogger : PopupDialog
 	{
-		[SerializeField] private Text log;
+		[SerializeField] private TMP_Text log;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
 

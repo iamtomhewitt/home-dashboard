@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Collections;
+using Dialog;
 using Requests;
 using SimpleJSON;
-using Dialog;
+using TMPro;
 
 public class Splitwise : Widget
 {
     [Header("Splitwise Settings")]
-    [SerializeField] private Text groupName;
-    [SerializeField] private Text people;
-    [SerializeField] private Text amount;
-    [SerializeField] private Text allSettledUp;
+    [SerializeField] private TMP_Text groupName;
+    [SerializeField] private TMP_Text people;
+    [SerializeField] private TMP_Text amount;
+    [SerializeField] private TMP_Text allSettledUp;
 
     private string groupId;
     private string apiKey;

@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace WeatherForecast
 {
 	public class WeatherEntry : MonoBehaviour
 	{
-		[SerializeField] private Text day;
 		[SerializeField] private Image icon;
-		[SerializeField] private Text temperatureHigh;
-		[SerializeField] private Text temperatureLow;
+		[SerializeField] private TMP_Text day;
+		[SerializeField] private TMP_Text temperatureHigh;
+		[SerializeField] private TMP_Text temperatureLow;
 
 		public void SetDayText(string s)
 		{
