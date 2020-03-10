@@ -36,15 +36,12 @@ namespace GoogleCalendar
 		}
 
 		private IEnumerator RunRoutine()
-		{
-			string today = DateTime.Now.ToString("yyyy-MM-dd");
-			string future = DateTime.Now.AddMonths(6).ToString("yyyy-MM-dd");
-			
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.GOOGLE_CALENDAR(gmailAddress, future, today, apiKey));
+		{			
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.GOOGLE_CALENDAR(apiKey, gmailAddress, 30));
 			yield return request.SendWebRequest();
-			string response = request.downloadHandler.text;
 
-			json = JSON.Parse(response);
+			json = JSON.Parse(request.downloadHandler.text);
+			print(json);
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)
@@ -59,22 +56,11 @@ namespace GoogleCalendar
 				Destroy(child.gameObject);
 			}
 
-			for (int i = 0; i < json["items"].Count; i++)
+			for (int i = 0; i < json["events"].Count; i++)
 			{
-				if (json["items"].Count == i)
-				{
-					yield break;
-				}
+				JSONNode item = json["events"][i];
+				DateTime time = DateTime.Parse(item["start"]);
 
-				JSONNode item = json["items"][i];
-
-				// There could be two different types of date to use, so figure out which one to use and substring accordingly
-				string dateToUse = item["start"]["date"] == null ? item["start"]["dateTime"].Value.Substring(0, 10) : item["start"]["date"].Value;
-
-				// Convert to a date time
-				DateTime time = DateTime.Parse(dateToUse);
-
-				// And populate
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
 				eventEntry.SetNameText(item["summary"]);
 				eventEntry.SetDateText(time.ToString("dd MMM"));
