@@ -21,11 +21,13 @@ namespace GoogleCalendar
 		private JSONNode json;
 
 		private string apiKey;
+		private int numberOfEvents;
 
 		public override void ReloadConfig()
 		{
 			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
 			apiKey = config["apiKey"];
+			numberOfEvents = config["numberOfEvents"];
 		}
 
 		public override void Run()
@@ -37,11 +39,10 @@ namespace GoogleCalendar
 
 		private IEnumerator RunRoutine()
 		{			
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.GOOGLE_CALENDAR(apiKey, gmailAddress, 30));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.GOOGLE_CALENDAR(apiKey, gmailAddress, numberOfEvents));
 			yield return request.SendWebRequest();
 
 			json = JSON.Parse(request.downloadHandler.text);
-			print(json);
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)
