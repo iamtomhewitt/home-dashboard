@@ -56,19 +56,19 @@ public abstract class Widget : MonoBehaviour
 
 	private void RunIfNotSleeping()
 	{
-		TimeSpan start = TimeSpan.Parse("17:00");
-		TimeSpan end = TimeSpan.Parse("02:00");
+		TimeSpan start = TimeSpan.Parse(sleepStart);
+		TimeSpan end = TimeSpan.Parse(sleepEnd);
 		TimeSpan now = DateTime.Now.TimeOfDay;
 
 		if (start >= end)
 		{
 			if (now >= start || now <= end)
 			{
-				Debug.Log(transform.name + " IS SLEEPING");
+				Debug.Log(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
 			}
 			else
 			{
-				Debug.Log(transform.name + " IS NOT SLEEPING");
+				Run();
 			}
 		}
 	}
