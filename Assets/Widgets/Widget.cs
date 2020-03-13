@@ -20,6 +20,8 @@ public abstract class Widget : MonoBehaviour
 	private Color titleColour;
 	private string title;
 	private string timeUnit;
+	private string sleepStart;
+	private string sleepEnd;
 	private float repeatRate;
 
 	public abstract void Run();
@@ -42,6 +44,8 @@ public abstract class Widget : MonoBehaviour
 		title 		= config["title"];
 		repeatRate 	= config["repeatRate"];
 		timeUnit 	= config["repeatTime"];
+		sleepStart 	= config["sleepStart"];
+		sleepEnd 	= config["sleepEnd"];
 
 		UpdateLastUpdatedText();
 		SetTitleText(title);
@@ -130,5 +134,15 @@ public abstract class Widget : MonoBehaviour
 	public string GetWidgetConfigKey()
 	{
 		return widgetConfigKey;
+	}
+
+	public string GetSleepStart()
+	{
+		return sleepStart;
+	}
+
+	public string GetSleepEnd()
+	{
+		return sleepEnd;
 	}
 }
