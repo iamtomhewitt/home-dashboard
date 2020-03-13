@@ -31,7 +31,7 @@ public abstract class Widget : MonoBehaviour
 	{
 		this.ReloadConfig();
 		this.Initialise();
-		InvokeRepeating("Run", 0f, GetRepeatRateInSeconds());
+		InvokeRepeating("RunIfNotSleeping", 0f, GetRepeatRateInSeconds());
 	}
 
 	public void Initialise()
@@ -52,6 +52,25 @@ public abstract class Widget : MonoBehaviour
 		SetWidgetColour(widgetColour);
 		SetLastUpdatedTextColour(textColour);
 		SetTitleTextColour(titleColour);
+	}
+
+	private void RunIfNotSleeping()
+	{
+		TimeSpan start = TimeSpan.Parse("17:00");
+		TimeSpan end = TimeSpan.Parse("02:00");
+		TimeSpan now = DateTime.Now.TimeOfDay;
+
+		if (start >= end)
+		{
+			if (now >= start || now <= end)
+			{
+				Debug.Log(transform.name + " IS SLEEPING");
+			}
+			else
+			{
+				Debug.Log(transform.name + " IS NOT SLEEPING");
+			}
+		}
 	}
 
 	private float GetRepeatRateInSeconds()
