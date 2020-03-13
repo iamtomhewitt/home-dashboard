@@ -64,7 +64,7 @@ public abstract class Widget : MonoBehaviour
 		{
 			if (now >= start || now <= end)
 			{
-				Debug.Log(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
+				print(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
 			}
 			else
 			{
