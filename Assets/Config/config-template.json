@@ -9,7 +9,9 @@
             "repeatRate": 30,
             "repeatTime": "minutes",
             "secondsBetweenArticles": 45,
-            "apiKey": "<key>"
+			"apiKey": "<key>",
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
         },
         "binDay":{
             "title":"Bin Day",
@@ -38,7 +40,9 @@
 					"repeatRateInDays": 14,
 					"binColour": "#FF0000"
 				}
-			]
+			],
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
         },
 		"clock": {
             "title": "Clock",
@@ -46,7 +50,9 @@
             "textColour": "#FFFFFF",
             "dateColour": "#FFFFFF",
             "repeatRate": 1,
-			"repeatTime": "seconds"
+			"repeatTime": "seconds",
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
 		},
         "foodPlanner":{
             "title":"Food Planner",
@@ -58,7 +64,9 @@
 			"plannerBackgroundColour":"#FFFFFF",
 			"plannerTextColour": "#000000",
 			"apiKey": "",
-			"plannerId": ""
+			"plannerId": "",
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
 		},
 		"journeyPlanner": {
 			"title":"Journey Planner",
@@ -79,7 +87,9 @@
 					"startPoint": "<lat long>",
 					"endPoint": "<lat long>"
 				}
-			]
+			],
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
 		},
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",
@@ -88,7 +98,10 @@
 			"titleColour": "#FFFFFF",
 			"repeatRate": 30,
 			"repeatTime": "minutes",
-			"apiKey": ""
+			"apiKey": "",
+			"numberOfEvents": 25,
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
 		},
         "shoppingList": {
             "title": "Shopping List",
@@ -98,7 +111,9 @@
             "repeatRate": 10,
             "repeatTime": "minutes",
             "todoistId": "id",
-            "apiKey": "key"
+            "apiKey": "key",
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
         },
         "todoList": {
             "title": "TODO List",
@@ -108,7 +123,9 @@
             "repeatRate": 10,
             "repeatTime": "minutes",
             "todoistId": "id",
-            "apiKey": "key"
+            "apiKey": "key",
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
         },
         "splitwise": {
             "title": "Splitwise",
@@ -118,7 +135,9 @@
             "repeatRate": 2,
             "repeatTime": "hours",
             "groupId": "groupId",
-			"apiKey": ""
+			"apiKey": "",
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
         },
         "trains": {
             "title": "Trains",
@@ -128,7 +147,9 @@
             "repeatRate": 1,
             "repeatTime": "minutes",
             "apiKey": "key",
-            "stationCode": "HRS"
+            "stationCode": "HRS",
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
         },
         "weather": {
             "title": "Weather",
@@ -140,7 +161,9 @@
             "apiKey": "key",
             "latitude": "lat",
             "longitude": "long",
-			"spriteColour": "#FFFFF"
+			"spriteColour": "#FFFFF",
+			"sleepStart": "HH-mm",
+			"sleepEnd": "HH-mm"
         }
 	},
 	"dialogs": {

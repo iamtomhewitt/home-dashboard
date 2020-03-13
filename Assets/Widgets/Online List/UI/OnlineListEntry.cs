@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 using System.Collections;
 using Dialog;
 using Requests;
 using SimpleJSON;
+using TMPro;
 
 namespace OnlineLists
 {
 	public class OnlineListEntry : MonoBehaviour
 	{
-		[SerializeField] private Text nameText;
-		[SerializeField] private Text removeButtonText;
+		[SerializeField] private TMP_Text nameText;
+		[SerializeField] private TMP_Text removeButtonText;
 		[SerializeField] private string taskId;
 
 		private string apiKey;

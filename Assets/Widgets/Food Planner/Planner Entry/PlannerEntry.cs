@@ -5,14 +5,15 @@ using System.Collections;
 using Dialog;
 using SimpleJSON;
 using Requests;
+using TMPro;
 
 namespace Planner
 {
     public class PlannerEntry : MonoBehaviour
     {
         [SerializeField] private Day day;
-        [SerializeField] private Text dayText;
-        [SerializeField] private Text recipe;
+        [SerializeField] private TMP_Text dayText;
+        [SerializeField] private TMP_Text recipe;
         [SerializeField] private Image recipeBackground;
         [SerializeField] private Image dayBackground;
 

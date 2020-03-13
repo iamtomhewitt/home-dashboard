@@ -7,8 +7,7 @@ namespace Dialog
 	/// </summary>
 	public abstract class WidgetDialog : Dialog
 	{
-		[Header("Widget Dialog Settings")]
-		[SerializeField] private Widget parentWidget;
+		private Widget parentWidget;
 
 		public void SetParentWidget(Widget widget)
 		{

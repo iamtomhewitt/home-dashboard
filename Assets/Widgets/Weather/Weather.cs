@@ -6,15 +6,16 @@ using System.Collections;
 using SimpleJSON;
 using Dialog;
 using Requests;
+using TMPro;
 
 namespace WeatherForecast
 {
     public class Weather : Widget
     {
         [Header("Weather Settings")]
-        [SerializeField] private Text currentSummary;
+        [SerializeField] private TMP_Text currentSummary;
+        [SerializeField] private TMP_Text currentTemperature;
         [SerializeField] private Image currentIcon;
-        [SerializeField] private Text currentTemperature;
 
         [SerializeField] private WeatherEntry[] weatherEntries;
         [SerializeField] private Sprite[] weatherSprites;

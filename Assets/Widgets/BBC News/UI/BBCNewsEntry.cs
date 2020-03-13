@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 namespace BBCNews
 {
 	public class BBCNewsEntry : MonoBehaviour
 	{
-		[SerializeField] private Text title;
-		[SerializeField] private Text description;
+		[SerializeField] private TMP_Text title;
+		[SerializeField] private TMP_Text description;
 
 		private string url;
 

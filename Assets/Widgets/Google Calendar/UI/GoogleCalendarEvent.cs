@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 namespace GoogleCalendar
 {
 	public class GoogleCalendarEvent : MonoBehaviour
 	{
-		[SerializeField] private Text nameText;
-		[SerializeField] private Text dateText;
+		[SerializeField] private TMP_Text nameText;
+		[SerializeField] private TMP_Text dateText;
 
 		public void SetNameText(string text)
 		{

@@ -33,9 +33,9 @@
             return string.Format("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey={0}", apiKey);
         }
 
-        public static string GOOGLE_CALENDAR(string gmailAddress, string future, string today, string apiKey)
+        public static string GOOGLE_CALENDAR(string apiKey, string gmailAddress, int numberOfEvents)
         {
-            return string.Format("https://www.googleapis.com/calendar/v3/calendars/{0}/events?orderBy=startTime&singleEvents=true&timeMax={1}T10:00:00-07:00&timeMin={2}T10:00:00-07:00&key={3}", gmailAddress, future, today, apiKey);
+			return string.Format("https://dashboard-calendar-manager.herokuapp.com/calendar/events?apiKey={0}&gmailAddress={1}&numberOfEvents={2}", apiKey, gmailAddress, numberOfEvents);
         }
 
         public static string TODOIST_PROJECT(string id)

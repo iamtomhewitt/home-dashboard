@@ -3,9 +3,10 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using SimpleJSON;
 using Dialog;
 using Requests;
+using SimpleJSON;
+using TMPro;
 
 namespace OnlineLists
 {
@@ -15,13 +16,13 @@ namespace OnlineLists
 		[SerializeField] private TodoistList listType;
 		[SerializeField] private OnlineListEntry entryPrefab;
 		[SerializeField] private Transform content;
-		[SerializeField] private Text statusText;
-		[SerializeField] private Text addButtonText;
+		[SerializeField] private TMP_Text addButtonText;
 		[SerializeField] private Image addButtonColour;
 		[SerializeField] private Image scrollbarBackground;
 		[SerializeField] private Image scrollbarHandle;
 
 		private List<string> itemsNotUploaded = new List<string>();
+		private AddItemDialog addDialog;
 		private string apiKey;
 		private string projectId;
 		private float missingItemsUploadRate = 30f;
@@ -30,6 +31,15 @@ namespace OnlineLists
 		{
 			base.Start();
 			InvokeRepeating("UploadMissingItems", missingItemsUploadRate, missingItemsUploadRate);
+		}
+
+		private void UploadMissingItems()
+		{
+			foreach (string item in itemsNotUploaded)
+			{
+				WidgetLogger.instance.Log("<b>" + listType.ToString() + " List </b>: Attempting to reupload " + item);
+				AddItem(item);
+			}
 		}
 
 		public override void ReloadConfig()
@@ -44,15 +54,6 @@ namespace OnlineLists
 			this.ReloadConfig();
 			StartCoroutine(Fade(RunRoutine, 1f));
 			this.UpdateLastUpdatedText();
-		}
-
-		private void UploadMissingItems()
-		{
-			foreach (string item in itemsNotUploaded)
-			{
-				WidgetLogger.instance.Log("<b>" + listType.ToString() + " List </b>: Attempting to reupload " + item);
-				AddItem(item);
-			}
 		}
 
 		private IEnumerator RunRoutine()
@@ -122,7 +123,10 @@ namespace OnlineLists
 
 			Refresh();
 
-			statusText.text = "'" + item + "' uploaded!";
+			if (addDialog != null)
+			{
+				addDialog.SetStatusText(string.Format("'{0}' uploaded!", item));
+			}
 		}
 
 		/// <summary>
@@ -131,6 +135,24 @@ namespace OnlineLists
 		public void Refresh()
 		{
 			Run();
+		}
+
+		/// <summary>
+		/// Called from the Add button.
+		/// </summary>
+		public void ShowAddDialog()
+		{
+			addDialog = FindObjectOfType<AddItemDialog>();
+			addDialog.SetParentWidget(this);
+			addDialog.SetOnlineList(this);
+			addDialog.ResetStatusText();
+			addDialog.ApplyColours();
+			addDialog.Show();
+		}
+
+		public TodoistList GetListType()
+		{
+			return listType;
 		}
 	}
 

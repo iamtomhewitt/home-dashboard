@@ -5,6 +5,7 @@ using System.Collections;
 using Requests;
 using SimpleJSON;
 using Planner;
+using TMPro;
 
 namespace Dialog
 {
@@ -21,7 +22,7 @@ namespace Dialog
 		[SerializeField] private GameObject newIngredientEntry;
 		[SerializeField] private Transform newIngredientsContent;
 		[SerializeField] private InputField recipeName;
-		[SerializeField] private Text status;
+		[SerializeField] private TMP_Text status;
 
 		/// <summary>
 		/// Called from a Unity button to add a new ingredient to the add new recipe dialog.
@@ -74,13 +75,20 @@ namespace Dialog
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{
 			addIngredientButton.GetComponent<Image>().color = mainColour;
-			addIngredientButton.GetComponentInChildren<Text>().color = textColour;
+			addIngredientButton.GetComponentInChildren<TMP_Text>().color = textColour;
 
 			addRecipeButton.GetComponent<Image>().color = mainColour;
-			addRecipeButton.GetComponentInChildren<Text>().color = textColour;
+			addRecipeButton.GetComponentInChildren<TMP_Text>().color = textColour;
 
 			scrollBackground.color = Colours.Darken(mainColour);
 			scrollHandle.color = Colours.Lighten(mainColour);
+		}
+
+		public void ShowSelectRecipeDialog()
+		{
+			RecipeSelectionDialog dialog = FindObjectOfType<RecipeSelectionDialog>();
+			dialog.Show();
+			dialog.PopulateRecipes();
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using SimpleJSON;
+using TMPro;
 
 namespace Bins
 {
@@ -10,7 +11,7 @@ namespace Bins
 		[Header("Bin Day Settings")]
 		[SerializeField] private Color noBinColour;
 
-		[SerializeField] private Text text;
+		[SerializeField] private TMP_Text text;
 		[SerializeField] private Image logo;
 
 		private JSONArray bins;
@@ -51,17 +52,17 @@ namespace Bins
 
 				if (IsBin(today, nextBinDay, lastBinDay))
 				{
-					Display(binName + " bin today!", FontStyle.Bold, binColour, Colours.Lighten(binColour));
+					Display(binName + " bin today!", FontStyles.Bold, binColour, Colours.Lighten(binColour));
 					stopProcessing = true;
 				}
 				else if (IsBin(tomorrow, nextBinDay, lastBinDay))
 				{
-					Display(binName + " bin tomorrow!", FontStyle.Normal, binColour, Colours.Lighten(binColour));
+					Display(binName + " bin tomorrow!", FontStyles.Normal, binColour, Colours.Lighten(binColour));
 					stopProcessing = true;
 				}
 				else
 				{
-					Display("No bins today!", FontStyle.Normal, noBinColour, Colours.Darken(noBinColour));
+					Display("No bins today!", FontStyles.Bold, noBinColour, Colours.Darken(noBinColour));
 				}
 			}
 
@@ -73,7 +74,7 @@ namespace Bins
 			return (next == date || last == date);
 		}
 
-		private void Display(string message, FontStyle style, Color widgetColour, Color logoColour)
+		private void Display(string message, FontStyles style, Color widgetColour, Color logoColour)
 		{
 			text.text = message;
 			text.color = GetTextColour();
