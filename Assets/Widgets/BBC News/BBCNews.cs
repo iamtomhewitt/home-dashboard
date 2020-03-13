@@ -24,7 +24,7 @@ namespace BBCNews
 		public override void Start()
 		{
 			base.Start();
-			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);			
+			InvokeRepeating("Cycle", 1f, secondsBetweenArticles);
 		}
 
 		public override void ReloadConfig()
@@ -70,19 +70,22 @@ namespace BBCNews
 
 		private void SwitchArticle()
 		{
-			string title		= json["articles"][currentArticleIndex]["title"];
-			string description	= json["articles"][currentArticleIndex]["description"];
-			string url			= json["articles"][currentArticleIndex]["url"];
-
-			entry.SetTitle(title);
-			entry.SetDescription(description);
-			entry.SetUrl(url);
-
-			currentArticleIndex++;
-
-			if (currentArticleIndex == json["articles"].Count - 1)
+			if (json != null)
 			{
-				currentArticleIndex = 0;
+				string title = json["articles"][currentArticleIndex]["title"];
+				string description = json["articles"][currentArticleIndex]["description"];
+				string url = json["articles"][currentArticleIndex]["url"];
+
+				entry.SetTitle(title);
+				entry.SetDescription(description);
+				entry.SetUrl(url);
+
+				currentArticleIndex++;
+
+				if (currentArticleIndex == json["articles"].Count - 1)
+				{
+					currentArticleIndex = 0;
+				}
 			}
 		}
 	}

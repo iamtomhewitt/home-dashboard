@@ -20,6 +20,8 @@ public abstract class Widget : MonoBehaviour
 	private Color titleColour;
 	private string title;
 	private string timeUnit;
+	private string sleepStart;
+	private string sleepEnd;
 	private float repeatRate;
 
 	public abstract void Run();
@@ -29,7 +31,8 @@ public abstract class Widget : MonoBehaviour
 	{
 		this.ReloadConfig();
 		this.Initialise();
-		InvokeRepeating("Run", 0f, GetRepeatRateInSeconds());
+		this.Run();
+		InvokeRepeating("RunIfNotSleeping", 0f, GetRepeatRateInSeconds());
 	}
 
 	public void Initialise()
@@ -42,12 +45,33 @@ public abstract class Widget : MonoBehaviour
 		title 		= config["title"];
 		repeatRate 	= config["repeatRate"];
 		timeUnit 	= config["repeatTime"];
+		sleepStart 	= config["sleepStart"];
+		sleepEnd 	= config["sleepEnd"];
 
 		UpdateLastUpdatedText();
 		SetTitleText(title);
 		SetWidgetColour(widgetColour);
 		SetLastUpdatedTextColour(textColour);
 		SetTitleTextColour(titleColour);
+	}
+
+	private void RunIfNotSleeping()
+	{
+		TimeSpan start = TimeSpan.Parse(sleepStart);
+		TimeSpan end = TimeSpan.Parse(sleepEnd);
+		TimeSpan now = DateTime.Now.TimeOfDay;
+
+		if (start >= end)
+		{
+			if (now >= start || now <= end)
+			{
+				print(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
+			}
+			else
+			{
+				Run();
+			}
+		}
 	}
 
 	private float GetRepeatRateInSeconds()
@@ -130,5 +154,15 @@ public abstract class Widget : MonoBehaviour
 	public string GetWidgetConfigKey()
 	{
 		return widgetConfigKey;
+	}
+
+	public string GetSleepStart()
+	{
+		return sleepStart;
+	}
+
+	public string GetSleepEnd()
+	{
+		return sleepEnd;
 	}
 }
