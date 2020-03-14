@@ -46,12 +46,17 @@ namespace Dialog
 
 					CreateSetting(keyTree, key, value, true);
 
-					foreach (JSONNode p in kvp.Value)
+					// Additional children
+					foreach (JSONNode child in kvp.Value)
 					{
-						print(p);
-						foreach (KeyValuePair<string, JSONNode> k in (JSONObject)p)
+						foreach (KeyValuePair<string, JSONNode> grandChild in (JSONObject)child)
 						{
-							print(k.Key);
+							string gKey = grandChild.Key;
+							string gValue = grandChild.Value;
+							keyTree = new string[] { widgetKey, key, gKey };
+							print(string.Format("{0} {1}", gKey, gValue));
+							Setting s = CreateSetting(keyTree, gKey, gKey, true);
+							print("Value: " + s.GetValue());
 						}
 					}
 				}
@@ -61,7 +66,7 @@ namespace Dialog
 			foreach (KeyValuePair<string, JSONNode> dialog in (JSONObject)dialogs)
 			{
 				string dialogKey = dialog.Key;
-				
+
 				CreateTitle(Utility.CamelCaseToSentence(dialogKey) + " Dialog");
 
 				foreach (KeyValuePair<string, JSONNode> kvp in (JSONObject)dialog)
@@ -84,7 +89,7 @@ namespace Dialog
 		/// <summary>
 		/// Creates a key value setting based on the config.
 		/// </summary>
-		private void CreateSetting(string[] keyTree, string key, string value, bool isWidgetSetting)
+		private Setting CreateSetting(string[] keyTree, string key, string value, bool isWidgetSetting)
 		{
 			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
 			setting.SetKeyTree(keyTree);
@@ -92,6 +97,7 @@ namespace Dialog
 			setting.SetValue(value);
 			setting.SetWidgetSetting(isWidgetSetting);
 			setting.gameObject.name = setting.GetKeyLabel();
+			return setting;
 		}
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
