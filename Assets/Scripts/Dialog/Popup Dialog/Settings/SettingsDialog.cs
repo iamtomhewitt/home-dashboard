@@ -45,6 +45,15 @@ namespace Dialog
 					}
 
 					CreateSetting(keyTree, key, value, true);
+
+					foreach (JSONNode p in kvp.Value)
+					{
+						print(p);
+						foreach (KeyValuePair<string, JSONNode> k in (JSONObject)p)
+						{
+							print(k.Key);
+						}
+					}
 				}
 			}
 
