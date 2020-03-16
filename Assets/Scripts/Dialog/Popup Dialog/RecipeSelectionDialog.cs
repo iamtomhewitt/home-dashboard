@@ -22,6 +22,7 @@ namespace Dialog
 		[SerializeField] private Image freeTextInput;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
+		[SerializeField] private TMP_Text loadingText;
 
 		private string selectedRecipe;
 		private string freeTextRecipe;
@@ -38,6 +39,8 @@ namespace Dialog
 		{
 			ClearExistingRecipes();
 
+			loadingText.text = "Loading...";
+
 			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES(Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"]));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
@@ -49,6 +52,8 @@ namespace Dialog
 				entry.SetText(json["recipes"][i]["name"]);
 				entry.SetParentDialog(this);
 			}
+
+			loadingText.text = "";
 		}
 
 		/// <summary>
