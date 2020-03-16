@@ -61,11 +61,24 @@ public abstract class Widget : MonoBehaviour
 		TimeSpan end = TimeSpan.Parse(sleepEnd);
 		TimeSpan now = DateTime.Now.TimeOfDay;
 
-		if (start >= end)
+		if (start <= end)
 		{
+			// Start and end are in same day
+			if (now >= start && now <= end)
+			{
+				Dialog.WidgetLogger.instance.Log(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
+			}
+			else
+			{
+				Run();
+			}
+		}
+		else
+		{
+			// Start and end are in different days
 			if (now >= start || now <= end)
 			{
-				print(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
+				Dialog.WidgetLogger.instance.Log(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
 			}
 			else
 			{
@@ -125,12 +138,12 @@ public abstract class Widget : MonoBehaviour
 	{
 		return widgetColour;
 	}
-	
+
 	private void SetLastUpdatedTextColour(Color colour)
 	{
 		lastUpdatedText.color = colour;
 	}
-	
+
 	public void SetTitleTextColour(Color colour)
 	{
 		titleText.color = colour;
