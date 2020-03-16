@@ -69,20 +69,20 @@ namespace JourneyPlanner
                 int durationWithTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
                 int timeDifference = durationWithTraffic - duration;
 
-                Color iconColour = noTrafficColour;
+                Color trafficColour = noTrafficColour;
 
                 if (timeDifference > FIFTEEN_MINS && timeDifference < THIRTY_MINS)
                 {
-                    iconColour = mediumTrafficColour;
+                    trafficColour = mediumTrafficColour;
                 }
                 else if (timeDifference > THIRTY_MINS)
                 {
-                    iconColour = heavyTrafficColour;
+                    trafficColour = heavyTrafficColour;
                 }
 
                 GameObject prefab = journeys.Count == 1 ? singleEntry.gameObject : scrollEntry.gameObject;
                 Transform parent = journeys.Count == 1 ? this.transform : scrollContent;
-                Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic), iconColour);
+                Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic), trafficColour);
             }
         }
 
