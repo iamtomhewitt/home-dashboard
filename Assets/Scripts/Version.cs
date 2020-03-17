@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Dialog;
+using TMPro;
 
 /// <summary>
 /// Shows the application version in the bottom left of the dashboard.
@@ -9,7 +10,7 @@ public class Version : MonoBehaviour
 {
     private void Start()
     {
-        GetComponent<Button>().GetComponentInChildren<Text>().text = "Version: " + Application.version;
+        GetComponent<Button>().GetComponentInChildren<TMP_Text>().text = "Version: " + Application.version;
     }
 
     public void ShowLog()
