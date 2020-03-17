@@ -22,14 +22,16 @@ namespace JourneyPlanner
 
         private JSONNode journeys;
         private string apiKey;
-        private const int FIFTEEN_MINS = 900;
-        private const int THIRTY_MINS = 1800;
+		private int mediumTrafficMinutes;
+		private int heavyTrafficMinutes;
 
         public override void ReloadConfig()
         {
             JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
             apiKey = config["apiKey"];
             journeys = config["journeys"];
+			mediumTrafficMinutes = config["mediumTrafficMinutes"] == null ? 15 : config["mediumTrafficMinutes"].AsInt;
+			heavyTrafficMinutes = config["heavyTrafficMinutes"]  == null ? 25 : config["heavyTrafficMinutes"].AsInt;
             scrollbarBackground.color = Colours.Darken(GetWidgetColour());
             scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
         }
@@ -37,9 +39,7 @@ namespace JourneyPlanner
         public override void Run()
         {
             this.ReloadConfig();
-
             StartCoroutine(RunRoutine());
-
             this.UpdateLastUpdatedText();
         }
 
@@ -67,22 +67,22 @@ namespace JourneyPlanner
 
                 int duration = json["resourceSets"][0]["resources"][0]["travelDuration"];
                 int durationWithTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
-                int timeDifference = durationWithTraffic - duration;
+                int timeDifference = (durationWithTraffic - duration) / 60;
 
-                Color iconColour = noTrafficColour;
+                Color trafficColour = noTrafficColour;
 
-                if (timeDifference > FIFTEEN_MINS && timeDifference < THIRTY_MINS)
+                if (timeDifference > mediumTrafficMinutes && timeDifference < heavyTrafficMinutes)
                 {
-                    iconColour = mediumTrafficColour;
+                    trafficColour = mediumTrafficColour;
                 }
-                else if (timeDifference > THIRTY_MINS)
+                else if (timeDifference > heavyTrafficMinutes)
                 {
-                    iconColour = heavyTrafficColour;
+                    trafficColour = heavyTrafficColour;
                 }
 
                 GameObject prefab = journeys.Count == 1 ? singleEntry.gameObject : scrollEntry.gameObject;
                 Transform parent = journeys.Count == 1 ? this.transform : scrollContent;
-                Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic), iconColour);
+                Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic), trafficColour);
             }
         }
 

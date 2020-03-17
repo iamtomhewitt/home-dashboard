@@ -8,13 +8,12 @@ namespace JourneyPlanner
 	{
 		[SerializeField] private TMP_Text journeyName;
 		[SerializeField] private TMP_Text journeyTime;
-		[SerializeField] private Image icon;
 
-		public void Initialise(string journeyName, string journeyTime, Color iconColour)
+		public void Initialise(string journeyName, string journeyTime, Color colour)
 		{
 			this.journeyName.text = journeyName;
 			this.journeyTime.text = journeyTime;
-			this.icon.color = iconColour;
+			this.journeyTime.color = colour;
 		}
 	}
 }
