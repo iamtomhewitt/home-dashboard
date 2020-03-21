@@ -20,6 +20,7 @@ namespace Dialog
 
 		private void Start()
 		{
+			Screen.sleepTimeout = SleepTimeout.NeverSleep;
 			DynamicallyCreateDialog();
 		}
 
