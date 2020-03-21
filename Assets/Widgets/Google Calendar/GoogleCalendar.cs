@@ -63,8 +63,12 @@ namespace GoogleCalendar
 				DateTime time = DateTime.Parse(item["start"]);
 
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
-				eventEntry.SetNameText(item["summary"]);
+				eventEntry.SetSummaryText(item["summary"]);
 				eventEntry.SetDateText(time.ToString("dd MMM"));
+				eventEntry.SetStartTime(item["startTime"]);
+				eventEntry.SetEndTime(item["endTime"]);
+				eventEntry.SetDescription(item["description"]);
+				eventEntry.SetLocation(item["location"]);
 				eventEntry.SetDateTextColour(GetTextColour());
 				eventEntry.SetNameTextColour(GetTextColour());
 			}
