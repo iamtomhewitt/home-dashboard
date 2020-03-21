@@ -16,7 +16,14 @@ namespace Dialog
 
 		private DialogResult result;
 
+		/// <summary>
+		/// Colours are applied everytime the Show() method is invoked.
+		/// </summary>
 		public abstract void ApplyColours();
+
+		/// <summary>
+		/// Should be called when implementing the ApplyColours() method.
+		/// </summary>
 		public abstract void ApplyAdditionalColours(Color mainColour, Color textColour);
 
 		private void Start()

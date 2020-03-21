@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using TMPro;
+using Dialog;
 
 namespace GoogleCalendar
 {
 	public class GoogleCalendarEvent : MonoBehaviour
 	{
 		[SerializeField] private TMP_Text summaryText;
-		[SerializeField] private TMP_Text dateText;
+		[SerializeField] private TMP_Text startDateText;
 
+		private string endDate;
 		private string startTime;
 		private string endTime;
 		private string location;
@@ -18,17 +20,22 @@ namespace GoogleCalendar
 			summaryText.text = text;
 		}
 
-		public void SetDateText(string text)
+		public void SetStartDateText(string text)
 		{
-			dateText.text = text;
+			startDateText.text = text;
 		}
 
-		public void SetNameTextColour(Color colour)
+		public void SetEndDateText(string text)
+		{
+			endDate = text;
+		}
+
+		public void SetSummaryTextColour(Color colour)
 		{
 			summaryText.color = colour;
 		}
 
-		public void SetDateTextColour(Color colour)
+		public void SetStartDateTextColour(Color colour)
 		{
 			dateText.color = colour;
 		}
@@ -58,7 +65,9 @@ namespace GoogleCalendar
 		/// </summary>
 		public void ShowEventDetails()
 		{
-			print(this.ToString());
+			GoogleCalendarEventDialog dialog = FindObjectOfType<GoogleCalendarEventDialog>();
+			dialog.Populate(summaryText.text, startDateText.text, endDate, startTime, endTime, location, description);
+			dialog.Show();
 		}
 	}
 }

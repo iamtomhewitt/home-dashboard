@@ -60,17 +60,19 @@ namespace GoogleCalendar
 			for (int i = 0; i < json["events"].Count; i++)
 			{
 				JSONNode item = json["events"][i];
-				DateTime time = DateTime.Parse(item["start"]);
+				DateTime startDate = DateTime.Parse(item["start"]);
+				DateTime endDate = DateTime.Parse(item["end"]);
 
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
 				eventEntry.SetSummaryText(item["summary"]);
-				eventEntry.SetDateText(time.ToString("dd MMM"));
+				eventEntry.SetStartDateText(startDate.ToString("dd MMM"));
+				eventEntry.SetEndDateText(endDate.ToString("dd MMM"));
 				eventEntry.SetStartTime(item["startTime"]);
 				eventEntry.SetEndTime(item["endTime"]);
 				eventEntry.SetDescription(item["description"]);
 				eventEntry.SetLocation(item["location"]);
-				eventEntry.SetDateTextColour(GetTextColour());
-				eventEntry.SetNameTextColour(GetTextColour());
+				eventEntry.SetStartDateTextColour(GetTextColour());
+				eventEntry.SetSummaryTextColour(GetTextColour());
 			}
 
 			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
