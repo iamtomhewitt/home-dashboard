@@ -189,10 +189,6 @@
 		"selectRecipe": {
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
-		},
-		"googleCalendarEvent": {
-			"mainColour": "#58BAC8",
-			"textColour": "#FFFFFF"
 		}
 	}
 }
