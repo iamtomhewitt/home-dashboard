@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 using System;
 using System.Collections;
 using SimpleJSON;
@@ -15,10 +14,8 @@ namespace WeatherForecast
         [Header("Weather Settings")]
         [SerializeField] private TMP_Text currentSummary;
         [SerializeField] private TMP_Text currentTemperature;
-        [SerializeField] private Image currentIcon;
-
+        [SerializeField] private TMP_Text currentIcon;
         [SerializeField] private WeatherEntry[] weatherEntries;
-        [SerializeField] private Sprite[] weatherSprites;
 
         private Color spriteColour;
 
@@ -62,7 +59,7 @@ namespace WeatherForecast
             currentSummary.text = currentWeather["summary"];
             currentSummary.color = GetTitleColour();
 
-            currentIcon.sprite = GetSpriteForName(currentWeather["icon"]);
+            currentIcon.text = GetFontCodeFor(currentWeather["icon"]);
             currentIcon.color = spriteColour;
 
             currentTemperature.text = Mathf.RoundToInt((float)currentWeather["temperature"]).ToString() + "°";
@@ -78,7 +75,7 @@ namespace WeatherForecast
                 entry.SetDayText(date.DayOfWeek.ToString());
                 entry.SetDayColour(GetTextColour());
 
-                entry.SetIconSprite(GetSpriteForName(day["icon"]));
+                entry.SetIcon(GetFontCodeFor(day["icon"]));
                 entry.SetIconColour(spriteColour);
 
                 entry.SetTempHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
@@ -90,20 +87,45 @@ namespace WeatherForecast
         }
 
         /// <summary>
-        ///	Get a sprite that matches the weather string.
+        ///	Get a sprite that matches the weather string. Also realign as some characters have extra top space for some reason.
         /// </summary>
-        private Sprite GetSpriteForName(string weatherName)
+        private string GetFontCodeFor(string weatherName)
         {
-            foreach (Sprite weatherSprite in weatherSprites)
+            switch (weatherName)
             {
-                if (weatherSprite.name == weatherName)
-                {
-                    return weatherSprite;
-                }
+                case "clear-day":
+                    return "1";
+
+                case "partly-cloudy-day":
+                    return "A";
+
+                case "partly-cloudy-night":
+                    return "c";
+
+                case "rain":
+                    return "K";
+
+                case "sleet":
+                    return "W";
+
+                case "snow":
+                    return "I";
+
+                case "wind":
+                    return ",";
+
+                case "cloudy":
+                    return "3";
+
+                case "clear-night":
+                    return "6";
+
+                case "fog":
+                    return "…";
             }
 
             WidgetLogger.instance.Log(this, "Could not find: " + weatherName);
-            return null;
+            return "“";
         }
     }
 }
