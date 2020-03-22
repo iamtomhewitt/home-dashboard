@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 namespace Dialog
 {
@@ -15,16 +15,15 @@ namespace Dialog
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{
-			startDateTimeText.color = textColour;
-			endDateTimeText.color = textColour;
+			// Nothing to do!
 		}
 
 		public void Populate(string startDate, string endDate, string startTime, string endTime, string location, string description)
 		{
-			startDateTimeText.text = startDate;
-			endDateTimeText.text = endDate;
-			locationText.text = location;
-			descriptionText.text = description;
+			startDateTimeText.text = string.Format("<b>Start: </b> {0} {1}", startDate, startTime);
+			endDateTimeText.text = string.Format("<b>End:   </b> {0} {1}", endDate, endTime);
+			locationText.text = "<b>At: </b>" + location;
+			descriptionText.text = "<b>Notes: </b>\n" + description;
 		}
 	}
 }
