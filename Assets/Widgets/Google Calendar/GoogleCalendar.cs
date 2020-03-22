@@ -73,6 +73,7 @@ namespace GoogleCalendar
 				eventEntry.SetLocation(item["location"]);
 				eventEntry.SetStartDateTextColour(GetTextColour());
 				eventEntry.SetSummaryTextColour(GetTextColour());
+				eventEntry.SetGoogleCalendar(this);
 			}
 
 			scrollbarBackground.color = Colours.Darken(GetWidgetColour());

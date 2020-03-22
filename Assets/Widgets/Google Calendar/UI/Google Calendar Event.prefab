@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   summaryText: {fileID: 6448109413588939316}
-  dateText: {fileID: 169088771990507260}
+  startDateText: {fileID: 169088771990507260}
 --- !u!114 &5833817121077309956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 4622196560135589958}
   - component: {fileID: 169088771990507260}
   m_Layer: 5
-  m_Name: Date
+  m_Name: Start Date
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,6 +9,7 @@ namespace GoogleCalendar
 		[SerializeField] private TMP_Text summaryText;
 		[SerializeField] private TMP_Text startDateText;
 
+		private GoogleCalendar calendar;
 		private string endDate;
 		private string startTime;
 		private string endTime;
@@ -37,7 +38,7 @@ namespace GoogleCalendar
 
 		public void SetStartDateTextColour(Color colour)
 		{
-			dateText.color = colour;
+			startDateText.color = colour;
 		}
 
 		public void SetStartTime(string startTime)
@@ -60,13 +61,26 @@ namespace GoogleCalendar
 			this.description = description;
 		}
 
+		public void SetGoogleCalendar(GoogleCalendar calendar)
+		{
+			this.calendar = calendar;
+		}
+
+		public GoogleCalendar GetGoogleCalendar()
+		{
+			return calendar;
+		}
+
 		/// <summary>
 		/// Called from a button.
 		/// </summary>
 		public void ShowEventDetails()
 		{
 			GoogleCalendarEventDialog dialog = FindObjectOfType<GoogleCalendarEventDialog>();
-			dialog.Populate(summaryText.text, startDateText.text, endDate, startTime, endTime, location, description);
+			dialog.SetParentWidget(calendar);
+			dialog.SetDialogTitleText(summaryText.text);
+			dialog.Populate(startDateText.text, endDate, startTime, endTime, location, description);
+			dialog.ApplyColours();
 			dialog.Show();
 		}
 	}

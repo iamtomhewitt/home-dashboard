@@ -6,32 +6,23 @@ namespace Dialog
 	/// <summary>
 	/// A dialog that adds an item to an online list.
 	/// </summary>
-	public class GoogleCalendarEventDialog : PopupDialog
+	public class GoogleCalendarEventDialog : WidgetDialog
 	{
-		[SerializeField] private TMP_Text summaryText;
-		[SerializeField] private TMP_Text startDateText;
-		[SerializeField] private TMP_Text startTimeText;
-		[SerializeField] private TMP_Text endDateText;
-		[SerializeField] private TMP_Text endTimeText;
+		[SerializeField] private TMP_Text startDateTimeText;
+		[SerializeField] private TMP_Text endDateTimeText;
 		[SerializeField] private TMP_Text locationText;
 		[SerializeField] private TMP_Text descriptionText;
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{
-			summaryText.color = textColour;
-			startDateText.color = textColour;
-			startTimeText.color = textColour;
-			endDateText.color = textColour;
-			endTimeText.color = textColour;
+			startDateTimeText.color = textColour;
+			endDateTimeText.color = textColour;
 		}
 
-		public void Populate(string summary, string startDate, string endDate, string startTime, string endTime, string location, string description)
+		public void Populate(string startDate, string endDate, string startTime, string endTime, string location, string description)
 		{
-			summaryText.text = summary;
-			startDateText.text = startDate;
-			startTimeText.text = startTime;
-			endDateText.text = endDate;
-			endTimeText.text = endTime;
+			startDateTimeText.text = startDate;
+			endDateTimeText.text = endDate;
 			locationText.text = location;
 			descriptionText.text = description;
 		}

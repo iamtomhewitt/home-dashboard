@@ -36,6 +36,11 @@ namespace Dialog
 			topBarColour.color = colour;
 		}
 
+		public void SetDialogTitleText(string text)
+		{
+			dialogTitle.text = text;
+		}
+
 		public void SetDialogTitleColour(Color colour)
 		{
 			dialogTitle.color = colour;
