@@ -34,7 +34,9 @@ namespace Planner
             {
                 label += c + "\n";
             }
+
             dayText.text = label;
+			recipe.text	= "Loading...";
 
             UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER(day.ToString(), plannerId, apiKey));
             yield return request.SendWebRequest();
