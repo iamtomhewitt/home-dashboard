@@ -66,7 +66,7 @@ public abstract class Widget : MonoBehaviour
 			// Start and end are in same day
 			if (now >= start && now <= end)
 			{
-				Dialog.WidgetLogger.instance.Log(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
+				// Nothing to do - widget is sleeping
 			}
 			else
 			{
@@ -78,7 +78,7 @@ public abstract class Widget : MonoBehaviour
 			// Start and end are in different days
 			if (now >= start || now <= end)
 			{
-				Dialog.WidgetLogger.instance.Log(string.Format("{0} is currently sleeping, waking up after {1}", transform.name, sleepEnd));
+				// Nothing to do - widget is sleeping
 			}
 			else
 			{
