@@ -79,13 +79,21 @@
 			"journeys": [
 				{
 					"name": "Work",
-					"startPoint": "<lat long>",
-					"endPoint": "<lat long>"
+					"startPoint": "lat,long",
+					"stops": [
+						"lat,long",
+						"lat,long"
+					],
+					"endPoint": "lat,long"
 				},
 				{
 					"name": "School",
-					"startPoint": "<lat long>",
-					"endPoint": "<lat long>"
+					"startPoint": "lat,long",
+					"stops": [
+						"lat,long",
+						"lat,long"
+					],
+					"endPoint": "lat,long"
 				}
 			],
 			"sleepStart": "HH:mm",
