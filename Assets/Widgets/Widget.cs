@@ -23,6 +23,7 @@ public abstract class Widget : MonoBehaviour
 	private string sleepStart;
 	private string sleepEnd;
 	private float repeatRate;
+	private bool sleeping;
 
 	public abstract void Run();
 	public abstract void ReloadConfig();
@@ -66,10 +67,11 @@ public abstract class Widget : MonoBehaviour
 			// Start and end are in same day
 			if (now >= start && now <= end)
 			{
-				// Nothing to do - widget is sleeping
+				sleeping = true;
 			}
 			else
 			{
+				sleeping = false;
 				Run();
 			}
 		}
@@ -78,10 +80,11 @@ public abstract class Widget : MonoBehaviour
 			// Start and end are in different days
 			if (now >= start || now <= end)
 			{
-				// Nothing to do - widget is sleeping
+				sleeping = true;
 			}
 			else
 			{
+				sleeping = false;
 				Run();
 			}
 		}
@@ -177,5 +180,10 @@ public abstract class Widget : MonoBehaviour
 	public string GetSleepEnd()
 	{
 		return sleepEnd;
+	}
+
+	public bool isSleeping()
+	{
+		return sleeping;
 	}
 }
