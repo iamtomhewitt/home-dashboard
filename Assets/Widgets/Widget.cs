@@ -39,15 +39,15 @@ public abstract class Widget : MonoBehaviour
 	public void Initialise()
 	{
 		JSONNode config = Config.instance.GetWidgetConfig()[widgetConfigKey];
-		
-		widgetColour= Colours.ToColour(config["colour"]);
-		textColour 	= Colours.ToColour(config["textColour"]);
-		titleColour	= Colours.ToColour(config["titleColour"]);
-		title 		= config["title"];
-		repeatRate 	= config["repeatRate"];
-		timeUnit 	= config["repeatTime"];
-		sleepStart 	= config["sleepStart"];
-		sleepEnd 	= config["sleepEnd"];
+
+		widgetColour = Colours.ToColour(config["colour"]);
+		textColour = Colours.ToColour(config["textColour"]);
+		titleColour = Colours.ToColour(config["titleColour"]);
+		title = config["title"];
+		repeatRate = config["repeatRate"];
+		timeUnit = config["repeatTime"];
+		sleepStart = config["sleepStart"];
+		sleepEnd = config["sleepEnd"];
 
 		UpdateLastUpdatedText();
 		SetTitleText(title);
@@ -68,6 +68,7 @@ public abstract class Widget : MonoBehaviour
 			if (now >= start && now <= end)
 			{
 				sleeping = true;
+				UpdateLastUpdatedText();
 			}
 			else
 			{
@@ -81,6 +82,7 @@ public abstract class Widget : MonoBehaviour
 			if (now >= start || now <= end)
 			{
 				sleeping = true;
+				UpdateLastUpdatedText();
 			}
 			else
 			{
@@ -123,7 +125,23 @@ public abstract class Widget : MonoBehaviour
 
 	public void UpdateLastUpdatedText()
 	{
-		lastUpdatedText.text = "Last Updated: " + DateTime.Now.ToString("HH:mm");
+		string message = "Last Updated: " + DateTime.Now.ToString("HH:mm");
+
+		if (sleeping)
+		{
+			TimeSpan sleepEndTime = TimeSpan.Parse(sleepEnd);
+			TimeSpan now = DateTime.Now.TimeOfDay;
+			TimeSpan repeatRateTime = TimeSpan.FromSeconds(GetRepeatRateInSeconds());
+			TimeSpan nextRepeatTime = now.Add(repeatRateTime);
+
+			while (nextRepeatTime < sleepEndTime)
+			{
+				nextRepeatTime = nextRepeatTime.Add(repeatRateTime);
+			}
+			message = "Waking Up At: " + nextRepeatTime.Hours.ToString("00") + ":" + nextRepeatTime.Minutes.ToString("00");
+		}
+
+		lastUpdatedText.text = message;
 		lastUpdatedText.color = textColour;
 	}
 
@@ -170,20 +188,5 @@ public abstract class Widget : MonoBehaviour
 	public string GetWidgetConfigKey()
 	{
 		return widgetConfigKey;
-	}
-
-	public string GetSleepStart()
-	{
-		return sleepStart;
-	}
-
-	public string GetSleepEnd()
-	{
-		return sleepEnd;
-	}
-
-	public bool isSleeping()
-	{
-		return sleeping;
 	}
 }
