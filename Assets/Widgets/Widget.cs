@@ -23,6 +23,7 @@ public abstract class Widget : MonoBehaviour
 	private string sleepStart;
 	private string sleepEnd;
 	private float repeatRate;
+	private bool sleeping;
 
 	public abstract void Run();
 	public abstract void ReloadConfig();
@@ -38,15 +39,15 @@ public abstract class Widget : MonoBehaviour
 	public void Initialise()
 	{
 		JSONNode config = Config.instance.GetWidgetConfig()[widgetConfigKey];
-		
-		widgetColour= Colours.ToColour(config["colour"]);
-		textColour 	= Colours.ToColour(config["textColour"]);
-		titleColour	= Colours.ToColour(config["titleColour"]);
-		title 		= config["title"];
-		repeatRate 	= config["repeatRate"];
-		timeUnit 	= config["repeatTime"];
-		sleepStart 	= config["sleepStart"];
-		sleepEnd 	= config["sleepEnd"];
+
+		widgetColour = Colours.ToColour(config["colour"]);
+		textColour = Colours.ToColour(config["textColour"]);
+		titleColour = Colours.ToColour(config["titleColour"]);
+		title = config["title"];
+		repeatRate = config["repeatRate"];
+		timeUnit = config["repeatTime"];
+		sleepStart = config["sleepStart"];
+		sleepEnd = config["sleepEnd"];
 
 		UpdateLastUpdatedText();
 		SetTitleText(title);
@@ -66,10 +67,12 @@ public abstract class Widget : MonoBehaviour
 			// Start and end are in same day
 			if (now >= start && now <= end)
 			{
-				// Nothing to do - widget is sleeping
+				sleeping = true;
+				UpdateLastUpdatedText();
 			}
 			else
 			{
+				sleeping = false;
 				Run();
 			}
 		}
@@ -78,10 +81,12 @@ public abstract class Widget : MonoBehaviour
 			// Start and end are in different days
 			if (now >= start || now <= end)
 			{
-				// Nothing to do - widget is sleeping
+				sleeping = true;
+				UpdateLastUpdatedText();
 			}
 			else
 			{
+				sleeping = false;
 				Run();
 			}
 		}
@@ -120,7 +125,23 @@ public abstract class Widget : MonoBehaviour
 
 	public void UpdateLastUpdatedText()
 	{
-		lastUpdatedText.text = "Last Updated: " + DateTime.Now.ToString("HH:mm");
+		string message = "Last Updated: " + DateTime.Now.ToString("HH:mm");
+
+		if (sleeping)
+		{
+			TimeSpan sleepEndTime = TimeSpan.Parse(sleepEnd);
+			TimeSpan now = DateTime.Now.TimeOfDay;
+			TimeSpan repeatRateTime = TimeSpan.FromSeconds(GetRepeatRateInSeconds());
+			TimeSpan nextRepeatTime = now.Add(repeatRateTime);
+
+			while (nextRepeatTime < sleepEndTime)
+			{
+				nextRepeatTime = nextRepeatTime.Add(repeatRateTime);
+			}
+			message = "Waking Up At: " + nextRepeatTime.Hours.ToString("00") + ":" + nextRepeatTime.Minutes.ToString("00");
+		}
+
+		lastUpdatedText.text = message;
 		lastUpdatedText.color = textColour;
 	}
 
@@ -167,15 +188,5 @@ public abstract class Widget : MonoBehaviour
 	public string GetWidgetConfigKey()
 	{
 		return widgetConfigKey;
-	}
-
-	public string GetSleepStart()
-	{
-		return sleepStart;
-	}
-
-	public string GetSleepEnd()
-	{
-		return sleepEnd;
 	}
 }
