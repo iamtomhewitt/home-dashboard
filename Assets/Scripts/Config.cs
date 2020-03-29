@@ -59,9 +59,9 @@ public class Config : MonoBehaviour
 		return root["dialogs"];
 	}
 
-	public JSONNode GetEndpointConfig()
+	public string GetEndpoint(string key)
 	{
-		return root["endpoints"];
+		return root["endpoints"][key].Value;
 	}
 
 	public void SaveToFile(string contents)

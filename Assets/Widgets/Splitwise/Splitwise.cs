@@ -33,7 +33,7 @@ public class Splitwise : Widget
 
     private IEnumerator RunRoutine()
     {
-        UnityWebRequest request = Postman.CreateGetRequest(Endpoints.SPLITWISE(groupId, apiKey));
+        UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.SPLITWISE(groupId, apiKey));
         yield return request.SendWebRequest();
 
         bool ok = request.error == null ? true : false;
