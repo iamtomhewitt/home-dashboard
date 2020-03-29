@@ -51,7 +51,7 @@ namespace Dialog
 			string apiKey = Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"];
 			JSONObject body = JsonBody.AddRecipe(recipeName.text, ingredientsArray, apiKey);
 
-			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.RECIPES_ADD, body);
+			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.instance.RECIPES_ADD(), body);
 			yield return request.SendWebRequest();
 
 			JSONNode response = JSON.Parse(request.downloadHandler.text);

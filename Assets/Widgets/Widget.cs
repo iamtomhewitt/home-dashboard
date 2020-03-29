@@ -132,9 +132,9 @@ public abstract class Widget : MonoBehaviour
 			TimeSpan sleepEndTime = TimeSpan.Parse(sleepEnd);
 			TimeSpan now = DateTime.Now.TimeOfDay;
 			TimeSpan repeatRateTime = TimeSpan.FromSeconds(GetRepeatRateInSeconds());
-			TimeSpan nextRepeatTime = now.Add(repeatRateTime);
+			TimeSpan nextRepeatTime = now.Add(repeatRateTime).Add(sleepEndTime);
 
-			while (nextRepeatTime < sleepEndTime)
+			while (nextRepeatTime.Hours < sleepEndTime.Hours)
 			{
 				nextRepeatTime = nextRepeatTime.Add(repeatRateTime);
 			}

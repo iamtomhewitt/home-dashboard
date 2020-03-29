@@ -192,11 +192,20 @@
 		"settings": {
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
-		}
 		},
 		"selectRecipe": {
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
 		}
+	},
+	"endpoints": {
+		"recipeManager": "url",
+		"todoist": "url",
+		"trains": "url",
+		"bbcNews": "url",
+		"googleCalendar": "url",
+		"weather": "url",
+		"splitwise": "url",
+		"journeyPlanner": "url"
 	}
 }

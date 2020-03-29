@@ -72,7 +72,7 @@ namespace OnlineLists
 			{
 				dialog.Hide();
 
-				string url = string.Format("{0}/{1}/close", Endpoints.TODOIST_TASKS, taskId);
+				string url = string.Format("{0}/{1}/close", Endpoints.instance.TODOIST_TASKS(), taskId);
 				UnityWebRequest request = Postman.CreatePostRequest(url, new JSONObject());
 				request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 				yield return request.SendWebRequest();

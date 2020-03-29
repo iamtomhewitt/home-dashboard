@@ -49,7 +49,7 @@ namespace BBCNews
 
 		private IEnumerator RequestHeadlines()
 		{
-			UnityWebRequest request = UnityWebRequest.Get(Endpoints.BBC_NEWS(apiKey));
+			UnityWebRequest request = UnityWebRequest.Get(Endpoints.instance.BBC_NEWS(apiKey));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 

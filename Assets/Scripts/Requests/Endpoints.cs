@@ -1,18 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace Requests
 {
-	public class Endpoints
+	public class Endpoints : MonoBehaviour
 	{
-		private static readonly string RECIPE_MANAGER = "https://home-dashboard-recipe-manager.herokuapp.com";
+		public static Endpoints instance;
 
-		public static readonly string TODOIST_TASKS = "https://api.todoist.com/rest/v1/tasks";
-		public static readonly string RECIPES_ADD = RECIPE_MANAGER + "/recipes/add";
-		public static readonly string PLANNER_ADD = RECIPE_MANAGER + "/planner/add";
-
-		public static string PLANNER(string day, string plannerId, string apiKey)
+		private void Awake()
 		{
-			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", RECIPE_MANAGER, apiKey, plannerId);
+			instance = this;
+		}
+
+		public string RECIPES_ADD()
+		{
+			return Config.instance.GetEndpoint("recipeManager") + "/recipes/add";
+		}
+
+		public string PLANNER_ADD()
+		{
+			return Config.instance.GetEndpoint("recipeManager") + "/planner/add";
+		}
+
+		public string PLANNER(string day, string plannerId, string apiKey)
+		{
+			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", Config.instance.GetEndpoint("recipeManager"), apiKey, plannerId);
 			if (!string.IsNullOrEmpty(day))
 			{
 				s += string.Format("&day={0}", day);
@@ -20,44 +32,49 @@ namespace Requests
 			return s;
 		}
 
-		public static string RECIPES(string apiKey)
+		public string RECIPES(string apiKey)
 		{
-			return string.Format("{0}/recipes?apiKey={1}", RECIPE_MANAGER, apiKey);
+			return string.Format("{0}/recipes?apiKey={1}", Config.instance.GetEndpoint("recipeManager"), apiKey);
 		}
 
-		public static string TRAIN_DEPARTURES(string stationCode, int numberOfResults, string apiKey)
+		public string TRAIN_DEPARTURES(string stationCode, int numberOfResults, string apiKey)
 		{
-			return string.Format("https://huxley.apphb.com/departures/{0}/{1}?accessToken={2}", stationCode, numberOfResults, apiKey);
+			return string.Format(Config.instance.GetEndpoint("trains"), stationCode, numberOfResults, apiKey);
 		}
 
-		public static string BBC_NEWS(string apiKey)
+		public string BBC_NEWS(string apiKey)
 		{
-			return string.Format("https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey={0}", apiKey);
+			return string.Format(Config.instance.GetEndpoint("bbcNews"), apiKey);
 		}
 
-		public static string GOOGLE_CALENDAR(string apiKey, string gmailAddress, int numberOfEvents)
+		public string GOOGLE_CALENDAR(string apiKey, string gmailAddress, int numberOfEvents)
 		{
-			return string.Format("https://dashboard-calendar-manager.herokuapp.com/calendar/events?apiKey={0}&gmailAddress={1}&numberOfEvents={2}", apiKey, gmailAddress, numberOfEvents);
+			return string.Format(Config.instance.GetEndpoint("googleCalendar"), apiKey, gmailAddress, numberOfEvents);
 		}
 
-		public static string TODOIST_PROJECT(string id)
+		public string TODOIST_TASKS()
 		{
-			return string.Format("https://api.todoist.com/rest/v1/tasks?project_id={0}", id);
+			return Config.instance.GetEndpoint("todoist");
 		}
 
-		public static string WEATHER(string apiKey, string latitude, string longitude)
+		public string TODOIST_PROJECT(string id)
 		{
-			return string.Format("https://api.darksky.net/forecast/{0}/{1},{2}?units=uk", apiKey, latitude, longitude);
+			return string.Format("{0}?project_id={1}", Config.instance.GetEndpoint("todoist"), id);
 		}
 
-		public static string SPLITWISE(string groupId, string apiKey)
+		public string WEATHER(string apiKey, string latitude, string longitude)
 		{
-			return string.Format("https://home-dashboard-splitwise-mngr.herokuapp.com/group?groupId={0}&apiKey={1}", groupId, apiKey);
+			return string.Format(Config.instance.GetEndpoint("weather"), apiKey, latitude, longitude);
 		}
 
-		public static string JOURNEY_PLANNER(string start, List<string> stops, string end, string apiKey)
+		public string SPLITWISE(string groupId, string apiKey)
 		{
-			string url = string.Format("http://dev.virtualearth.net/REST/V1/Routes/Driving?wp.0={0}&", start);
+			return string.Format(Config.instance.GetEndpoint("splitwise"), groupId, apiKey);
+		}
+
+		public string JOURNEY_PLANNER(string start, List<string> stops, string end, string apiKey)
+		{
+			string url = string.Format(Config.instance.GetEndpoint("journeyPlanner"), start);
 
 			for (int i = 0; i < stops.Count; i++)
 			{

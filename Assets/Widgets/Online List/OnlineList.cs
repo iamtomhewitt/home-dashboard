@@ -58,14 +58,14 @@ namespace OnlineLists
 
 		private IEnumerator RunRoutine()
 		{
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TODOIST_PROJECT(projectId));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.TODOIST_PROJECT(projectId));
 			request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 			yield return request.SendWebRequest();
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)
 			{
-				WidgetLogger.instance.Log(this, "Error: " + request.error + "\n URL: " + Endpoints.TODOIST_PROJECT(projectId));
+				WidgetLogger.instance.Log(this, "Error: " + request.error + "\n URL: " + Endpoints.instance.TODOIST_PROJECT(projectId));
 				yield break;
 			}
 
@@ -105,7 +105,7 @@ namespace OnlineLists
 			string uuid = System.Guid.NewGuid().ToString();
 			string body = JsonBody.TodoistTask(item, projectId);
 
-			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.TODOIST_TASKS, body);
+			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.instance.TODOIST_TASKS(), body);
 			request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 			request.SetRequestHeader("X-Request-Id", uuid);
 			yield return request.SendWebRequest();

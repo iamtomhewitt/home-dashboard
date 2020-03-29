@@ -63,7 +63,7 @@ namespace JourneyPlanner
 					}
 				}
 
-				UnityWebRequest request = Postman.CreateGetRequest(Endpoints.JOURNEY_PLANNER(journey["startPoint"], stops, journey["endPoint"], apiKey));
+				UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.JOURNEY_PLANNER(journey["startPoint"], stops, journey["endPoint"], apiKey));
 				yield return request.SendWebRequest();
 
 				bool ok = request.error == null ? true : false;
