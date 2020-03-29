@@ -59,6 +59,11 @@ public class Config : MonoBehaviour
 		return root["dialogs"];
 	}
 
+	public JSONNode GetEndpointConfig()
+	{
+		return root["endpoints"];
+	}
+
 	public void SaveToFile(string contents)
 	{
 		string filePath = Application.persistentDataPath + filename;
