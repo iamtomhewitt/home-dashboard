@@ -203,7 +203,7 @@
 		"todoist": "url",
 		"trains": "url",
 		"bbcNews": "url",
-		"calendar": "url",
+		"googleCalendar": "url",
 		"weather": "url",
 		"splitwise": "url",
 		"journeyPlanner": "url"
