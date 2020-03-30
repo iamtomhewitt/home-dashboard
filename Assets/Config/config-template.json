@@ -196,6 +196,10 @@
 		"selectRecipe": {
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
+		},
+		"version": {
+			"mainColour": "#C50E3E",
+			"textColour": "#FFFFFF"
 		}
 	},
 	"endpoints": {
@@ -206,6 +210,8 @@
 		"googleCalendar": "url",
 		"weather": "url",
 		"splitwise": "url",
-		"journeyPlanner": "url"
+		"journeyPlanner": "url",
+		"release": "url",
+		"repo": "https://github.com/iamtomhewitt/home-dashboard/releases/latest"
 	}
 }
