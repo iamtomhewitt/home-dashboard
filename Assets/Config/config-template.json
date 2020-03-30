@@ -206,6 +206,7 @@
 		"googleCalendar": "url",
 		"weather": "url",
 		"splitwise": "url",
-		"journeyPlanner": "url"
+		"journeyPlanner": "url",
+		"release": "url"
 	}
 }
