@@ -196,6 +196,10 @@
 		"selectRecipe": {
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
+		},
+		"version": {
+			"mainColour": "#C50E3E",
+			"textColour": "#FFFFFF"
 		}
 	},
 	"endpoints": {
@@ -207,6 +211,7 @@
 		"weather": "url",
 		"splitwise": "url",
 		"journeyPlanner": "url",
-		"release": "url"
+		"release": "url",
+		"repo": "https://github.com/iamtomhewitt/home-dashboard/releases/latest"
 	}
 }
