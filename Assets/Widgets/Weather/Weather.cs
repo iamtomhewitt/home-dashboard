@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using SimpleJSON;
 using Dialog;
 using Requests;
@@ -18,11 +19,12 @@ namespace WeatherForecast
         [SerializeField] private WeatherEntry[] weatherEntries;
 
         private Color spriteColour;
+		private List<string> outOfLineCharacters = new List<string> {"K", "W", "I"};
 
         private string apiKey;
         private string latitude;
         private string longitude;
-
+		
         public override void ReloadConfig()
         {
             JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
@@ -41,7 +43,7 @@ namespace WeatherForecast
 
         private IEnumerator RunRoutine()
         {
-            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.WEATHER(apiKey, latitude, longitude));
+            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.WEATHER(apiKey, latitude, longitude));
             yield return request.SendWebRequest();
 
             JSONNode json = JSON.Parse(request.downloadHandler.text);
@@ -61,6 +63,10 @@ namespace WeatherForecast
 
             currentIcon.text = GetFontCodeFor(currentWeather["icon"]);
             currentIcon.color = spriteColour;
+
+			// Fonts can get out of line
+            float y = outOfLineCharacters.Contains(currentIcon.text) ? 4.5f : 0f;
+			currentIcon.transform.localPosition = new Vector3(currentIcon.transform.localPosition.x, y, currentIcon.transform.localPosition.z);
 
             currentTemperature.text = Mathf.RoundToInt((float)currentWeather["temperature"]).ToString() + "°";
             currentTemperature.color = GetTitleColour();

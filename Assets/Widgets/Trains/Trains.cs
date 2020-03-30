@@ -42,7 +42,7 @@ namespace Train
 
         private IEnumerator RunRoutine()
         {
-            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.TRAIN_DEPARTURES(stationCode, trainEntries.Length, apiToken));
+            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.TRAIN_DEPARTURES(stationCode, trainEntries.Length, apiToken));
             yield return request.SendWebRequest();
 
             JSONNode json = JSON.Parse(request.downloadHandler.text);

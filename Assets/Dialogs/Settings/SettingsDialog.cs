@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using SimpleJSON;
+using System.Collections;
+using NiceJson;
 using TMPro;
 
 namespace Dialog
@@ -13,77 +13,20 @@ namespace Dialog
 	{
 		[SerializeField] private GameObject titlePrefab;
 		[SerializeField] private GameObject settingPrefab;
-		[SerializeField] private Transform contentParent;
 		[SerializeField] private Button saveButton;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
+		[SerializeField] private TMP_InputField content;
 
 		private void Start()
 		{
 			Screen.sleepTimeout = SleepTimeout.NeverSleep;
-			DynamicallyCreateDialog();
+			DisplayRawConfig();
 		}
 
-		private void DynamicallyCreateDialog()
+		private void DisplayRawConfig()
 		{
-			JSONNode widgets = Config.instance.GetWidgetConfig();
-			JSONNode dialogs = Config.instance.GetDialogConfig();
-
-			// Populate widgets
-			foreach (KeyValuePair<string, JSONNode> widget in (JSONObject)widgets)
-			{
-				string widgetKey = widget.Key;
-
-				foreach (KeyValuePair<string, JSONNode> kvp in (JSONObject)widget)
-				{
-					string key = kvp.Key;
-					string value = kvp.Value;
-					string[] keyTree = new string[] { widgetKey, key };
-
-					if (key.Equals("title"))
-					{
-						CreateTitle(value);
-					}
-
-					CreateSetting(keyTree, key, value, true);
-				}
-			}
-
-			// Populate dialogs
-			foreach (KeyValuePair<string, JSONNode> dialog in (JSONObject)dialogs)
-			{
-				string dialogKey = dialog.Key;
-				
-				CreateTitle(Utility.CamelCaseToSentence(dialogKey) + " Dialog");
-
-				foreach (KeyValuePair<string, JSONNode> kvp in (JSONObject)dialog)
-				{
-					CreateSetting(new string[] { dialogKey, kvp.Key }, kvp.Key, kvp.Value, false);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Creates a header based on the config.
-		/// </summary>
-		private void CreateTitle(string value)
-		{
-			TMP_Text title = Instantiate(titlePrefab, contentParent).GetComponent<TMP_Text>();
-			title.text = value;
-			title.gameObject.name = title.text + " Title";
-		}
-
-		/// <summary>
-		/// Creates a key value setting based on the config.
-		/// </summary>
-		private void CreateSetting(string[] keyTree, string key, string value, bool isWidgetSetting)
-		{
-			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
-			setting.SetKeyTree(keyTree);
-			setting.SetKeyLabel(key);
-			setting.SetValue(value);
-			setting.SetWidgetSetting(isWidgetSetting);
-			setting.gameObject.name = setting.GetKeyLabel();
+			content.text = JsonNode.ParseJsonString(Config.instance.GetRawConfig()).ToJsonPrettyPrintString();
 		}
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
@@ -100,27 +43,38 @@ namespace Dialog
 		/// </summary>
 		public void SaveToConfig()
 		{
-			Config config = Config.instance;
-			List<Setting> settings = new List<Setting>(FindObjectsOfType<Setting>());
-			List<Widget> widgets = new List<Widget>(FindObjectsOfType<Widget>());
+			StartCoroutine(SaveToConfigRoutine());
+		}
 
-			foreach (Setting setting in settings)
+		private IEnumerator SaveToConfigRoutine()
+		{
+			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
+			dialog.Show();
+			dialog.SetNone();
+			dialog.SetDialogTitleText("Save config?");
+			dialog.SetInfoMessage("This can have unexpected consequences!");
+
+			while (dialog.IsNone())
 			{
-				if (!string.IsNullOrEmpty(setting.GetValue()))
-				{
-					JSONNode node = setting.IsWidgetSetting() ? config.GetWidgetConfig() : config.GetDialogConfig();
-
-					// Find the correct node to update
-					foreach (string key in setting.GetKeyTree())
-					{
-						node = node[key];
-					}
-
-					config.Replace(node, setting.GetValue());
-				}
+				yield return null;
 			}
 
-			foreach (Widget widget in widgets)
+			if (dialog.IsNo())
+			{
+				dialog.Hide();
+				dialog.SetNone();
+				yield break;
+			}
+
+			if (dialog.IsYes())
+			{
+				dialog.Hide();
+				Config.instance.SaveToFile(content.text);
+			}
+
+			dialog.SetDialogTitleText("Are you sure?");
+
+			foreach (Widget widget in FindObjectsOfType<Widget>())
 			{
 				widget.Initialise();
 			}

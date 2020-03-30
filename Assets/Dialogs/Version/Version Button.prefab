@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3237647650773340300}
   - component: {fileID: 3237647650773340303}
   - component: {fileID: 3237647650773340302}
-  - component: {fileID: 3237647650773340305}
+  - component: {fileID: 3110521520486386019}
   m_Layer: 5
-  m_Name: Version
+  m_Name: Version Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3237647650773340307}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3237647650773340305}
-        m_MethodName: ShowLog
+      - m_Target: {fileID: 3110521520486386019}
+        m_MethodName: ShowVersionDialog
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3237647650773340305
+--- !u!114 &3110521520486386019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3237647650773340307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 797b2d1a79ac4944690c9e60a630220b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e7d2bcad114f4933af21e7f02e13cc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4958892936336038115

@@ -2,124 +2,134 @@
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using Dialog;
 using Requests;
 using SimpleJSON;
-using Dialog;
 
 namespace JourneyPlanner
 {
-    public class JourneyPlanner : Widget
-    {
-        [Header("Journey Planner Settings")]
-        [SerializeField] private Transform scrollContent;
-        [SerializeField] private JourneyPlannerEntry scrollEntry;
-        [SerializeField] private JourneyPlannerEntry singleEntry;
-        [SerializeField] private Image scrollbarBackground;
-        [SerializeField] private Image scrollbarHandle;
-        [SerializeField] private Color heavyTrafficColour;
-        [SerializeField] private Color mediumTrafficColour;
-        [SerializeField] private Color noTrafficColour;
+	public class JourneyPlanner : Widget
+	{
+		[Header("Journey Planner Settings")]
+		[SerializeField] private Transform scrollContent;
+		[SerializeField] private JourneyPlannerEntry scrollEntry;
+		[SerializeField] private JourneyPlannerEntry singleEntry;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
+		[SerializeField] private Color heavyTrafficColour;
+		[SerializeField] private Color mediumTrafficColour;
+		[SerializeField] private Color noTrafficColour;
 
-        private JSONNode journeys;
-        private string apiKey;
+		private JSONNode journeys;
+		private string apiKey;
 		private int mediumTrafficMinutes;
 		private int heavyTrafficMinutes;
 
-        public override void ReloadConfig()
-        {
-            JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
-            apiKey = config["apiKey"];
-            journeys = config["journeys"];
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			apiKey = config["apiKey"];
+			journeys = config["journeys"];
 			mediumTrafficMinutes = config["mediumTrafficMinutes"] == null ? 15 : config["mediumTrafficMinutes"].AsInt;
-			heavyTrafficMinutes = config["heavyTrafficMinutes"]  == null ? 25 : config["heavyTrafficMinutes"].AsInt;
-            scrollbarBackground.color = Colours.Darken(GetWidgetColour());
-            scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
-        }
+			heavyTrafficMinutes = config["heavyTrafficMinutes"] == null ? 25 : config["heavyTrafficMinutes"].AsInt;
+			scrollbarBackground.color = Colours.Darken(GetWidgetColour());
+			scrollbarHandle.color = Colours.Lighten(GetWidgetColour());
+		}
 
-        public override void Run()
-        {
-            this.ReloadConfig();
-            StartCoroutine(RunRoutine());
-            this.UpdateLastUpdatedText();
-        }
+		public override void Run()
+		{
+			this.ReloadConfig();
+			StartCoroutine(RunRoutine());
+			this.UpdateLastUpdatedText();
+		}
 
-        private IEnumerator RunRoutine()
-        {
-            // Clear out existing entries
-            foreach (Transform child in scrollContent)
-            {
-                Destroy(child.gameObject);
-            }
+		private IEnumerator RunRoutine()
+		{
+			// Clear out existing entries
+			foreach (Transform child in scrollContent)
+			{
+				Destroy(child.gameObject);
+			}
 
-            foreach (JSONNode journey in journeys)
-            {
-                UnityWebRequest request = Postman.CreateGetRequest(Endpoints.JOURNEY_PLANNER(journey["startPoint"], journey["endPoint"], apiKey));
-                yield return request.SendWebRequest();
+			foreach (JSONNode journey in journeys)
+			{
+				List<string> stops = new List<string>();
+				if (journey["stops"] != null)
+				{
+					foreach (JSONNode stop in journey["stops"])
+					{
+						stops.Add(stop);
+					}
+				}
 
-                bool ok = request.error == null ? true : false;
-                if (!ok)
-                {
-                    WidgetLogger.instance.Log(this, "Error: " + request.error);
-                    yield break;
-                }
+				UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.JOURNEY_PLANNER(journey["startPoint"], stops, journey["endPoint"], apiKey));
+				yield return request.SendWebRequest();
 
-                JSONNode json = JSON.Parse(request.downloadHandler.text);
+				bool ok = request.error == null ? true : false;
+				if (!ok)
+				{
+					WidgetLogger.instance.Log(this, "Error: " + request.error);
+					yield break;
+				}
 
-                int duration = json["resourceSets"][0]["resources"][0]["travelDuration"];
-                int durationWithTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
-                int timeDifference = (durationWithTraffic - duration) / 60;
+				JSONNode json = JSON.Parse(request.downloadHandler.text);
 
-                Color trafficColour = noTrafficColour;
+				int duration = json["resourceSets"][0]["resources"][0]["travelDuration"];
+				int durationWithTraffic = json["resourceSets"][0]["resources"][0]["travelDurationTraffic"];
+				int timeDifference = (durationWithTraffic - duration) / 60;
 
-                if (timeDifference > mediumTrafficMinutes && timeDifference < heavyTrafficMinutes)
-                {
-                    trafficColour = mediumTrafficColour;
-                }
-                else if (timeDifference > heavyTrafficMinutes)
-                {
-                    trafficColour = heavyTrafficColour;
-                }
+				Color trafficColour = noTrafficColour;
 
-                GameObject prefab = journeys.Count == 1 ? singleEntry.gameObject : scrollEntry.gameObject;
-                Transform parent = journeys.Count == 1 ? this.transform : scrollContent;
-                Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic), trafficColour);
-            }
-        }
+				if (timeDifference > mediumTrafficMinutes && timeDifference < heavyTrafficMinutes)
+				{
+					trafficColour = mediumTrafficColour;
+				}
+				else if (timeDifference > heavyTrafficMinutes)
+				{
+					trafficColour = heavyTrafficColour;
+				}
 
-        /// <summary>
-        /// Passing 3468 seconds will return "57 minutes"
-        /// </summary>
-        private string ConvertToTimeString(int durationInSeconds)
-        {
-            string timeString = "";
+				GameObject prefab = journeys.Count == 1 ? singleEntry.gameObject : scrollEntry.gameObject;
+				Transform parent = journeys.Count == 1 ? this.transform : scrollContent;
+				Instantiate(prefab, parent).GetComponent<JourneyPlannerEntry>().Initialise(journey["name"], ConvertToTimeString(durationWithTraffic), trafficColour);
+			}
+		}
 
-            int day = durationInSeconds / (24 * 3600);
+		/// <summary>
+		/// Passing 3468 seconds will return "57 minutes"
+		/// </summary>
+		private string ConvertToTimeString(int durationInSeconds)
+		{
+			string timeString = "";
 
-            durationInSeconds = durationInSeconds % (24 * 3600);
-            int hour = durationInSeconds / 3600;
+			int day = durationInSeconds / (24 * 3600);
 
-            durationInSeconds %= 3600;
-            int minutes = durationInSeconds / 60;
+			durationInSeconds = durationInSeconds % (24 * 3600);
+			int hour = durationInSeconds / 3600;
 
-            durationInSeconds %= 60;
-            int seconds = durationInSeconds;
+			durationInSeconds %= 3600;
+			int minutes = durationInSeconds / 60;
 
-            if (day > 0)
-            {
-                timeString += day + "d ";
-            }
+			durationInSeconds %= 60;
+			int seconds = durationInSeconds;
 
-            if (hour > 0)
-            {
-                timeString += hour + "h ";
-            }
+			if (day > 0)
+			{
+				timeString += day + "d ";
+			}
 
-            if (minutes > 0)
-            {
-                timeString += minutes + "m ";
-            }
+			if (hour > 0)
+			{
+				timeString += hour + "h ";
+			}
 
-            return timeString;
-        }
-    }
+			if (minutes > 0)
+			{
+				timeString += minutes + "m ";
+			}
+
+			return timeString;
+		}
+	}
 }

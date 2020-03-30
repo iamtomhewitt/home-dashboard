@@ -27,7 +27,7 @@ public class Config : MonoBehaviour
 		{
 			Debug.Log("A config file has been supplied on start up, overwriting config...");
 			root = JSON.Parse(configFile.text);
-			SaveToFile();
+			SaveToFile(root.ToString());
 			SetRoot(filePath);
 		}
 		else if (File.Exists(filePath))
@@ -59,21 +59,18 @@ public class Config : MonoBehaviour
 		return root["dialogs"];
 	}
 
-	/// <summary>
-	/// Replaces a value denoted by the key, and then saves the change.
-	/// </summary>
-	public void Replace(JSONNode key, string value)
+	public string GetEndpoint(string key)
 	{
-		key.Value = value;
-		SaveToFile();
+		return root["endpoints"][key].Value;
 	}
 
-	public void SaveToFile()
+	public void SaveToFile(string contents)
 	{
 		string filePath = Application.persistentDataPath + filename;
 		StreamWriter writer = new StreamWriter(filePath, false);
-		writer.Write(root.ToString());
+		writer.Write(contents);
 		writer.Close();
+		SetRoot(filePath);
 	}
 
 	private void CreateNewFile(string filePath)
@@ -87,5 +84,10 @@ public class Config : MonoBehaviour
 	{
 		StreamReader reader = new StreamReader(filePath);
 		return reader.ReadToEnd();
+	}
+
+	public string GetRawConfig()
+	{
+		return GetFileContents(Application.persistentDataPath + filename);
 	}
 }

@@ -41,7 +41,7 @@ namespace Dialog
 
 			loadingText.text = "Loading...";
 
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.RECIPES(Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"]));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.RECIPES(Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"]));
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 

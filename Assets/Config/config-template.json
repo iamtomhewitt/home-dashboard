@@ -79,13 +79,21 @@
 			"journeys": [
 				{
 					"name": "Work",
-					"startPoint": "<lat long>",
-					"endPoint": "<lat long>"
+					"startPoint": "lat,long",
+					"stops": [
+						"lat,long",
+						"lat,long"
+					],
+					"endPoint": "lat,long"
 				},
 				{
 					"name": "School",
-					"startPoint": "<lat long>",
-					"endPoint": "<lat long>"
+					"startPoint": "lat,long",
+					"stops": [
+						"lat,long",
+						"lat,long"
+					],
+					"endPoint": "lat,long"
 				}
 			],
 			"sleepStart": "HH:mm",
@@ -184,11 +192,26 @@
 		"settings": {
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
-		}
 		},
 		"selectRecipe": {
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
+		},
+		"version": {
+			"mainColour": "#C50E3E",
+			"textColour": "#FFFFFF"
 		}
+	},
+	"endpoints": {
+		"recipeManager": "url",
+		"todoist": "url",
+		"trains": "url",
+		"bbcNews": "url",
+		"googleCalendar": "url",
+		"weather": "url",
+		"splitwise": "url",
+		"journeyPlanner": "url",
+		"release": "url",
+		"repo": "https://github.com/iamtomhewitt/home-dashboard/releases/latest"
 	}
 }

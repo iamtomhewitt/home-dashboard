@@ -38,7 +38,7 @@ namespace Planner
             dayText.text = label;
 			recipe.text	= "Loading...";
 
-            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.PLANNER(day.ToString(), plannerId, apiKey));
+            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.PLANNER(day.ToString(), plannerId, apiKey));
             yield return request.SendWebRequest();
 
             bool ok = request.error == null ? true : false;
@@ -77,7 +77,7 @@ namespace Planner
 
                 // Now update the planner online
                 JSONObject body = JsonBody.AddToPlanner(string.IsNullOrEmpty(recipe.text) ? " " : recipe.text, day.ToString(), apiKey, plannerId);
-                UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
+                UnityWebRequest request = Postman.CreatePostRequest(Endpoints.instance.PLANNER_ADD(), body);
                 yield return request.SendWebRequest();
 
                 yield break;
@@ -95,7 +95,7 @@ namespace Planner
         private IEnumerator ClearRecipeRoutine()
         {
             JSONObject body = JsonBody.AddToPlanner(" ", day.ToString(), apiKey, plannerId);
-            UnityWebRequest request = Postman.CreatePostRequest(Endpoints.PLANNER_ADD, body);
+            UnityWebRequest request = Postman.CreatePostRequest(Endpoints.instance.PLANNER_ADD(), body);
             yield return request.SendWebRequest();
 
             JSONNode response = JSON.Parse(request.downloadHandler.text);
