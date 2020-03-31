@@ -12,13 +12,14 @@ namespace Dialog
 	/// </summary>
 	public class SettingsDialog : PopupDialog
 	{
+		[Header("Settings Dialog Settings")]
 		[SerializeField] private GameObject titlePrefab;
 		[SerializeField] private GameObject settingPrefab;
+		[SerializeField] private GameObject spacerPrefab;
 		[SerializeField] private Button saveButton;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
 		[SerializeField] private Transform contentParent;
-		[SerializeField] private GameObject spacerPrefab;
 
 		private List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>();
 		private const string titleId = "<title>";
