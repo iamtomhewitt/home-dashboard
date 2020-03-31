@@ -17,23 +17,22 @@ namespace Dialog
 		[SerializeField] private Button saveButton;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
-		[SerializeField] private TMP_InputField content;
+		[SerializeField] private Transform contentParent;
 
 		private List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>();
 
 		private void Start()
 		{
 			Screen.sleepTimeout = SleepTimeout.NeverSleep;
-			// DisplayRawConfig();
-			Dynamic();
+			DynamicallyCreateDialog();
 		}
 
-		private void Dynamic()
+		private void DynamicallyCreateDialog()
 		{
 			string rawConfig = Config.instance.GetRawConfig();
 
 			JSONObject json = new JSONObject(rawConfig);
-			collectJsonData("", json);
+			CollectJsonData("", json);
 
 			string lastTitle = "";
 
@@ -42,25 +41,25 @@ namespace Dialog
 				string key = kvp.Key;
 				string value = kvp.Value;
 
-				// print("\t\tLast Key: "+ lastKey + ", currentKey: " + key);
-
 				if (value.Equals("TITLE") && !lastTitle.Equals(key))
 				{
 					lastTitle = key;
-					key = "<b>" + key + "</b>";
-					print(key);
+					// key = "<b>" + key + "</b>";
+					// print(key);
+					CreateTitle(key);
 				}
 				else
 				{
 					if (!value.Equals("TITLE"))
 					{
-						print("\t"+key + ":" + value);
+						// print("\t" + key + ":" + value);
+						CreateSetting(key, value);
 					}
 				}
 			}
 		}
 
-		private void collectJsonData(string key, JSONObject obj)
+		private void CollectJsonData(string key, JSONObject obj)
 		{
 			switch (obj.type)
 			{
@@ -71,15 +70,17 @@ namespace Dialog
 					{
 						string k = (string)obj.keys[i];
 						JSONObject j = (JSONObject)obj.list[i];
-						collectJsonData(k, j);
+						CollectJsonData(k, j);
 					}
 					break;
 
 				case JSONObject.Type.ARRAY:
 					values.Add(new KeyValuePair<string, string>(key, "TITLE"));
+
 					foreach (JSONObject j in obj.list)
 					{
-						collectJsonData(key, j);
+						CollectJsonData(key, j);
+						// values.Add(new KeyValuePair<string, string>("-", "-"));
 					}
 					break;
 
@@ -101,9 +102,26 @@ namespace Dialog
 			}
 		}
 
-		private void DisplayRawConfig()
+		/// <summary>
+		/// Creates a header based on the config.
+		/// </summary>
+		private void CreateTitle(string value)
 		{
-			//content.text = JsonNode.ParseJsonString(Config.instance.GetRawConfig()).ToJsonPrettyPrintString();
+			TMP_Text title = Instantiate(titlePrefab, contentParent).GetComponent<TMP_Text>();
+			title.text = Utility.CamelCaseToSentence(value);
+			title.gameObject.name = title.text + " Title";
+		}
+
+		/// <summary>
+		/// Creates a key value setting based on the config.
+		/// </summary>
+		private void CreateSetting(string key, string value)
+		{
+			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
+			// setting.SetKeyTree(keyTree);
+			setting.SetKeyLabel(key);
+			setting.SetValue(value);
+			setting.gameObject.name = setting.GetKeyLabel();
 		}
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
@@ -146,7 +164,7 @@ namespace Dialog
 			if (dialog.IsYes())
 			{
 				dialog.Hide();
-				Config.instance.SaveToFile(content.text);
+				// Config.instance.SaveToFile(content.text);
 			}
 
 			dialog.SetDialogTitleText("Are you sure?");
