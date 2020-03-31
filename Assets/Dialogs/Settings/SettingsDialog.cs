@@ -21,7 +21,7 @@ namespace Dialog
 		[SerializeField] private Image scrollHandle;
 		[SerializeField] private Transform contentParent;
 
-		private List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>();
+		private List<KeyValuePair<string, string[]>> values = new List<KeyValuePair<string, string[]>>();
 		private const string titleId = "<title>";
 		private const string subtitleId = "<subtitle>";
 		private const string spacerId = "<space>";
@@ -41,10 +41,11 @@ namespace Dialog
 			JSONObject json = new JSONObject(rawConfig);
 			CollectJsonData("", json, "");
 
-			foreach (KeyValuePair<string, string> kvp in values)
+			foreach (KeyValuePair<string, string[]> kvp in values)
 			{
 				string key = kvp.Key;
-				string value = kvp.Value;
+				string value = kvp.Value[0];
+				string keyTree = kvp.Value.Length > 1 ? keyTree = kvp.Value[1] : "";
 
 				if (value.Equals(titleId) && !lastTitle.Equals(key))
 				{
@@ -64,7 +65,7 @@ namespace Dialog
 				{
 					if (!value.Equals(titleId))
 					{
-						CreateSetting(key, value);
+						CreateSetting(key, value, keyTree);
 					}
 				}
 			}
@@ -85,7 +86,7 @@ namespace Dialog
 				{
 					if (!IsSubtitle(key))
 					{
-						values.Add(new KeyValuePair<string, string>(key, titleId));
+						values.Add(new KeyValuePair<string, string[]>(key, new string[] {titleId, ""}));
 					}
 
 					for (int i = 0; i < obj.list.Count; i++)
@@ -97,7 +98,7 @@ namespace Dialog
 
 						if (ShouldAddSpaceAfter(objKey))
 						{
-							values.Add(new KeyValuePair<string, string>(key, spacerId));
+							values.Add(new KeyValuePair<string, string[]>(key, new string[] {spacerId}));
 						}
 					}
 					break;
@@ -106,7 +107,7 @@ namespace Dialog
 				case JSONObject.Type.ARRAY:
 				{
 					// All config that has an array is a subtitle
-					values.Add(new KeyValuePair<string, string>(key, subtitleId));
+					values.Add(new KeyValuePair<string, string[]>(key, new string[] {subtitleId}));
 					int i = 0;
 					foreach (JSONObject j in obj.list)
 					{
@@ -118,15 +119,15 @@ namespace Dialog
 				}
 
 				case JSONObject.Type.STRING:
-					values.Add(new KeyValuePair<string, string>(key, keyTree));
+					values.Add(new KeyValuePair<string, string[]>(key, new string[] {obj.str, keyTree}));
 					break;
 
 				case JSONObject.Type.NUMBER:
-					values.Add(new KeyValuePair<string, string>(key, obj.n.ToString()));
+					values.Add(new KeyValuePair<string, string[]>(key, new string[] {obj.n.ToString(), keyTree}));
 					break;
 
 				case JSONObject.Type.BOOL:
-					values.Add(new KeyValuePair<string, string>(key, obj.b.ToString()));
+					values.Add(new KeyValuePair<string, string[]>(key, new string[] {obj.b.ToString(), keyTree}));
 					break;
 
 				case JSONObject.Type.NULL:
@@ -160,13 +161,12 @@ namespace Dialog
 			return subtitle;
 		}
 
-		private void CreateSetting(string key, string value)
+		private void CreateSetting(string key, string value, string keyTree)
 		{
 			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
-			// setting.SetKeyTree(keyTree);
 			setting.SetKeyLabel(key);
 			setting.SetValueInput(value);
-			// print("Creating, Key: " + key + " Value: " + value);
+			setting.SetKeyTree(keyTree);
 			setting.gameObject.name = setting.GetKeyLabel();
 		}
 

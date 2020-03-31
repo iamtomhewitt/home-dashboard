@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using SimpleJSON;
+using System.Collections.Generic;
 using TMPro;
+using System;
+using SimpleJSON;
 
 /// <summary>
 /// A key label and value input field on the settings page.
@@ -13,11 +15,24 @@ public class Setting : MonoBehaviour
 
 	private string key;
 	private string value;
-	private string keyTree;
+	private List<string> keyTree;
 
 	private void Start()
 	{
-		// print("TODO: Figure out keyTree");
+		JSONNode node = Config.instance.GetRoot();
+		string path = "";
+
+		// Find the correct node to update
+		foreach (string key in keyTree)
+		{
+			int i;
+			bool keyIsInt = int.TryParse(key, out i);
+			node = keyIsInt ? node[i] : node[key];
+			path += key + ",";
+		}
+
+		print(node.Value + " (path: " + path + ")");
+		valueInput.text = node.Value;
 	}
 
 	public void SetKey(string key)
@@ -40,12 +55,12 @@ public class Setting : MonoBehaviour
 		return value;
 	}
 
-	public void SetKeyTree(string keyTree)
+	public void SetKeyTree(string keyTreeStringWithDelimeters)
 	{
-		this.keyTree = keyTree;
+		this.keyTree = new List<string>(keyTreeStringWithDelimeters.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries));
 	}
 
-	public string GetKeyTree()
+	public List<string> GetKeyTree()
 	{
 		return keyTree;
 	}

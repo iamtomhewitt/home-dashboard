@@ -49,6 +49,11 @@ public class Config : MonoBehaviour
 		root = JSON.Parse(contents);
 	}
 
+	public JSONNode GetRoot()
+	{
+		return root;
+	}
+
 	public JSONNode GetWidgetConfig()
 	{
 		return root["widgets"];
