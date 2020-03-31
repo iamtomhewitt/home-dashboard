@@ -10,32 +10,11 @@ public class Setting : MonoBehaviour
 {
 	[SerializeField] private TMP_Text keyLabel;
 	[SerializeField] private InputField value;
-	// [SerializeField] private string[] keyTree;
 
 	private void Start()
 	{
-		print("TODO: Figure out keyTree");
-
-		// JSONNode node = widgetSetting ? Config.instance.GetWidgetConfig() : Config.instance.GetDialogConfig();
-
-		// // Find the correct node to update
-		// foreach (string key in keyTree)
-		// {
-		// 	node = node[key];
-		// }
-
-		// value.text = node.Value;
+		// print("TODO: Figure out keyTree");
 	}
-	
-	// public string[] GetKeyTree()
-	// {
-	// 	return keyTree;
-	// }
-
-	// public void SetKeyTree(string[] tree)
-	// {
-	// 	keyTree = tree;
-	// }
 
 	public string GetValue()
 	{

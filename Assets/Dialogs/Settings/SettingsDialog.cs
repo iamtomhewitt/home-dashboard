@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using TMPro;
-using JsonLib;
 using System.Collections.Generic;
+using JsonLib;
+using TMPro;
 
 namespace Dialog
 {
@@ -18,8 +18,12 @@ namespace Dialog
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
 		[SerializeField] private Transform contentParent;
+		[SerializeField] private GameObject spacerPrefab;
 
 		private List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>();
+		private const string titleId = "<title>";
+		private const string subtitleId = "<subtitle>";
+		private const string spacerId = "<space>";
 
 		private void Start()
 		{
@@ -30,29 +34,35 @@ namespace Dialog
 		private void DynamicallyCreateDialog()
 		{
 			string rawConfig = Config.instance.GetRawConfig();
+			string lastTitle = "";
+			string lastSubtitle = "";
 
 			JSONObject json = new JSONObject(rawConfig);
 			CollectJsonData("", json);
-
-			string lastTitle = "";
 
 			foreach (KeyValuePair<string, string> kvp in values)
 			{
 				string key = kvp.Key;
 				string value = kvp.Value;
 
-				if (value.Equals("TITLE") && !lastTitle.Equals(key))
+				if (value.Equals(titleId) && !lastTitle.Equals(key))
 				{
 					lastTitle = key;
-					// key = "<b>" + key + "</b>";
-					// print(key);
 					CreateTitle(key);
+				}
+				else if (value.Equals(subtitleId) && !lastSubtitle.Equals(key))
+				{
+					lastSubtitle = key;
+					CreateSubTitle(key);
+				}
+				else if (value.Equals(spacerId))
+				{
+					Instantiate(spacerPrefab, contentParent);
 				}
 				else
 				{
-					if (!value.Equals("TITLE"))
+					if (!value.Equals(titleId))
 					{
-						// print("\t" + key + ":" + value);
 						CreateSetting(key, value);
 					}
 				}
@@ -64,23 +74,31 @@ namespace Dialog
 			switch (obj.type)
 			{
 				case JSONObject.Type.OBJECT:
-					values.Add(new KeyValuePair<string, string>(key, "TITLE"));
+					if (!IsSubtitle(key))
+					{
+						values.Add(new KeyValuePair<string, string>(key, titleId));
+					}
 
 					for (int i = 0; i < obj.list.Count; i++)
 					{
 						string k = (string)obj.keys[i];
 						JSONObject j = (JSONObject)obj.list[i];
 						CollectJsonData(k, j);
+
+						if (ShouldAddSpaceAfter(k))
+						{
+							values.Add(new KeyValuePair<string, string>(key, spacerId));
+						}
 					}
 					break;
 
 				case JSONObject.Type.ARRAY:
-					values.Add(new KeyValuePair<string, string>(key, "TITLE"));
+					// All config that has an array is a subtitle
+					values.Add(new KeyValuePair<string, string>(key, subtitleId));
 
 					foreach (JSONObject j in obj.list)
 					{
 						CollectJsonData(key, j);
-						// values.Add(new KeyValuePair<string, string>("-", "-"));
 					}
 					break;
 
@@ -102,19 +120,35 @@ namespace Dialog
 			}
 		}
 
-		/// <summary>
-		/// Creates a header based on the config.
-		/// </summary>
-		private void CreateTitle(string value)
+		private bool ShouldAddSpaceAfter(string key)
+		{
+			List<string> ids = new List<string> { "endPoint", "binColour" };
+			return ids.Contains(key);
+		}
+
+		private bool IsSubtitle(string key)
+		{
+			List<string> ids = new List<string> { "bins", "journeys" };
+			return ids.Contains(key);
+		}
+
+		private TMP_Text CreateTitle(string value)
 		{
 			TMP_Text title = Instantiate(titlePrefab, contentParent).GetComponent<TMP_Text>();
 			title.text = Utility.CamelCaseToSentence(value);
 			title.gameObject.name = title.text + " Title";
+			return title;
 		}
 
-		/// <summary>
-		/// Creates a key value setting based on the config.
-		/// </summary>
+		private TMP_Text CreateSubTitle(string value)
+		{
+			TMP_Text subtitle = CreateTitle(value);
+			subtitle.fontStyle = FontStyles.Italic;
+			subtitle.fontSize -= 0.3f;
+			subtitle.gameObject.name = subtitle.text + " Subtitle";
+			return subtitle;
+		}
+
 		private void CreateSetting(string key, string value)
 		{
 			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
