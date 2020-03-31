@@ -82,11 +82,11 @@ namespace Dialog
 
 					for (int i = 0; i < obj.list.Count; i++)
 					{
-						string k = (string)obj.keys[i];
-						JSONObject j = (JSONObject)obj.list[i];
-						CollectJsonData(k, j);
+						string objKey = (string)obj.keys[i];
+						JSONObject objJson = (JSONObject)obj.list[i];
+						CollectJsonData(objKey, objJson);
 
-						if (ShouldAddSpaceAfter(k))
+						if (ShouldAddSpaceAfter(objKey))
 						{
 							values.Add(new KeyValuePair<string, string>(key, spacerId));
 						}
@@ -123,14 +123,12 @@ namespace Dialog
 
 		private bool ShouldAddSpaceAfter(string key)
 		{
-			List<string> ids = new List<string> { "endPoint", "binColour" };
-			return ids.Contains(key);
+			return new List<string> { "endPoint", "binColour" }.Contains(key);
 		}
 
 		private bool IsSubtitle(string key)
 		{
-			List<string> ids = new List<string> { "bins", "journeys" };
-			return ids.Contains(key);
+			return new List<string> { "bins", "journeys" }.Contains(key);
 		}
 
 		private TMP_Text CreateTitle(string value)
@@ -146,7 +144,6 @@ namespace Dialog
 			TMP_Text subtitle = CreateTitle(value);
 			subtitle.fontStyle = FontStyles.Italic;
 			subtitle.fontSize -= 0.3f;
-			subtitle.gameObject.name = subtitle.text + " Subtitle";
 			return subtitle;
 		}
 
@@ -173,6 +170,7 @@ namespace Dialog
 		/// </summary>
 		public void SaveToConfig()
 		{
+			print("TODO: Fix");
 			StartCoroutine(SaveToConfigRoutine());
 		}
 
