@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyLabel: {fileID: 9190612298919691066}
-  value: {fileID: 6082320630606711326}
+  valueInput: {fileID: 6082320630606711326}
 --- !u!1 &6082320630147962016
 GameObject:
   m_ObjectHideFlags: 0

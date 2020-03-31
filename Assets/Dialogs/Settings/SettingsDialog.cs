@@ -39,7 +39,7 @@ namespace Dialog
 			string lastSubtitle = "";
 
 			JSONObject json = new JSONObject(rawConfig);
-			CollectJsonData("", json);
+			CollectJsonData("", json, "");
 
 			foreach (KeyValuePair<string, string> kvp in values)
 			{
@@ -70,11 +70,19 @@ namespace Dialog
 			}
 		}
 
-		private void CollectJsonData(string key, JSONObject obj)
+		private void CollectJsonData(string key, JSONObject obj, string keyTree)
 		{
+			string delimiter = "|";
+
+			if (!keyTree.Contains(key + delimiter))
+			{
+				keyTree += key + delimiter;
+			}
+
 			switch (obj.type)
 			{
 				case JSONObject.Type.OBJECT:
+				{
 					if (!IsSubtitle(key))
 					{
 						values.Add(new KeyValuePair<string, string>(key, titleId));
@@ -84,7 +92,8 @@ namespace Dialog
 					{
 						string objKey = (string)obj.keys[i];
 						JSONObject objJson = (JSONObject)obj.list[i];
-						CollectJsonData(objKey, objJson);
+
+						CollectJsonData(objKey, objJson, keyTree);
 
 						if (ShouldAddSpaceAfter(objKey))
 						{
@@ -92,19 +101,24 @@ namespace Dialog
 						}
 					}
 					break;
+				}
 
 				case JSONObject.Type.ARRAY:
+				{
 					// All config that has an array is a subtitle
 					values.Add(new KeyValuePair<string, string>(key, subtitleId));
-
+					int i = 0;
 					foreach (JSONObject j in obj.list)
 					{
-						CollectJsonData(key, j);
+						string kt = keyTree + i + delimiter;
+						CollectJsonData(key, j, kt);
+						i++;
 					}
 					break;
+				}
 
 				case JSONObject.Type.STRING:
-					values.Add(new KeyValuePair<string, string>(key, obj.str));
+					values.Add(new KeyValuePair<string, string>(key, keyTree));
 					break;
 
 				case JSONObject.Type.NUMBER:
@@ -142,8 +156,7 @@ namespace Dialog
 		private TMP_Text CreateSubTitle(string value)
 		{
 			TMP_Text subtitle = CreateTitle(value);
-			subtitle.fontStyle = FontStyles.Italic;
-			subtitle.fontSize -= 0.3f;
+			subtitle.fontSize -= 0.5f;
 			return subtitle;
 		}
 
@@ -152,7 +165,8 @@ namespace Dialog
 			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
 			// setting.SetKeyTree(keyTree);
 			setting.SetKeyLabel(key);
-			setting.SetValue(value);
+			setting.SetValueInput(value);
+			// print("Creating, Key: " + key + " Value: " + value);
 			setting.gameObject.name = setting.GetKeyLabel();
 		}
 
