@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using NiceJson;
 using TMPro;
+using JsonLib;
+using System.Collections.Generic;
 
 namespace Dialog
 {
@@ -18,15 +19,91 @@ namespace Dialog
 		[SerializeField] private Image scrollHandle;
 		[SerializeField] private TMP_InputField content;
 
+		private List<KeyValuePair<string, string>> values = new List<KeyValuePair<string, string>>();
+
 		private void Start()
 		{
 			Screen.sleepTimeout = SleepTimeout.NeverSleep;
-			DisplayRawConfig();
+			// DisplayRawConfig();
+			Dynamic();
+		}
+
+		private void Dynamic()
+		{
+			string rawConfig = Config.instance.GetRawConfig();
+
+			JSONObject json = new JSONObject(rawConfig);
+			collectJsonData("", json);
+
+			string lastTitle = "";
+
+			foreach (KeyValuePair<string, string> kvp in values)
+			{
+				string key = kvp.Key;
+				string value = kvp.Value;
+
+				// print("\t\tLast Key: "+ lastKey + ", currentKey: " + key);
+
+				if (value.Equals("TITLE") && !lastTitle.Equals(key))
+				{
+					lastTitle = key;
+					key = "<b>" + key + "</b>";
+					print(key);
+				}
+				else
+				{
+					if (!value.Equals("TITLE"))
+					{
+						print("\t"+key + ":" + value);
+					}
+				}
+			}
+		}
+
+		private void collectJsonData(string key, JSONObject obj)
+		{
+			switch (obj.type)
+			{
+				case JSONObject.Type.OBJECT:
+					values.Add(new KeyValuePair<string, string>(key, "TITLE"));
+
+					for (int i = 0; i < obj.list.Count; i++)
+					{
+						string k = (string)obj.keys[i];
+						JSONObject j = (JSONObject)obj.list[i];
+						collectJsonData(k, j);
+					}
+					break;
+
+				case JSONObject.Type.ARRAY:
+					values.Add(new KeyValuePair<string, string>(key, "TITLE"));
+					foreach (JSONObject j in obj.list)
+					{
+						collectJsonData(key, j);
+					}
+					break;
+
+				case JSONObject.Type.STRING:
+					values.Add(new KeyValuePair<string, string>(key, obj.str));
+					break;
+
+				case JSONObject.Type.NUMBER:
+					values.Add(new KeyValuePair<string, string>(key, obj.n.ToString()));
+					break;
+
+				case JSONObject.Type.BOOL:
+					values.Add(new KeyValuePair<string, string>(key, obj.b.ToString()));
+					break;
+
+				case JSONObject.Type.NULL:
+					Debug.Log("NULL");
+					break;
+			}
 		}
 
 		private void DisplayRawConfig()
 		{
-			content.text = JsonNode.ParseJsonString(Config.instance.GetRawConfig()).ToJsonPrettyPrintString();
+			//content.text = JsonNode.ParseJsonString(Config.instance.GetRawConfig()).ToJsonPrettyPrintString();
 		}
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
