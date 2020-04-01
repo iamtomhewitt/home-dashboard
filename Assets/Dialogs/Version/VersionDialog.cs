@@ -20,9 +20,20 @@ public class VersionDialog : PopupDialog
 	private JSONNode repoInfo;
 	private string repoVersion;
 	private string installedVersion;
+	private float TWELVE_HOURS = 43200f;
 
-    private IEnumerator Start()
+    private void Start()
     {
+		InvokeRepeating("GetVersionInfo", 0f, TWELVE_HOURS);
+    }
+
+	private void GetVersionInfo()
+	{
+		StartCoroutine(GetVersionInfoRoutine());
+	}
+
+	private IEnumerator GetVersionInfoRoutine()
+	{
 		UnityWebRequest request = Postman.CreateGetRequest(Config.instance.GetEndpoint("release"));
 		yield return request.SendWebRequest();
 
@@ -36,7 +47,7 @@ public class VersionDialog : PopupDialog
 		installedVersionText.color = string.Equals(installedVersion, repoVersion) ? correctVersionColour : incorrectVersionColour;
 		repoVersionText.text = repoVersion;
 		infoText.text = string.Equals(installedVersion, repoVersion) ? "You have the latest version!" : "Your version is out of date. Please contact Tom for the latest version.";
-    }
+	}
 
 	public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 	{
