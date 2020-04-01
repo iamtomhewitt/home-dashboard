@@ -84,7 +84,10 @@
 				{
 					"name": "Work",
 					"startPoint": "lat,long",
-					"stops": "lat,long|lat,long",
+					"stops": [
+						"lat,long",
+						"lat,long"
+					],
 					"endPoint": "lat,long"
 				},
 				{
