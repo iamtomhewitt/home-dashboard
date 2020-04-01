@@ -5,7 +5,7 @@ using System.IO;
 /// <summary>
 /// Access config as JSON via this component. <para/>
 /// 
-/// E.g. : <code>string key = Config.GetConfig()["apiKeys"]["keyName"]</code>
+/// E.g. : <code>string value = Config.GetWidgetConfig()["binDay"]["title"]</code>
 /// </summary>
 public class Config : MonoBehaviour
 {
@@ -27,7 +27,7 @@ public class Config : MonoBehaviour
 		{
 			Debug.Log("A config file has been supplied on start up, overwriting config...");
 			root = JSON.Parse(configFile.text);
-			SaveToFile(root.ToString());
+			SaveToFile();
 			SetRoot(filePath);
 		}
 		else if (File.Exists(filePath))
@@ -69,11 +69,18 @@ public class Config : MonoBehaviour
 		return root["endpoints"][key].Value;
 	}
 
-	public void SaveToFile(string contents)
+	public void Replace(JSONNode key, string value)
+	{
+		key.Value = value;
+		SaveToFile();
+	}
+
+
+	public void SaveToFile()
 	{
 		string filePath = Application.persistentDataPath + filename;
 		StreamWriter writer = new StreamWriter(filePath, false);
-		writer.Write(contents);
+		writer.Write(root.ToString());
 		writer.Close();
 		SetRoot(filePath);
 	}
@@ -88,7 +95,9 @@ public class Config : MonoBehaviour
 	private string GetFileContents(string filePath)
 	{
 		StreamReader reader = new StreamReader(filePath);
-		return reader.ReadToEnd();
+		string contents = reader.ReadToEnd();
+		reader.Close();
+		return contents;
 	}
 
 	public string GetRawConfig()

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using TMPro;
 using System;
 using SimpleJSON;
+using TMPro;
 
 /// <summary>
 /// A key label and value input field on the settings page.
@@ -19,20 +19,22 @@ public class Setting : MonoBehaviour
 
 	private void Start()
 	{
-		JSONNode node = Config.instance.GetRoot();
-		string path = "";
+		JSONNode n = GetNodeToUpdate();
+		valueInput.text = n.Value;
+	}
 
-		// Find the correct node to update
+	public JSONNode GetNodeToUpdate()
+	{
+		JSONNode node = Config.instance.GetRoot();
+
 		foreach (string key in keyTree)
 		{
 			int i;
 			bool keyIsInt = int.TryParse(key, out i);
 			node = keyIsInt ? node[i] : node[key];
-			path += key + ",";
 		}
 
-		print(node.Value + " (path: " + path + ")");
-		valueInput.text = node.Value;
+		return node;
 	}
 
 	public void SetKey(string key)

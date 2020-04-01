@@ -83,51 +83,51 @@ namespace Dialog
 			switch (obj.type)
 			{
 				case JSONObject.Type.OBJECT:
-				{
-					if (!IsSubtitle(key))
 					{
-						values.Add(new KeyValuePair<string, string[]>(key, new string[] {titleId, ""}));
-					}
-
-					for (int i = 0; i < obj.list.Count; i++)
-					{
-						string objKey = (string)obj.keys[i];
-						JSONObject objJson = (JSONObject)obj.list[i];
-
-						CollectJsonData(objKey, objJson, keyTree);
-
-						if (ShouldAddSpaceAfter(objKey))
+						if (!IsSubtitle(key))
 						{
-							values.Add(new KeyValuePair<string, string[]>(key, new string[] {spacerId}));
+							values.Add(new KeyValuePair<string, string[]>(key, new string[] { titleId, "" }));
 						}
+
+						for (int i = 0; i < obj.list.Count; i++)
+						{
+							string objKey = (string)obj.keys[i];
+							JSONObject objJson = (JSONObject)obj.list[i];
+
+							CollectJsonData(objKey, objJson, keyTree);
+
+							if (ShouldAddSpaceAfter(objKey))
+							{
+								values.Add(new KeyValuePair<string, string[]>(key, new string[] { spacerId }));
+							}
+						}
+						break;
 					}
-					break;
-				}
 
 				case JSONObject.Type.ARRAY:
-				{
-					// All config that has an array is a subtitle
-					values.Add(new KeyValuePair<string, string[]>(key, new string[] {subtitleId}));
-					int i = 0;
-					foreach (JSONObject j in obj.list)
 					{
-						string kt = keyTree + i + delimiter;
-						CollectJsonData(key, j, kt);
-						i++;
+						// All config that has an array is a subtitle
+						values.Add(new KeyValuePair<string, string[]>(key, new string[] { subtitleId }));
+						int i = 0;
+						foreach (JSONObject j in obj.list)
+						{
+							string kt = keyTree + i + delimiter;
+							CollectJsonData(key, j, kt);
+							i++;
+						}
+						break;
 					}
-					break;
-				}
 
 				case JSONObject.Type.STRING:
-					values.Add(new KeyValuePair<string, string[]>(key, new string[] {obj.str, keyTree}));
+					values.Add(new KeyValuePair<string, string[]>(key, new string[] { obj.str, keyTree }));
 					break;
 
 				case JSONObject.Type.NUMBER:
-					values.Add(new KeyValuePair<string, string[]>(key, new string[] {obj.n.ToString(), keyTree}));
+					values.Add(new KeyValuePair<string, string[]>(key, new string[] { obj.n.ToString(), keyTree }));
 					break;
 
 				case JSONObject.Type.BOOL:
-					values.Add(new KeyValuePair<string, string[]>(key, new string[] {obj.b.ToString(), keyTree}));
+					values.Add(new KeyValuePair<string, string[]>(key, new string[] { obj.b.ToString(), keyTree }));
 					break;
 
 				case JSONObject.Type.NULL:
@@ -165,7 +165,9 @@ namespace Dialog
 		{
 			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
 			setting.SetKeyLabel(key);
+			setting.SetKey(key);
 			setting.SetValueInput(value);
+			setting.SetValue(value);
 			setting.SetKeyTree(keyTree);
 			setting.gameObject.name = setting.GetKeyLabel();
 		}
@@ -184,8 +186,19 @@ namespace Dialog
 		/// </summary>
 		public void SaveToConfig()
 		{
-			print("TODO: Fix");
-			StartCoroutine(SaveToConfigRoutine());
+			Config config = Config.instance;
+
+			List<Setting> settings = new List<Setting>(FindObjectsOfType<Setting>());
+			foreach (Setting setting in settings)
+			{
+				if (!string.IsNullOrEmpty(setting.GetValue()))
+				{
+					SimpleJSON.JSONNode node = setting.GetNodeToUpdate();
+					config.Replace(node, setting.GetValueInput());
+				}
+			}
+			
+			config.SaveToFile();
 		}
 
 		private IEnumerator SaveToConfigRoutine()
