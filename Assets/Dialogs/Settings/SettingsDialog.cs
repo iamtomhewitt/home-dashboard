@@ -17,6 +17,7 @@ namespace Dialog
 		[SerializeField] private GameObject settingPrefab;
 		[SerializeField] private GameObject spacerPrefab;
 		[SerializeField] private Button saveButton;
+		[SerializeField] private Button helpButton;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
 		[SerializeField] private Transform contentParent;
@@ -177,6 +178,9 @@ namespace Dialog
 			saveButton.GetComponent<Image>().color = mainColour;
 			saveButton.GetComponentInChildren<TMP_Text>().color = textColour;
 
+			helpButton.GetComponent<Image>().color = mainColour;
+			helpButton.GetComponentInChildren<TMP_Text>().color = textColour;
+
 			scrollBackground.color = Colours.Darken(mainColour);
 			scrollHandle.color = Colours.Lighten(mainColour);
 		}
@@ -233,6 +237,11 @@ namespace Dialog
 			{
 				widget.Initialise();
 			}
+		}
+	
+		public void OpenHelp()
+		{
+			Application.OpenURL("https://github.com/iamtomhewitt/home-dashboard/wiki/Config");
 		}
 	}
 }
