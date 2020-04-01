@@ -1,27 +1,29 @@
 {
-    "widgets": {
-        "bbcNews": {
-            "title": "BBC News",
-            "colour": "#BB1919",
-            "textColour": "#FFFFFF",
-            "titleColour": "#FFFFFF",
-            "logoColour": "#FFFFFF",
-            "repeatRate": 30,
-            "repeatTime": "minutes",
-            "secondsBetweenArticles": 45,
+	"widgets": {
+		"bbcNews": {
+			"title": "BBC News",
+			"colour": "#BB1919",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"logoColour": "#FFFFFF",
+			"repeatRate": 30,
+			"repeatTime": "minutes",
+			"secondsBetweenArticles": 45,
 			"apiKey": "<key>",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
-        },
-        "binDay":{
-            "title":"Bin Day",
-            "colour":"#03A9F4",
-            "textColour":"#FFFFFF",
-            "titleColour":"#FFFFFF",
-            "repeatRate":2,
-            "repeatTime":"hours",
-			"noBinColour":"#03A9F4",
-			"bins" : [
+		},
+		"binDay": {
+			"title": "Bin Day",
+			"colour": "#03A9F4",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"repeatRate": 2,
+			"repeatTime": "hours",
+			"noBinColour": "#03A9F4",
+			"sleepStart": "HH:mm",
+			"sleepEnd": "HH:mm",
+			"bins": [
 				{
 					"name": "<colour>",
 					"firstDate": "01-01-2020",
@@ -40,28 +42,26 @@
 					"repeatRateInDays": 14,
 					"binColour": "#FF0000"
 				}
-			],
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
-        },
+			]
+		},
 		"clock": {
-            "title": "Clock",
-            "colour": "#03A9F4",
-            "textColour": "#FFFFFF",
-            "dateColour": "#FFFFFF",
-            "repeatRate": 1,
+			"title": "Clock",
+			"colour": "#03A9F4",
+			"textColour": "#FFFFFF",
+			"dateColour": "#FFFFFF",
+			"repeatRate": 1,
 			"repeatTime": "seconds",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
 		},
-        "foodPlanner":{
-            "title":"Food Planner",
-            "colour":"#431EDB",
-            "textColour":"#FFFFFF",
-            "titleColour":"#FFFFFF",
-            "repeatRate":10,
-			"repeatTime":"hours",
-			"plannerBackgroundColour":"#FFFFFF",
+		"foodPlanner": {
+			"title": "Food Planner",
+			"colour": "#431EDB",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"repeatRate": 10,
+			"repeatTime": "hours",
+			"plannerBackgroundColour": "#FFFFFF",
 			"plannerTextColour": "#000000",
 			"apiKey": "",
 			"plannerId": "",
@@ -69,13 +69,17 @@
 			"sleepEnd": "HH:mm"
 		},
 		"journeyPlanner": {
-			"title":"Journey Planner",
-            "colour":"#431EDB",
-            "textColour":"#FFFFFF",
-            "titleColour":"#FFFFFF",
-            "repeatRate":1,
-			"repeatTime":"hours",
+			"title": "Journey Planner",
+			"colour": "#431EDB",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"repeatRate": 1,
+			"repeatTime": "hours",
 			"apiKey": "<key>",
+			"sleepStart": "HH:mm",
+			"sleepEnd": "HH:mm",
+			"mediumTrafficMinutes": 10,
+			"heavyTrafficMinutes": 20,
 			"journeys": [
 				{
 					"name": "Work",
@@ -89,17 +93,9 @@
 				{
 					"name": "School",
 					"startPoint": "lat,long",
-					"stops": [
-						"lat,long",
-						"lat,long"
-					],
 					"endPoint": "lat,long"
 				}
-			],
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm",
-			"mediumTrafficMinutes": 10,
-			"heavyTrafficMinutes": 20
+			]
 		},
 		"someone@gmail.com": {
 			"title": "Tom's Calendar",
@@ -113,68 +109,68 @@
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
 		},
-        "shoppingList": {
-            "title": "Shopping List",
-            "colour": "#BDA7FF",
-            "textColour": "#FFFFFF",
-            "titleColour": "#FFFFFF",
-            "repeatRate": 10,
-            "repeatTime": "minutes",
-            "todoistId": "id",
-            "apiKey": "key",
+		"shoppingList": {
+			"title": "Shopping List",
+			"colour": "#BDA7FF",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"repeatRate": 10,
+			"repeatTime": "minutes",
+			"todoistId": "id",
+			"apiKey": "key",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
-        },
-        "todoList": {
-            "title": "TODO List",
-            "colour": "#303F9F",
-            "textColour": "#FFFFFF",
-            "titleColour": "#FFFFFF",
-            "repeatRate": 10,
-            "repeatTime": "minutes",
-            "todoistId": "id",
-            "apiKey": "key",
+		},
+		"todoList": {
+			"title": "TODO List",
+			"colour": "#303F9F",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"repeatRate": 10,
+			"repeatTime": "minutes",
+			"todoistId": "id",
+			"apiKey": "key",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
-        },
-        "splitwise": {
-            "title": "Splitwise",
-            "colour": "#51BC9C",
-            "textColour": "#FFFFFF",
-            "titleColour": "#FFFFFF",
-            "repeatRate": 2,
-            "repeatTime": "hours",
-            "groupId": "groupId",
+		},
+		"splitwise": {
+			"title": "Splitwise",
+			"colour": "#51BC9C",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"repeatRate": 2,
+			"repeatTime": "hours",
+			"groupId": "groupId",
 			"apiKey": "",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
-        },
-        "trains": {
-            "title": "Trains",
-            "colour": "#43A047",
-            "textColour": "#FFFFFF",
-            "titleColour": "#FFFFFF",
-            "repeatRate": 1,
-            "repeatTime": "minutes",
-            "apiKey": "key",
-            "stationCode": "HRS",
+		},
+		"trains": {
+			"title": "Trains",
+			"colour": "#43A047",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"repeatRate": 1,
+			"repeatTime": "minutes",
+			"apiKey": "key",
+			"stationCode": "HRS",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
-        },
-        "weather": {
-            "title": "Weather",
-            "colour": "#FF9500",
-            "textColour": "#FFFFFF",
-            "titleColour": "#FFFFFF",
-            "repeatRate": 10,
-            "repeatTime": "minutes",
-            "apiKey": "key",
-            "latitude": "lat",
-            "longitude": "long",
+		},
+		"weather": {
+			"title": "Weather",
+			"colour": "#FF9500",
+			"textColour": "#FFFFFF",
+			"titleColour": "#FFFFFF",
+			"repeatRate": 10,
+			"repeatTime": "minutes",
+			"apiKey": "key",
+			"latitude": "lat",
+			"longitude": "long",
 			"spriteColour": "#FFFFF",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
-        }
+		}
 	},
 	"dialogs": {
 		"addNewRecipe": {
