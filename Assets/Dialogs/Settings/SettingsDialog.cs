@@ -75,7 +75,7 @@ namespace Dialog
 		{
 			string delimiter = "|";
 
-			if (!keyTree.Contains(key + delimiter))
+			if (!keyTree.Contains(delimiter + key + delimiter))
 			{
 				keyTree += key + delimiter;
 			}
@@ -164,7 +164,7 @@ namespace Dialog
 		private void CreateSetting(string key, string value, string keyTree)
 		{
 			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
-			setting.SetKeyLabel(key);
+			setting.SetKeyLabel(key.Equals("stops") ? " " : key);
 			setting.SetKey(key);
 			setting.SetValueInput(value);
 			setting.SetValue(value);
@@ -186,19 +186,7 @@ namespace Dialog
 		/// </summary>
 		public void SaveToConfig()
 		{
-			Config config = Config.instance;
-
-			List<Setting> settings = new List<Setting>(FindObjectsOfType<Setting>());
-			foreach (Setting setting in settings)
-			{
-				if (!string.IsNullOrEmpty(setting.GetValue()))
-				{
-					SimpleJSON.JSONNode node = setting.GetNodeToUpdate();
-					config.Replace(node, setting.GetValueInput());
-				}
-			}
-			
-			config.SaveToFile();
+			StartCoroutine(SaveToConfigRoutine());
 		}
 
 		private IEnumerator SaveToConfigRoutine()
@@ -224,7 +212,19 @@ namespace Dialog
 			if (dialog.IsYes())
 			{
 				dialog.Hide();
-				// Config.instance.SaveToFile(content.text);
+				Config config = Config.instance;
+
+				List<Setting> settings = new List<Setting>(FindObjectsOfType<Setting>());
+				foreach (Setting setting in settings)
+				{
+					if (!string.IsNullOrEmpty(setting.GetValue()))
+					{
+						SimpleJSON.JSONNode node = setting.GetNodeToUpdate();
+						config.Replace(node, setting.GetValueInput());
+					}
+				}
+
+				config.SaveToFile();
 			}
 
 			dialog.SetDialogTitleText("Are you sure?");

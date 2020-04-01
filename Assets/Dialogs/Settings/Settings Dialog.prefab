@@ -889,7 +889,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3548110493058024803}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -963,8 +963,8 @@ MonoBehaviour:
   spacerPrefab: {fileID: 5294121052438433193, guid: 4e1892419d26e456e9f96807cb88940d,
     type: 3}
   saveButton: {fileID: 3548110493015585028}
-  scrollBackground: {fileID: 0}
-  scrollHandle: {fileID: 0}
+  scrollBackground: {fileID: 3548110493300063370}
+  scrollHandle: {fileID: 3548110493571318598}
   contentParent: {fileID: 3548110493120278492}
 --- !u!1 &3548110493120278495
 GameObject:
@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3548110493571318598}
   m_HandleRect: {fileID: 3548110493571318617}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
