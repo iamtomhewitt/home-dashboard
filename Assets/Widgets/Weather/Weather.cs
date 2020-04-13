@@ -3,9 +3,9 @@ using UnityEngine.Networking;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using SimpleJSON;
 using Dialog;
 using Requests;
+using SimpleJSON;
 using TMPro;
 
 namespace WeatherForecast
@@ -24,6 +24,7 @@ namespace WeatherForecast
         private string apiKey;
         private string latitude;
         private string longitude;
+		private int dayOffset = 2;
 		
         public override void ReloadConfig()
         {
@@ -73,7 +74,7 @@ namespace WeatherForecast
 
             for (int i = 0; i < weatherEntries.Length; i++)
             {
-                JSONNode day = weeklyWeather[i + 1];
+                JSONNode day = weeklyWeather[i + dayOffset];
                 WeatherEntry entry = weatherEntries[i];
 
                 DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(day["time"]);

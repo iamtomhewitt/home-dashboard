@@ -470,6 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1252083419165032932}
   - component: {fileID: 1252083419165032933}
+  - component: {fileID: 943598166936438349}
   m_Layer: 5
   m_Name: Bin Day
   m_TagString: Untagged
@@ -520,6 +521,18 @@ MonoBehaviour:
   noBinColour: {r: 0.011764706, g: 0.6627451, b: 0.95686275, a: 1}
   text: {fileID: 1252083417681748993}
   logo: {fileID: 1252083418023497187}
+--- !u!225 &943598166936438349
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252083419165032935}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4513696767135492612
 GameObject:
   m_ObjectHideFlags: 0
