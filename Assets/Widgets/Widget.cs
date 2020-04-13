@@ -62,10 +62,9 @@ public abstract class Widget : MonoBehaviour
         TimeSpan end = TimeSpan.Parse(sleepEnd);
         TimeSpan now = DateTime.Now.TimeOfDay;
 
-        if (start <= end)
+        if (IsStartBeforeEnd(start, end))
         {
-            // Start and end are in same day
-            if (now >= start && now <= end)
+            if (TimesInSameDay(start, end))
             {
                 sleeping = true;
                 UpdateLastUpdatedText();
@@ -78,8 +77,7 @@ public abstract class Widget : MonoBehaviour
         }
         else
         {
-            // Start and end are in different days
-            if (now >= start || now <= end)
+            if (TimesInDifferentDays(start, end))
             {
                 sleeping = true;
                 UpdateLastUpdatedText();
@@ -90,6 +88,23 @@ public abstract class Widget : MonoBehaviour
                 Run();
             }
         }
+    }
+
+    private bool IsStartBeforeEnd(TimeSpan start, TimeSpan end)
+    {
+        return (start <= end);
+    }
+
+    private bool TimesInSameDay(TimeSpan start, TimeSpan end)
+    {
+        TimeSpan now = DateTime.Now.TimeOfDay;
+        return (now >= start && now <= end);
+    }
+
+    private bool TimesInDifferentDays(TimeSpan start, TimeSpan end)
+    {
+        TimeSpan now = DateTime.Now.TimeOfDay;
+        return (now >= start || now <= end);
     }
 
     private float GetRepeatRateInSeconds()
@@ -133,18 +148,16 @@ public abstract class Widget : MonoBehaviour
             TimeSpan end = TimeSpan.Parse(sleepEnd);
             TimeSpan now = DateTime.Now.TimeOfDay;
             DateTime sleepEndTime = DateTime.Parse(sleepEnd);
+            TimeSpan repeatRateTime = TimeSpan.FromSeconds(GetRepeatRateInSeconds());
+            DateTime nextRepeatTime = DateTime.Now.Add(repeatRateTime);
 
-            if (start >= end)
+            if (!IsStartBeforeEnd(start, end))
             {
-                // Start and end are in different days
-                if (now >= start || now <= end)
+                if (TimesInDifferentDays(start, end))
                 {
                     sleepEndTime = sleepEndTime.AddDays(1);
                 }
             }
-
-            TimeSpan repeatRateTime = TimeSpan.FromSeconds(GetRepeatRateInSeconds());
-            DateTime nextRepeatTime = DateTime.Now.Add(repeatRateTime);
 
             while (nextRepeatTime < sleepEndTime)
             {
