@@ -131,32 +131,26 @@ public abstract class Widget : MonoBehaviour
         {
             TimeSpan start = TimeSpan.Parse(sleepStart);
             TimeSpan end = TimeSpan.Parse(sleepEnd);
-            TimeSpan nowts = DateTime.Now.TimeOfDay;
+            TimeSpan now = DateTime.Now.TimeOfDay;
             DateTime sleepEndTime = DateTime.Parse(sleepEnd);
 
             if (start >= end)
             {
                 // Start and end are in different days
-                if (nowts >= start || nowts <= end)
+                if (now >= start || now <= end)
                 {
                     sleepEndTime = sleepEndTime.AddDays(1);
                 }
             }
 
-            // TimeSpan sleepEndTime = TimeSpan.Parse(sleepEnd);
-            DateTime now = DateTime.Now;
             TimeSpan repeatRateTime = TimeSpan.FromSeconds(GetRepeatRateInSeconds());
-            DateTime nextRepeatTime = now.Add(repeatRateTime);//.Add(sleepEndTime);
-
-            print(string.Format("Now: {0}", now));
-            print(string.Format("End: {0}", sleepEndTime));
+            DateTime nextRepeatTime = DateTime.Now.Add(repeatRateTime);
 
             while (nextRepeatTime < sleepEndTime)
             {
-                print(string.Format("Next run time: {0}", nextRepeatTime));
                 nextRepeatTime = nextRepeatTime.Add(repeatRateTime);
             }
-            print(string.Format("Next wake: {0}", nextRepeatTime));
+
             message = "Waking Up At: " + nextRepeatTime.Hour.ToString("00") + ":" + nextRepeatTime.Minute.ToString("00");
         }
 
