@@ -11,4 +11,9 @@ public class Utility
 		Regex r = new Regex(@"(?<=[A-Z])(?=[A-Z][a-z]) | (?<=[^A-Z])(?=[A-Z]) | (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
 		return r.Replace(camelCase, " ");
 	}
+
+	public static string CapitaliseFirstLetter(string str)
+	{
+		return char.ToUpper(str[0]) + str.Substring(1);
+	}
 }
