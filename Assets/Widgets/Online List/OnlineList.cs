@@ -79,7 +79,7 @@ namespace OnlineLists
 			foreach (JSONNode task in json)
 			{
 				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
-				e.SetNameText(task["content"].Value);
+				e.SetNameText(Utility.CapitaliseFirstLetter(task["content"].Value));
 				e.SetNameTextColour(GetTextColour());
 				e.SetRemoveButtonTextColour(GetTextColour());
 				e.SetTaskId(task["id"].Value);
