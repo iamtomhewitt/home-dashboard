@@ -41,5 +41,12 @@ namespace Planner
         {
             dialog.SelectRecipe(recipe.text);
         }
+        
+        public void ShowSteps()
+        {
+            RecipeStepsDialog stepsDialog = FindObjectOfType<RecipeStepsDialog>();
+            stepsDialog.Show();
+            stepsDialog.SetDialogTitleText(recipe.text + " Steps");
+        }
     }
 }
