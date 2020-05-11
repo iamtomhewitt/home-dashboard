@@ -53,3 +53,4 @@ Logs/
 !/ProjectSettings/ProjectSettings.asset
 !/ProjectSettings/ProjectVersion.txt
 /Builds/install-toms-house.cmd
+/Builds/*.apk

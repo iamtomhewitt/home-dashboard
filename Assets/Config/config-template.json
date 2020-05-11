@@ -193,6 +193,10 @@
 			"mainColour": "#58BAC8",
 			"textColour": "#FFFFFF"
 		},
+        "recipeSteps": {
+            "mainColour": "#4285F4",
+            "textColour": "#FFFFFF"
+        },
 		"version": {
 			"mainColour": "#C50E3E",
 			"textColour": "#FFFFFF"
