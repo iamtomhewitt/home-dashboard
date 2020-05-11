@@ -52,6 +52,7 @@ namespace Dialog
                 entry.SetRecipeText(json["recipes"][i]["name"]);
                 entry.SetParentDialog(this);
                 entry.SetSteps(json["recipes"][i]["steps"].AsArray);
+                entry.SetIngredients(json["recipes"][i]["ingredients"].AsArray);
             }
 
             loadingText.text = "";
