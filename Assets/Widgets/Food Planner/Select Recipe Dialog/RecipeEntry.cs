@@ -14,6 +14,7 @@ namespace Planner
         [SerializeField] private TMP_Text recipe;
 
         private List<string> steps = new List<string>();
+        private List<string> ingredients = new List<string>();
         private RecipeSelectionDialog dialog;
 
         public void SetRecipeText(string message)
@@ -29,6 +30,16 @@ namespace Planner
             }
         }
 
+        public void SetIngredients(JSONArray array)
+        {
+            foreach (JSONNode s in array)
+            {
+                string i = string.Format("{0} {1} {2}", (string)s["amount"], (string)s["weight"], (string)s["name"]);
+                i = i.Replace("quantity", "");
+                ingredients.Add(i);
+            }
+        }
+
         public void SetParentDialog(RecipeSelectionDialog dialog)
         {
             this.dialog = dialog;
@@ -41,13 +52,14 @@ namespace Planner
         {
             dialog.SelectRecipe(recipe.text);
         }
-        
+
         public void ShowSteps()
         {
             RecipeStepsDialog stepsDialog = FindObjectOfType<RecipeStepsDialog>();
             stepsDialog.Show();
-            stepsDialog.SetDialogTitleText(recipe.text + " Steps");
+            stepsDialog.SetDialogTitleText(recipe.text);
             stepsDialog.SetStepsText(steps);
+            stepsDialog.SetIngredientsText(ingredients);
         }
     }
 }
