@@ -2872,21 +2872,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1013176105}
     m_Modifications:
-    - target: {fileID: 3588015915836565887, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 63
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015915836565887, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015915836565887, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3588015915958435928, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2996,41 +2981,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Recipe Steps Dialog
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015916281076567, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015916281076567, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015916453988491, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015916966288820, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_text
-      value: <recipe> Steps
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015916966288820, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015916966288820, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3588015916966288820, guid: 0aae4da44fa876b4a92deb4a4fc20ab1,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aae4da44fa876b4a92deb4a4fc20ab1, type: 3}
@@ -5314,12 +5264,12 @@ PrefabInstance:
     - target: {fileID: 7490345699320997820, guid: aa0369fee683f497eac4e888d33e2ab9,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7490345699320997820, guid: aa0369fee683f497eac4e888d33e2ab9,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7490345699320997820, guid: aa0369fee683f497eac4e888d33e2ab9,
         type: 3}
