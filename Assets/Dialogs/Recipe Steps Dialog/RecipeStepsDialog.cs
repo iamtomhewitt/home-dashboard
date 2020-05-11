@@ -15,12 +15,16 @@ namespace Dialog
 
         public void SetStepsText(List<string> steps)
         {
+            string newLine = "\n\n";
             stepsText.text = "";
 
             for (int i = 0; i < steps.Count; i++)
             {
-                stepsText.text += string.Format("{0}. {1} \n\n", (i+1), steps[i]);
+                stepsText.text += string.Format("{0}. {1} {2}", (i+1), steps[i], newLine);
             }
+
+            // Remove last new line
+            stepsText.text = stepsText.text.Substring(0, stepsText.text.Length - newLine.Length);
         }
     }
 }
