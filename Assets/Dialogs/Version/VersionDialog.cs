@@ -26,7 +26,7 @@ public class VersionDialog : PopupDialog
     private void Start()
     {
 		InvokeRepeating("GetVersionInfo", 0f, TWELVE_HOURS);
-		InvokeRepeating("ShowDialogIfVersionWrong", 3f, TWELVE_HOURS);
+		InvokeRepeating("ShowDialogIfVersionWrong", 3f, ONE_WEEK);
     }
 
 	private void GetVersionInfo()
