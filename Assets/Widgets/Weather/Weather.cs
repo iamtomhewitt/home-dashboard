@@ -13,9 +13,6 @@ namespace WeatherForecast
 	public class Weather : Widget
 	{
 		[Header("Weather Settings")]
-		[SerializeField] private TMP_Text currentSummary;
-		[SerializeField] private TMP_Text currentTemperature;
-		[SerializeField] private TMP_Text currentIcon;
 		[SerializeField] private WeatherEntry[] hourlyWeatherEntries;
 		[SerializeField] private WeatherEntry[] dailyWeatherEntries;
 
@@ -73,20 +70,6 @@ namespace WeatherForecast
 
 				print(string.Format("{0} {1} {2}", time, iconCode, temperature));
 			}
-
-
-			currentSummary.text = currentWeather["summary"];
-			currentSummary.color = GetTitleColour();
-
-			currentIcon.text = GetFontCodeFor(currentWeather["icon"]);
-			currentIcon.color = spriteColour;
-
-			// Fonts can get out of line
-			float y = outOfLineCharacters.Contains(currentIcon.text) ? 4.5f : 0f;
-			currentIcon.transform.localPosition = new Vector3(currentIcon.transform.localPosition.x, y, currentIcon.transform.localPosition.z);
-
-			currentTemperature.text = Mathf.RoundToInt((float)currentWeather["temperature"]).ToString() + "°";
-			currentTemperature.color = GetTitleColour();
 
 			for (int i = 0; i < dailyWeatherEntries.Length; i++)
 			{
