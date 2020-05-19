@@ -17,8 +17,6 @@ namespace WeatherForecast
 		[SerializeField] private WeatherEntry[] dailyWeatherEntries;
 
 		private Color spriteColour;
-		private List<string> outOfLineCharacters = new List<string> { "K", "W", "I" };
-
 		private string apiKey;
 		private string latitude;
 		private string longitude;
@@ -54,38 +52,60 @@ namespace WeatherForecast
 				yield break;
 			}
 
-			JSONNode weeklyWeather = json["daily"]["data"];
+			List<JSONNode> hourlyWeatherData = GetHourlyWeatherData(json);
+			List<JSONNode> dailyWeatherData = GetDailyWeatherData(json, dailyWeatherEntries.Length);
 
-			List<JSONNode> hourlyWeather = new List<JSONNode>();
-			hourlyWeather.Add(json["hourly"]["data"][1]);
-			hourlyWeather.Add(json["hourly"]["data"][3]);
-			hourlyWeather.Add(json["hourly"]["data"][6]);
-
-			foreach (JSONNode n in hourlyWeather)
+			for (int i = 0; i < hourlyWeatherData.Count; i++)
 			{
-				string time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(n["time"]).ToLocalTime().TimeOfDay.ToString();
-				string iconCode = GetFontCodeFor(n["icon"]);
-				string temperature = string.Format("{0}°", n["temperature"]);
+				JSONNode data = hourlyWeatherData[i];
+				TimeSpan time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(data["time"]).ToLocalTime().TimeOfDay;
+				string iconCode = GetFontCodeFor(data["icon"]);
+				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperature"]));
 
-				print(string.Format("{0} {1} {2}", time, iconCode, temperature));
-			}
-
-			for (int i = 0; i < dailyWeatherEntries.Length; i++)
-			{
-				JSONNode day = weeklyWeather[i + dayOffset];
-				WeatherEntry entry = dailyWeatherEntries[i];
-
-				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(day["time"]);
-
-				entry.SetDayText(date.DayOfWeek.ToString());
+				WeatherEntry entry = hourlyWeatherEntries[i];
+				entry.SetDayText(string.Format("{0:D2}:{1:D2}", time.Hours, time.Minutes));
 				entry.SetDayColour(GetTextColour());
-
-				entry.SetIcon(GetFontCodeFor(day["icon"]));
+				entry.SetIcon(iconCode);
 				entry.SetIconColour(spriteColour);
-
-				entry.SetTemperatureText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
+				entry.SetTemperatureText(temperature);
 				entry.SetTemperatureTextColour(GetTextColour());
 			}
+
+			for (int i = 0; i < dailyWeatherData.Count; i++)
+			{
+				JSONNode data = dailyWeatherData[i];
+				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(data["time"]);
+				string day = date.DayOfWeek.ToString().Substring(0, 3);
+				string iconCode = GetFontCodeFor(data["icon"]);
+				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperatureHigh"]));
+
+				WeatherEntry entry = dailyWeatherEntries[i];
+				entry.SetDayText(day);
+				entry.SetDayColour(GetTextColour());
+				entry.SetIcon(iconCode);
+				entry.SetIconColour(spriteColour);
+				entry.SetTemperatureText(temperature);
+				entry.SetTemperatureTextColour(GetTextColour());
+			}
+		}
+
+		private List<JSONNode> GetDailyWeatherData(JSONNode json, int amountOfDays)
+		{
+			List<JSONNode> data = new List<JSONNode>();
+			for (int i = 0; i < amountOfDays; i++)
+			{
+				data.Add(json["daily"]["data"][i + dayOffset]);
+			}
+			return data;
+		}
+
+		private List<JSONNode> GetHourlyWeatherData(JSONNode json)
+		{
+			List<JSONNode> data = new List<JSONNode>();
+			data.Add(json["hourly"]["data"][1]);
+			data.Add(json["hourly"]["data"][3]);
+			data.Add(json["hourly"]["data"][6]);
+			return data;
 		}
 
 		/// <summary>
