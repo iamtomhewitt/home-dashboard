@@ -8,8 +8,7 @@ namespace WeatherForecast
     {
         [SerializeField] private TMP_Text icon;
         [SerializeField] private TMP_Text day;
-        [SerializeField] private TMP_Text temperatureHigh;
-        [SerializeField] private TMP_Text temperatureLow;
+        [SerializeField] private TMP_Text temperature;
 
 		private List<string> outOfLineCharacters = new List<string> {"1", "c", "K", "W", "I", ","};
 
@@ -27,14 +26,9 @@ namespace WeatherForecast
 			icon.transform.localPosition = new Vector3(icon.transform.localPosition.x, y, icon.transform.localPosition.z);
         }
 
-        public void SetTempHighText(string s)
+        public void SetTemperatureText(string s)
         {
-            temperatureHigh.text = s;
-        }
-
-        public void SetTempLowText(string s)
-        {
-            temperatureLow.text = s;
+            temperature.text = s;
         }
 
         public void SetIconColour(Color colour)
@@ -47,14 +41,9 @@ namespace WeatherForecast
             day.color = colour;
         }
 
-        public void SetTempHighColour(Color colour)
+        public void SetTemperatureTextColour(Color colour)
         {
-            temperatureHigh.color = colour;
-        }
-
-        public void SetTempLowColour(Color colour)
-        {
-            temperatureLow.color = colour;
+            temperature.color = colour;
         }
     }
 }

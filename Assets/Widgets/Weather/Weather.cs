@@ -54,7 +54,6 @@ namespace WeatherForecast
 				yield break;
 			}
 
-			JSONNode currentWeather = json["currently"];
 			JSONNode weeklyWeather = json["daily"]["data"];
 
 			List<JSONNode> hourlyWeather = new List<JSONNode>();
@@ -84,11 +83,8 @@ namespace WeatherForecast
 				entry.SetIcon(GetFontCodeFor(day["icon"]));
 				entry.SetIconColour(spriteColour);
 
-				entry.SetTempHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
-				entry.SetTempHighColour(GetTextColour());
-
-				entry.SetTempLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
-				entry.SetTempLowColour(GetTextColour());
+				entry.SetTemperatureText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
+				entry.SetTemperatureTextColour(GetTextColour());
 			}
 		}
 
