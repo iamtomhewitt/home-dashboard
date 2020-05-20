@@ -10,129 +10,144 @@ using TMPro;
 
 namespace WeatherForecast
 {
-    public class Weather : Widget
-    {
-        [Header("Weather Settings")]
-        [SerializeField] private TMP_Text currentSummary;
-        [SerializeField] private TMP_Text currentTemperature;
-        [SerializeField] private TMP_Text currentIcon;
-        [SerializeField] private WeatherEntry[] weatherEntries;
+	public class Weather : Widget
+	{
+		[Header("Weather Settings")]
+		[SerializeField] private WeatherEntry[] hourlyWeatherEntries;
+		[SerializeField] private WeatherEntry[] dailyWeatherEntries;
 
-        private Color spriteColour;
-		private List<string> outOfLineCharacters = new List<string> {"K", "W", "I"};
-
-        private string apiKey;
-        private string latitude;
-        private string longitude;
+		private Color spriteColour;
+		private string apiKey;
+		private string latitude;
+		private string longitude;
 		private int dayOffset = 2;
-		
-        public override void ReloadConfig()
-        {
-            JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
-            apiKey = config["apiKey"];
-            latitude = config["latitude"];
-            longitude = config["longitude"];
-            spriteColour = Colours.ToColour(config["spriteColour"]);
-        }
 
-        public override void Run()
-        {
-            this.ReloadConfig();
-            StartCoroutine(RunRoutine());
-            this.UpdateLastUpdatedText();
-        }
+		public override void ReloadConfig()
+		{
+			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			apiKey = config["apiKey"];
+			latitude = config["latitude"];
+			longitude = config["longitude"];
+			spriteColour = Colours.ToColour(config["spriteColour"]);
+		}
 
-        private IEnumerator RunRoutine()
-        {
-            UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.WEATHER(apiKey, latitude, longitude));
-            yield return request.SendWebRequest();
+		public override void Run()
+		{
+			this.ReloadConfig();
+			StartCoroutine(RunRoutine());
+			this.UpdateLastUpdatedText();
+		}
 
-            JSONNode json = JSON.Parse(request.downloadHandler.text);
+		private IEnumerator RunRoutine()
+		{
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.WEATHER(apiKey, latitude, longitude));
+			yield return request.SendWebRequest();
 
-            bool ok = request.error == null ? true : false;
-            if (!ok)
-            {
-                WidgetLogger.instance.Log(this, "Error: " + request.error);
-                yield break;
-            }
+			JSONNode json = JSON.Parse(request.downloadHandler.text);
 
-            JSONNode currentWeather = json["currently"];
-            JSONNode weeklyWeather = json["daily"]["data"];
+			bool ok = request.error == null ? true : false;
+			if (!ok)
+			{
+				WidgetLogger.instance.Log(this, "Error: " + request.error);
+				yield break;
+			}
 
-            currentSummary.text = currentWeather["summary"];
-            currentSummary.color = GetTitleColour();
+			List<JSONNode> hourlyWeatherData = GetHourlyWeatherData(json);
+			List<JSONNode> dailyWeatherData = GetDailyWeatherData(json, dailyWeatherEntries.Length);
 
-            currentIcon.text = GetFontCodeFor(currentWeather["icon"]);
-            currentIcon.color = spriteColour;
+			for (int i = 0; i < hourlyWeatherData.Count; i++)
+			{
+				JSONNode data = hourlyWeatherData[i];
+				TimeSpan time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(data["time"]).ToLocalTime().TimeOfDay;
+				string iconCode = GetFontCodeFor(data["icon"]);
+				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperature"]));
 
-			// Fonts can get out of line
-            float y = outOfLineCharacters.Contains(currentIcon.text) ? 4.5f : 0f;
-			currentIcon.transform.localPosition = new Vector3(currentIcon.transform.localPosition.x, y, currentIcon.transform.localPosition.z);
+				WeatherEntry entry = hourlyWeatherEntries[i];
+				entry.SetDayText(string.Format("{0:D2}:{1:D2}", time.Hours, time.Minutes));
+				entry.SetDayColour(GetTextColour());
+				entry.SetIcon(iconCode);
+				entry.SetIconColour(spriteColour);
+				entry.SetTemperatureText(temperature);
+				entry.SetTemperatureTextColour(GetTextColour());
+			}
 
-            currentTemperature.text = Mathf.RoundToInt((float)currentWeather["temperature"]).ToString() + "°";
-            currentTemperature.color = GetTitleColour();
+			for (int i = 0; i < dailyWeatherData.Count; i++)
+			{
+				JSONNode data = dailyWeatherData[i];
+				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(data["time"]);
+				string day = date.DayOfWeek.ToString().Substring(0, 3);
+				string iconCode = GetFontCodeFor(data["icon"]);
+				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperatureHigh"]));
 
-            for (int i = 0; i < weatherEntries.Length; i++)
-            {
-                JSONNode day = weeklyWeather[i + dayOffset];
-                WeatherEntry entry = weatherEntries[i];
+				WeatherEntry entry = dailyWeatherEntries[i];
+				entry.SetDayText(day.ToLower());
+				entry.SetDayColour(GetTextColour());
+				entry.SetIcon(iconCode);
+				entry.SetIconColour(spriteColour);
+				entry.SetTemperatureText(temperature);
+				entry.SetTemperatureTextColour(GetTextColour());
+			}
+		}
 
-                DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(day["time"]);
+		private List<JSONNode> GetDailyWeatherData(JSONNode json, int amountOfDays)
+		{
+			List<JSONNode> data = new List<JSONNode>();
+			for (int i = 0; i < amountOfDays; i++)
+			{
+				data.Add(json["daily"]["data"][i + dayOffset]);
+			}
+			return data;
+		}
 
-                entry.SetDayText(date.DayOfWeek.ToString());
-                entry.SetDayColour(GetTextColour());
+		private List<JSONNode> GetHourlyWeatherData(JSONNode json)
+		{
+			List<JSONNode> data = new List<JSONNode>();
+			data.Add(json["hourly"]["data"][1]);
+			data.Add(json["hourly"]["data"][3]);
+			data.Add(json["hourly"]["data"][6]);
+			return data;
+		}
 
-                entry.SetIcon(GetFontCodeFor(day["icon"]));
-                entry.SetIconColour(spriteColour);
+		/// <summary>
+		///	Get a sprite that matches the weather string. Also realign as some characters have extra top space for some reason.
+		/// </summary>
+		private string GetFontCodeFor(string weatherName)
+		{
+			switch (weatherName)
+			{
+				case "clear-day":
+					return "1";
 
-                entry.SetTempHighText(Mathf.RoundToInt((float)day["temperatureHigh"]).ToString() + "°");
-                entry.SetTempHighColour(GetTextColour());
+				case "partly-cloudy-day":
+					return "A";
 
-                entry.SetTempLowText(Mathf.RoundToInt((float)day["temperatureLow"]).ToString() + "°");
-                entry.SetTempLowColour(GetTextColour());
-            }
-        }
+				case "partly-cloudy-night":
+					return "c";
 
-        /// <summary>
-        ///	Get a sprite that matches the weather string. Also realign as some characters have extra top space for some reason.
-        /// </summary>
-        private string GetFontCodeFor(string weatherName)
-        {
-            switch (weatherName)
-            {
-                case "clear-day":
-                    return "1";
+				case "rain":
+					return "K";
 
-                case "partly-cloudy-day":
-                    return "A";
+				case "sleet":
+					return "W";
 
-                case "partly-cloudy-night":
-                    return "c";
+				case "snow":
+					return "I";
 
-                case "rain":
-                    return "K";
+				case "wind":
+					return ",";
 
-                case "sleet":
-                    return "W";
+				case "cloudy":
+					return "3";
 
-                case "snow":
-                    return "I";
+				case "clear-night":
+					return "6";
 
-                case "wind":
-                    return ",";
+				case "fog":
+					return "…";
+			}
 
-                case "cloudy":
-                    return "3";
-
-                case "clear-night":
-                    return "6";
-
-                case "fog":
-                    return "…";
-            }
-
-            WidgetLogger.instance.Log(this, "Could not find: " + weatherName);
-            return "“";
-        }
-    }
+			WidgetLogger.instance.Log(this, "Could not find: " + weatherName);
+			return "“";
+		}
+	}
 }
