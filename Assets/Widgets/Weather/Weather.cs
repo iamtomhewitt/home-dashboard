@@ -80,7 +80,7 @@ namespace WeatherForecast
 				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperatureHigh"]));
 
 				WeatherEntry entry = dailyWeatherEntries[i];
-				entry.SetDayText(day);
+				entry.SetDayText(day.ToLower());
 				entry.SetDayColour(GetTextColour());
 				entry.SetIcon(iconCode);
 				entry.SetIconColour(spriteColour);
