@@ -1,0 +1,2 @@
+dropbox==10.1.2
+python-dotenv==0.13.0
