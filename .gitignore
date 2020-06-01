@@ -43,15 +43,13 @@ Logs/
 /.vs/home-dashboard/v15/Server/sqlite3/storage.ide-wal
 /Assets/config.json
 /Assets/config.json.meta
-
 /Assets/Config/*
 !/Assets/Config/config-template.json
-
+/Assets/TextMesh Pro/Resources/Shaders/*
 /Builds/Home Dashboard.apk
-
+/Builds/install-toms-house.cmd
+/Builds/*.apk
 /ProjectSettings/*
 !/ProjectSettings/ProjectSettings.asset
 !/ProjectSettings/ProjectVersion.txt
-/Builds/install-toms-house.cmd
-/Builds/*.apk
 .env
