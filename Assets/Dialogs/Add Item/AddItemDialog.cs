@@ -41,6 +41,7 @@ namespace Dialog
 		public void AddItem(InputField input)
 		{
 			list.AddItem(input.text);
+			list.Refresh();
 			input.text = "";
 		}
 

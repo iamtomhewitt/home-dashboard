@@ -112,9 +112,10 @@ namespace Planner
 				foreach (Ingredient ingredient in ingredients)
 				{
 					yield return new WaitForSeconds(0.1f);
-					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
+					shoppingList.AddItem(string.Format("{0} ({1} {2})", ingredient.name, ingredient.amount, ingredient.weight));
 				}
 
+				shoppingList.Refresh();
 				dialog.SetNone();
 				yield break;
 			}

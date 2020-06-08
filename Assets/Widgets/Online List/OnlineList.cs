@@ -121,8 +121,6 @@ namespace OnlineLists
 				itemsNotUploaded.Remove(item);
 			}
 
-			Refresh();
-
 			if (addDialog != null)
 			{
 				addDialog.SetStatusText(string.Format("'{0}' uploaded!", item));
