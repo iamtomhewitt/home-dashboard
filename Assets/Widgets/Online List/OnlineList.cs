@@ -100,7 +100,7 @@ namespace OnlineLists
 			StartCoroutine(AddItemRoutine(item));
 		}
 
-		private IEnumerator AddItemRoutine(string item)
+		public IEnumerator AddItemRoutine(string item)
 		{
 			string uuid = System.Guid.NewGuid().ToString();
 			string body = JsonBody.TodoistTask(item, projectId);

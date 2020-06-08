@@ -33,9 +33,9 @@ namespace Planner
 			}
 		}
 
-		public override void ReloadConfig() {}
+		public override void ReloadConfig() { }
 
-		public override void Run() {}
+		public override void Run() { }
 
 		/// <summary>
 		/// Adds all the ingredients from all the recipes to the shopping list.
@@ -81,7 +81,7 @@ namespace Planner
 					yield return request.SendWebRequest();
 
 					JSONNode json = JSON.Parse(request.downloadHandler.text);
-					
+
 					if (json["status"] == 400)
 					{
 						// A free text recipe may have been entered, so there will be no ingredients to add, therefore just move onto the next recipe
@@ -109,10 +109,11 @@ namespace Planner
 					}
 				}
 
+				ingredients.Sort((i1, i2) => i1.category.CompareTo(i2.category));
+
 				foreach (Ingredient ingredient in ingredients)
 				{
-					yield return new WaitForSeconds(0.1f);
-					shoppingList.AddItem(string.Format("{0} ({1} {2})", ingredient.name, ingredient.amount, ingredient.weight));
+					yield return StartCoroutine(shoppingList.AddItemRoutine(string.Format("{3} | {0} ({1} {2})", ingredient.name, ingredient.amount, ingredient.weight, ingredient.category)));
 				}
 
 				shoppingList.Refresh();
