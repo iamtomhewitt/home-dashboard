@@ -115,6 +115,12 @@ namespace OnlineLists
 			{
 				WidgetLogger.instance.Log("<b>" + listType.ToString() + " List</b>: Could not add item (" + item + "): " + request.downloadHandler.text);
 				itemsNotUploaded.Add(item);
+
+				// Todoist is flaky, and to avoid messing up category order, try again immediately
+				if (request.responseCode == 500)
+				{
+					yield return AddItemRoutine(item);
+				}
 			}
 			else if (itemsNotUploaded.Contains(item))
 			{

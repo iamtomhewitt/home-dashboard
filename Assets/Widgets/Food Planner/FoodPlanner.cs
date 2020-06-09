@@ -113,7 +113,7 @@ namespace Planner
 
 				foreach (Ingredient ingredient in ingredients)
 				{
-					yield return StartCoroutine(shoppingList.AddItemRoutine(string.Format("{3} | {0} ({1} {2})", ingredient.name, ingredient.amount, ingredient.weight, ingredient.category)));
+					yield return StartCoroutine(shoppingList.AddItemRoutine(string.Format("{0} ({1} {2})", ingredient.name, ingredient.amount, ingredient.weight)));
 				}
 
 				shoppingList.Refresh();
