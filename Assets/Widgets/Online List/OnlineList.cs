@@ -100,7 +100,7 @@ namespace OnlineLists
 			StartCoroutine(AddItemRoutine(item));
 		}
 
-		private IEnumerator AddItemRoutine(string item)
+		public IEnumerator AddItemRoutine(string item)
 		{
 			string uuid = System.Guid.NewGuid().ToString();
 			string body = JsonBody.TodoistTask(item, projectId);
@@ -115,13 +115,17 @@ namespace OnlineLists
 			{
 				WidgetLogger.instance.Log("<b>" + listType.ToString() + " List</b>: Could not add item (" + item + "): " + request.downloadHandler.text);
 				itemsNotUploaded.Add(item);
+
+				// Todoist is flaky, and to avoid messing up category order, try again immediately
+				if (request.responseCode == 500)
+				{
+					yield return AddItemRoutine(item);
+				}
 			}
 			else if (itemsNotUploaded.Contains(item))
 			{
 				itemsNotUploaded.Remove(item);
 			}
-
-			Refresh();
 
 			if (addDialog != null)
 			{

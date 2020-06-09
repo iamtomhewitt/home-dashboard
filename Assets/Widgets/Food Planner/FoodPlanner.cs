@@ -14,7 +14,7 @@ namespace Planner
 	public class FoodPlanner : Widget
 	{
 		[Header("Food Planner Settings")]
-		[SerializeField] private Image addButton;
+		[SerializeField] private Button addButton;
 
 		public override void Start()
 		{
@@ -22,7 +22,7 @@ namespace Planner
 
 			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
 
-			addButton.color = Colours.Darken(GetWidgetColour());
+			addButton.GetComponent<Image>().color = Colours.Darken(GetWidgetColour());
 
 			foreach (PlannerEntry planner in FindObjectsOfType<PlannerEntry>())
 			{
@@ -33,9 +33,9 @@ namespace Planner
 			}
 		}
 
-		public override void ReloadConfig() {}
+		public override void ReloadConfig() { }
 
-		public override void Run() {}
+		public override void Run() { }
 
 		/// <summary>
 		/// Adds all the ingredients from all the recipes to the shopping list.
@@ -67,6 +67,7 @@ namespace Planner
 
 			if (dialog.IsYes())
 			{
+				addButton.interactable = false;
 				dialog.Hide();
 
 				OnlineList shoppingList = FindObjectsOfType<OnlineList>().Where(x => x.GetListType().Equals(TodoistList.shoppingList)).First();
@@ -81,7 +82,7 @@ namespace Planner
 					yield return request.SendWebRequest();
 
 					JSONNode json = JSON.Parse(request.downloadHandler.text);
-					
+
 					if (json["status"] == 400)
 					{
 						// A free text recipe may have been entered, so there will be no ingredients to add, therefore just move onto the next recipe
@@ -109,13 +110,16 @@ namespace Planner
 					}
 				}
 
+				ingredients.Sort((i1, i2) => i1.category.CompareTo(i2.category));
+
 				foreach (Ingredient ingredient in ingredients)
 				{
-					yield return new WaitForSeconds(0.1f);
-					shoppingList.AddItem(ingredient.name + " (" + ingredient.amount + " " + ingredient.weight + ")");
+					yield return StartCoroutine(shoppingList.AddItemRoutine(string.Format("{0} ({1} {2})", ingredient.name, ingredient.amount, ingredient.weight)));
 				}
 
+				shoppingList.Refresh();
 				dialog.SetNone();
+				addButton.interactable = true;
 				yield break;
 			}
 		}
