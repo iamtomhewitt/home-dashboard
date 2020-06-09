@@ -14,7 +14,7 @@ namespace Planner
 	public class FoodPlanner : Widget
 	{
 		[Header("Food Planner Settings")]
-		[SerializeField] private Image addButton;
+		[SerializeField] private Button addButton;
 
 		public override void Start()
 		{
@@ -22,7 +22,7 @@ namespace Planner
 
 			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
 
-			addButton.color = Colours.Darken(GetWidgetColour());
+			addButton.GetComponent<Image>().color = Colours.Darken(GetWidgetColour());
 
 			foreach (PlannerEntry planner in FindObjectsOfType<PlannerEntry>())
 			{
@@ -67,6 +67,7 @@ namespace Planner
 
 			if (dialog.IsYes())
 			{
+				addButton.interactable = false;
 				dialog.Hide();
 
 				OnlineList shoppingList = FindObjectsOfType<OnlineList>().Where(x => x.GetListType().Equals(TodoistList.shoppingList)).First();
@@ -118,6 +119,7 @@ namespace Planner
 
 				shoppingList.Refresh();
 				dialog.SetNone();
+				addButton.interactable = true;
 				yield break;
 			}
 		}
