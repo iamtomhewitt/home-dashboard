@@ -29,7 +29,7 @@ with open("../Builds/{}".format(dashboard_name), 'rb') as f:
     link = dbx.sharing_create_shared_link(path="/Home Dashboards/{}".format(dashboard_name)).url
 
 # Construct the email
-email_text = """Download and install from here:\n{}\n\nTo install you'll have to browse to the downloaded file on your tablet in file explorer and install it from there.\n\nWhats new: https://github.com/iamtomhewitt/home-dashboard/releases/tag/{}\n\nTom""".format(link, version)
+email_text = """Download and install from here:\n{}\n\nTo install you'll have to browse to the downloaded file on your tablet in file explorer and install it from there.\n\nWhats new: https://github.com/iamtomhewitt/home-dashboard/blob/master/CHANGELOG.md\n\nTom""".format(link)
 
 msg = MIMEMultipart()
 msg['From'] = my_email

@@ -33,23 +33,24 @@ Thumbs.db
 /Library/*
 
 # Other folders
+/Assets/Config/*
+/Assets/TextMesh Pro/Resources/Shaders/*
+/ProjectSettings/*
 Logs/
+node_modules
 
 # Files
-/.vscode/settings.json
+!/Assets/Config/config-template.json
+!/ProjectSettings/ProjectSettings.asset
+!/ProjectSettings/ProjectVersion.txt
+.env
 /.vs/home-dashboard/v15/Server/sqlite3/db.lock
 /.vs/home-dashboard/v15/Server/sqlite3/storage.ide
 /.vs/home-dashboard/v15/Server/sqlite3/storage.ide-shm
 /.vs/home-dashboard/v15/Server/sqlite3/storage.ide-wal
+/.vscode/settings.json
 /Assets/config.json
 /Assets/config.json.meta
-/Assets/Config/*
-!/Assets/Config/config-template.json
-/Assets/TextMesh Pro/Resources/Shaders/*
+/Builds/*.apk
 /Builds/Home Dashboard.apk
 /Builds/install-toms-house.cmd
-/Builds/*.apk
-/ProjectSettings/*
-!/ProjectSettings/ProjectSettings.asset
-!/ProjectSettings/ProjectVersion.txt
-.env
