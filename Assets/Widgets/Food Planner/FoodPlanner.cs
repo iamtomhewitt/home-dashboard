@@ -83,15 +83,15 @@ namespace Planner
 
 					JSONNode json = JSON.Parse(request.downloadHandler.text);
 
-					if (json["status"] == 400)
+					if (request.responseCode == 404)
 					{
 						// A free text recipe may have been entered, so there will be no ingredients to add, therefore just move onto the next recipe
 						continue;
 					}
 
-					for (int i = 0; i < json["recipe"]["ingredients"].AsArray.Count; i++)
+					for (int i = 0; i < json["ingredients"].AsArray.Count; i++)
 					{
-						JSONNode node = json["recipe"]["ingredients"][i];
+						JSONNode node = json["ingredients"][i];
 
 						Ingredient ingredient = new Ingredient(node["name"], node["category"], node["weight"], node["amount"]);
 						Ingredient existingIngredient = ingredients.Find(x => x.name.Equals(ingredient.name) && x.weight.Equals(ingredient.weight));
