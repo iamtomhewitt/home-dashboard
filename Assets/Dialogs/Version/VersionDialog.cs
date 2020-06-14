@@ -40,7 +40,7 @@ public class VersionDialog : PopupDialog
 		yield return request.SendWebRequest();
 
 		repoInfo = JSON.Parse(request.downloadHandler.text);
-		repoVersion = repoInfo["name"];
+		repoVersion = repoInfo[0]["name"];
 		installedVersion = Application.version;
 
         FindObjectOfType<VersionButton>().SetVersionText("Version: " + installedVersion);
