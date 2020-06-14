@@ -212,6 +212,6 @@
 		"splitwise": "url",
 		"journeyPlanner": "url",
 		"release": "url",
-		"repo": "https://github.com/iamtomhewitt/home-dashboard/releases/latest"
+		"repo": "https://github.com/iamtomhewitt/home-dashboard/blob/master/CHANGELOG.md"
 	}
 }
