@@ -5,14 +5,16 @@
 	"name": "home-dashboard",
 	"version": "6.7.3",
 	"scripts": {
-		"release": "standard-version"
+		"release": "github-releaser"
+	},
+	"repository": {
+		"apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^8.3.5",
 		"@commitlint/config-conventional": "^8.3.4",
 		"cz-conventional-changelog": "^2.1.0",
 		"husky": "^1.1.2",
-		"standard-version": "^8.0.0",
 		"validate-commit-msg": "^2.14.0"
 	},
 	"husky": {
@@ -24,5 +26,8 @@
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
+	},
+	"dependencies": {
+		"github-releaser": "^1.1.2"
 	}
 }
