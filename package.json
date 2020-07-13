@@ -1,33 +1,33 @@
 {
-	"author": "Tom Hewitt",
-	"description": "A dashboard with useful information to display in my house. It runs on an Android tablet 24/7, stuck to my fridge using magnets.",
-	"homepage": "https://github.com/iamtomhewitt/home-dashboard#readme",
-	"name": "home-dashboard",
-	"version": "6.7.3",
-	"scripts": {
-		"release": "github-releaser"
-	},
-	"repository": {
-		"apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard"
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^8.3.5",
-		"@commitlint/config-conventional": "^8.3.4",
-		"cz-conventional-changelog": "^2.1.0",
-		"husky": "^1.1.2",
-		"validate-commit-msg": "^2.14.0"
-	},
-	"husky": {
-		"hooks": {
-			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-		}
-	},
-	"config": {
-		"commitizen": {
-			"path": "./node_modules/cz-conventional-changelog"
-		}
-	},
-	"dependencies": {
-		"github-releaser": "^1.1.2"
-	}
+    "author": "Tom Hewitt",
+    "description": "A dashboard with useful information to display in my house. It runs on an Android tablet 24/7, stuck to my fridge using magnets.",
+    "homepage": "https://github.com/iamtomhewitt/home-dashboard#readme",
+    "name": "home-dashboard",
+    "version": "6.7.4",
+    "scripts": {
+        "release": "github-releaser"
+    },
+    "repository": {
+        "apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^8.3.5",
+        "@commitlint/config-conventional": "^8.3.4",
+        "cz-conventional-changelog": "^2.1.0",
+        "husky": "^1.1.2",
+        "validate-commit-msg": "^2.14.0"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "dependencies": {
+        "github-releaser": "^1.1.2"
+    }
 }
