@@ -1,13 +1,14 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Dialog;
-using SimpleJSON;
+﻿using Dialog;
 using OnlineLists;
 using Requests;
+using SimpleJSON;
+using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
+using TMPro;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace Planner
 {
@@ -67,7 +68,10 @@ namespace Planner
 
 			if (dialog.IsYes())
 			{
+				TMP_Text addButtonText = addButton.GetComponentInChildren<TMP_Text>();
+				addButtonText.text = "Please wait...";
 				addButton.interactable = false;
+
 				dialog.Hide();
 
 				OnlineList shoppingList = FindObjectsOfType<OnlineList>().Where(x => x.GetListType().Equals(TodoistList.shoppingList)).First();
@@ -119,7 +123,10 @@ namespace Planner
 
 				shoppingList.Refresh();
 				dialog.SetNone();
+
 				addButton.interactable = true;
+				addButtonText.text = "Add To Shopping List";
+
 				yield break;
 			}
 		}
