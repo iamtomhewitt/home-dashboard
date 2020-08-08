@@ -29,6 +29,6 @@
         }
     },
     "dependencies": {
-        "github-releaser": "^1.2.0"
+        "github-releaser": "^1.2.1"
     }
 }
