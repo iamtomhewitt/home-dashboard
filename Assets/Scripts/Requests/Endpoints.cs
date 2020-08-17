@@ -37,6 +37,14 @@ namespace Requests
 			return string.Format("{0}/recipes?apiKey={1}", Config.instance.GetEndpoint("recipeManager"), apiKey);
 		}
 
+		public string SHOPPING_LIST()
+		{
+			string endpoint = Config.instance.GetEndpoint("recipeManager");
+			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
+			string apiKey = Config.instance.GetWidgetConfig()["foodPlanner"]["apiKey"];
+			return string.Format("{0}/shoppingList?plannerId={1}&apiKey={2}", endpoint, plannerId, apiKey);
+		}
+
 		public string TRAIN_DEPARTURES(string stationCode, int numberOfResults, string apiKey)
 		{
 			return string.Format(Config.instance.GetEndpoint("trains"), stationCode, numberOfResults, apiKey);
