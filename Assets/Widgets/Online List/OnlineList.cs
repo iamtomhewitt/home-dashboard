@@ -1,35 +1,36 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Dialog;
+﻿using Dialog;
 using Requests;
 using SimpleJSON;
+using System.Collections.Generic;
+using System.Collections;
 using TMPro;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace OnlineLists
 {
 	public class OnlineList : FadingWidget
 	{
 		[Header("Online List Settings")]
-		[SerializeField] private TodoistList listType;
-		[SerializeField] private OnlineListEntry entryPrefab;
-		[SerializeField] private Transform content;
-		[SerializeField] private TMP_Text addButtonText;
 		[SerializeField] private Image addButtonColour;
 		[SerializeField] private Image scrollbarBackground;
 		[SerializeField] private Image scrollbarHandle;
+		[SerializeField] private OnlineListEntry entryPrefab;
+		[SerializeField] private TMP_Text addButtonText;
+		[SerializeField] private TodoistList listType;
+		[SerializeField] private Transform content;
 
-		private List<string> itemsNotUploaded = new List<string>();
 		private AddItemDialog addDialog;
+		private List<string> itemsNotUploaded = new List<string>();
+		private float missingItemsUploadRate = 30f;
 		private string apiKey;
 		private string projectId;
-		private float missingItemsUploadRate = 30f;
 
 		public override void Start()
 		{
 			base.Start();
+			addDialog = FindObjectOfType<AddItemDialog>();
 			InvokeRepeating("UploadMissingItems", missingItemsUploadRate, missingItemsUploadRate);
 		}
 
@@ -79,11 +80,11 @@ namespace OnlineLists
 			foreach (JSONNode task in json)
 			{
 				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
+				e.SetApiKey(apiKey);
 				e.SetNameText(Utility.CapitaliseFirstLetter(task["content"].Value));
 				e.SetNameTextColour(GetTextColour());
 				e.SetRemoveButtonTextColour(GetTextColour());
 				e.SetTaskId(task["id"].Value);
-				e.SetApiKey(apiKey);
 			}
 
 			addButtonColour.color = Colours.Darken(GetWidgetColour());
@@ -127,10 +128,7 @@ namespace OnlineLists
 				itemsNotUploaded.Remove(item);
 			}
 
-			if (addDialog != null)
-			{
-				addDialog.SetStatusText(string.Format("'{0}' uploaded!", item));
-			}
+			addDialog.SetStatusText(string.Format("'{0}' uploaded!", item));
 		}
 
 		/// <summary>
@@ -146,7 +144,6 @@ namespace OnlineLists
 		/// </summary>
 		public void ShowAddDialog()
 		{
-			addDialog = FindObjectOfType<AddItemDialog>();
 			addDialog.SetParentWidget(this);
 			addDialog.SetOnlineList(this);
 			addDialog.ResetStatusText();
