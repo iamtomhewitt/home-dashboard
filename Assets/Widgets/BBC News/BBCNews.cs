@@ -78,12 +78,7 @@ namespace BBCNews
 				entry.SetDescription(description);
 				entry.SetUrl(url);
 
-				currentArticleIndex++;
-
-				if (currentArticleIndex == json["articles"].Count - 1)
-				{
-					currentArticleIndex = 0;
-				}
+				currentArticleIndex = ++currentArticleIndex > json["articles"].Count - 1 ? 0 : currentArticleIndex;
 			}
 		}
 	}
