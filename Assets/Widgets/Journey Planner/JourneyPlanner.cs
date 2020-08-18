@@ -1,35 +1,33 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Dialog;
+﻿using Dialog;
 using Requests;
 using SimpleJSON;
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace JourneyPlanner
 {
 	public class JourneyPlanner : Widget
 	{
 		[Header("Journey Planner Settings")]
-		[SerializeField] private Transform scrollContent;
-		[SerializeField] private JourneyPlannerEntry scrollEntry;
-		[SerializeField] private JourneyPlannerEntry singleEntry;
-		[SerializeField] private Image scrollbarBackground;
-		[SerializeField] private Image scrollbarHandle;
 		[SerializeField] private Color heavyTrafficColour;
 		[SerializeField] private Color mediumTrafficColour;
 		[SerializeField] private Color noTrafficColour;
+		[SerializeField] private Image scrollbarBackground;
+		[SerializeField] private Image scrollbarHandle;
+		[SerializeField] private JourneyPlannerEntry scrollEntry;
+		[SerializeField] private JourneyPlannerEntry singleEntry;
+		[SerializeField] private Transform scrollContent;
 
 		private JSONNode journeys;
-		private string apiKey;
-		private int mediumTrafficMinutes;
 		private int heavyTrafficMinutes;
+		private int mediumTrafficMinutes;
 
 		public override void ReloadConfig()
 		{
 			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
-			apiKey = config["apiKey"];
 			journeys = config["journeys"];
 			mediumTrafficMinutes = config["mediumTrafficMinutes"] == null ? 15 : config["mediumTrafficMinutes"].AsInt;
 			heavyTrafficMinutes = config["heavyTrafficMinutes"] == null ? 25 : config["heavyTrafficMinutes"].AsInt;
@@ -63,7 +61,7 @@ namespace JourneyPlanner
 					}
 				}
 
-				UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.JOURNEY_PLANNER(journey["startPoint"], stops, journey["endPoint"], apiKey));
+				UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.JOURNEY_PLANNER(journey["startPoint"], stops, journey["endPoint"]));
 				yield return request.SendWebRequest();
 
 				bool ok = request.error == null ? true : false;

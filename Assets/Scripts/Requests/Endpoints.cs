@@ -84,8 +84,9 @@ namespace Requests
 			return string.Format(Config.instance.GetEndpoint("splitwise"), groupId, apiKey);
 		}
 
-		public string JOURNEY_PLANNER(string start, List<string> stops, string end, string apiKey)
+		public string JOURNEY_PLANNER(string start, List<string> stops, string end)
 		{
+			string apiKey = Config.instance.GetWidgetConfig()["journeyPlanner"]["apiKey"];
 			string url = string.Format(Config.instance.GetEndpoint("journeyPlanner"), start);
 
 			for (int i = 0; i < stops.Count; i++)
