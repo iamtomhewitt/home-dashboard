@@ -50,8 +50,9 @@ namespace Requests
 			return string.Format(Config.instance.GetEndpoint("trains"), stationCode, numberOfResults, apiKey);
 		}
 
-		public string BBC_NEWS(string apiKey)
+		public string BBC_NEWS()
 		{
+			string apiKey = Config.instance.GetWidgetConfig()["bbcNews"]["apiKey"];
 			return string.Format(Config.instance.GetEndpoint("bbcNews"), apiKey);
 		}
 

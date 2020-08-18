@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Dialog;
+using Requests;
+using SimpleJSON;
+using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using System.Collections;
-using SimpleJSON;
-using Dialog;
-using Requests;
+using UnityEngine;
 
 namespace BBCNews
 {
@@ -14,10 +14,9 @@ namespace BBCNews
 		[SerializeField] private BBCNewsEntry entry;
 		[SerializeField] private Image logo;
 
-		private JSONNode json;
 		private Color logoColour;
+		private JSONNode json;
 
-		private string apiKey;
 		private float secondsBetweenArticles;
 		private int currentArticleIndex = 0;
 
@@ -30,7 +29,6 @@ namespace BBCNews
 		public override void ReloadConfig()
 		{
 			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
-			apiKey = config["apiKey"];
 			secondsBetweenArticles = config["secondsBetweenArticles"];
 			logoColour = Colours.ToColour(config["logoColour"]);
 		}
@@ -49,7 +47,7 @@ namespace BBCNews
 
 		private IEnumerator RequestHeadlines()
 		{
-			UnityWebRequest request = UnityWebRequest.Get(Endpoints.instance.BBC_NEWS(apiKey));
+			UnityWebRequest request = UnityWebRequest.Get(Endpoints.instance.BBC_NEWS());
 			yield return request.SendWebRequest();
 			string response = request.downloadHandler.text;
 
