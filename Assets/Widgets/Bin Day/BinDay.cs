@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using SimpleJSON;
 using System;
-using SimpleJSON;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace Bins
 {
@@ -10,7 +10,6 @@ namespace Bins
 	{
 		[Header("Bin Day Settings")]
 		[SerializeField] private Color noBinColour;
-
 		[SerializeField] private TMP_Text text;
 		[SerializeField] private Image logo;
 
