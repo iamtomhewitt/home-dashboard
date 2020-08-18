@@ -22,9 +22,12 @@ namespace Requests
 			return Config.instance.GetEndpoint("recipeManager") + "/planner/add";
 		}
 
-		public string PLANNER(string day, string plannerId, string apiKey)
+		public string PLANNER(string day)
 		{
-			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", Config.instance.GetEndpoint("recipeManager"), apiKey, plannerId);
+			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
+			string apiKey = Config.instance.GetWidgetConfig()["foodPlanner"]["apiKey"];
+			string endpoint = Config.instance.GetEndpoint("recipeManager");
+			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", endpoint, apiKey, plannerId);
 			if (!string.IsNullOrEmpty(day))
 			{
 				s += string.Format("&day={0}", day);
