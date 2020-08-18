@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using Dialog;
 using TMPro;
-using Dialog;
+using UnityEngine;
 
 namespace GoogleCalendar
 {
 	public class GoogleCalendarEvent : MonoBehaviour
 	{
-		[SerializeField] private TMP_Text summaryText;
 		[SerializeField] private TMP_Text startDateText;
+		[SerializeField] private TMP_Text summaryText;
 
 		private GoogleCalendar calendar;
+		private string description;
 		private string endDate;
-		private string startTime;
 		private string endTime;
 		private string location;
-		private string description;
+		private string startTime;
 
 		public void SetSummaryText(string text)
 		{
