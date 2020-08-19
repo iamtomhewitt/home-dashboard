@@ -21,7 +21,7 @@ namespace Planner
 		{
 			base.Start();
 
-			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 
 			addButton.GetComponent<Image>().color = Colours.Darken(GetWidgetColour());
 
@@ -79,9 +79,9 @@ namespace Planner
 				yield return request.SendWebRequest();
 
 				JSONArray json = JSON.Parse(request.downloadHandler.text).AsArray;
-				foreach (KeyValuePair<string, JSONNode> a in json)
+				foreach (KeyValuePair<string, JSONNode> obj in json)
 				{
-					string item = a.Value.Value.Replace("quantity of ", "");
+					string item = obj.Value.Value.Replace("quantity of ", "");
 					yield return StartCoroutine(shoppingList.AddItemRoutine(item));
 				}
 
@@ -93,22 +93,6 @@ namespace Planner
 
 				yield break;
 			}
-		}
-	}
-
-	public class Ingredient
-	{
-		public string name;
-		public string category;
-		public string weight;
-		public double amount;
-
-		public Ingredient(string name, string category, string weight, double amount)
-		{
-			this.name = name;
-			this.category = category;
-			this.weight = weight;
-			this.amount = amount;
 		}
 	}
 }

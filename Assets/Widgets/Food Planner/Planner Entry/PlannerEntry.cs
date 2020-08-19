@@ -12,14 +12,14 @@ namespace Planner
 	public class PlannerEntry : MonoBehaviour
 	{
 		[SerializeField] private Day day;
+		[SerializeField] private Image dayBackground;
+		[SerializeField] private Image recipeBackground;
 		[SerializeField] private TMP_Text dayText;
 		[SerializeField] private TMP_Text recipe;
-		[SerializeField] private Image recipeBackground;
-		[SerializeField] private Image dayBackground;
 
 		private JSONNode config;
-		private string configKey;
 		private string apiKey;
+		private string configKey;
 		private string plannerId;
 
 		private IEnumerator Start()
@@ -38,7 +38,7 @@ namespace Planner
 			dayText.text = label;
 			recipe.text = "Loading...";
 
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.PLANNER(day.ToString(), plannerId, apiKey));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.PLANNER(day.ToString()));
 			yield return request.SendWebRequest();
 
 			bool ok = request.error == null ? true : false;
@@ -48,7 +48,7 @@ namespace Planner
 				yield break;
 			}
 
-			recipe.text = (request.responseCode == 503) ? "Service Unavailable" : (string)JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
+			recipe.text = (string)JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
 		}
 
 		/// <summary>
@@ -79,7 +79,6 @@ namespace Planner
 				JSONObject body = JsonBody.AddToPlanner(string.IsNullOrEmpty(recipe.text) ? " " : recipe.text, day.ToString(), apiKey, plannerId);
 				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.instance.PLANNER_ADD(), body);
 				yield return request.SendWebRequest();
-
 				yield break;
 			}
 		}

@@ -1,13 +1,13 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 namespace WeatherForecast
 {
 	public class WeatherEntry : MonoBehaviour
 	{
-		[SerializeField] private TMP_Text icon;
 		[SerializeField] private TMP_Text day;
+		[SerializeField] private TMP_Text icon;
 		[SerializeField] private TMP_Text temperature;
 
 		private List<string> outOfLineCharacters = new List<string> { "1", "c", "K", "W", "I", "," };

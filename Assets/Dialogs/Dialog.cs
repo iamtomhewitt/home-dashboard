@@ -1,6 +1,6 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace Dialog
 {
@@ -10,9 +10,9 @@ namespace Dialog
 	public abstract class Dialog : MonoBehaviour
 	{
 		[Header("Dialog Settings")]
+		[SerializeField] private Button hideButton;
 		[SerializeField] private Image topBarColour;
 		[SerializeField] private TMP_Text dialogTitle;
-		[SerializeField] private Button hideButton;
 
 		private DialogResult result;
 

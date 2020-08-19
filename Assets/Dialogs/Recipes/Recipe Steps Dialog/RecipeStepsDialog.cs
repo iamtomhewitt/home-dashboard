@@ -6,10 +6,10 @@ namespace Dialog
 {
     public class RecipeStepsDialog : PopupDialog
     {
-        [SerializeField] private TMP_Text stepsText;
         [SerializeField] private TMP_Text ingredientsText;
-        [SerializeField] private TMP_Text noStepsText;
         [SerializeField] private TMP_Text noIngredientsText;
+        [SerializeField] private TMP_Text noStepsText;
+        [SerializeField] private TMP_Text stepsText;
 
         public override void ApplyAdditionalColours(Color mainColour, Color textColour)
         {

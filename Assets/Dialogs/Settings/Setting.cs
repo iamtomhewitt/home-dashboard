@@ -1,21 +1,21 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using SimpleJSON;
 using System.Collections.Generic;
 using System;
-using SimpleJSON;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine;
 
 /// <summary>
 /// A key label and value input field on the settings page.
 /// </summary>
 public class Setting : MonoBehaviour
 {
-	[SerializeField] private TMP_Text keyLabel;
 	[SerializeField] private InputField valueInput;
+	[SerializeField] private TMP_Text keyLabel;
 
+	private List<string> keyTree;
 	private string key;
 	private string value;
-	private List<string> keyTree;
 
 	private void Start()
 	{

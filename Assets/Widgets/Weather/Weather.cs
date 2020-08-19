@@ -1,33 +1,26 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Dialog;
+﻿using Dialog;
 using Requests;
 using SimpleJSON;
-using TMPro;
+using System.Collections.Generic;
+using System.Collections;
+using System;
+using UnityEngine.Networking;
+using UnityEngine;
 
 namespace WeatherForecast
 {
 	public class Weather : Widget
 	{
 		[Header("Weather Settings")]
-		[SerializeField] private WeatherEntry[] hourlyWeatherEntries;
 		[SerializeField] private WeatherEntry[] dailyWeatherEntries;
+		[SerializeField] private WeatherEntry[] hourlyWeatherEntries;
 
 		private Color spriteColour;
-		private string apiKey;
-		private string latitude;
-		private string longitude;
 		private int dayOffset = 2;
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
-			apiKey = config["apiKey"];
-			latitude = config["latitude"];
-			longitude = config["longitude"];
+			JSONNode config = this.GetConfig();
 			spriteColour = Colours.ToColour(config["spriteColour"]);
 		}
 
@@ -40,10 +33,8 @@ namespace WeatherForecast
 
 		private IEnumerator RunRoutine()
 		{
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.WEATHER(apiKey, latitude, longitude));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.WEATHER());
 			yield return request.SendWebRequest();
-
-			JSONNode json = JSON.Parse(request.downloadHandler.text);
 
 			bool ok = request.error == null ? true : false;
 			if (!ok)
@@ -52,6 +43,7 @@ namespace WeatherForecast
 				yield break;
 			}
 
+			JSONNode json = JSON.Parse(request.downloadHandler.text);
 			List<JSONNode> hourlyWeatherData = GetHourlyWeatherData(json);
 			List<JSONNode> dailyWeatherData = GetDailyWeatherData(json, dailyWeatherEntries.Length);
 
@@ -63,8 +55,8 @@ namespace WeatherForecast
 				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperature"]));
 
 				WeatherEntry entry = hourlyWeatherEntries[i];
-				entry.SetDayText(string.Format("{0:D2}:{1:D2}", time.Hours, time.Minutes));
 				entry.SetDayColour(GetTextColour());
+				entry.SetDayText(string.Format("{0:D2}:{1:D2}", time.Hours, time.Minutes));
 				entry.SetIcon(iconCode);
 				entry.SetIconColour(spriteColour);
 				entry.SetTemperatureText(temperature);
@@ -80,8 +72,8 @@ namespace WeatherForecast
 				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperatureHigh"]));
 
 				WeatherEntry entry = dailyWeatherEntries[i];
-				entry.SetDayText(day.ToLower());
 				entry.SetDayColour(GetTextColour());
+				entry.SetDayText(day.ToLower());
 				entry.SetIcon(iconCode);
 				entry.SetIconColour(spriteColour);
 				entry.SetTemperatureText(temperature);

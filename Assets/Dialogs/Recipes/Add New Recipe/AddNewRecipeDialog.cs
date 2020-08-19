@@ -1,11 +1,11 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-using System.Collections;
+﻿using Planner;
 using Requests;
 using SimpleJSON;
-using Planner;
+using System.Collections;
 using TMPro;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace Dialog
 {
@@ -15,14 +15,14 @@ namespace Dialog
 	public class AddNewRecipeDialog : PopupDialog
 	{
 		[Header("Add New Recipe Dialog Settings")]
-		[SerializeField] private Button addRecipeButton;
 		[SerializeField] private Button addIngredientButton;
+		[SerializeField] private Button addRecipeButton;
+		[SerializeField] private GameObject newIngredientEntry;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
-		[SerializeField] private GameObject newIngredientEntry;
-		[SerializeField] private Transform newIngredientsContent;
 		[SerializeField] private InputField recipeName;
 		[SerializeField] private TMP_Text status;
+		[SerializeField] private Transform newIngredientsContent;
 
 		/// <summary>
 		/// Called from a Unity button to add a new ingredient to the add new recipe dialog.

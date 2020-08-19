@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Dialog;
+﻿using Dialog;
+using UnityEngine;
 
 public class LogsButton : MonoBehaviour
 {
