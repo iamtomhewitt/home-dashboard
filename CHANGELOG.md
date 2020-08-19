@@ -1,3 +1,13 @@
+## 6.8.2 (19/08/2020) 
+
+
+### Issues in this release:
+
+* [#179](https://github.com/iamtomhewitt/home-dashboard/issues/179) - Refactor / code tidy
+* [#177](https://github.com/iamtomhewitt/home-dashboard/issues/177) - Use new shopping list endpoint
+
+
+
 ## 6.8.1 (08/08/2020) 
 
 
