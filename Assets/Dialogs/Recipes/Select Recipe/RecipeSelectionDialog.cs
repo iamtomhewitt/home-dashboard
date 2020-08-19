@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using Planner;
+using Requests;
+using SimpleJSON;
+using System.Collections;
+using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using System.Collections;
-using SimpleJSON;
-using Requests;
-using Planner;
-using TMPro;
+using UnityEngine;
 
 namespace Dialog
 {
@@ -15,17 +15,17 @@ namespace Dialog
     public class RecipeSelectionDialog : PopupDialog
     {
         [Header("Recipe Selection Dialog Settings")]
-        [SerializeField] private RecipeEntry recipeEntryPrefab;
-        [SerializeField] private Transform scrollViewContent;
-        [SerializeField] private Button freeTextButton;
         [SerializeField] private Button addRecipeButton;
+        [SerializeField] private Button freeTextButton;
         [SerializeField] private Image freeTextInput;
         [SerializeField] private Image scrollBackground;
         [SerializeField] private Image scrollHandle;
+        [SerializeField] private RecipeEntry recipeEntryPrefab;
         [SerializeField] private TMP_Text loadingText;
+        [SerializeField] private Transform scrollViewContent;
 
-        private string selectedRecipe;
         private string freeTextRecipe;
+        private string selectedRecipe;
 
         /// <summary>
         /// Populates the scroll view with recipes retrieved from the recipe manager on Heroku.
@@ -49,10 +49,10 @@ namespace Dialog
             for (int i = 0; i < json["recipes"].AsArray.Count; i++)
             {
                 RecipeEntry entry = Instantiate(recipeEntryPrefab.gameObject, scrollViewContent).GetComponent<RecipeEntry>();
-                entry.SetRecipeText(json["recipes"][i]["name"]);
-                entry.SetParentDialog(this);
-                entry.SetSteps(json["recipes"][i]["steps"].AsArray);
                 entry.SetIngredients(json["recipes"][i]["ingredients"].AsArray);
+                entry.SetParentDialog(this);
+                entry.SetRecipeText(json["recipes"][i]["name"]);
+                entry.SetSteps(json["recipes"][i]["steps"].AsArray);
             }
 
             loadingText.text = "";

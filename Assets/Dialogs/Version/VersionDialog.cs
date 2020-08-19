@@ -1,27 +1,27 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-using System.Collections;
-using Dialog;
-using TMPro;
+﻿using Dialog;
 using Requests;
 using SimpleJSON;
+using System.Collections;
+using TMPro;
+using UnityEngine.Networking;
+using UnityEngine.UI;
+using UnityEngine;
 
 public class VersionDialog : PopupDialog
 {
-	[SerializeField] private TMP_Text repoVersionText;
-	[SerializeField] private TMP_Text installedVersionText;
-	[SerializeField] private TMP_Text infoText;
 	[SerializeField] private Button whatsNewButton;
 	[SerializeField] private Color correctVersionColour;
 	[SerializeField] private Color incorrectVersionColour;
+	[SerializeField] private TMP_Text infoText;
+	[SerializeField] private TMP_Text installedVersionText;
+	[SerializeField] private TMP_Text repoVersionText;
 
-	private VersionButton versionButton;
 	private JSONNode repoInfo;
-	private string repoVersion;
-	private string installedVersion;
-	private float TWELVE_HOURS = 43200f;
+	private VersionButton versionButton;
 	private float ONE_WEEK = 604800f;
+	private float TWELVE_HOURS = 43200f;
+	private string installedVersion;
+	private string repoVersion;
 
     private void Start()
     {

@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using Dialog;
-using TMPro;
-using System.Collections.Generic;
+﻿using Dialog;
 using SimpleJSON;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 
 namespace Planner
 {
@@ -13,8 +13,8 @@ namespace Planner
     {
         [SerializeField] private TMP_Text recipe;
 
-        private List<string> steps = new List<string>();
         private List<string> ingredients = new List<string>();
+        private List<string> steps = new List<string>();
         private RecipeSelectionDialog dialog;
 
         public void SetRecipeText(string message)

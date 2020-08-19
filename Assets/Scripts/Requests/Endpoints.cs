@@ -22,9 +22,12 @@ namespace Requests
 			return Config.instance.GetEndpoint("recipeManager") + "/planner/add";
 		}
 
-		public string PLANNER(string day, string plannerId, string apiKey)
+		public string PLANNER(string day)
 		{
-			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", Config.instance.GetEndpoint("recipeManager"), apiKey, plannerId);
+			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
+			string apiKey = Config.instance.GetWidgetConfig()["foodPlanner"]["apiKey"];
+			string endpoint = Config.instance.GetEndpoint("recipeManager");
+			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", endpoint, apiKey, plannerId);
 			if (!string.IsNullOrEmpty(day))
 			{
 				s += string.Format("&day={0}", day);
@@ -37,13 +40,25 @@ namespace Requests
 			return string.Format("{0}/recipes?apiKey={1}", Config.instance.GetEndpoint("recipeManager"), apiKey);
 		}
 
-		public string TRAIN_DEPARTURES(string stationCode, int numberOfResults, string apiKey)
+		public string SHOPPING_LIST()
 		{
-			return string.Format(Config.instance.GetEndpoint("trains"), stationCode, numberOfResults, apiKey);
+			string endpoint = Config.instance.GetEndpoint("recipeManager");
+			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
+			string apiKey = Config.instance.GetWidgetConfig()["foodPlanner"]["apiKey"];
+			return string.Format("{0}/shoppingList?plannerId={1}&apiKey={2}", endpoint, plannerId, apiKey);
 		}
 
-		public string BBC_NEWS(string apiKey)
+		public string TRAIN_DEPARTURES(int numberOfResults)
 		{
+			string endpoint = Config.instance.GetEndpoint("trains");
+			string stationCode = Config.instance.GetWidgetConfig()["trains"]["stationCode"];
+			string apiKey = Config.instance.GetWidgetConfig()["trains"]["apiKey"];
+			return string.Format(endpoint, stationCode, numberOfResults, apiKey);
+		}
+
+		public string BBC_NEWS()
+		{
+			string apiKey = Config.instance.GetWidgetConfig()["bbcNews"]["apiKey"];
 			return string.Format(Config.instance.GetEndpoint("bbcNews"), apiKey);
 		}
 
@@ -62,18 +77,26 @@ namespace Requests
 			return string.Format("{0}?project_id={1}", Config.instance.GetEndpoint("todoist"), id);
 		}
 
-		public string WEATHER(string apiKey, string latitude, string longitude)
+		public string WEATHER()
 		{
-			return string.Format(Config.instance.GetEndpoint("weather"), apiKey, latitude, longitude);
+			string apiKey = Config.instance.GetWidgetConfig()["weather"]["apiKey"];
+			string endpoint = Config.instance.GetEndpoint("weather");
+			string latitude = Config.instance.GetWidgetConfig()["weather"]["latitude"];
+			string longitude = Config.instance.GetWidgetConfig()["weather"]["longitude"];
+			return string.Format(endpoint, apiKey, latitude, longitude);
 		}
 
-		public string SPLITWISE(string groupId, string apiKey)
+		public string SPLITWISE()
 		{
-			return string.Format(Config.instance.GetEndpoint("splitwise"), groupId, apiKey);
+			string endpoint = Config.instance.GetEndpoint("splitwise");
+			string groupId = Config.instance.GetWidgetConfig()["splitwise"]["groupId"];
+			string apiKey = Config.instance.GetWidgetConfig()["splitwise"]["apiKey"];
+			return string.Format(endpoint, groupId, apiKey);
 		}
 
-		public string JOURNEY_PLANNER(string start, List<string> stops, string end, string apiKey)
+		public string JOURNEY_PLANNER(string start, List<string> stops, string end)
 		{
+			string apiKey = Config.instance.GetWidgetConfig()["journeyPlanner"]["apiKey"];
 			string url = string.Format(Config.instance.GetEndpoint("journeyPlanner"), start);
 
 			for (int i = 0; i < stops.Count; i++)

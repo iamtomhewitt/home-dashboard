@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using OnlineLists;
+﻿using OnlineLists;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace Dialog
 {

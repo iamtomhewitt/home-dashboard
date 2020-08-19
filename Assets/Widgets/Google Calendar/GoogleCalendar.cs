@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using Dialog;
+using Requests;
+using SimpleJSON;
+using System.Collections;
+using System;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using System;
-using System.Collections;
-using SimpleJSON;
-using Dialog;
-using Requests;
+using UnityEngine;
 
 namespace GoogleCalendar
 {
@@ -13,19 +13,18 @@ namespace GoogleCalendar
 	{
 		[Header("Google Calendar Settings")]
 		[SerializeField] private GoogleCalendarEvent googleCalendarEventPrefab;
-		[SerializeField] private Transform scrollParent;
 		[SerializeField] private Image scrollbarBackground;
 		[SerializeField] private Image scrollbarHandle;
+		[SerializeField] private Transform scrollParent;
 		[SerializeField] private string gmailAddress;
 
 		private JSONNode json;
-
-		private string apiKey;
 		private int numberOfEvents;
+		private string apiKey;
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 			apiKey = config["apiKey"];
 			numberOfEvents = config["numberOfEvents"];
 		}
@@ -64,16 +63,16 @@ namespace GoogleCalendar
 				DateTime endDate = DateTime.Parse(item["end"]);
 
 				GoogleCalendarEvent eventEntry = Instantiate(googleCalendarEventPrefab, scrollParent).GetComponent<GoogleCalendarEvent>();
-				eventEntry.SetSummaryText(item["summary"]);
-				eventEntry.SetStartDateText(startDate.ToString("dd MMM"));
-				eventEntry.SetEndDateText(endDate.ToString("dd MMM"));
-				eventEntry.SetStartTime(item["startTime"]);
-				eventEntry.SetEndTime(item["endTime"]);
 				eventEntry.SetDescription(item["description"]);
-				eventEntry.SetLocation(item["location"]);
-				eventEntry.SetStartDateTextColour(GetTextColour());
-				eventEntry.SetSummaryTextColour(GetTextColour());
+				eventEntry.SetEndDateText(endDate.ToString("dd MMM"));
+				eventEntry.SetEndTime(item["endTime"]);
 				eventEntry.SetGoogleCalendar(this);
+				eventEntry.SetLocation(item["location"]);
+				eventEntry.SetStartDateText(startDate.ToString("dd MMM"));
+				eventEntry.SetStartDateTextColour(GetTextColour());
+				eventEntry.SetStartTime(item["startTime"]);
+				eventEntry.SetSummaryText(item["summary"]);
+				eventEntry.SetSummaryTextColour(GetTextColour());
 			}
 
 			scrollbarBackground.color = Colours.Darken(GetWidgetColour());

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using SimpleJSON;
+﻿using SimpleJSON;
+using UnityEngine;
 
 namespace Dialog
 {

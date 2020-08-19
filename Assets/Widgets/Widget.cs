@@ -215,4 +215,9 @@ public abstract class Widget : MonoBehaviour
     {
         return widgetConfigKey;
     }
+
+	public JSONNode GetConfig()
+	{
+		return Config.instance.GetWidgetConfig()[widgetConfigKey];
+	}
 }
