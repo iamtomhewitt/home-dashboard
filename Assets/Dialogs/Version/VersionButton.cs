@@ -1,6 +1,6 @@
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
 /// <summary>
 /// Shows the application version in the bottom left of the dashboard.

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using TMPro;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine;
 
 namespace Dialog
 {
@@ -10,9 +10,9 @@ namespace Dialog
 	public class ConfirmDialog : PopupDialog
 	{
 		[Header("Confirm Settings")]
-		[SerializeField] private TMP_Text infoText;
-		[SerializeField] private Button yesButton;
 		[SerializeField] private Button noButton;
+		[SerializeField] private Button yesButton;
+		[SerializeField] private TMP_Text infoText;
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
 		{

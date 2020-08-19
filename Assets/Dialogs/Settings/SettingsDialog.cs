@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿using JsonLib;
 using System.Collections.Generic;
-using JsonLib;
+using System.Collections;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine;
 
 namespace Dialog
 {
@@ -13,19 +13,19 @@ namespace Dialog
 	public class SettingsDialog : PopupDialog
 	{
 		[Header("Settings Dialog Settings")]
-		[SerializeField] private GameObject titlePrefab;
+		[SerializeField] private Button helpButton;
+		[SerializeField] private Button saveButton;
 		[SerializeField] private GameObject settingPrefab;
 		[SerializeField] private GameObject spacerPrefab;
-		[SerializeField] private Button saveButton;
-		[SerializeField] private Button helpButton;
+		[SerializeField] private GameObject titlePrefab;
 		[SerializeField] private Image scrollBackground;
 		[SerializeField] private Image scrollHandle;
 		[SerializeField] private Transform contentParent;
 
 		private List<KeyValuePair<string, string[]>> values = new List<KeyValuePair<string, string[]>>();
-		private const string titleId = "<title>";
-		private const string subtitleId = "<subtitle>";
 		private const string spacerId = "<space>";
+		private const string subtitleId = "<subtitle>";
+		private const string titleId = "<title>";
 
 		private void Start()
 		{
@@ -165,11 +165,11 @@ namespace Dialog
 		private void CreateSetting(string key, string value, string keyTree)
 		{
 			Setting setting = Instantiate(settingPrefab, contentParent).GetComponent<Setting>();
-			setting.SetKeyLabel(key.Equals("stops") ? " " : key);
 			setting.SetKey(key);
-			setting.SetValueInput(value);
-			setting.SetValue(value);
+			setting.SetKeyLabel(key.Equals("stops") ? " " : key);
 			setting.SetKeyTree(keyTree);
+			setting.SetValue(value);
+			setting.SetValueInput(value);
 			setting.gameObject.name = setting.GetKeyLabel();
 		}
 
