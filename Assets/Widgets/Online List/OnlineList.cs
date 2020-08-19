@@ -45,7 +45,7 @@ namespace OnlineLists
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 			apiKey = config["apiKey"];
 			projectId = config["todoistId"];
 		}

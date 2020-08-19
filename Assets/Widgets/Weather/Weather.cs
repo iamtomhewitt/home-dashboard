@@ -20,7 +20,7 @@ namespace WeatherForecast
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 			spriteColour = Colours.ToColour(config["spriteColour"]);
 		}
 

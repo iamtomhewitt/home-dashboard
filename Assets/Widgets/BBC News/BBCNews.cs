@@ -28,7 +28,7 @@ namespace BBCNews
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 			secondsBetweenArticles = config["secondsBetweenArticles"];
 			logoColour = Colours.ToColour(config["logoColour"]);
 		}

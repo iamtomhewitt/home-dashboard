@@ -27,7 +27,7 @@ namespace JourneyPlanner
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 			journeys = config["journeys"];
 			mediumTrafficMinutes = config["mediumTrafficMinutes"] == null ? 15 : config["mediumTrafficMinutes"].AsInt;
 			heavyTrafficMinutes = config["heavyTrafficMinutes"] == null ? 25 : config["heavyTrafficMinutes"].AsInt;

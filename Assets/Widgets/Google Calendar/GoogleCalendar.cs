@@ -24,7 +24,7 @@ namespace GoogleCalendar
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 			apiKey = config["apiKey"];
 			numberOfEvents = config["numberOfEvents"];
 		}

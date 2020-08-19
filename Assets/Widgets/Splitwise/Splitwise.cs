@@ -19,7 +19,7 @@ public class Splitwise : Widget
 
 	public override void ReloadConfig()
 	{
-		JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+		JSONNode config = this.GetConfig();
 		groupId = config["groupId"];
 		apiKey = config["apiKey"];
 	}

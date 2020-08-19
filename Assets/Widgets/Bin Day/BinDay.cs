@@ -17,7 +17,7 @@ namespace Bins
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 			noBinColour = Colours.ToColour(config["noBinColour"]);
 			bins = config["bins"].AsArray;
 		}

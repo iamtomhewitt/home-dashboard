@@ -21,7 +21,7 @@ namespace Planner
 		{
 			base.Start();
 
-			JSONNode config = Config.instance.GetWidgetConfig()[GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 
 			addButton.GetComponent<Image>().color = Colours.Darken(GetWidgetColour());
 

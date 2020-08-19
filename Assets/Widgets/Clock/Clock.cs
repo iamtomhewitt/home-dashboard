@@ -21,7 +21,7 @@ namespace Clock
 
 		public override void ReloadConfig() 
 		{
-			JSONNode config = Config.instance.GetWidgetConfig()[this.GetWidgetConfigKey()];
+			JSONNode config = this.GetConfig();
 			clockText.color = GetTextColour();
 			dateText.color = Colours.ToColour(config["dateColour"]);
 		}
