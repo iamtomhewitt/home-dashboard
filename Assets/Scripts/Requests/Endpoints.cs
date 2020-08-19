@@ -79,9 +79,12 @@ namespace Requests
 			return string.Format(Config.instance.GetEndpoint("weather"), apiKey, latitude, longitude);
 		}
 
-		public string SPLITWISE(string groupId, string apiKey)
+		public string SPLITWISE()
 		{
-			return string.Format(Config.instance.GetEndpoint("splitwise"), groupId, apiKey);
+			string endpoint = Config.instance.GetEndpoint("splitwise");
+			string groupId = Config.instance.GetWidgetConfig()["splitwise"]["groupId"];
+			string apiKey = Config.instance.GetWidgetConfig()["splitwise"]["apiKey"];
+			return string.Format(endpoint, groupId, apiKey);
 		}
 
 		public string JOURNEY_PLANNER(string start, List<string> stops, string end)

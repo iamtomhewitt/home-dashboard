@@ -9,13 +9,13 @@ using UnityEngine;
 public class Splitwise : Widget
 {
 	[Header("Splitwise Settings")]
+	[SerializeField] private TMP_Text allSettledUp;
+	[SerializeField] private TMP_Text amount;
 	[SerializeField] private TMP_Text groupName;
 	[SerializeField] private TMP_Text people;
-	[SerializeField] private TMP_Text amount;
-	[SerializeField] private TMP_Text allSettledUp;
 
-	private string groupId;
 	private string apiKey;
+	private string groupId;
 
 	public override void ReloadConfig()
 	{
@@ -33,7 +33,7 @@ public class Splitwise : Widget
 
 	private IEnumerator RunRoutine()
 	{
-		UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.SPLITWISE(groupId, apiKey));
+		UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.SPLITWISE());
 		yield return request.SendWebRequest();
 
 		bool ok = request.error == null ? true : false;
