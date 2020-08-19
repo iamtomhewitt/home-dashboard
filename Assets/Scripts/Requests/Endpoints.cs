@@ -77,9 +77,13 @@ namespace Requests
 			return string.Format("{0}?project_id={1}", Config.instance.GetEndpoint("todoist"), id);
 		}
 
-		public string WEATHER(string apiKey, string latitude, string longitude)
+		public string WEATHER()
 		{
-			return string.Format(Config.instance.GetEndpoint("weather"), apiKey, latitude, longitude);
+			string apiKey = Config.instance.GetWidgetConfig()["weather"]["apiKey"];
+			string endpoint = Config.instance.GetEndpoint("weather");
+			string latitude = Config.instance.GetWidgetConfig()["weather"]["latitude"];
+			string longitude = Config.instance.GetWidgetConfig()["weather"]["longitude"];
+			return string.Format(endpoint, apiKey, latitude, longitude);
 		}
 
 		public string SPLITWISE()
