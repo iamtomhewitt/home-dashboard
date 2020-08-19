@@ -48,9 +48,12 @@ namespace Requests
 			return string.Format("{0}/shoppingList?plannerId={1}&apiKey={2}", endpoint, plannerId, apiKey);
 		}
 
-		public string TRAIN_DEPARTURES(string stationCode, int numberOfResults, string apiKey)
+		public string TRAIN_DEPARTURES(int numberOfResults)
 		{
-			return string.Format(Config.instance.GetEndpoint("trains"), stationCode, numberOfResults, apiKey);
+			string endpoint = Config.instance.GetEndpoint("trains");
+			string stationCode = Config.instance.GetWidgetConfig()["trains"]["stationCode"];
+			string apiKey = Config.instance.GetWidgetConfig()["trains"]["apiKey"];
+			return string.Format(endpoint, stationCode, numberOfResults, apiKey);
 		}
 
 		public string BBC_NEWS()
