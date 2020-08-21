@@ -10,7 +10,7 @@
 	<img src="https://img.shields.io/github/stars/iamtomhewitt/home-dashboard?style=social"/>
 </p>
 <p align="center"><i>A dashboard with useful information to display in my house.</i></p>
-<p align="center"><img src="Github/demo.png" width="600"></p>
+<p align="center"><img src="Github/demo.gif" width="600"></p>
 <p align="center">Built with ❤︎ by <a href="https://github.com/iamtomhewitt">Tom Hewitt</a></p>
 
 ------------
