@@ -12,9 +12,9 @@ namespace Requests
 			instance = this;
 		}
 
-		public string RECIPES_ADD()
+		public string RECIPES()
 		{
-			return Config.instance.GetEndpoint("recipeManager") + "/recipes/add";
+			return Config.instance.GetEndpoint("recipeManager") + "/recipes";
 		}
 
 		public string PLANNER_ADD()
@@ -33,11 +33,6 @@ namespace Requests
 				s += string.Format("&day={0}", day);
 			}
 			return s;
-		}
-
-		public string RECIPES(string apiKey)
-		{
-			return string.Format("{0}/recipes?apiKey={1}", Config.instance.GetEndpoint("recipeManager"), apiKey);
 		}
 
 		public string SHOPPING_LIST()
