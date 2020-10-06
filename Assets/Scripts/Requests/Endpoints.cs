@@ -17,9 +17,10 @@ namespace Requests
 			return Config.instance.GetEndpoint("recipeManager") + "/recipes";
 		}
 
-		public string PLANNER_ADD()
+		public string PLANNER()
 		{
-			return Config.instance.GetEndpoint("recipeManager") + "/planner/add";
+			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
+			return Config.instance.GetEndpoint("recipeManager") + "/planner?id=" + plannerId;
 		}
 
 		public string PLANNER(string day)
