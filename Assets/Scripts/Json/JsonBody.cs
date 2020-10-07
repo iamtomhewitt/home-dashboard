@@ -5,22 +5,20 @@ namespace SimpleJSON
 	/// </summary>
 	public class JsonBody
 	{
-		public static JSONObject AddToPlanner(string recipe, string day, string apiKey, string plannerId)
+		public static JSONObject AddToPlanner(string recipe, string day)
 		{
 			JSONObject json = new JSONObject();
 			json.Add("recipe", recipe);
 			json.Add("day", day);
-			json.Add("apiKey", apiKey);
-			json.Add("plannerId", plannerId);
 			return json;
 		}
 
-		public static JSONObject AddRecipe(string name, JSONArray ingredients, string apiKey)
+		public static JSONObject AddRecipe(string name, JSONArray ingredients)
 		{
 			JSONObject json = new JSONObject();
 			json.Add("name", name);
 			json.Add("ingredients", ingredients);
-			json.Add("apiKey", apiKey);
+			json.Add("steps", new JSONArray());
 			return json;
 		}
 

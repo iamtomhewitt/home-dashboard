@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Requests
 {
@@ -12,40 +12,34 @@ namespace Requests
 			instance = this;
 		}
 
-		public string RECIPES_ADD()
+		private string GetPlannerId()
 		{
-			return Config.instance.GetEndpoint("recipeManager") + "/recipes/add";
+			return Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
 		}
 
-		public string PLANNER_ADD()
+		public string RECIPES()
 		{
-			return Config.instance.GetEndpoint("recipeManager") + "/planner/add";
+			return Config.instance.GetEndpoint("recipeManager") + "/recipes";
+		}
+
+		public string PLANNER()
+		{
+			string plannerId = GetPlannerId();
+			return Config.instance.GetEndpoint("recipeManager") + "/planner?id=" + plannerId;
 		}
 
 		public string PLANNER(string day)
 		{
-			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
-			string apiKey = Config.instance.GetWidgetConfig()["foodPlanner"]["apiKey"];
+			string plannerId = GetPlannerId();
 			string endpoint = Config.instance.GetEndpoint("recipeManager");
-			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", endpoint, apiKey, plannerId);
-			if (!string.IsNullOrEmpty(day))
-			{
-				s += string.Format("&day={0}", day);
-			}
-			return s;
-		}
-
-		public string RECIPES(string apiKey)
-		{
-			return string.Format("{0}/recipes?apiKey={1}", Config.instance.GetEndpoint("recipeManager"), apiKey);
+			return string.Format("{0}/planner/day?&id={1}&day={2}", endpoint, plannerId, day);
 		}
 
 		public string SHOPPING_LIST()
 		{
 			string endpoint = Config.instance.GetEndpoint("recipeManager");
-			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
-			string apiKey = Config.instance.GetWidgetConfig()["foodPlanner"]["apiKey"];
-			return string.Format("{0}/shoppingList?plannerId={1}&apiKey={2}", endpoint, plannerId, apiKey);
+			string plannerId = GetPlannerId();
+			return string.Format("{0}/shoppingList?id={1}", endpoint, plannerId);
 		}
 
 		public string TRAIN_DEPARTURES(int numberOfResults)
