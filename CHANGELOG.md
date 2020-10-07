@@ -1,3 +1,12 @@
+## 6.8.3 (07/10/2020) 
+
+
+### Issues in this release:
+
+* [#184](https://github.com/iamtomhewitt/home-dashboard/issues/184) - Update recipe manager endpoint
+
+
+
 ## 6.8.2 (19/08/2020) 
 
 
