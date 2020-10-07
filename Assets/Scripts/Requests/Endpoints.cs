@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Requests
 {
@@ -12,6 +12,11 @@ namespace Requests
 			instance = this;
 		}
 
+		private string GetPlannerId()
+		{
+			return Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
+		}
+
 		public string RECIPES()
 		{
 			return Config.instance.GetEndpoint("recipeManager") + "/recipes";
@@ -19,21 +24,15 @@ namespace Requests
 
 		public string PLANNER()
 		{
-			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
+			string plannerId = GetPlannerId();
 			return Config.instance.GetEndpoint("recipeManager") + "/planner?id=" + plannerId;
 		}
 
 		public string PLANNER(string day)
 		{
-			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
-			string apiKey = Config.instance.GetWidgetConfig()["foodPlanner"]["apiKey"];
+			string plannerId = GetPlannerId();
 			string endpoint = Config.instance.GetEndpoint("recipeManager");
-			string s = string.Format("{0}/planner?apiKey={1}&plannerId={2}", endpoint, apiKey, plannerId);
-			if (!string.IsNullOrEmpty(day))
-			{
-				s += string.Format("&day={0}", day);
-			}
-			return s;
+			return string.Format("{0}/planner/day?&id={1}&day={2}", endpoint, plannerId, day);
 		}
 
 		public string SHOPPING_LIST()

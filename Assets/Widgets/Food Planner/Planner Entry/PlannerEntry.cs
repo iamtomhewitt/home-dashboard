@@ -18,7 +18,6 @@ namespace Planner
 		[SerializeField] private TMP_Text recipe;
 
 		private JSONNode config;
-		private string apiKey;
 		private string configKey;
 		private string plannerId;
 
@@ -26,7 +25,6 @@ namespace Planner
 		{
 			configKey = FindObjectOfType<FoodPlanner>().GetWidgetConfigKey();
 			config = Config.instance.GetWidgetConfig();
-			apiKey = config[configKey]["apiKey"];
 			plannerId = config[configKey]["plannerId"];
 
 			string label = "";
@@ -48,7 +46,7 @@ namespace Planner
 				yield break;
 			}
 
-			recipe.text = (string)JSON.Parse(request.downloadHandler.text)["planner"]["recipe"];
+			recipe.text = (string)JSON.Parse(request.downloadHandler.text)["recipe"];
 		}
 
 		/// <summary>
@@ -74,10 +72,9 @@ namespace Planner
 			if (dialog.IsFinished())
 			{
 				recipe.text = !string.IsNullOrEmpty(dialog.GetSelectedRecipe()) ? dialog.GetSelectedRecipe() : dialog.GetFreeTextRecipeName();
-
-				// Now update the planner online
-				JSONObject body = JsonBody.AddToPlanner(string.IsNullOrEmpty(recipe.text) ? " " : recipe.text, day.ToString(), apiKey, plannerId);
-				UnityWebRequest request = Postman.CreatePostRequest(Endpoints.instance.PLANNER_ADD(), body);
+				string recipeName = string.IsNullOrEmpty(recipe.text) ? " " : recipe.text;
+				JSONObject body = JsonBody.AddToPlanner(recipeName, day.ToString());
+				UnityWebRequest request = Postman.CreatePutRequest(Endpoints.instance.PLANNER(), body.ToString());
 				yield return request.SendWebRequest();
 				yield break;
 			}
