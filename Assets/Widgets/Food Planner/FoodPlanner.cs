@@ -81,7 +81,7 @@ namespace Planner
 				JSONArray json = JSON.Parse(request.downloadHandler.text).AsArray;
 				foreach (KeyValuePair<string, JSONNode> obj in json)
 				{
-					string item = obj.Value.Value.Replace("quantity of ", "");
+					string item = obj.Value.Value;
 					yield return StartCoroutine(shoppingList.AddItemRoutine(item));
 				}
 

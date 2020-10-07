@@ -48,14 +48,12 @@ namespace Dialog
 				ingredientsArray.Add(ingredientJson);
 			}
 
-			string apiKey = Config.instance.GetWidgetConfig()[FindObjectOfType<FoodPlanner>().GetWidgetConfigKey()]["apiKey"];
-			JSONObject body = JsonBody.AddRecipe(recipeName.text, ingredientsArray, apiKey);
+			JSONObject body = JsonBody.AddRecipe(recipeName.text, ingredientsArray);
 
-			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.instance.RECIPES_ADD(), body);
+			UnityWebRequest request = Postman.CreatePostRequest(Endpoints.instance.RECIPES(), body);
 			yield return request.SendWebRequest();
 
-			JSONNode response = JSON.Parse(request.downloadHandler.text);
-			status.text = response["message"];
+			status.text = request.responseCode.Equals(200) ? recipeName.text + " added!" : "Error: " + request.error;
 		}
 
 		/// <summary>
