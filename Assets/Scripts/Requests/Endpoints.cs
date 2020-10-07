@@ -38,9 +38,8 @@ namespace Requests
 		public string SHOPPING_LIST()
 		{
 			string endpoint = Config.instance.GetEndpoint("recipeManager");
-			string plannerId = Config.instance.GetWidgetConfig()["foodPlanner"]["plannerId"];
-			string apiKey = Config.instance.GetWidgetConfig()["foodPlanner"]["apiKey"];
-			return string.Format("{0}/shoppingList?plannerId={1}&apiKey={2}", endpoint, plannerId, apiKey);
+			string plannerId = GetPlannerId();
+			return string.Format("{0}/shoppingList?id={1}", endpoint, plannerId);
 		}
 
 		public string TRAIN_DEPARTURES(int numberOfResults)
