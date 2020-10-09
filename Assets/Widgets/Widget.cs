@@ -33,7 +33,7 @@ public abstract class Widget : MonoBehaviour
         this.ReloadConfig();
         this.Initialise();
         this.Run();
-        InvokeRepeating("RunIfNotSleeping", 0f, GetRepeatRateInSeconds());
+        InvokeRepeating("RunIfNotSleeping", 1f, GetRepeatRateInSeconds());
     }
 
     public void Initialise()
