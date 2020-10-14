@@ -56,9 +56,10 @@ namespace Requests
 			return string.Format(Config.instance.GetEndpoint("bbcNews"), apiKey);
 		}
 
-		public string GOOGLE_CALENDAR(string apiKey, string gmailAddress, int numberOfEvents)
+		public string GOOGLE_CALENDAR(string gmailAddress, int numberOfEvents)
 		{
-			return string.Format(Config.instance.GetEndpoint("googleCalendar"), apiKey, gmailAddress, numberOfEvents);
+			string endpoint = Config.instance.GetEndpoint("googleCalendar");
+			return string.Format(endpoint, gmailAddress, numberOfEvents);
 		}
 
 		public string TODOIST_TASKS()
