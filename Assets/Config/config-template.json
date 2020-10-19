@@ -96,8 +96,8 @@
 				}
 			]
 		},
-		"someone@gmail.com": {
-			"title": "Tom's Calendar",
+		"gmailUsername": {
+			"title": "Calendar",
 			"colour": "#4285F4",
 			"textColour": "#FFFFFF",
 			"titleColour": "#FFFFFF",
