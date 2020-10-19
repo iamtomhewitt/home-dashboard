@@ -21,7 +21,7 @@ namespace Planner
 		private string configKey;
 		private string plannerId;
 
-		private IEnumerator Start()
+		public IEnumerator Start()
 		{
 			configKey = FindObjectOfType<FoodPlanner>().GetWidgetConfigKey();
 			config = Config.instance.GetWidgetConfig();

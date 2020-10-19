@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Planner;
+using Requests;
+using SimpleJSON;
 using System.Collections;
 using TMPro;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine;
-using SimpleJSON;
 
 namespace Dialog
 {
@@ -16,11 +18,20 @@ namespace Dialog
 		[SerializeField] private Button manageButton;
 		[SerializeField] private Button downloadConfigButton;
 		[SerializeField] private TMP_Text infoText;
+		[SerializeField] private TMP_Text downloadStatusText;
+
+		private string cmsApiKey;
+		private string cmsApiUrl;
+		private string cmsUrl;
 
 		private void Start()
 		{
 			Screen.sleepTimeout = SleepTimeout.NeverSleep;
-			infoText.text = infoText.text.Replace("<DASHBOARDKEY>", Config.instance.GetCmsConfig()["cmsApiKey"]);
+			cmsApiKey = Config.instance.GetCmsConfig()["cmsApiKey"];
+			cmsUrl = Config.instance.GetCmsConfig()["cmsUrl"];
+			cmsApiUrl = Config.instance.GetCmsConfig()["cmsApiUrl"];
+			infoText.SetText(infoText.text.Replace("<DASHBOARDKEY>", cmsApiKey));
+			downloadStatusText.SetText("");
 		}
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
@@ -35,18 +46,18 @@ namespace Dialog
 		/// <summary>
 		/// Called from a Unity button, saves all the settings objects to the config file.
 		/// </summary>
-		public void SaveToConfig()
+		public void SaveToConfig(string contents)
 		{
-			StartCoroutine(SaveToConfigRoutine());
+			StartCoroutine(SaveToConfigRoutine(contents));
 		}
 
-		private IEnumerator SaveToConfigRoutine()
+		private IEnumerator SaveToConfigRoutine(string contents)
 		{
 			ConfirmDialog dialog = FindObjectOfType<ConfirmDialog>();
 			dialog.Show();
 			dialog.SetNone();
 			dialog.SetDialogTitleText("Save config?");
-			dialog.SetInfoMessage("This can have unexpected consequences!");
+			dialog.SetInfoMessage("This can have unexpected consequences!\nChanges will take effect the next time the dashboard loads.");
 
 			while (dialog.IsNone())
 			{
@@ -63,19 +74,7 @@ namespace Dialog
 			if (dialog.IsYes())
 			{
 				dialog.Hide();
-				Config config = Config.instance;
-
-				List<Setting> settings = new List<Setting>(FindObjectsOfType<Setting>());
-				foreach (Setting setting in settings)
-				{
-					if (!string.IsNullOrEmpty(setting.GetValue()))
-					{
-						SimpleJSON.JSONNode node = setting.GetNodeToUpdate();
-						config.Replace(node, setting.GetValueInput());
-					}
-				}
-
-				config.SaveToFile();
+				Config.instance.SaveToFile(contents);
 			}
 
 			dialog.SetDialogTitleText("Are you sure?");
@@ -83,12 +82,45 @@ namespace Dialog
 			foreach (Widget widget in FindObjectsOfType<Widget>())
 			{
 				widget.Initialise();
+				widget.Run();
 			}
+
+			foreach (PlannerEntry entry in FindObjectsOfType<PlannerEntry>())
+			{
+				entry.Start();
+			}
+
+			this.Hide();
 		}
 
 		public void OpenConfigServer()
 		{
-			Application.OpenURL(Config.instance.GetCmsConfig()["cmsUrl"]);
+			Application.OpenURL(cmsUrl);
+		}
+
+		public void DownloadConfig()
+		{
+			StartCoroutine(DownloadConfigRoutine());
+		}
+
+		private IEnumerator DownloadConfigRoutine()
+		{
+			downloadStatusText.SetText("");
+			UnityWebRequest request = Postman.CreateGetRequest(cmsApiUrl);
+			request.SetRequestHeader("x-auth-token", cmsApiKey);
+			yield return request.SendWebRequest();
+
+			JSONNode json = JSON.Parse(request.downloadHandler.text);
+
+			if (!request.isHttpError)
+			{
+				SaveToConfig(json[cmsApiKey].ToString());
+				downloadStatusText.SetText("Download success!");
+			}
+			else
+			{
+				downloadStatusText.SetText(request.error);
+			}
 		}
 	}
 }

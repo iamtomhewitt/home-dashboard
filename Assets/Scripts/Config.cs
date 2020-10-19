@@ -33,13 +33,12 @@ public class Config : MonoBehaviour
 		else
 		{
 			Debug.Log("Using existing config file: " + configFilePath);
-			SetRoot(configFilePath);
+			SetRoot(GetFileContents(configFilePath));
 		}
 	}
 
-	private void SetRoot(string filePath)
+	private void SetRoot(string contents)
 	{
-		string contents = GetFileContents(filePath);
 		root = JSON.Parse(contents);
 	}
 
@@ -71,16 +70,16 @@ public class Config : MonoBehaviour
 	public void Replace(JSONNode key, string value)
 	{
 		key.Value = value;
-		SaveToFile();
+		SaveToFile(root.ToString());
 	}
 
-	public void SaveToFile()
+	public void SaveToFile(string contents)
 	{
 		string filePath = Application.persistentDataPath + filename;
 		StreamWriter writer = new StreamWriter(filePath, false);
-		writer.Write(root.ToString());
+		writer.Write(contents);
 		writer.Close();
-		SetRoot(filePath);
+		SetRoot(contents);
 	}
 
 	private void CreateNewFile(string filePath)
