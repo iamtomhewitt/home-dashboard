@@ -26,7 +26,7 @@ public class Config : MonoBehaviour
 
 		if (!File.Exists(configFilePath))
 		{
-			Debug.Log("Could not find config file, use settings dialog to redownload it");
+			Debug.Log("Could not find config file at this location: " + configFilePath);
 			root = JSON.Parse(configFileTemplate.text);
 			FindObjectOfType<SettingsDialog>().Show();
 		}
@@ -41,6 +41,11 @@ public class Config : MonoBehaviour
 	{
 		string contents = GetFileContents(filePath);
 		root = JSON.Parse(contents);
+	}
+
+	public JSONNode GetCmsConfig()
+	{
+		return JSON.Parse(cmsConfigFile.text);
 	}
 
 	public JSONNode GetRoot()
