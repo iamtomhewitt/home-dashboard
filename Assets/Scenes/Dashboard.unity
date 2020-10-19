@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 4890085278179872738, guid: a6b55fe90001745a5a35404556e60088,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,6 +119,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -1693,8 +1696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configFile: {fileID: 4900000, guid: c3435ac72635ad34399cea81350ea9d8, type: 3}
-  configFileTemplate: {fileID: 4900000, guid: 9d96f2a7fae199647a4357c16422d5d4, type: 3}
+  cmsConfigFile: {fileID: 4900000, guid: 690dac12c68e5421da641cce4736359d, type: 3}
+  configFileTemplate: {fileID: 4900000, guid: 88a9efa670e9648ee9cc4c6ec9cd12fc, type: 3}
 --- !u!4 &1944233603
 Transform:
   m_ObjectHideFlags: 0
@@ -1855,7 +1858,7 @@ PrefabInstance:
     - target: {fileID: 101677071428638643, guid: 95f315b8f39e3d845926eaff803b9253,
         type: 3}
       propertyPath: widgetConfigKey
-      value: laurencolesyt@gmail.com
+      value: laurencolesyt
       objectReference: {fileID: 0}
     - target: {fileID: 101677071428638643, guid: 95f315b8f39e3d845926eaff803b9253,
         type: 3}
@@ -3947,6 +3950,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 998751467}
     m_Modifications:
+    - target: {fileID: 101677071428638643, guid: 95f315b8f39e3d845926eaff803b9253,
+        type: 3}
+      propertyPath: widgetConfigKey
+      value: tommhewitt
+      objectReference: {fileID: 0}
     - target: {fileID: 881438837489258245, guid: 95f315b8f39e3d845926eaff803b9253,
         type: 3}
       propertyPath: m_AnchorMax.x

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Dialog;
 using SimpleJSON;
 using System.IO;
+using UnityEngine;
 
 /// <summary>
 /// Access config as JSON via this component. <para/>
@@ -9,7 +10,7 @@ using System.IO;
 /// </summary>
 public class Config : MonoBehaviour
 {
-	[SerializeField] private TextAsset configFile;
+	[SerializeField] private TextAsset cmsConfigFile;
 	[SerializeField] private TextAsset configFileTemplate;
 
 	public static Config instance;
@@ -21,32 +22,29 @@ public class Config : MonoBehaviour
 	private void Awake()
 	{
 		instance = this;
-		string filePath = Application.persistentDataPath + filename;
+		string configFilePath = Application.persistentDataPath + filename;
 
-		if (configFile != null)
+		if (!File.Exists(configFilePath))
 		{
-			Debug.Log("A config file has been supplied on start up, overwriting config...");
-			root = JSON.Parse(configFile.text);
-			SaveToFile();
-			SetRoot(filePath);
-		}
-		else if (File.Exists(filePath))
-		{
-			Debug.Log("A config file has already been created at: " + filePath + ", using that one.");
-			SetRoot(filePath);
+			Debug.Log("Could not find config file at this location: " + configFilePath);
+			root = JSON.Parse(configFileTemplate.text);
+			FindObjectOfType<SettingsDialog>().Show();
 		}
 		else
 		{
-			Debug.Log("A config file has not been specified, creating one.");
-			CreateNewFile(filePath);
-			SetRoot(filePath);
+			Debug.Log("Using existing config file: " + configFilePath);
+			SetRoot(GetFileContents(configFilePath));
 		}
 	}
 
-	private void SetRoot(string filePath)
+	private void SetRoot(string contents)
 	{
-		string contents = GetFileContents(filePath);
 		root = JSON.Parse(contents);
+	}
+
+	public JSONNode GetCmsConfig()
+	{
+		return JSON.Parse(cmsConfigFile.text);
 	}
 
 	public JSONNode GetRoot()
@@ -72,17 +70,16 @@ public class Config : MonoBehaviour
 	public void Replace(JSONNode key, string value)
 	{
 		key.Value = value;
-		SaveToFile();
+		SaveToFile(root.ToString());
 	}
 
-
-	public void SaveToFile()
+	public void SaveToFile(string contents)
 	{
 		string filePath = Application.persistentDataPath + filename;
 		StreamWriter writer = new StreamWriter(filePath, false);
-		writer.Write(root.ToString());
+		writer.Write(contents);
 		writer.Close();
-		SetRoot(filePath);
+		SetRoot(contents);
 	}
 
 	private void CreateNewFile(string filePath)
