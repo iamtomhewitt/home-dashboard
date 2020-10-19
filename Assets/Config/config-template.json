@@ -9,7 +9,7 @@
 			"repeatRate": 30,
 			"repeatTime": "minutes",
 			"secondsBetweenArticles": 45,
-			"apiKey": "<key>",
+			"apiKey": "",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
 		},
@@ -25,19 +25,19 @@
 			"sleepEnd": "HH:mm",
 			"bins": [
 				{
-					"name": "<colour>",
+					"name": "Name",
 					"firstDate": "01-01-2020",
 					"repeatRateInDays": 14,
 					"binColour": "#FF0000"
 				},
 				{
-					"name": "<colour>",
+					"name": "Name",
 					"firstDate": "01-01-2020",
 					"repeatRateInDays": 14,
 					"binColour": "#FF0000"
 				},
 				{
-					"name": "<colour>",
+					"name": "Name",
 					"firstDate": "01-01-2020",
 					"repeatRateInDays": 14,
 					"binColour": "#FF0000"
@@ -74,7 +74,7 @@
 			"titleColour": "#FFFFFF",
 			"repeatRate": 1,
 			"repeatTime": "hours",
-			"apiKey": "<key>",
+			"apiKey": "",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm",
 			"mediumTrafficMinutes": 10,
@@ -116,7 +116,7 @@
 			"repeatRate": 10,
 			"repeatTime": "minutes",
 			"todoistId": "id",
-			"apiKey": "key",
+			"apiKey": "",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
 		},
@@ -128,7 +128,7 @@
 			"repeatRate": 10,
 			"repeatTime": "minutes",
 			"todoistId": "id",
-			"apiKey": "key",
+			"apiKey": "",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
 		},
@@ -151,7 +151,7 @@
 			"titleColour": "#FFFFFF",
 			"repeatRate": 1,
 			"repeatTime": "minutes",
-			"apiKey": "key",
+			"apiKey": "",
 			"stationCode": "HRS",
 			"sleepStart": "HH:mm",
 			"sleepEnd": "HH:mm"
@@ -163,7 +163,7 @@
 			"titleColour": "#FFFFFF",
 			"repeatRate": 10,
 			"repeatTime": "minutes",
-			"apiKey": "key",
+			"apiKey": "",
 			"latitude": "lat",
 			"longitude": "long",
 			"spriteColour": "#FFFFF",
@@ -202,14 +202,14 @@
 		}
 	},
 	"endpoints": {
-		"recipeManager": "url",
-		"todoist": "url",
-		"trains": "url",
-		"bbcNews": "url",
-		"googleCalendar": "url",
-		"weather": "url",
-		"splitwise": "url",
-		"journeyPlanner": "url",
+		"recipeManager": "http://example.com",
+		"todoist": "http://example.com",
+		"trains": "http://example.com",
+		"bbcNews": "http://example.com",
+		"googleCalendar": "http://example.com",
+		"weather": "http://example.com",
+		"splitwise": "http://example.com",
+		"journeyPlanner": "http://example.com",
 		"release": "https://api.github.com/repos/iamtomhewitt/home-dashboard/tags",
 		"repo": "https://github.com/iamtomhewitt/home-dashboard/blob/master/CHANGELOG.md"
 	}
