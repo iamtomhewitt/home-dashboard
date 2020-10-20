@@ -37,8 +37,8 @@ namespace GoogleCalendar
 		}
 
 		private IEnumerator RunRoutine()
-		{			
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.GOOGLE_CALENDAR(apiKey, gmailAddress, numberOfEvents));
+		{
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.GOOGLE_CALENDAR(gmailAddress, numberOfEvents, apiKey));
 			yield return request.SendWebRequest();
 
 			json = JSON.Parse(request.downloadHandler.text);

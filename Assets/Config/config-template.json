@@ -9,9 +9,9 @@
 			"repeatRate": 30,
 			"repeatTime": "minutes",
 			"secondsBetweenArticles": 45,
-			"apiKey": "<key>",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"apiKey": "",
+			"sleepStart": "23:59",
+            "sleepEnd": "05:00"
 		},
 		"binDay": {
 			"title": "Bin Day",
@@ -21,23 +21,23 @@
 			"repeatRate": 2,
 			"repeatTime": "hours",
 			"noBinColour": "#03A9F4",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm",
+			"sleepStart": "23:59",
+            "sleepEnd": "00:30",
 			"bins": [
 				{
-					"name": "<colour>",
+					"name": "Name",
 					"firstDate": "01-01-2020",
 					"repeatRateInDays": 14,
 					"binColour": "#FF0000"
 				},
 				{
-					"name": "<colour>",
+					"name": "Name",
 					"firstDate": "01-01-2020",
 					"repeatRateInDays": 14,
 					"binColour": "#FF0000"
 				},
 				{
-					"name": "<colour>",
+					"name": "Name",
 					"firstDate": "01-01-2020",
 					"repeatRateInDays": 14,
 					"binColour": "#FF0000"
@@ -51,8 +51,8 @@
 			"dateColour": "#FFFFFF",
 			"repeatRate": 1,
 			"repeatTime": "seconds",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"sleepStart": "23:59",
+			"sleepEnd": "00:01"
 		},
 		"foodPlanner": {
 			"title": "Food Planner",
@@ -64,8 +64,8 @@
 			"plannerBackgroundColour": "#FFFFFF",
 			"plannerTextColour": "#000000",
 			"plannerId": "",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"sleepStart": "23:59",
+            "sleepEnd": "01:00"
 		},
 		"journeyPlanner": {
 			"title": "Journey Planner",
@@ -74,9 +74,9 @@
 			"titleColour": "#FFFFFF",
 			"repeatRate": 1,
 			"repeatTime": "hours",
-			"apiKey": "<key>",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm",
+			"apiKey": "",
+			"sleepStart": "23:00",
+            "sleepEnd": "07:00",
 			"mediumTrafficMinutes": 10,
 			"heavyTrafficMinutes": 20,
 			"journeys": [
@@ -96,8 +96,8 @@
 				}
 			]
 		},
-		"someone@gmail.com": {
-			"title": "Tom's Calendar",
+		"gmailUsername": {
+			"title": "Calendar",
 			"colour": "#4285F4",
 			"textColour": "#FFFFFF",
 			"titleColour": "#FFFFFF",
@@ -105,8 +105,8 @@
 			"repeatTime": "minutes",
 			"apiKey": "",
 			"numberOfEvents": 25,
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"sleepStart": "22:30",
+            "sleepEnd": "07:00"
 		},
 		"shoppingList": {
 			"title": "Shopping List",
@@ -116,9 +116,9 @@
 			"repeatRate": 10,
 			"repeatTime": "minutes",
 			"todoistId": "id",
-			"apiKey": "key",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"apiKey": "",
+			"sleepStart": "23:59",
+            "sleepEnd": "01:00"
 		},
 		"todoList": {
 			"title": "TODO List",
@@ -128,9 +128,9 @@
 			"repeatRate": 10,
 			"repeatTime": "minutes",
 			"todoistId": "id",
-			"apiKey": "key",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"apiKey": "",
+			"sleepStart": "23:59",
+            "sleepEnd": "01:00"
 		},
 		"splitwise": {
 			"title": "Splitwise",
@@ -141,8 +141,8 @@
 			"repeatTime": "hours",
 			"groupId": "groupId",
 			"apiKey": "",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"sleepStart": "22:00",
+            "sleepEnd": "07:30"
 		},
 		"trains": {
 			"title": "Trains",
@@ -151,10 +151,10 @@
 			"titleColour": "#FFFFFF",
 			"repeatRate": 1,
 			"repeatTime": "minutes",
-			"apiKey": "key",
+			"apiKey": "",
 			"stationCode": "HRS",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"sleepStart": "23:59",
+            "sleepEnd": "07:00"
 		},
 		"weather": {
 			"title": "Weather",
@@ -163,12 +163,12 @@
 			"titleColour": "#FFFFFF",
 			"repeatRate": 10,
 			"repeatTime": "minutes",
-			"apiKey": "key",
+			"apiKey": "",
 			"latitude": "lat",
 			"longitude": "long",
 			"spriteColour": "#FFFFF",
-			"sleepStart": "HH:mm",
-			"sleepEnd": "HH:mm"
+			"sleepStart": "23:59",
+            "sleepEnd": "07:00"
 		}
 	},
 	"dialogs": {
@@ -202,14 +202,14 @@
 		}
 	},
 	"endpoints": {
-		"recipeManager": "url",
-		"todoist": "url",
-		"trains": "url",
-		"bbcNews": "url",
-		"googleCalendar": "url",
-		"weather": "url",
-		"splitwise": "url",
-		"journeyPlanner": "url",
+		"recipeManager": "http://example.com",
+		"todoist": "http://example.com",
+		"trains": "http://example.com",
+		"bbcNews": "http://example.com",
+		"googleCalendar": "http://example.com",
+		"weather": "http://example.com",
+		"splitwise": "http://example.com",
+		"journeyPlanner": "http://example.com",
 		"release": "https://api.github.com/repos/iamtomhewitt/home-dashboard/tags",
 		"repo": "https://github.com/iamtomhewitt/home-dashboard/blob/master/CHANGELOG.md"
 	}
