@@ -1,3 +1,15 @@
+## 6.9.0 (20/10/2020) 
+
+
+### Issues in this release:
+
+* [#191](https://github.com/iamtomhewitt/home-dashboard/issues/191) - Add api key to calendar endpoint
+* [#189](https://github.com/iamtomhewitt/home-dashboard/issues/189) - Update calendar endpoint
+* [#188](https://github.com/iamtomhewitt/home-dashboard/issues/188) - Use a CMS
+* [#183](https://github.com/iamtomhewitt/home-dashboard/issues/183) - Journeys duplicate on start up
+
+
+
 ## 6.8.3 (07/10/2020) 
 
 
