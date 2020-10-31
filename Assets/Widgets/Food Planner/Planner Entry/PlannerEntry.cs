@@ -20,8 +20,19 @@ namespace Planner
 		private JSONNode config;
 		private string configKey;
 		private string plannerId;
+		private int TWELVE_HOURS = 43200;
 
-		public IEnumerator Start()
+		public void Start()
+		{
+			InvokeRepeating("RequestRecipe", 0f, TWELVE_HOURS);
+		}
+
+		private void RequestRecipe()
+		{
+			StartCoroutine(RequestRecipeRoutine());
+		}
+
+		private IEnumerator RequestRecipeRoutine()
 		{
 			configKey = FindObjectOfType<FoodPlanner>().GetWidgetConfigKey();
 			config = Config.instance.GetWidgetConfig();
