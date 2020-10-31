@@ -19,6 +19,7 @@ namespace Dialog
 		[SerializeField] private Button downloadConfigButton;
 		[SerializeField] private TMP_Text infoText;
 		[SerializeField] private TMP_Text downloadStatusText;
+		[SerializeField] private TMP_InputField apiKeyField;
 
 		private string cmsApiKey;
 		private string cmsApiUrl;
@@ -30,7 +31,7 @@ namespace Dialog
 			cmsApiKey = Config.instance.GetCmsConfig()["cmsApiKey"];
 			cmsUrl = Config.instance.GetCmsConfig()["cmsUrl"];
 			cmsApiUrl = Config.instance.GetCmsConfig()["cmsApiUrl"];
-			infoText.SetText(infoText.text.Replace("<DASHBOARDKEY>", cmsApiKey));
+			apiKeyField.text = cmsApiKey;
 			downloadStatusText.SetText("");
 		}
 
