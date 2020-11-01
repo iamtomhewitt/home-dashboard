@@ -1,3 +1,14 @@
+## 6.9.1 (01/11/2020) 
+
+
+### Issues in this release:
+
+* [#198](https://github.com/iamtomhewitt/home-dashboard/issues/198) - Weather starts from one day too far
+* [#197](https://github.com/iamtomhewitt/home-dashboard/issues/197) - Make settings key copiable 
+* [#195](https://github.com/iamtomhewitt/home-dashboard/issues/195) - Planner entries don’t refresh
+
+
+
 ## 6.9.0 (20/10/2020) 
 
 
