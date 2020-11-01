@@ -16,7 +16,6 @@ namespace WeatherForecast
 		[SerializeField] private WeatherEntry[] hourlyWeatherEntries;
 
 		private Color spriteColour;
-		private int dayOffset = 2;
 
 		public override void ReloadConfig()
 		{
@@ -45,7 +44,7 @@ namespace WeatherForecast
 
 			JSONNode json = JSON.Parse(request.downloadHandler.text);
 			List<JSONNode> hourlyWeatherData = GetHourlyWeatherData(json);
-			List<JSONNode> dailyWeatherData = GetDailyWeatherData(json, dailyWeatherEntries.Length);
+			List<JSONNode> dailyWeatherData = GetDailyWeatherData(json);
 
 			for (int i = 0; i < hourlyWeatherData.Count; i++)
 			{
@@ -81,12 +80,12 @@ namespace WeatherForecast
 			}
 		}
 
-		private List<JSONNode> GetDailyWeatherData(JSONNode json, int amountOfDays)
+		private List<JSONNode> GetDailyWeatherData(JSONNode json)
 		{
 			List<JSONNode> data = new List<JSONNode>();
-			for (int i = 0; i < amountOfDays; i++)
+			for (int i = 1; i < dailyWeatherEntries.Length; i++)
 			{
-				data.Add(json["daily"]["data"][i + dayOffset]);
+				data.Add(json["daily"]["data"][i]);
 			}
 			return data;
 		}
