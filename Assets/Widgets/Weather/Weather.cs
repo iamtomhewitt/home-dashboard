@@ -83,9 +83,9 @@ namespace WeatherForecast
 		private List<JSONNode> GetDailyWeatherData(JSONNode json)
 		{
 			List<JSONNode> data = new List<JSONNode>();
-			for (int i = 1; i < dailyWeatherEntries.Length; i++)
+			for (int i = 0; i < dailyWeatherEntries.Length; i++)
 			{
-				data.Add(json["daily"]["data"][i]);
+				data.Add(json["daily"]["data"][i + 1]);
 			}
 			return data;
 		}
