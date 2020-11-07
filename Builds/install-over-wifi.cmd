@@ -1,3 +1,4 @@
+REM Note - you may have to attach via USB first so the computer recognises the device.
 @echo off
 REM Get IP address
 set /p device_ip=Device IP Address: 

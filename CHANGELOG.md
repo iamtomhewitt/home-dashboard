@@ -1,3 +1,12 @@
+## 6.9.2 (07/11/2020) 
+
+
+### Issues in this release:
+
+* [#203](https://github.com/iamtomhewitt/home-dashboard/issues/203) - Last day of weather isn't updating
+
+
+
 ## 6.9.1 (01/11/2020) 
 
 
