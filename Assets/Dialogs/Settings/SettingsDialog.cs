@@ -106,16 +106,15 @@ namespace Dialog
 
 		private IEnumerator DownloadConfigRoutine()
 		{
-			downloadStatusText.SetText("");
-			UnityWebRequest request = Postman.CreateGetRequest(cmsApiUrl);
-			request.SetRequestHeader("x-auth-token", cmsApiKey);
+			downloadStatusText.SetText("Please wait...");
+			UnityWebRequest request = Postman.CreateGetRequest(cmsApiUrl + "?token=" + cmsApiKey);
 			yield return request.SendWebRequest();
 
 			JSONNode json = JSON.Parse(request.downloadHandler.text);
 
-			if (!request.isHttpError)
+			if (request.result != UnityWebRequest.Result.ProtocolError)
 			{
-				SaveToConfig(json[cmsApiKey].ToString());
+				SaveToConfig(json["config"].ToString());
 				downloadStatusText.SetText("Download success!");
 			}
 			else
