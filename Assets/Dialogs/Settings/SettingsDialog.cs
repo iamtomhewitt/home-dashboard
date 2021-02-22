@@ -19,7 +19,6 @@ namespace Dialog
 		[SerializeField] private Button downloadConfigButton;
 		[SerializeField] private TMP_Text infoText;
 		[SerializeField] private TMP_Text downloadStatusText;
-		[SerializeField] private TMP_InputField apiKeyField;
 
 		private string cmsApiKey;
 		private string cmsApiUrl;
@@ -31,7 +30,6 @@ namespace Dialog
 			cmsApiKey = Config.instance.GetCmsConfig()["cmsApiKey"];
 			cmsUrl = Config.instance.GetCmsConfig()["cmsUrl"];
 			cmsApiUrl = Config.instance.GetCmsConfig()["cmsApiUrl"];
-			apiKeyField.text = cmsApiKey;
 			downloadStatusText.SetText("");
 		}
 
@@ -96,7 +94,7 @@ namespace Dialog
 
 		public void OpenConfigServer()
 		{
-			Application.OpenURL(cmsUrl);
+			Application.OpenURL(cmsUrl + "?token=" + cmsApiKey);
 		}
 
 		public void DownloadConfig()
