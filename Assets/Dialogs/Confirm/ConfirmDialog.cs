@@ -27,5 +27,10 @@ namespace Dialog
 		{
 			infoText.text = message;
 		}
+
+		public override void PostShow()
+		{
+			// Nothing to do
+		}
 	}
 }

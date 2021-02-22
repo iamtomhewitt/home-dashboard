@@ -16,6 +16,11 @@ namespace Dialog
             // Nothing to do
         }
 
+		public override void PostShow()
+		{
+			// Nothing to do
+		}
+
         public void SetStepsText(List<string> steps)
         {
             if (steps.Count == 0)

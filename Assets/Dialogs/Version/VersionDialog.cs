@@ -23,11 +23,11 @@ public class VersionDialog : PopupDialog
 	private string installedVersion;
 	private string repoVersion;
 
-    private void Start()
-    {
+	private void Start()
+	{
 		InvokeRepeating("GetVersionInfo", 0f, TWELVE_HOURS);
 		InvokeRepeating("ShowDialogIfVersionWrong", 3f, ONE_WEEK);
-    }
+	}
 
 	private void GetVersionInfo()
 	{
@@ -43,7 +43,7 @@ public class VersionDialog : PopupDialog
 		repoVersion = repoInfo[0]["name"];
 		installedVersion = Application.version;
 
-        FindObjectOfType<VersionButton>().SetVersionText("Version: " + installedVersion);
+		FindObjectOfType<VersionButton>().SetVersionText("Version: " + installedVersion);
 
 		installedVersionText.text = installedVersion;
 		installedVersionText.color = string.Equals(installedVersion, repoVersion) ? correctVersionColour : incorrectVersionColour;
@@ -51,7 +51,7 @@ public class VersionDialog : PopupDialog
 		infoText.text = string.Equals(installedVersion, repoVersion) ? "You have the latest version!" : "Your version is out of date. Please contact Tom for the latest version.";
 	}
 
-	private void ShowDialogIfVersionWrong() 
+	private void ShowDialogIfVersionWrong()
 	{
 		if (!installedVersion.Equals(repoVersion))
 		{
@@ -71,5 +71,10 @@ public class VersionDialog : PopupDialog
 	public void ShowWhatsNew()
 	{
 		Application.OpenURL(Config.instance.GetEndpoint("repo"));
+	}
+
+	public override void PostShow()
+	{
+		// Nothing to do
 	}
 }

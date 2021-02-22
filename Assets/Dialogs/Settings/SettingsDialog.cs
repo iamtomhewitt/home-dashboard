@@ -123,5 +123,10 @@ namespace Dialog
 				downloadStatusText.SetText(request.error);
 			}
 		}
+
+		public override void PostShow()
+		{
+			downloadStatusText.SetText("");
+		}
 	}
 }

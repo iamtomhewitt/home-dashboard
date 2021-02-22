@@ -60,5 +60,10 @@ namespace Dialog
 			scrollBackground.color = Colours.Darken(mainColour);
 			scrollHandle.color = Colours.Lighten(mainColour);
 		}
+
+		public override void PostShow()
+		{
+			// Nothing to do!
+		}
 	}
 }
