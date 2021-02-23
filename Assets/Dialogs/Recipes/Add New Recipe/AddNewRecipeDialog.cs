@@ -88,5 +88,10 @@ namespace Dialog
 			dialog.Show();
 			dialog.PopulateRecipes();
 		}
+
+		public override void PostShow()
+		{
+			// Nothing to do
+		}
 	}
 }

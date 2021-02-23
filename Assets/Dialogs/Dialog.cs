@@ -26,6 +26,8 @@ namespace Dialog
 		/// </summary>
 		public abstract void ApplyAdditionalColours(Color mainColour, Color textColour);
 
+		public abstract void PostShow();
+
 		private void Start()
 		{
 			Hide();
@@ -114,6 +116,7 @@ namespace Dialog
 		{
 			ApplyColours();
 			GetComponent<RectTransform>().localPosition = Vector2.zero;
+			PostShow();
 		}
 	}
 

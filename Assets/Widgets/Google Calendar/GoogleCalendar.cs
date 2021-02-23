@@ -24,9 +24,29 @@ namespace GoogleCalendar
 
 		public override void ReloadConfig()
 		{
-			JSONNode config = this.GetConfig();
-			apiKey = config["apiKey"];
-			numberOfEvents = config["numberOfEvents"];
+			JSONNode gmailConfig = this.findByGmail();
+			apiKey = gmailConfig["apiKey"];
+			numberOfEvents = gmailConfig["numberOfEvents"];
+			this.SetRepeatRate(gmailConfig["repeatRate"]);
+			this.SetSleepEnd(gmailConfig["sleepEnd"]);
+			this.SetSleepStart(gmailConfig["sleepStart"]);
+			this.SetTimeUnit(gmailConfig["repeatTime"]);
+			this.SetTitleTextColour(Colours.ToColour(gmailConfig["titleColour"]));
+			this.SetWidgetColour(Colours.ToColour(gmailConfig["colour"]));
+			this.SetTitleText(gmailConfig["title"]);
+		}
+
+		private JSONNode findByGmail()
+		{
+			foreach (JSONNode gmail in this.GetConfig().Values)
+			{
+				if (gmail["gmailAddress"].Equals(gmailAddress))
+				{
+					return gmail;
+				}
+			}
+			WidgetLogger.instance.Log(this, "Could not find config for gmail: " + gmailAddress);
+			return null;
 		}
 
 		public override void Run()

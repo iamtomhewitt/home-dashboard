@@ -14,7 +14,7 @@ namespace Dialog
 		[SerializeField] private Image addButtonColour;
 		[SerializeField] private TMP_Text addButtonText;
 		[SerializeField] private TMP_Text statusText;
-		
+
 		private OnlineList list;
 
 		/// <summary>
@@ -49,6 +49,11 @@ namespace Dialog
 		{
 			addButtonColour.color = mainColour;
 			addButtonText.color = textColour;
+		}
+
+		public override void PostShow()
+		{
+			ResetStatusText();
 		}
 	}
 }
