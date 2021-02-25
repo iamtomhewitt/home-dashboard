@@ -5061,12 +5061,12 @@ PrefabInstance:
     - target: {fileID: 7490345699320997820, guid: aa0369fee683f497eac4e888d33e2ab9,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7490345699320997820, guid: aa0369fee683f497eac4e888d33e2ab9,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7490345699320997820, guid: aa0369fee683f497eac4e888d33e2ab9,
         type: 3}
@@ -5908,8 +5908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cmsConfigFile: {fileID: 4900000, guid: 022c8295f33e64ab29c813b131f28d7d, type: 3}
-  configFileTemplate: {fileID: 4900000, guid: 88a9efa670e9648ee9cc4c6ec9cd12fc, type: 3}
+  cmsConfigFile: {fileID: 4900000, guid: 3c8221e170c267c49b0ef9188a7bc89c, type: 3}
+  configFileTemplate: {fileID: 4900000, guid: 9d96f2a7fae199647a4357c16422d5d4, type: 3}
 --- !u!4 &1944233603
 Transform:
   m_ObjectHideFlags: 0

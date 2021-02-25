@@ -1697,8 +1697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28387ff3e9e53a4eb1c45646ac9414c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cmsConfigFile: {fileID: 4900000, guid: 690dac12c68e5421da641cce4736359d, type: 3}
-  configFileTemplate: {fileID: 4900000, guid: 88a9efa670e9648ee9cc4c6ec9cd12fc, type: 3}
+  cmsConfigFile: {fileID: 4900000, guid: c6eaeaa002bbf4f439828fa7f31d453b, type: 3}
+  configFileTemplate: {fileID: 4900000, guid: 9d96f2a7fae199647a4357c16422d5d4, type: 3}
 --- !u!4 &1944233603
 Transform:
   m_ObjectHideFlags: 0
