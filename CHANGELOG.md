@@ -1,3 +1,12 @@
+## 6.9.3 (25/02/2021) 
+
+
+### Issues in this release:
+
+* [#209](https://github.com/iamtomhewitt/home-dashboard/issues/209) - Update settings page
+
+
+
 ## 6.9.2 (07/11/2020) 
 
 
