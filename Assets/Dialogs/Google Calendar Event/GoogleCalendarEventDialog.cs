@@ -18,6 +18,11 @@ namespace Dialog
 			// Nothing to do!
 		}
 
+		public override void PostShow()
+		{
+			// Nothing to do
+		}
+
 		public void Populate(string startDate, string endDate, string startTime, string endTime, string location, string description)
 		{
 			descriptionText.text = "<b>Notes: </b>\n" + description;

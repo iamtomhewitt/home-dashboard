@@ -171,13 +171,14 @@ public abstract class Widget : MonoBehaviour
         lastUpdatedText.color = textColour;
     }
 
-    private void SetTitleText(string s)
+    public void SetTitleText(string s)
     {
         titleText.text = s;
     }
 
     public void SetWidgetColour(Color colour)
     {
+		widgetColour = colour;
         widgetBackground.color = colour;
     }
 
@@ -194,6 +195,26 @@ public abstract class Widget : MonoBehaviour
     public void SetTitleTextColour(Color colour)
     {
         titleText.color = colour;
+    }
+
+    public void SetSleepStart(string sleepStart)
+    {
+        this.sleepStart = sleepStart;
+    }
+
+    public void SetSleepEnd(string sleepEnd)
+    {
+        this.sleepEnd = sleepEnd;
+    }
+
+    public void SetTimeUnit(string timeUnit)
+    {
+        this.timeUnit = timeUnit;
+    }
+
+    public void SetRepeatRate(float repeatRate)
+    {
+        this.repeatRate = repeatRate;
     }
 
     public Color GetTextColour()

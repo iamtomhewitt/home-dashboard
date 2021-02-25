@@ -117,6 +117,11 @@ namespace Dialog
 			scrollHandle.color = Colours.Lighten(mainColour);
 		}
 
+		public override void PostShow()
+		{
+			// Nothing to do
+		}
+
 		public void ShowAddNewRecipeDialog()
 		{
 			FindObjectOfType<AddNewRecipeDialog>().Show();
