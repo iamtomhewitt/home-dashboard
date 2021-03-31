@@ -18,7 +18,7 @@ namespace Dialog
 		[SerializeField] private Button manageButton;
 		[SerializeField] private Button downloadConfigButton;
 		[SerializeField] private TMP_Text infoText;
-		[SerializeField] private TMP_Text downloadStatusText;
+		[SerializeField] private TMP_Text statusText;
 
 		private string cmsApiKey;
 		private string cmsApiUrl;
@@ -30,7 +30,7 @@ namespace Dialog
 			cmsApiKey = Config.instance.GetCmsConfig()["cmsApiKey"];
 			cmsUrl = Config.instance.GetCmsConfig()["cmsUrl"];
 			cmsApiUrl = Config.instance.GetCmsConfig()["cmsApiUrl"];
-			downloadStatusText.SetText("");
+			statusText.SetText("");
 		}
 
 		public override void ApplyAdditionalColours(Color mainColour, Color textColour)
@@ -104,7 +104,7 @@ namespace Dialog
 
 		private IEnumerator DownloadConfigRoutine()
 		{
-			downloadStatusText.SetText("Please wait...");
+			statusText.SetText("Please wait...");
 			UnityWebRequest request = Postman.CreateGetRequest(cmsApiUrl + "?token=" + cmsApiKey);
 			yield return request.SendWebRequest();
 
@@ -113,17 +113,29 @@ namespace Dialog
 			if (request.result != UnityWebRequest.Result.ProtocolError)
 			{
 				SaveToConfig(json["config"].ToString());
-				downloadStatusText.SetText("Download success!");
+				statusText.SetText("Download success!");
 			}
 			else
 			{
-				downloadStatusText.SetText(request.error);
+				statusText.SetText(request.error);
 			}
 		}
 
 		public override void PostShow()
 		{
-			downloadStatusText.SetText("");
+			statusText.SetText("");
+		}
+
+		/// <summary>
+		/// Called from a Unity button.
+		/// </summary>
+		public void CopyCodeToClipboard()
+		{
+			TextEditor te = new TextEditor();
+			te.text = cmsApiKey;
+			te.SelectAll();
+			te.Copy();
+			statusText.text = "Code copied!";
 		}
 	}
 }
