@@ -1,3 +1,12 @@
+## 6.9.4 (02/04/2021) 
+
+
+### Issues in this release:
+
+* [#213](https://github.com/iamtomhewitt/home-dashboard/issues/213) - Add a copy to clipboard button for config api key
+
+
+
 ## 6.9.3 (25/02/2021) 
 
 
