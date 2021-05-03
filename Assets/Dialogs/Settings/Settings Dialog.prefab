@@ -1041,6 +1041,7 @@ MonoBehaviour:
   configKey: settings
   manageButton: {fileID: 5831680370995580205}
   downloadConfigButton: {fileID: 3548110493015585028}
+  copyButton: {fileID: 894005838081134560}
   infoText: {fileID: 4959001762404723753}
   statusText: {fileID: 447504579354435217}
 --- !u!1 &3548110493558074621

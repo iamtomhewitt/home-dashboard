@@ -1,3 +1,12 @@
+## 6.9.5 (03/05/2021) 
+
+
+### Issues in this release:
+
+* [#217](https://github.com/iamtomhewitt/home-dashboard/issues/217) - Copy Code button on settings button doesn’t change to config colour
+
+
+
 ## 6.9.4 (02/04/2021) 
 
 
