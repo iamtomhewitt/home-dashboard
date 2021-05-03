@@ -17,6 +17,7 @@ namespace Dialog
 		[Header("Settings Dialog Settings")]
 		[SerializeField] private Button manageButton;
 		[SerializeField] private Button downloadConfigButton;
+		[SerializeField] private Button copyButton;
 		[SerializeField] private TMP_Text infoText;
 		[SerializeField] private TMP_Text statusText;
 
@@ -40,6 +41,9 @@ namespace Dialog
 
 			manageButton.GetComponent<Image>().color = mainColour;
 			manageButton.GetComponentInChildren<TMP_Text>().color = textColour;
+
+			copyButton.GetComponent<Image>().color = mainColour;
+			copyButton.GetComponentInChildren<TMP_Text>().color = textColour;
 		}
 
 		/// <summary>
