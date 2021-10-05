@@ -61,13 +61,19 @@ namespace Train
 				string departureTime = data["aimed_departure_time"];
 				string expectedDepartureTime = data["expected_departure_time"];
 				string timeLabel = departureTime == expectedDepartureTime ? "On time" : expectedDepartureTime;
-				string label = departureTime + " (" + timeLabel + ")";
 
 				if (destination.Length > maxDestinationLength)
 				{
 					destination = destination.Substring(0, maxDestinationLength - 1) + "...";
 				}
 
+				if (data["status"] == "CANCELLED")
+				{
+					timeLabel = "Cancelled";
+				}
+
+				string label = departureTime + " (" + timeLabel + ")";
+				
 				TrainEntry entry = trainEntries[i];
 				entry.SetDestinationText(destination);
 				entry.SetTimeText(label);
