@@ -1,7 +1,6 @@
 ﻿using Dialog;
 using Requests;
 using SimpleJSON;
-using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
