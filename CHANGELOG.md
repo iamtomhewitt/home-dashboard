@@ -1,3 +1,12 @@
+## 6.9.7 (05/10/2021) 
+
+
+### Issues in this release:
+
+* [#224](https://github.com/iamtomhewitt/home-dashboard/issues/224) - Trains SSL CA certificate error
+
+
+
 ## 6.9.5 (03/05/2021) 
 
 
