@@ -1,7 +1,6 @@
 ﻿using Dialog;
 using Requests;
 using SimpleJSON;
-using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -16,7 +15,6 @@ namespace Train
 		[SerializeField] private Image scrollbarBackground;
 		[SerializeField] private Image scrollbarHandle;
 
-		private SortedDictionary<string, string> timetable = new SortedDictionary<string, string>();
 		private int maxDestinationLength = 10;
 
 		public override void ReloadConfig() { }
@@ -32,7 +30,7 @@ namespace Train
 
 		private IEnumerator RunRoutine()
 		{
-			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.TRAIN_DEPARTURES(trainEntries.Length));
+			UnityWebRequest request = Postman.CreateGetRequest(Endpoints.instance.TRAIN_DEPARTURES());
 			yield return request.SendWebRequest();
 
 			JSONNode json = JSON.Parse(request.downloadHandler.text);
@@ -50,37 +48,35 @@ namespace Train
 				entry.SetTimeText("");
 			}
 
-			int lastRowNumber = 0;
-
-			timetable.Clear();
-			PopulateTimetable(json, "trainServices");
-			PopulateTimetable(json, "busServices");
-
-			foreach (KeyValuePair<string, string> x in timetable)
+			for (int i = 0; i < trainEntries.Length; i++)
 			{
-				TrainEntry entry = trainEntries[lastRowNumber];
-				entry.SetDestinationText(x.Value);
-				entry.SetTimeText(x.Key);
-				lastRowNumber++;
-			}
-		}
-
-		private void PopulateTimetable(JSONNode json, string key)
-		{
-			for (int i = 0; i < json[key].Count; i++)
-			{
-				JSONNode trainService = json[key][i];
-
-				string locationName = trainService["destination"][0]["locationName"];
-				string time = key.Equals("busServices") ? trainService["std"] + " (Bus)" : trainService["std"] + " (" + trainService["etd"] + ")";
-				string estimatedDeparture = trainService["std"];
-
-				if (locationName.Length > maxDestinationLength)
+				JSONNode data = json["departures"]["all"][i];
+				if (data == null)
 				{
-					locationName = locationName.Substring(0, maxDestinationLength - 1) + "...";
+					break;
 				}
 
-				timetable.Add(time, locationName);
+				string transport = data["mode"] == "train" ? "" : data["mode"].ToString();
+				string destination = data["destination_name"];
+				string departureTime = data["aimed_departure_time"];
+				string expectedDepartureTime = data["expected_departure_time"];
+				string timeLabel = departureTime == expectedDepartureTime ? "On time" : expectedDepartureTime;
+
+				if (destination.Length > maxDestinationLength)
+				{
+					destination = destination.Substring(0, maxDestinationLength - 1) + "...";
+				}
+
+				if (data["status"] == "CANCELLED")
+				{
+					timeLabel = "Cancelled";
+				}
+
+				string label = departureTime + " (" + timeLabel + ")";
+				
+				TrainEntry entry = trainEntries[i];
+				entry.SetDestinationText(destination);
+				entry.SetTimeText(label);
 			}
 		}
 	}
