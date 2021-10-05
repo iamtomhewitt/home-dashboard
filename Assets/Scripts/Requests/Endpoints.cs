@@ -42,12 +42,13 @@ namespace Requests
 			return string.Format("{0}/shoppingList?id={1}", endpoint, plannerId);
 		}
 
-		public string TRAIN_DEPARTURES(int numberOfResults)
+		public string TRAIN_DEPARTURES()
 		{
 			string endpoint = Config.instance.GetEndpoint("trains");
 			string stationCode = Config.instance.GetWidgetConfig()["trains"]["stationCode"];
 			string apiKey = Config.instance.GetWidgetConfig()["trains"]["apiKey"];
-			return string.Format(endpoint, stationCode, numberOfResults, apiKey);
+			string appId = Config.instance.GetWidgetConfig()["trains"]["appId"];
+			return string.Format(endpoint, stationCode, appId, apiKey);
 		}
 
 		public string BBC_NEWS()
