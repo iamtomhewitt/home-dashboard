@@ -11,7 +11,7 @@
 			"secondsBetweenArticles": 45,
 			"apiKey": "",
 			"sleepStart": "23:59",
-            "sleepEnd": "05:00"
+			"sleepEnd": "05:00"
 		},
 		"binDay": {
 			"title": "Bin Day",
@@ -22,7 +22,7 @@
 			"repeatTime": "hours",
 			"noBinColour": "#03A9F4",
 			"sleepStart": "23:59",
-            "sleepEnd": "00:30",
+			"sleepEnd": "00:30",
 			"bins": [
 				{
 					"name": "Name",
@@ -65,7 +65,7 @@
 			"plannerTextColour": "#000000",
 			"plannerId": "",
 			"sleepStart": "23:59",
-            "sleepEnd": "01:00"
+			"sleepEnd": "01:00"
 		},
 		"journeyPlanner": {
 			"title": "Journey Planner",
@@ -76,7 +76,7 @@
 			"repeatTime": "hours",
 			"apiKey": "",
 			"sleepStart": "23:00",
-            "sleepEnd": "07:00",
+			"sleepEnd": "07:00",
 			"mediumTrafficMinutes": 10,
 			"heavyTrafficMinutes": 20,
 			"journeys": [
@@ -106,7 +106,7 @@
 			"apiKey": "",
 			"numberOfEvents": 25,
 			"sleepStart": "22:30",
-            "sleepEnd": "07:00"
+			"sleepEnd": "07:00"
 		},
 		"shoppingList": {
 			"title": "Shopping List",
@@ -118,7 +118,7 @@
 			"todoistId": "id",
 			"apiKey": "",
 			"sleepStart": "23:59",
-            "sleepEnd": "01:00"
+			"sleepEnd": "01:00"
 		},
 		"todoList": {
 			"title": "TODO List",
@@ -130,7 +130,7 @@
 			"todoistId": "id",
 			"apiKey": "",
 			"sleepStart": "23:59",
-            "sleepEnd": "01:00"
+			"sleepEnd": "01:00"
 		},
 		"splitwise": {
 			"title": "Splitwise",
@@ -142,19 +142,20 @@
 			"groupId": "groupId",
 			"apiKey": "",
 			"sleepStart": "22:00",
-            "sleepEnd": "07:30"
+			"sleepEnd": "07:30"
 		},
 		"trains": {
-			"title": "Trains",
+			"apiKey": "",
+			"appId": "",
 			"colour": "#43A047",
-			"textColour": "#FFFFFF",
-			"titleColour": "#FFFFFF",
 			"repeatRate": 1,
 			"repeatTime": "minutes",
-			"apiKey": "",
-			"stationCode": "HRS",
+			"sleepEnd": "07:00",
 			"sleepStart": "23:59",
-            "sleepEnd": "07:00"
+			"stationCode": "HRS",
+			"textColour": "#FFFFFF",
+			"title": "Trains",
+			"titleColour": "#FFFFFF"
 		},
 		"weather": {
 			"title": "Weather",
@@ -168,7 +169,7 @@
 			"longitude": "long",
 			"spriteColour": "#FFFFF",
 			"sleepStart": "23:59",
-            "sleepEnd": "07:00"
+			"sleepEnd": "07:00"
 		}
 	},
 	"dialogs": {
