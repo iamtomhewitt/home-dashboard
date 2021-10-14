@@ -109,15 +109,23 @@ namespace Dialog
 		private IEnumerator DownloadConfigRoutine()
 		{
 			statusText.SetText("Please wait...");
-			UnityWebRequest request = Postman.CreateGetRequest(cmsApiUrl + "?token=" + cmsApiKey);
+			UnityWebRequest request = Postman.CreateGetRequest(this.cmsApiUrl);
 			yield return request.SendWebRequest();
-
-			JSONNode json = JSON.Parse(request.downloadHandler.text);
 
 			if (request.result != UnityWebRequest.Result.ProtocolError)
 			{
-				SaveToConfig(json["config"].ToString());
-				statusText.SetText("Download success!");
+				JSONNode json = JSON.Parse(request.downloadHandler.text);
+				foreach (JSONNode item in json)
+				{
+					if (item["token"] == this.cmsApiKey)
+					{
+						SaveToConfig(item.ToString());
+						statusText.SetText("Download success!");
+						yield break;
+					}
+				}
+				WidgetLogger.instance.Log("No config was found for " + this.cmsApiKey);
+				statusText.SetText("No config found!");
 			}
 			else
 			{

@@ -1,3 +1,12 @@
+## 6.9.8 (14/10/2021) 
+
+
+### Issues in this release:
+
+* [#228](https://github.com/iamtomhewitt/home-dashboard/issues/228) - Download config does not work
+
+
+
 ## 6.9.7 (05/10/2021) 
 
 
