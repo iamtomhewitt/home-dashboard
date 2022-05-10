@@ -19,7 +19,8 @@ namespace Requests
 
 		public string RECIPES()
 		{
-			return Config.instance.GetEndpoint("recipeManager") + "/recipes";
+			string plannerId = GetPlannerId();
+			return Config.instance.GetEndpoint("recipeManager") + "/recipes?id=" + plannerId;
 		}
 
 		public string PLANNER()
