@@ -102,7 +102,7 @@ namespace Planner
 		private IEnumerator ClearRecipeRoutine()
 		{
 			JSONObject body = JsonBody.AddToPlanner(" ", day.ToString());
-			UnityWebRequest request = Postman.CreatePutRequest(Endpoints.instance.PLANNER(), body);
+			UnityWebRequest request = Postman.CreatePutRequest(Endpoints.instance.PLANNER(), body.ToString());
 			yield return request.SendWebRequest();
 
 			JSONNode response = JSON.Parse(request.downloadHandler.text);

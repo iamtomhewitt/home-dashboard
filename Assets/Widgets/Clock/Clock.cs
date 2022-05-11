@@ -23,7 +23,7 @@ namespace Clock
 		{
 			JSONNode config = this.GetConfig();
 			clockText.color = GetTextColour();
-			dateText.color = Colours.ToColour(config["dateColour"]);
+			dateText.color = GetTextColour();
 		}
 
 		public override void Run()
