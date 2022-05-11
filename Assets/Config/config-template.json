@@ -44,6 +44,18 @@
 				}
 			]
 		},
+		"buses": {
+			"colour": "#03A9F4",
+			"maxResults": 5,
+			"repeatRate": 5,
+			"repeatTime": "minutes",
+			"sleepEnd": "07:00",
+			"sleepStart": "23:59",
+			"stopCode": "code",
+			"textColour": "#ffffff",
+			"title": "Buses",
+			"titleColour": "#ffffff"
+		},
 		"clock": {
 			"title": "Clock",
 			"colour": "#03A9F4",
@@ -203,15 +215,16 @@
 		}
 	},
 	"endpoints": {
+		"bbcNews": "http://example.com",
+		"buses": "http://example.com",
+		"googleCalendar": "http://example.com",
+		"journeyPlanner": "http://example.com",
 		"recipeManager": "http://example.com",
+		"release": "https://api.github.com/repos/iamtomhewitt/home-dashboard/tags",
+		"repo": "https://github.com/iamtomhewitt/home-dashboard/blob/master/CHANGELOG.md",
+		"splitwise": "http://example.com",
 		"todoist": "http://example.com",
 		"trains": "http://example.com",
-		"bbcNews": "http://example.com",
-		"googleCalendar": "http://example.com",
-		"weather": "http://example.com",
-		"splitwise": "http://example.com",
-		"journeyPlanner": "http://example.com",
-		"release": "https://api.github.com/repos/iamtomhewitt/home-dashboard/tags",
-		"repo": "https://github.com/iamtomhewitt/home-dashboard/blob/master/CHANGELOG.md"
+		"weather": "http://example.com"
 	}
 }
