@@ -1,3 +1,17 @@
+## 6.10.0 (17/05/2022) 
+
+
+### Issues in this release:
+
+* [#242](https://github.com/iamtomhewitt/home-dashboard/issues/242) - Add background colour to config
+* [#239](https://github.com/iamtomhewitt/home-dashboard/issues/239) - Make widgets a rounded square
+* [#237](https://github.com/iamtomhewitt/home-dashboard/issues/237) - Add name of dashboard to the bottom next to the logs
+* [#235](https://github.com/iamtomhewitt/home-dashboard/issues/235) - NCTX Buses Widget
+* [#234](https://github.com/iamtomhewitt/home-dashboard/issues/234) - New Dashboard (H + B)
+* [#233](https://github.com/iamtomhewitt/home-dashboard/issues/233) - Update recipe manage endpoints and config
+
+
+
 ## 6.9.8 (14/10/2021) 
 
 
