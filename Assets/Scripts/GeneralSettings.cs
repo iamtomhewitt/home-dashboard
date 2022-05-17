@@ -13,6 +13,7 @@ public class GeneralSettings : MonoBehaviour
 	{
 		string backgroundColor = Config.instance.GetGeneralConfig()["backgroundColour"];
 		string buttonColour = Config.instance.GetGeneralConfig()["buttonColour"];
+		string dashboardName = Config.instance.GetGeneralConfig()["dashboardName"];
 
 		if (backgroundColor != null)
 		{
@@ -24,6 +25,11 @@ public class GeneralSettings : MonoBehaviour
 			settingsButton.color = Colours.ToColour(buttonColour);
 			logsButton.color = Colours.ToColour(buttonColour);
 			versionButton.color = Colours.ToColour(buttonColour);
+		}
+
+		if (dashboardName != null)
+		{
+			logsButton.text = dashboardName;
 		}
 	}
 }
