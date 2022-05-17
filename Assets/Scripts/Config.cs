@@ -62,6 +62,11 @@ public class Config : MonoBehaviour
 		return root["dialogs"];
 	}
 
+	public JSONNode GetGeneralConfig()
+	{
+		return root["general"];
+	}
+
 	public string GetEndpoint(string key)
 	{
 		return root["endpoints"][key].Value;

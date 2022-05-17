@@ -19,7 +19,8 @@ namespace Requests
 
 		public string RECIPES()
 		{
-			return Config.instance.GetEndpoint("recipeManager") + "/recipes";
+			string plannerId = GetPlannerId();
+			return Config.instance.GetEndpoint("recipeManager") + "/recipes?id=" + plannerId;
 		}
 
 		public string PLANNER()
@@ -49,6 +50,14 @@ namespace Requests
 			string apiKey = Config.instance.GetWidgetConfig()["trains"]["apiKey"];
 			string appId = Config.instance.GetWidgetConfig()["trains"]["appId"];
 			return string.Format(endpoint, stationCode, appId, apiKey);
+		}
+
+		public string BUS_DEPARTURES()
+		{
+			string endpoint = Config.instance.GetEndpoint("buses");
+			string stopCode = Config.instance.GetWidgetConfig()["buses"]["stopCode"];
+			string maxResults = Config.instance.GetWidgetConfig()["buses"]["maxResults"];
+			return string.Format(endpoint, stopCode, maxResults);
 		}
 
 		public string BBC_NEWS()

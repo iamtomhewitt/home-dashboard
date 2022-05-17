@@ -93,6 +93,8 @@ namespace Dialog
 				entry.Start();
 			}
 
+			FindObjectOfType<GeneralSettings>().Start();
+
 			this.Hide();
 		}
 
@@ -129,7 +131,7 @@ namespace Dialog
 			}
 			else
 			{
-				statusText.SetText(request.error);
+				statusText.SetText("Error: " + request.error);
 			}
 		}
 
@@ -147,7 +149,7 @@ namespace Dialog
 			te.text = cmsApiKey;
 			te.SelectAll();
 			te.Copy();
-			statusText.text = "Code copied!";
+			statusText.text = "Token '" + cmsApiKey + "' copied to clipboard!";
 		}
 	}
 }
