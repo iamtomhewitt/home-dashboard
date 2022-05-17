@@ -93,6 +93,8 @@ namespace Dialog
 				entry.Start();
 			}
 
+			FindObjectOfType<GeneralSettings>().Start();
+
 			this.Hide();
 		}
 
