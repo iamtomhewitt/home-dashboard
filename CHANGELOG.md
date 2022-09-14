@@ -1,3 +1,12 @@
+## 6.10.1 (14/09/2022) 
+
+
+### Issues in this release:
+
+* [#251](https://github.com/iamtomhewitt/home-dashboard/issues/251) - Fix BBC news title sizing
+
+
+
 ## 6.10.0 (17/05/2022) 
 
 

@@ -3,7 +3,7 @@
     "description": "A dashboard with useful information to display in my house. It runs on an Android tablet 24/7, stuck to my fridge using magnets.",
     "homepage": "https://github.com/iamtomhewitt/home-dashboard#readme",
     "name": "home-dashboard",
-    "version": "6.10.0",
+    "version": "6.10.1",
     "scripts": {
         "release": "github-releaser"
     },
