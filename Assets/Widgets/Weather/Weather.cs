@@ -46,7 +46,7 @@ namespace WeatherForecast
 			List<JSONNode> hourlyWeatherData = GetHourlyWeatherData(json);
 			List<JSONNode> dailyWeatherData = GetDailyWeatherData(json);
 
-			for (int i = 0; i < hourlyWeatherData.Count; i++)
+			for (int i = 0; i < 3; i++)
 			{
 				JSONNode data = hourlyWeatherData[i];
 				TimeSpan time = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(data["time"]).ToLocalTime().TimeOfDay;
@@ -68,7 +68,7 @@ namespace WeatherForecast
 				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(data["time"]);
 				string day = date.DayOfWeek.ToString().Substring(0, 3);
 				string iconCode = GetFontCodeFor(data["icon"]);
-				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperatureHigh"]));
+				string temperature = string.Format("{0}°", Mathf.RoundToInt((float)data["temperature"]));
 
 				WeatherEntry entry = dailyWeatherEntries[i];
 				entry.SetDayColour(GetTextColour());
@@ -83,61 +83,93 @@ namespace WeatherForecast
 		private List<JSONNode> GetDailyWeatherData(JSONNode json)
 		{
 			List<JSONNode> data = new List<JSONNode>();
-			for (int i = 0; i < dailyWeatherEntries.Length; i++)
+			JSONNode daily = json["forecast"]["forecastday"];
+
+			for (int i = 0; i < daily.Count; i++)
 			{
-				data.Add(json["daily"]["data"][i + 1]);
+				JSONNode day = daily[i];
+				JSONObject weatherForDay = new JSONObject();
+				weatherForDay["temperature"] = day["day"]["avgtemp_c"];
+				weatherForDay["icon"] = day["day"]["condition"]["code"];
+				weatherForDay["time"] = day["date_epoch"];
+				data.Add(weatherForDay);
 			}
+
 			return data;
 		}
 
 		private List<JSONNode> GetHourlyWeatherData(JSONNode json)
 		{
 			List<JSONNode> data = new List<JSONNode>();
-			data.Add(json["hourly"]["data"][1]);
-			data.Add(json["hourly"]["data"][3]);
-			data.Add(json["hourly"]["data"][6]);
+
+			JSONNode today = json["forecast"]["forecastday"][0];
+			JSONNode hourly = today["hour"];
+
+			JSONObject weatherForNow = new JSONObject();
+			weatherForNow["temperature"] = json["current"]["temp_c"];
+			weatherForNow["icon"] = json["current"]["condition"]["code"];
+			weatherForNow["time"] = json["location"]["localtime_epoch"];
+
+			data.Add(weatherForNow);
+
+			for (int i = 0; i < hourly.Count; i++)
+			{
+				JSONNode hour = hourly[i];
+				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(hour["time_epoch"]);
+				DateTime now = DateTime.Now;
+
+				if (now < date) {
+					JSONObject weatherForHour = new JSONObject();
+					weatherForHour["temperature"] = hour["temp_c"];
+					weatherForHour["icon"] = hour["condition"]["code"];
+					weatherForHour["time"] = hour["time_epoch"];
+					data.Add(weatherForHour);
+				}
+			}
+
 			return data;
 		}
 
 		/// <summary>
 		///	Get a sprite that matches the weather string. Also realign as some characters have extra top space for some reason.
+		/// Codes can be found at https://www.weatherapi.com/docs/weather_conditions.json
 		/// </summary>
-		private string GetFontCodeFor(string weatherName)
+		private string GetFontCodeFor(string code)
 		{
-			switch (weatherName)
+			switch (code)
 			{
-				case "clear-day":
+				// Sunny / clear
+				case "1000":
 					return "1";
 
-				case "partly-cloudy-day":
+				// Partly cloudy
+				case "1003":
 					return "A";
 
-				case "partly-cloudy-night":
-					return "c";
-
-				case "rain":
+				// Rain
+				case "1189":
+				case "1063":
 					return "K";
 
-				case "sleet":
+				// Sleet
+				case "1207":
 					return "W";
 
-				case "snow":
+				// Snow
+				case "1219":
 					return "I";
 
-				case "wind":
-					return ",";
-
-				case "cloudy":
+				// Cloudy
+				case "1006":
+				case "1009":
 					return "3";
 
-				case "clear-night":
-					return "6";
-
-				case "fog":
+				// Fog
+				case "1135":
 					return "…";
 			}
 
-			WidgetLogger.instance.Log(this, "Could not find: " + weatherName);
+			WidgetLogger.instance.Log(this, "Could not find: " + code);
 			return "“";
 		}
 	}
