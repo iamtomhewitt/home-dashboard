@@ -1,3 +1,12 @@
+## 6.10.2 (09/04/2023) 
+
+
+### Issues in this release:
+
+* [#252](https://github.com/iamtomhewitt/home-dashboard/issues/252) - DarkSky api has ended
+
+
+
 ## 6.10.1 (14/09/2022) 
 
 
