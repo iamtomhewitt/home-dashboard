@@ -1,3 +1,13 @@
+## 6.10.3 (27/04/2023) 
+
+
+### Issues in this release:
+
+* [#254](https://github.com/iamtomhewitt/home-dashboard/issues/254) - Weather does not display when past a certain time
+* [#253](https://github.com/iamtomhewitt/home-dashboard/issues/253) - Update weather codes
+
+
+
 ## 6.10.2 (09/04/2023) 
 
 
