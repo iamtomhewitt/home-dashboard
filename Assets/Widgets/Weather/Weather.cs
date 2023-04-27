@@ -101,10 +101,6 @@ namespace WeatherForecast
 		private List<JSONNode> GetHourlyWeatherData(JSONNode json)
 		{
 			List<JSONNode> data = new List<JSONNode>();
-
-			JSONNode today = json["forecast"]["forecastday"][0];
-			JSONNode hourly = today["hour"];
-
 			JSONObject weatherForNow = new JSONObject();
 			weatherForNow["temperature"] = json["current"]["temp_c"];
 			weatherForNow["icon"] = json["current"]["condition"]["code"];
@@ -112,19 +108,36 @@ namespace WeatherForecast
 
 			data.Add(weatherForNow);
 
-			for (int i = 0; i < hourly.Count; i++)
+			for (int i = 1; i < 3; i++)
 			{
-				JSONNode hour = hourly[i];
-				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(hour["time_epoch"]);
-				DateTime now = DateTime.Now;
+				int hourNow = DateTime.Now.Hour;
+				int displayHour = hourNow + i;
 
-				if (now < date) {
-					JSONObject weatherForHour = new JSONObject();
-					weatherForHour["temperature"] = hour["temp_c"];
-					weatherForHour["icon"] = hour["condition"]["code"];
-					weatherForHour["time"] = hour["time_epoch"];
-					data.Add(weatherForHour);
+				JSONNode today = json["forecast"]["forecastday"][0];
+				
+				// Go onto the next day
+				if (displayHour > 23) {
+					Debug.Log("Display hour past 23:00, using next day");
+					today = json["forecast"]["forecastday"][1];
+
+					if (displayHour == 24) {
+						displayHour = 0;
+					}
+					if (displayHour == 25) {
+						displayHour = 1;
+					}
 				}
+
+				JSONNode hourly = today["hour"];
+				JSONNode hourData = hourly[displayHour];
+				DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(hourData["time_epoch"]);
+				
+				JSONObject weatherForHour = new JSONObject();
+				weatherForHour["temperature"] = hourData["temp_c"];
+				weatherForHour["icon"] = hourData["condition"]["code"];
+				weatherForHour["time"] = hourData["time_epoch"];
+
+				data.Add(weatherForHour);
 			}
 
 			return data;
