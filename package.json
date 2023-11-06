@@ -11,12 +11,12 @@
         "apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard"
     },
     "devDependencies": {
-        "@commitlint/cli": "^9.1.2",
-        "@commitlint/config-conventional": "^11.0.0",
-        "cz-conventional-changelog": "^2.1.0",
-        "dot-prop": "^6.0.1",
-        "husky": "^1.1.2",
-        "validate-commit-msg": "^2.14.0"
+        "@commitlint/cli": "18.2.0",
+        "@commitlint/config-conventional": "18.1.0",
+        "cz-conventional-changelog": "3.3.0",
+        "dot-prop": "8.0.2",
+        "husky": "8.0.3",
+        "validate-commit-msg": "2.14.0"
     },
     "husky": {
         "hooks": {

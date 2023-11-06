@@ -32,7 +32,7 @@ namespace Requests
 
 		private static UnityWebRequest PostRequest(string url, string jsonBodyAsString)
 		{
-			UnityWebRequest request = UnityWebRequest.Post(url, "POST");
+			UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "POST");
 			byte[] bytes = Encoding.UTF8.GetBytes(jsonBodyAsString);
 
 			request.uploadHandler = new UploadHandlerRaw(bytes);
