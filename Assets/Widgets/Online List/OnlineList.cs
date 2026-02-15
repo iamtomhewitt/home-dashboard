@@ -77,7 +77,7 @@ namespace OnlineLists
 			}
 
 			JSONNode json = JSON.Parse(request.downloadHandler.text);
-			foreach (JSONNode task in json)
+			foreach (JSONNode task in json["results"])
 			{
 				OnlineListEntry e = Instantiate(entryPrefab, content).GetComponent<OnlineListEntry>();
 				e.SetApiKey(apiKey);
