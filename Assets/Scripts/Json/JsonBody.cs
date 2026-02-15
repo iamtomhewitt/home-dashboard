@@ -37,7 +37,7 @@ namespace SimpleJSON
 		/// </summary>
 		public static string TodoistTask(string item, string projectId)
 		{
-			return "{\"content\": \"" + item + "\", \"project_id\": " + projectId + " }";
+			return "{\"content\": \"" + item + "\", \"project_id\": \"" + projectId + "\" }";
 		}
 	}
 }
