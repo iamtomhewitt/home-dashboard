@@ -1,34 +1,24 @@
 {
-    "author": "Tom Hewitt",
-    "description": "A dashboard with useful information to display in my house. It runs on an Android tablet 24/7, stuck to my fridge using magnets.",
-    "homepage": "https://github.com/iamtomhewitt/home-dashboard#readme",
-    "name": "home-dashboard",
-    "version": "6.10.4",
-    "scripts": {
-        "release": "github-releaser"
-    },
-    "repository": {
-        "apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard"
-    },
-    "devDependencies": {
-        "@commitlint/cli": "18.2.0",
-        "@commitlint/config-conventional": "18.1.0",
-        "cz-conventional-changelog": "3.3.0",
-        "dot-prop": "8.0.2",
-        "husky": "8.0.3",
-        "validate-commit-msg": "2.14.0"
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "dependencies": {
-        "github-releaser": "1.6.1"
-    }
+  "name": "home-dashboard",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc -b && vite build",
+    "lint-fix": "retail-linter --sourceFolder=./ --type=typescript-react --fix"
+  },
+  "dependencies": {
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.13",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.4",
+    "retail-linter": "3.1.0",
+    "sass-embedded": "1.97.3",
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
+  }
 }

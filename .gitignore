@@ -1,57 +1,24 @@
-# =============== #
-# Unity generated #
-# =============== #
-Temp/
-Library/
-UserSettings/Layouts
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# ===================================== #
-# Visual Studio / MonoDevelop generated #
-# ===================================== #
-ExportedObj/
-obj/
-*.svd
-*.userprefs
-/*.csproj
-*.pidb
-*.suo
-/*.sln
-*.user
-*.unityproj
-*.booproj
-
-# ============ #
-# OS generated #
-# ============ #
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-/Library/*
-.vscode
-
-# Other folders
-/Assets/Config/*
-/Assets/TextMesh Pro/Resources/Shaders/*
-/ProjectSettings/*
-Logs/
 node_modules
+dist
+dist-ssr
+*.local
 
-# Files
-!/Assets/Config/config-template.json
-!/ProjectSettings/ProjectSettings.asset
-!/ProjectSettings/ProjectVersion.txt
-.env
-/.vs/home-dashboard/v15/Server/sqlite3/db.lock
-/.vs/home-dashboard/v15/Server/sqlite3/storage.ide
-/.vs/home-dashboard/v15/Server/sqlite3/storage.ide-shm
-/.vs/home-dashboard/v15/Server/sqlite3/storage.ide-wal
-/.vscode/settings.json
-/Assets/config.json
-/Assets/config.json.meta
-/Builds/*.apk
-/Builds/Home Dashboard.apk
-/Builds/install-toms-house.cmd
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
