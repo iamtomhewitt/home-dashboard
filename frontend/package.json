@@ -1,0 +1,24 @@
+{
+  "name": "@home-dashboard/frontend",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc -b && vite build",
+    "lint-fix": "retail-linter --sourceFolder=./ --type=typescript-react --fix"
+  },
+  "dependencies": {
+    "gridstack": "12.4.2",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-router-dom": "7.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.13",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.4",
+    "sass-embedded": "1.97.3",
+    "vite": "7.3.1"
+  }
+}

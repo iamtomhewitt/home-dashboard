@@ -1,26 +1,21 @@
 {
   "name": "home-dashboard",
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "start": "vite",
-    "build": "tsc -b && vite build",
-    "lint-fix": "retail-linter --sourceFolder=./ --type=typescript-react --fix"
-  },
-  "dependencies": {
-    "gridstack": "12.4.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-router-dom": "7.13.0"
+    "dev": "npm run dev --workspace backend & npm run dev --workspace frontend",
+    "deploy": "npm run deploy:backend && npm run deploy:frontend",
+    "deploy:backend": "npm run deploy --workspace backend",
+    "deploy:frontend": "npm run deploy --workspace frontend",
+    "frontend": "cd frontend && npm start",
+    "lint": "npm run lint --workspaces",
+    "lint-fix": "npm run lint-fix --workspaces"
   },
   "devDependencies": {
-    "@types/node": "24.10.13",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.4",
-    "retail-linter": "3.1.0",
-    "sass-embedded": "1.97.3",
-    "typescript": "5.9.3",
-    "vite": "7.3.1"
-  }
+    "retail-linter": "3.3.0",
+    "typescript": "5.9.3"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
 }

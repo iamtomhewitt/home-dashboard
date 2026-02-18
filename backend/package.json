@@ -1,0 +1,14 @@
+{
+  "name": "@home-dashboard/backend",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "lint-fix": "retail-linter --sourceFolder=./ --type=typescript-react --fix"
+  },
+  "dependencies": {
+    "aws-lambda": "1.0.7"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.122"
+  }
+}

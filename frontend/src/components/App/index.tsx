@@ -10,6 +10,8 @@ const App = () => {
 
         <Route element={<div>Dashboard</div>} path='dashboard' />
 
+        <Route element={<div>Not Found</div>} path='*' />
+
       </Routes>
     </div>
   );
