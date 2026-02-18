@@ -1,0 +1,28 @@
+service: home-dashboard-backend
+frameworkVersion: '3'
+useDotenv: true
+provider:
+  lambdaHashingVersion: 20201221
+  name: aws
+  region: eu-west-1
+  runtime: nodejs24.x
+  stage: api
+  timeout: 30
+package:
+  patterns:
+    - '!**' # exclude everything by default, then include stuff below
+    - 'dist/**'
+    - 'node_modules/**'
+functions:
+  hello-world:
+    name: hello-world
+    description: Hello world
+    handler: dist/src/api/config.handler
+    logRetentionInDays: 7
+    environment:
+      TOM_SECRET: ${env:TOM_SECRET}
+    events:
+      - http:
+          method: get
+          path: /config/test
+          cors: true
