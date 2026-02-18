@@ -2,6 +2,7 @@
   "name": "home-dashboard",
   "version": "0.0.0",
   "scripts": {
+    "build:backend": "npm run build --workspace backend",
     "dev": "npm run dev --workspace backend & npm run dev --workspace frontend",
     "deploy": "npm run deploy:backend && npm run deploy:frontend",
     "deploy:backend": "npm run deploy --workspace backend",

@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "typeRoots": [
+      "./node_modules/@types",
+      "../../node_modules/@types",
+    ],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "node",
+    ],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+  },
+  "exclude": [
+    ".idea",
+    "**/build",
+    "**/.build",
+    "**/node_modules**",
+    "**/coverage",
+    "**/bin",
+    "**/dist",
+    "**/jest",
+    "**/jest.*",
+    "**/babel.*",
+    "**/*.spec.ts"
+  ]
+}
