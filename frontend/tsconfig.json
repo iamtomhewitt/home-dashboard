@@ -7,9 +7,6 @@
       "esnext",
       "dom"
     ],
-    "types": [
-      "node",
-    ],
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

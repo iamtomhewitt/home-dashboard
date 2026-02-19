@@ -5,6 +5,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc -b && vite build",
+    "deploy": "npm run build && sls deploy --aws-profile tom",
     "lint-fix": "retail-linter --sourceFolder=./ --type=typescript-react --fix"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.4",
     "sass-embedded": "1.97.3",
+    "serverless-s3-sync": "3.5.1",
     "vite": "7.3.1"
   }
 }
