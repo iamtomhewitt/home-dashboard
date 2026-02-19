@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "scripts": {
     "build": "rm -rf dist && tsc -b",
-    "deploy": "npm run build && sls deploy --aws-profile tom",
     "lint-fix": "retail-linter --sourceFolder=./ --type=typescript --fix"
   },
   "dependencies": {

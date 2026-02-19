@@ -8,11 +8,19 @@ provider:
   runtime: nodejs24.x
   stage: api
   timeout: 30
+  iam:
+    role:
+      statements:
+      - Effect: "Allow"
+        Action:
+        - "s3:ListAllMyBuckets"
+        - "s3:GetBucketLocation"
+        Resource: "*"
 package:
   patterns:
-    - '!**' # exclude everything by default, then include stuff below
-    - 'dist/**'
-    - 'node_modules/**'
+  - '!**' # exclude everything by default, then include stuff below
+  - 'dist/**'
+  - 'node_modules/**'
 functions:
   hello-world:
     name: hello-world
@@ -22,7 +30,7 @@ functions:
     environment:
       TOM_SECRET: ${env:TOM_SECRET}
     events:
-      - http:
-          method: get
-          path: /config/test
-          cors: true
+    - http:
+        method: get
+        path: /config/test
+        cors: true
