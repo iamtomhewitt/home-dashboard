@@ -1,38 +1,84 @@
+---
 service: home-dashboard-backend
 frameworkVersion: '3'
 useDotenv: true
 provider:
-  lambdaHashingVersion: 20201221
   name: aws
   region: eu-west-1
   runtime: nodejs24.x
   stage: api
   timeout: 30
-  iam:
-    role:
-      statements:
-      - Effect: "Allow"
-        Action:
-        - "s3:ListAllMyBuckets"
-        - "s3:GetBucketLocation"
-        Resource: "*"
+  lambdaHashingVersion: 20201221
 package:
   patterns:
-  - '!**' # exclude everything by default, then include stuff below
-  - 'dist/**'
-  - 'node_modules/**'
+    - '!**'
+    - dist/**
+    - node_modules/**
 functions:
   config:
     name: home-dashboard-config
     description: CRUD operations for config for Home Dashboard
     handler: dist/src/api/config.handler
     logRetentionInDays: 7
+    role:
+      Fn::GetAtt:
+        - ConfigLambdaRole
+        - Arn
     events:
-    - http:
-        method: get
-        path: /config
-        cors: true
-    - http:
-        method: post
-        path: /config
-        cors: true
+      - http:
+          method: get
+          path: /config
+          cors: true
+      - http:
+          method: post
+          path: /config
+          cors: true
+      - http:
+          method: delete
+          path: /config
+          cors: true
+resources:
+  Resources:
+    ConfigBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: home-dashboard-config
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          IgnorePublicAcls: true
+          BlockPublicPolicy: true
+          RestrictPublicBuckets: true
+    ConfigLambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: home-dashboard-config-lambda-role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: ConfigBucketAccess
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - s3:PutObject
+                    - s3:GetObject
+                    - s3:DeleteObject
+                  Resource:
+                    - arn:aws:s3:::home-dashboard-config/*
+                - Effect: Allow
+                  Action:
+                    - s3:ListBucket
+                  Resource:
+                    - arn:aws:s3:::home-dashboard-config
+                - Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource: '*'
