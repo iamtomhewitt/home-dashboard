@@ -22,9 +22,7 @@ export const handler = async (e: APIGatewayProxyEvent) => {
         }));
         const contents = await file.Body?.transformToString() || '{}';
         const data = JSON.parse(contents);
-        return response.ok({
-          data,
-        });
+        return response.ok(data);
       }
 
       case 'PUT': {
@@ -38,9 +36,7 @@ export const handler = async (e: APIGatewayProxyEvent) => {
           Key: id,
         }));
 
-        return response.ok({
-          data,
-        });
+        return response.ok(data);
       }
 
       case 'DELETE': {
@@ -49,9 +45,7 @@ export const handler = async (e: APIGatewayProxyEvent) => {
           Key: id,
         }));
 
-        return response.ok({
-          data,
-        });
+        return response.ok(data);
       }
 
       default:

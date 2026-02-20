@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { configApi } from '../../api/config';
+
 const Login = () => {
   const [token, setToken] = useState('');
   const navigate = useNavigate();
@@ -9,8 +11,9 @@ const Login = () => {
     setToken(e.target.value);
   };
 
-  const onLogin = () => {
-    navigate('/dashboard');
+  const onLogin = async () => {
+    const { data, status } = await configApi.get(token);
+    console.log(status, data);
   };
 
   return (

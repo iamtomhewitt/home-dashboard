@@ -1,10 +1,17 @@
-import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import Login from '../Login';
 
 import './index.scss';
 
 const App = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log('path changed');
+  }, [location.pathname]);
+
   return (
     <div>
       <button onClick={() => document.documentElement.requestFullscreen()}>Full Screen</button>

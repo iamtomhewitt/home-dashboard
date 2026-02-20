@@ -30,7 +30,7 @@ functions:
           path: /config
           cors: true
       - http:
-          method: post
+          method: put
           path: /config
           cors: true
       - http:
