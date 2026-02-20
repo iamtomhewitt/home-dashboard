@@ -7,6 +7,10 @@ import './index.scss';
 const App = () => {
   return (
     <div>
+      <button onClick={() => document.documentElement.requestFullscreen()}>Full Screen</button>
+
+      <button onClick={() => document.exitFullscreen()}>Hide Full Screen</button>
+
       <Routes>
         <Route element={<Login />} path='/login' />
 
