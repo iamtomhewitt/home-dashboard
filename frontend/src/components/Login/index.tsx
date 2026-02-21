@@ -2,18 +2,32 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { configApi } from '../../api/config';
+import { credentials } from '../../lib/credentials';
+import { sessionStorage } from '../../lib/session-storage';
 
 const Login = () => {
-  const [token, setToken] = useState('');
+  const [error, setError] = useState('');
+  const [dashboardId, setDashboardId] = useState('');
   const navigate = useNavigate();
 
   const onChangeInput = (e: any) => {
-    setToken(e.target.value);
+    setDashboardId(e.target.value);
   };
 
   const onLogin = async () => {
-    const { data, status } = await configApi.get(token);
-    console.log(status, data);
+    setError('');
+    const response = await configApi.get(dashboardId);
+
+    switch (response.status) {
+      case 200:
+        credentials.login(true);
+        sessionStorage.setDashboardConfig(response.data);
+        navigate('/dashboard');
+        break;
+      default:
+        setError(response.data.message);
+        break;
+    }
   };
 
   return (
@@ -25,9 +39,11 @@ const Login = () => {
         <input onChange={onChangeInput} />
       </label>
 
-      <button disabled={!token} onClick={onLogin}>
+      <button disabled={!dashboardId} onClick={onLogin}>
         Login
       </button>
+
+      {error && <div>{error}</div>}
     </div>
   );
 };

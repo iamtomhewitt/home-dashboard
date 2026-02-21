@@ -1,5 +1,8 @@
 type Response = {
-  data: any;
+  data: {
+    message: string;
+    [key: string]: any;
+  };
   status: number;
 }
 

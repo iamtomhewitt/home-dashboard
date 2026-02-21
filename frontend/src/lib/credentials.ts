@@ -1,14 +1,19 @@
-const DASHBOARD_KEY = 'dashboardKey';
+const KEY = 'loggedIn';
 
 const isLoggedIn = () => {
-  return !!window.sessionStorage.getItem(DASHBOARD_KEY);
+  return window.sessionStorage.getItem(KEY) === 'true';
 };
 
-const login = (key: string) => {
-  window.sessionStorage.setItem(DASHBOARD_KEY, key);
+const login = (key: boolean) => {
+  window.sessionStorage.setItem(KEY, `${key}`);
+};
+
+const logout = () => {
+  window.sessionStorage.removeItem(KEY);
 };
 
 export const credentials = {
   isLoggedIn,
   login,
+  logout,
 };
