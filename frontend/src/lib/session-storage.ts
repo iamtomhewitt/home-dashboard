@@ -1,5 +1,5 @@
 const getDashboardConfig = () => {
-  JSON.parse(window.sessionStorage.getItem('config') || '{}');
+  return JSON.parse(window.sessionStorage.getItem('config') || '{}');
 };
 
 const setDashboardConfig = (data: any) => {

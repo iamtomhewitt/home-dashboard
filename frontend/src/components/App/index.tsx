@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
+import Dashboard from '../Dashboard';
 import Login from '../Login';
+import Menu from '../Menu';
 import { credentials } from '../../lib/credentials';
 
 import './index.scss';
@@ -18,7 +20,13 @@ const App = () => {
       return <Navigate to='/login' />;
     }
 
-    return component;
+    return (
+      <div>
+        {component}
+
+        <Menu />
+      </div>
+    );
   };
 
   return (
@@ -30,7 +38,7 @@ const App = () => {
       <Routes>
         <Route element={<Login />} path='/login' />
 
-        <Route element={withLoggedInRoute(<div>Dashboard</div>)} path='/dashboard' />
+        <Route element={withLoggedInRoute(<Dashboard />)} path='/dashboard' />
 
         <Route element={<div>Not Found</div>} path='*' />
 
