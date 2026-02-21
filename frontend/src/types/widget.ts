@@ -2,7 +2,7 @@ export type Widget = {
   colour: string;
   id: string;
   repeatRate: number;
-  repeatTime: 'seconds' | 'minutes' | 'hours';
+  repeatTime: 'seconds' | 'minutes' | 'hours' | 'days';
   sleepEnd: string;
   sleepStart: string;
   title: string;
