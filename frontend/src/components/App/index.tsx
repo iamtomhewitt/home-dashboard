@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import Dashboard from '../Dashboard';
 import Login from '../Login';
@@ -8,10 +9,14 @@ import { credentials } from '../../lib/credentials';
 import './index.scss';
 
 const App = () => {
-  const isLoggedIn = credentials.isLoggedIn();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Do nothing at the minute, just to rerender the app to allow the navigate to take place
+  }, [location.pathname]);
 
   const withLoggedInRoute = (component: React.ReactElement) => {
-    if (!isLoggedIn) {
+    if (!credentials.isLoggedIn()) {
       return <Navigate to='/login' />;
     }
 
