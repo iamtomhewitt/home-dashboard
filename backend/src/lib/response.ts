@@ -15,9 +15,9 @@ const corsHeaders = {
  * { data: { foo: 'bar' } }
  * ```
  */
-const json = (statusCode: number, body: any) => ({
+const json = (statusCode: number, body: ResponseBody) => ({
   body: JSON.stringify({
-    data: body, 
+    data: body,
   }),
   headers: corsHeaders,
   statusCode,
@@ -27,3 +27,8 @@ export const response = {
   ok: (body: any) => json(200, body),
   json,
 };
+
+type ResponseBody = {
+  message: string;
+  [key: string]: any;
+}
