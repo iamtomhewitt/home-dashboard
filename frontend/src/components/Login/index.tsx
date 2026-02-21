@@ -10,10 +10,6 @@ const Login = () => {
   const [dashboardId, setDashboardId] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    credentials.logout(); // Logout straight away in case we navigate back to this page for some reason
-  }, []);
-
   const onChangeInput = (e: any) => {
     setDashboardId(e.target.value);
   };
@@ -25,7 +21,7 @@ const Login = () => {
     switch (response.status) {
       case 200:
         credentials.login(true);
-        sessionStorage.setDashboardConfig(response.data);
+        sessionStorage.setDashboardConfig(response.data as any);
         navigate('/dashboard');
         break;
       default:

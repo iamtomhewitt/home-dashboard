@@ -5,7 +5,7 @@ import './index.scss';
 /**
  * Base widget, other widgets should wrap this component.
  */
-const Widget = ({ x = 0, y = 0, width = 0, height = 0, children, widget }: Props) => (
+const Widget = ({ x = 0, y = 0, width = 2, height = 2, children, widget }: Props) => (
   <div
     className='grid-stack-item widget'
     gs-h={height} // eslint-disable-line react/no-unknown-property

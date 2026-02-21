@@ -8,8 +8,10 @@ import { credentials } from '../../lib/credentials';
 import './index.scss';
 
 const App = () => {
+  const isLoggedIn = credentials.isLoggedIn();
+
   const withLoggedInRoute = (component: React.ReactElement) => {
-    if (!credentials.isLoggedIn()) {
+    if (!isLoggedIn) {
       return <Navigate to='/login' />;
     }
 
@@ -24,10 +26,6 @@ const App = () => {
 
   return (
     <div>
-      {/* <button onClick={() => document.documentElement.requestFullscreen()}>Full Screen</button> */}
-
-      {/* <button onClick={() => document.exitFullscreen()}>Hide Full Screen</button> */}
-
       <Routes>
         <Route element={<Login />} path='/login' />
 
