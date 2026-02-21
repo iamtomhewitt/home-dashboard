@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { configApi } from '../../api/config';
@@ -9,6 +9,10 @@ const Login = () => {
   const [error, setError] = useState('');
   const [dashboardId, setDashboardId] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    credentials.logout(); // Logout straight away in case we navigate back to this page for some reason
+  }, []);
 
   const onChangeInput = (e: any) => {
     setDashboardId(e.target.value);
