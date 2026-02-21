@@ -22,7 +22,7 @@ export const handler = async (e: APIGatewayProxyEvent) => {
         }));
         const contents = await file.Body?.transformToString() || '{}';
         const data = JSON.parse(contents);
-        return response.ok(data);
+        return response.json(200, 'Success', data);
       }
 
       case 'PUT': {
@@ -36,7 +36,7 @@ export const handler = async (e: APIGatewayProxyEvent) => {
           Key: id,
         }));
 
-        return response.ok(data);
+        return response.json(200, 'Success', data);
       }
 
       case 'DELETE': {
@@ -45,7 +45,7 @@ export const handler = async (e: APIGatewayProxyEvent) => {
           Key: id,
         }));
 
-        return response.ok(data);
+        return response.json(200, 'Success', data);
       }
 
       default:
@@ -65,8 +65,6 @@ export const handler = async (e: APIGatewayProxyEvent) => {
         break;
     }
 
-    return response.json(responseCode, {
-      message: err.message,
-    });
+    return response.json(responseCode, err.message);
   }
 };

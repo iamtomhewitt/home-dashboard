@@ -15,20 +15,25 @@ const corsHeaders = {
  * { data: { foo: 'bar' } }
  * ```
  */
-const json = (statusCode: number, body: ResponseBody) => ({
-  body: JSON.stringify({
-    data: body,
-  }),
-  headers: corsHeaders,
-  statusCode,
-});
+const json = (statusCode: number, message: string, body?: ResponseBody) => {
+  if (!message) {
+    throw new Error('No "message" property in response body');
+  }
+
+  return {
+    body: JSON.stringify({
+      message,
+      data: body,
+    }),
+    headers: corsHeaders,
+    statusCode,
+  };
+};
 
 export const response = {
-  ok: (body: any) => json(200, body),
   json,
 };
 
 type ResponseBody = {
-  message: string;
   [key: string]: any;
 }

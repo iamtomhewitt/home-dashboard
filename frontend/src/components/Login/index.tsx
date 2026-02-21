@@ -21,11 +21,11 @@ const Login = () => {
     switch (response.status) {
       case 200:
         credentials.login(true);
-        sessionStorage.setDashboardConfig(response.data as any);
+        sessionStorage.setDashboardConfig(response.data);
         navigate('/dashboard');
         break;
       default:
-        setError(response.data.message);
+        setError(response.message);
         break;
     }
   };

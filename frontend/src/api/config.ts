@@ -1,12 +1,11 @@
+import { DashboardConfig } from '../types/config';
 import { http } from '../lib/https';
 
 const apiUrl = import.meta.env.VITE_CONFIG_API;
 
 type Response = {
-  data: {
-    message: string;
-    [key: string]: any;
-  };
+  data: DashboardConfig;
+  message: string;
   status: number;
 }
 
