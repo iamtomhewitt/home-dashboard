@@ -37,6 +37,20 @@ functions:
           method: delete
           path: /config
           cors: true
+  news:
+    name: home-dashboard-news
+    description: Lambda that backs onto the NewsAPI, as it does not allow browser requests
+    handler: dist/src/api/news.handler
+    logRetentionInDays: 7
+    role:
+      Fn::GetAtt:
+        - ConfigLambdaRole
+        - Arn
+    events:
+      - http:
+          method: get
+          path: /news
+          cors: true
 resources:
   Resources:
     ConfigBucket:

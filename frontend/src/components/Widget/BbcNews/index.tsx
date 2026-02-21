@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 
 import LoadingIcon from '../../Icons/Loading';
 import Widget from '../';
+import { NewsResponse } from '../../../types/lambda';
 import { Widget as WidgetType } from '../../../types/widget';
-import { http } from '../../../lib/https';
+import { newsApi } from '../../../api/news';
 
 const BbcNews = ({ widget }: Props) => {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<NewsResponse['data']>([]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${widget.apiKey}`;
-      const response = await http.get<any>(url);
-      setArticles(response.articles);
+      const response = await newsApi.get(widget.apiKey as string);
+      setArticles(response.data);
     };
 
     fetchArticles();
@@ -39,20 +39,6 @@ const BbcNews = ({ widget }: Props) => {
     </Widget>
   );
 };
-
-type Article = {
-  author: string;
-  content: string;
-  description: string;
-  publishedAt: string;
-  title: string;
-  url: string;
-  urlToImage: string;
-  source: {
-    id: string;
-    name: string;
-  },
-}
 
 type Props = {
   widget: WidgetType;

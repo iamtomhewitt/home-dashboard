@@ -1,16 +1,10 @@
-import { DashboardConfig } from '../types/config';
+import { ConfigResponse } from '../types/lambda';
 import { http } from '../lib/https';
 
-const apiUrl = import.meta.env.VITE_CONFIG_API;
+const apiUrl = import.meta.env.VITE_API_URL;
 
-type Response = {
-  data: DashboardConfig;
-  message: string;
-  status: number;
-}
-
-const get = async (id: string): Promise<Response> => {
-  return http.get(`${apiUrl}?id=${id}`);
+const get = async (id: string): Promise<ConfigResponse> => {
+  return http.get(`${apiUrl}/config?id=${id}`);
 };
 
 export const configApi = {
