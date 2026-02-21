@@ -9,7 +9,7 @@
     "lint-fix": "npm run lint-fix --ws"
   },
   "devDependencies": {
-    "retail-linter": "3.3.0",
+    "retail-linter": "3.4.0",
     "typescript": "5.9.3"
   },
   "workspaces": [
