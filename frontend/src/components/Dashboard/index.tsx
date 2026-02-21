@@ -8,6 +8,9 @@ import 'gridstack/dist/gridstack.min.css';
 
 const Dashboard = () => {
   const { widgets } = sessionStorage.getDashboardConfig();
+  const widgetLookup: any = {
+    bbcNews: BbcNews,
+  };
 
   useEffect(() => {
     GridStack.init();
@@ -15,8 +18,16 @@ const Dashboard = () => {
 
   return (
     <div className='grid-stack'>
-      {/* todo loop through widgest and use a map object to lookup which component to render */}
-      <BbcNews data={widgets[0]} />
+      {widgets.map((widget, i) => {
+        const Component = widgetLookup[widget.id];
+
+        if (!Component) {
+          console.warn('Could not find component for', widget.id || widget);
+          return null;
+        }
+
+        return <Component key={i} widget={widget} />;
+      })}
 
     </div>
 

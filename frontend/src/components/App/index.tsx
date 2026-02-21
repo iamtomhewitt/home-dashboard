@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Dashboard from '../Dashboard';
 import Login from '../Login';
@@ -9,12 +8,6 @@ import { credentials } from '../../lib/credentials';
 import './index.scss';
 
 const App = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.log('path changed');
-  }, [location.pathname]);
-
   const withLoggedInRoute = (component: React.ReactElement) => {
     if (!credentials.isLoggedIn()) {
       return <Navigate to='/login' />;

@@ -5,13 +5,13 @@ import Widget from '../';
 import { Widget as WidgetType } from '../../../types/widget';
 import { http } from '../../../lib/https';
 
-const BbcNews = ({ data }: Props) => {
+const BbcNews = ({ widget }: Props) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${data.apiKey}`;
+      const url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${widget.apiKey}`;
       const response = await http.get<any>(url);
       setArticles(response.articles);
     };
@@ -26,7 +26,7 @@ const BbcNews = ({ data }: Props) => {
 
     const interval = setInterval(() => {
       setIndex(prev => prev >= articles.length - 1 ? 0 : prev + 1);
-    }, (data.secondsBetweenArticles as number) * 1000);
+    }, (widget.secondsBetweenArticles as number) * 1000);
 
     return () => {
       clearInterval(interval);
@@ -34,7 +34,7 @@ const BbcNews = ({ data }: Props) => {
   }, [articles.length]);
 
   return (
-    <Widget widget={data}>
+    <Widget widget={widget}>
       <div>{articles.length > 0 ? articles[index].title : <LoadingIcon />}</div>
     </Widget>
   );
@@ -55,7 +55,7 @@ type Article = {
 }
 
 type Props = {
-  data: WidgetType;
+  widget: WidgetType;
 }
 
 export default BbcNews;
