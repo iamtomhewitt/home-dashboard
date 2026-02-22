@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import LoadingIcon from '../../Icons/Loading';
 import Widget from '../';
 import { NewsResponse } from '../../../types/lambda';
 import { Widget as WidgetType } from '../../../types/widget';
@@ -27,7 +26,11 @@ const BbcNews = ({ widget }: Props) => {
 
   return (
     <Widget onRefresh={onRefresh} widget={widget}>
-      <div>{articles.length > 0 ? articles[index].title : <LoadingIcon />}</div>
+      <div>
+        {articles.length > 0 ?
+          articles[index].title :
+          <i className='fa-solid fa-circle-notch fa-spin fa-2xl' />}
+      </div>
     </Widget>
   );
 };

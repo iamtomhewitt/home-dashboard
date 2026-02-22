@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import * as dateFns from 'date-fns';
 
-import BinIcon from '../../Icons/Bin';
 import Widget from '../';
 import { Widget as WidgetType } from '../../../types/widget';
 
@@ -56,7 +55,7 @@ const BinDay = ({ widget }: Props) => {
   return (
     <Widget onRefresh={onRefresh} widget={widget}>
       <div className='bin-day'>
-        <BinIcon />
+        <i className='fa-regular fa-trash-can' />
 
         <div>{display?.message}</div>
       </div>

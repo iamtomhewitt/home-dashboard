@@ -29,11 +29,11 @@ const Menu = () => {
   return (
     <div className='menu'>
       <button onClick={onToggleFullScreen}>
-        {isFullScreen ? 'Hide' : 'Show'} Full Screen
+        <i className={`fa-solid fa-${isFullScreen ? 'compress' : 'expand'}`} />
       </button>
 
       <button onClick={onLogout}>
-        Logout
+        <i className={'fa-solid fa-arrow-right-from-bracket'} />
       </button>
     </div>
   );
