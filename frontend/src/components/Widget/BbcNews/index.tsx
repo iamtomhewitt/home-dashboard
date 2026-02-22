@@ -5,16 +5,10 @@ import Widget from '../';
 import { NewsResponse } from '../../../types/lambda';
 import { Widget as WidgetType } from '../../../types/widget';
 import { newsApi } from '../../../api/news';
-import { refreshWidget } from '../../../hooks/refreshWidget';
 
 const BbcNews = ({ widget }: Props) => {
   const [articles, setArticles] = useState<NewsResponse['data']>([]);
   const [index, setIndex] = useState(0);
-
-  refreshWidget(widget, async () => {
-    const response = await newsApi.get(widget.apiKey as string);
-    setArticles(response.data);
-  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,8 +20,13 @@ const BbcNews = ({ widget }: Props) => {
     };
   }, [articles.length]);
 
+  const onRefresh = async () => {
+    const response = await newsApi.get(widget.apiKey as string);
+    setArticles(response.data);
+  };
+
   return (
-    <Widget widget={widget}>
+    <Widget onRefresh={onRefresh} widget={widget}>
       <div>{articles.length > 0 ? articles[index].title : <LoadingIcon />}</div>
     </Widget>
   );
