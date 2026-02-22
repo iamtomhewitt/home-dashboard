@@ -1,0 +1,17 @@
+.bin-day {
+  font-weight: bold;
+  padding: 50%;
+  width: 100%;
+
+  svg {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    path {
+      fill: rgb(255 255 255 / 0.3);
+    }
+  }
+}

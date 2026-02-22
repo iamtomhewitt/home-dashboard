@@ -6,5 +6,5 @@ export type Widget = {
   sleepEnd: string;
   sleepStart: string;
   title: string;
-  [key: string]: string | number | boolean;
+  [key: string]: string | number | boolean | any;
 }

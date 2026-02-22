@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { GridStack } from 'gridstack';
 
 import BbcNews from '../Widget/BbcNews';
+import BinDay from '../Widget/BinDay';
 import Clock from '../Widget/Clock';
 import { sessionStorage } from '../../lib/session-storage';
 
@@ -11,6 +12,7 @@ const Dashboard = () => {
   const { widgets } = sessionStorage.getDashboardConfig();
   const widgetLookup: any = {
     bbcNews: BbcNews,
+    binDay: BinDay,
     clock: Clock,
   };
 
