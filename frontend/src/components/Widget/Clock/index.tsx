@@ -4,6 +4,8 @@ import { format } from 'date-fns';
 import Widget from '../';
 import { Widget as WidgetType } from '../../../types/widget';
 
+import './index.scss';
+
 const Clock = ({ widget }: Props) => {
   const [currentTime, setCurrentTime] = useState('');
 
@@ -13,7 +15,7 @@ const Clock = ({ widget }: Props) => {
 
   return (
     <Widget onRefresh={onRefresh} widget={widget}>
-      <div>{currentTime}</div>
+      <div className='clock'>{currentTime}</div>
     </Widget>
   );
 };

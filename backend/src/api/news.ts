@@ -3,6 +3,12 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 import { LambdaError } from '../lib/error';
 import { response } from '../lib/response';
 
+/**
+ * *Why don't you make this request from the browser?*
+ * 
+ * That is part of a paid plan for `newsapi`, free tiers must come from a backend, otherwise
+ * you get a `HTTP 426`.
+ */
 export const handler = async (e: APIGatewayProxyEvent) => {
   try {
     const { apiKey } = e.queryStringParameters || {};
