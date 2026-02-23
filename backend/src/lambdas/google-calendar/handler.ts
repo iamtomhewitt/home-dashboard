@@ -11,7 +11,7 @@ export const handler = async (e: APIGatewayProxyEvent) => {
     const { apiKey, gmail } = e.queryStringParameters || {};
 
     if (!apiKey || !gmail) {
-      throw new LambdaError('BadRequest', 'Missing "apiKey" or "gmail"');
+      throw new LambdaError('BadRequest', 'Missing \'apiKey\' or \'gmail\'');
     }
 
     const credentials = await ssm

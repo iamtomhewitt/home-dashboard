@@ -17,21 +17,12 @@ package:
     - node_modules/**
 
 functions:
-  config: ${file(./src/lambdas/config/infra.yml):function}
-  news: ${file(./src/lambdas/news/infra.yml):function}
-  calendar: ${file(./src/lambdas/google-calendar/infra.yml):function}
+  - ${file(./src/lambdas/config/function.yml)}
+  - ${file(./src/lambdas/google-calendar/function.yml)}
+  - ${file(./src/lambdas/news/function.yml)}
 
 resources:
-  Resources:
-    ConfigLambdaRole: ${file(./src/lambdas/config/infra.yml):role}
-    NewsLambdaRole: ${file(./src/lambdas/news/infra.yml):role}
-    CalendarLambdaRole: ${file(./src/lambdas/google-calendar/infra.yml):role}
-    ConfigBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName: home-dashboard-config
-        PublicAccessBlockConfiguration:
-          BlockPublicAcls: true
-          IgnorePublicAcls: true
-          BlockPublicPolicy: true
-          RestrictPublicBuckets: true
+  - ${file(./src/lambdas/config/resources.yml)}
+  - ${file(./src/lambdas/google-calendar/resources.yml)}
+  - ${file(./src/lambdas/news/resources.yml)}
+  - ${file(./infra/s3.yml)}

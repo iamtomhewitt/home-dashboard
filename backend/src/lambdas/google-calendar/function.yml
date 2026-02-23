@@ -1,0 +1,15 @@
+---
+function:
+  description: Retrieves events from Google calendar
+  events:
+    - http:
+        cors: true
+        method: get
+        path: /calendar
+  handler: dist/src/lambdas/google-calendar/handler.handler
+  logRetentionInDays: 7
+  name: home-dashboard-calendar
+  role:
+    Fn::GetAtt:
+      - GoogleCalendarLambdaRole
+      - Arn

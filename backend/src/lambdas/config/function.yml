@@ -1,0 +1,23 @@
+---
+config:
+  description: CRUD operations for config for Home Dashboard
+  events:
+    - http:
+        cors: true
+        method: get
+        path: /config
+    - http:
+        cors: true
+        method: put
+        path: /config
+    - http:
+        cors: true
+        method: delete
+        path: /config
+  handler: dist/src/lambdas/config/handler.handler
+  logRetentionInDays: 7
+  name: home-dashboard-config
+  role:
+    Fn::GetAtt:
+      - ConfigLambdaRole
+      - Arn

@@ -1,0 +1,15 @@
+---
+function:
+  description: Lambda that backs onto the NewsAPI, as it does not allow browser requests
+  events:
+    - http:
+        cors: true
+        method: get
+        path: /news
+  handler: dist/src/lambdas/news/handler.handler
+  logRetentionInDays: 7
+  name: home-dashboard-news
+  role:
+    Fn::GetAtt:
+      - NewsLambdaRole
+      - Arn
