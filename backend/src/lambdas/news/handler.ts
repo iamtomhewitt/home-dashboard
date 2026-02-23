@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 
-import { LambdaError } from '../lib/error';
-import { response } from '../lib/response';
+import { LambdaError } from '../../lib/error';
+import { response } from '../../lib/response';
 
 /**
  * *Why don't you make this request from the browser?*

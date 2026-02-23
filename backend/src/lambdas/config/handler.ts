@@ -1,9 +1,9 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 
-import s3 from '../lib/s3';
-import { LambdaError } from '../lib/error';
-import { response } from '../lib/response';
+import s3 from '../../lib/s3';
+import { LambdaError } from '../../lib/error';
+import { response } from '../../lib/response';
 
 export const handler = async (e: APIGatewayProxyEvent) => {
   try {

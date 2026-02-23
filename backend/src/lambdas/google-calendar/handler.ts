@@ -2,9 +2,9 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 import { GetParameterCommand } from '@aws-sdk/client-ssm';
 import { google } from 'googleapis';
 
-import ssm from '../lib/ssm';
-import { LambdaError } from '../lib/error';
-import { response } from '../lib/response';
+import ssm from '../../lib/ssm';
+import { LambdaError } from '../../lib/error';
+import { response } from '../../lib/response';
 
 export const handler = async (e: APIGatewayProxyEvent) => {
   try {

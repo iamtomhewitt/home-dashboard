@@ -1,0 +1,10 @@
+---
+ConfigBucket:
+  Type: AWS::S3::Bucket
+  Properties:
+    BucketName: home-dashboard-config
+    PublicAccessBlockConfiguration:
+      BlockPublicAcls: true
+      IgnorePublicAcls: true
+      BlockPublicPolicy: true
+      RestrictPublicBuckets: true

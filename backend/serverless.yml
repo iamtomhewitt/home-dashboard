@@ -1,72 +1,31 @@
----
 service: home-dashboard-backend
 frameworkVersion: '3'
 useDotenv: true
+
 provider:
+  lambdaHashingVersion: 20201221
   name: aws
   region: eu-west-1
   runtime: nodejs24.x
   stage: api
   timeout: 30
-  lambdaHashingVersion: 20201221
+
 package:
   patterns:
     - '!**'
     - dist/**
     - node_modules/**
+
 functions:
-  config:
-    name: home-dashboard-config
-    description: CRUD operations for config for Home Dashboard
-    handler: dist/src/api/config.handler
-    logRetentionInDays: 7
-    role:
-      Fn::GetAtt:
-        - ConfigLambdaRole
-        - Arn
-    events:
-      - http:
-          method: get
-          path: /config
-          cors: true
-      - http:
-          method: put
-          path: /config
-          cors: true
-      - http:
-          method: delete
-          path: /config
-          cors: true
-  news:
-    name: home-dashboard-news
-    description: Lambda that backs onto the NewsAPI, as it does not allow browser requests
-    handler: dist/src/api/news.handler
-    logRetentionInDays: 7
-    role:
-      Fn::GetAtt:
-        - LambdaRole
-        - Arn
-    events:
-      - http:
-          method: get
-          path: /news
-          cors: true
-  calendar:
-    name: home-dashboard-calendar
-    description: Retrieves events from Google calendar
-    handler: dist/src/api/google-calendar.handler
-    logRetentionInDays: 7
-    role:
-      Fn::GetAtt:
-        - CalendarLambdaRole
-        - Arn
-    events:
-      - http:
-          method: get
-          path: /calendar
-          cors: true
+  config: ${file(./src/lambdas/config/infra.yml):function}
+  news: ${file(./src/lambdas/news/infra.yml):function}
+  calendar: ${file(./src/lambdas/google-calendar/infra.yml):function}
+
 resources:
   Resources:
+    ConfigLambdaRole: ${file(./src/lambdas/config/infra.yml):role}
+    NewsLambdaRole: ${file(./src/lambdas/news/infra.yml):role}
+    CalendarLambdaRole: ${file(./src/lambdas/google-calendar/infra.yml):role}
     ConfigBucket:
       Type: AWS::S3::Bucket
       Properties:
@@ -76,75 +35,3 @@ resources:
           IgnorePublicAcls: true
           BlockPublicPolicy: true
           RestrictPublicBuckets: true
-    LambdaRole:
-      Type: AWS::IAM::Role
-      Properties:
-        RoleName: home-dashboard-lambda-role
-        AssumeRolePolicyDocument:
-          Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Principal:
-                Service: lambda.amazonaws.com
-              Action: sts:AssumeRole
-    ConfigLambdaRole:
-      Type: AWS::IAM::Role
-      Properties:
-        RoleName: home-dashboard-config-lambda-role
-        AssumeRolePolicyDocument:
-          Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Principal:
-                Service: lambda.amazonaws.com
-              Action: sts:AssumeRole
-        Policies:
-          - PolicyName: ConfigBucketAccess
-            PolicyDocument:
-              Version: '2012-10-17'
-              Statement:
-                - Effect: Allow
-                  Action:
-                    - s3:PutObject
-                    - s3:GetObject
-                    - s3:DeleteObject
-                  Resource:
-                    - arn:aws:s3:::home-dashboard-config/*
-                - Effect: Allow
-                  Action:
-                    - s3:ListBucket
-                  Resource:
-                    - arn:aws:s3:::home-dashboard-config
-                - Effect: Allow
-                  Action:
-                    - logs:CreateLogGroup
-                    - logs:CreateLogStream
-                    - logs:PutLogEvents
-                  Resource: '*'
-    CalendarLambdaRole:
-      Type: AWS::IAM::Role
-      Properties:
-        RoleName: home-dashboard-calendar-lambda-role
-        AssumeRolePolicyDocument:
-          Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Principal:
-                Service: lambda.amazonaws.com
-              Action: sts:AssumeRole
-        Policies:
-          - PolicyName: CalendarSsmAccess
-            PolicyDocument:
-              Version: '2012-10-17'
-              Statement:
-                - Effect: Allow
-                  Action:
-                    - ssm:GetParameter
-                  Resource:
-                    - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/home-dashboard-calendar*
-                - Effect: Allow
-                  Action:
-                    - logs:CreateLogGroup
-                    - logs:CreateLogStream
-                    - logs:PutLogEvents
-                  Resource: '*'
