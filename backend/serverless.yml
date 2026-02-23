@@ -44,12 +44,26 @@ functions:
     logRetentionInDays: 7
     role:
       Fn::GetAtt:
-        - ConfigLambdaRole
+        - LambdaRole
         - Arn
     events:
       - http:
           method: get
           path: /news
+          cors: true
+  calendar:
+    name: home-dashboard-calendar
+    description: Retrieves events from Google calendar
+    handler: dist/src/api/google-calendar.handler
+    logRetentionInDays: 7
+    role:
+      Fn::GetAtt:
+        - CalendarLambdaRole
+        - Arn
+    events:
+      - http:
+          method: get
+          path: /calendar
           cors: true
 resources:
   Resources:
@@ -62,6 +76,17 @@ resources:
           IgnorePublicAcls: true
           BlockPublicPolicy: true
           RestrictPublicBuckets: true
+    LambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: home-dashboard-lambda-role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: lambda.amazonaws.com
+              Action: sts:AssumeRole
     ConfigLambdaRole:
       Type: AWS::IAM::Role
       Properties:
@@ -90,6 +115,33 @@ resources:
                     - s3:ListBucket
                   Resource:
                     - arn:aws:s3:::home-dashboard-config
+                - Effect: Allow
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource: '*'
+    CalendarLambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: home-dashboard-calendar-lambda-role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: CalendarSsmAccess
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - ssm:GetParameter
+                  Resource:
+                    - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/home-dashboard-calendar*
                 - Effect: Allow
                   Action:
                     - logs:CreateLogGroup

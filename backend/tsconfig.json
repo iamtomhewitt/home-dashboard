@@ -1,19 +1,12 @@
 {
   "compilerOptions": {
-    "typeRoots": [
-      "./node_modules/@types",
-      "../../node_modules/@types",
-    ],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
       "esnext",
       "dom"
     ],
-    "types": [
-      "node",
-    ],
-    "allowJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
@@ -22,6 +15,10 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
+    "typeRoots": [
+      "./node_modules/@types",
+      "../../node_modules/@types",
+    ],
   },
   "exclude": [
     ".idea",
