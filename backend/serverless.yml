@@ -17,12 +17,12 @@ package:
     - node_modules/**
 
 functions:
-  - ${file(./src/lambdas/config/function.yml)}
-  - ${file(./src/lambdas/google-calendar/function.yml)}
-  - ${file(./src/lambdas/news/function.yml)}
+  - ${file(./src/lambdas/config/infra/function.yml)}
+  - ${file(./src/lambdas/google-calendar/infra/function.yml)}
+  - ${file(./src/lambdas/news/infra/function.yml)}
 
 resources:
-  - ${file(./src/lambdas/config/resources.yml)}
-  - ${file(./src/lambdas/google-calendar/resources.yml)}
-  - ${file(./src/lambdas/news/resources.yml)}
+  - ${file(./src/lambdas/config/infra/resources.yml)}
+  - ${file(./src/lambdas/google-calendar/infra/resources.yml)}
+  - ${file(./src/lambdas/news/infra/resources.yml)}
   - ${file(./infra/s3.yml)}

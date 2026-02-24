@@ -1,5 +1,5 @@
 ---
-function:
+calendar:
   description: Retrieves events from Google calendar
   events:
     - http:

@@ -1,5 +1,5 @@
 ---
-function:
+news:
   description: Lambda that backs onto the NewsAPI, as it does not allow browser requests
   events:
     - http:
