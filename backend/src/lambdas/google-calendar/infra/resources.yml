@@ -13,6 +13,16 @@ Resources:
         - PolicyDocument:
             Statement:
               - Action:
+                  - s3:GetObject
+                Effect: Allow
+                Resource:
+                  - arn:aws:s3:::home-dashboard-config/*
+              - Action:
+                  - s3:ListBucket
+                Effect: Allow
+                Resource:
+                  - arn:aws:s3:::home-dashboard-config
+              - Action:
                   - ssm:GetParameter
                 Effect: Allow
                 Resource:

@@ -1,7 +1,9 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { GetParameterCommand } from '@aws-sdk/client-ssm';
+import { HeadObjectCommand } from '@aws-sdk/client-s3';
 import { google } from 'googleapis';
 
+import s3 from '../../lib/s3';
 import ssm from '../../lib/ssm';
 import { LambdaError } from '../../lib/error';
 import { response } from '../../lib/response';
@@ -12,6 +14,25 @@ export const handler = async (e: APIGatewayProxyEvent) => {
 
     if (!apiKey || !gmail) {
       throw new LambdaError('BadRequest', 'Missing \'apiKey\' or \'gmail\'');
+    }
+
+    // Slight 'auth' to stop you form finding out the url and passing in an email to get back events
+    // The API key is just the config key for your dashboard
+    const matchingApiKey = await s3
+      .send(new HeadObjectCommand({
+        Bucket: 'home-dashboard-config',
+        Key: apiKey,
+      }))
+      .then(() => true)
+      .catch((err) => {
+        if (err.name === 'NotFound') {
+          return false;
+        }
+        throw err;
+      });
+
+    if (!matchingApiKey) {
+      throw new LambdaError('Unauthorised', 'Incorrect API key');
     }
 
     const credentials = await ssm
@@ -46,6 +67,18 @@ export const handler = async (e: APIGatewayProxyEvent) => {
     return response.json(200, 'Success', events);
   }
   catch (err: any) {
-    return response.json(500, err.message);
+    let responseCode = 500;
+
+    switch (err.name) {
+      case 'Unauthorised':
+        responseCode = 401;
+        break;
+
+      case 'BadRequest':
+        responseCode = 400;
+        break;
+    }
+
+    return response.json(responseCode, err.message);
   }
 };
