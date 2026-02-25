@@ -10,3 +10,5 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+/// <reference types="vite-plugin-svgr/client" />
