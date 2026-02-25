@@ -20,9 +20,10 @@ const Weather = ({ widget }: Props) => {
   const toWeatherIcon = (condition: string) => {
     switch (condition) {
       case 'patchy-rain-nearby':
-        return 'raindrops';
       case 'light-drizzle':
-        return 'raindrop';
+        return 'rain';
+      case 'partly-cloudy':
+        return 'cloudy';
       default:
         return condition;
     }
@@ -41,7 +42,15 @@ const Weather = ({ widget }: Props) => {
               width='3em'
             />
 
-            <span>{hourly.temperature}</span>
+            <div>
+              <span>{hourly.temperature}°</span>
+
+              <LazySvg
+                height='3em'
+                name={'thermometer-celsius'}
+                width='3em'
+              />
+            </div>
           </div>
         ))}
 

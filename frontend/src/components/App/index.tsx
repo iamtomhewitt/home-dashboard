@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import Dashboard from '../Dashboard';
+import IconsPage from '../IconsPage';
 import Login from '../Login';
 import Menu from '../Menu';
 import { credentials } from '../../lib/credentials';
@@ -35,6 +36,8 @@ const App = () => {
         <Route element={<Login />} path='/login' />
 
         <Route element={withLoggedInRoute(<Dashboard />)} path='/dashboard' />
+
+        <Route element={withLoggedInRoute(<IconsPage />)} path='/icons' />
 
         <Route element={withLoggedInRoute(<div>Not Found</div>)} path='*' />
 
