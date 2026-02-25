@@ -11,13 +11,12 @@ import { sessionStorage } from '../../lib/session-storage';
 import 'gridstack/dist/gridstack.min.css';
 
 const Dashboard = () => {
-  // https://basmilius.github.io/weather-icons/index-fill.html
   const { widgets } = sessionStorage.getDashboardConfig();
   const widgetLookup: any = {
-    // bbcNews: BbcNews,
-    // binDay: BinDay,
-    // clock: Clock,
-    // gmail: Gmail,
+    bbcNews: BbcNews,
+    binDay: BinDay,
+    clock: Clock,
+    gmail: Gmail,
     weather: Weather,
   };
 

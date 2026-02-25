@@ -21,6 +21,7 @@ const Weather = ({ widget }: Props) => {
     switch (condition) {
       case 'patchy-rain-nearby':
       case 'light-drizzle':
+      case 'moderate-rain':
         return 'rain';
       case 'partly-cloudy':
         return 'cloudy';
@@ -33,8 +34,8 @@ const Weather = ({ widget }: Props) => {
     <Widget onRefresh={onRefresh} widget={widget}>
       <div className='weather'>
         {weather?.hourly.map((hourly, i) => (
-          <div key={i}>
-            <span>{format(new Date(hourly.date), 'HH:mm')}</span>
+          <div className='weather-item' key={i}>
+            <div>{format(new Date(hourly.date), 'HH')}</div>
 
             <LazySvg
               height='3em'
@@ -42,15 +43,21 @@ const Weather = ({ widget }: Props) => {
               width='3em'
             />
 
-            <div>
-              <span>{hourly.temperature}°</span>
+            <span>{hourly.temperature.toFixed(0)}°</span>
+          </div>
+        ))}
 
-              <LazySvg
-                height='3em'
-                name={'thermometer-celsius'}
-                width='3em'
-              />
-            </div>
+        {weather?.daily.map((daily, i) => (
+          <div className='weather-item' key={i}>
+            <div>{format(new Date(daily.date), 'eee')}</div>
+
+            <LazySvg
+              height='3em'
+              name={toWeatherIcon(daily.condition)}
+              width='3em'
+            />
+
+            <span>{daily.temperature.toFixed(0)}°</span>
           </div>
         ))}
 

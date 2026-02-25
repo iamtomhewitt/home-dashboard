@@ -34,7 +34,7 @@ export const handler = async (e: APIGatewayProxyEvent) => {
             temperature: hourlyWeather.temp_c,
           }));
       })
-      .slice(0, 5);
+      .slice(0, 3);
 
     const mappedWeather = {
       location: result.location.name,
