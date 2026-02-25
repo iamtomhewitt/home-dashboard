@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Widget as WidgetType } from '../../types/widget';
 import { time } from '../../lib/time';
@@ -18,17 +18,33 @@ const Widget = ({
   y = 0,
 }: Props) => {
   const refreshRef = useRef(onRefresh);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     refreshRef.current = onRefresh;
   }, [onRefresh]);
 
+  const runRefresh = async () => {
+    setIsLoading(true);
+
+    try {
+      const result = refreshRef.current();
+
+      if (result instanceof Promise) {
+        await result;
+      }
+    }
+    finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    refreshRef.current();
+    runRefresh();
 
     const interval = setInterval(() => {
-      refreshRef.current();
-    }, time.toMilliseconds(widget.repeatRate, widget.repeatTime));
+      runRefresh();
+    }, time.toMilliseconds(widget.repeatRate, 'seconds'));
 
     return () => clearInterval(interval);
   }, [widget.repeatRate, widget.repeatTime]);
@@ -46,21 +62,23 @@ const Widget = ({
       <div
         className='grid-stack-item-content widget-content'
         style={{
-          backgroundColor: widget.colour,
+          backgroundColor: widget.colour, 
         }}
       >
-        {children}
+        {isLoading ?
+          <i className='fa-solid fa-circle-notch fa-spin fa-2xl' /> :
+          children}
       </div>
     </div>
   );
 };
 
 type Props = {
-  /** `onRefresh` should be a function that changes widgets' internal state, 
+  /** `onRefresh` should be a function that changes widgets' internal state,
    * like making API requests. It should not do things like fading animations
    * via state management (e.g. BBC News widget).
    */
-  onRefresh: () => void;
+  onRefresh: () => void | Promise<void>;
   children: React.ReactElement;
   height?: number;
   widget: WidgetType;
