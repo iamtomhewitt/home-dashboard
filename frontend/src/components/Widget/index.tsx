@@ -44,7 +44,7 @@ const Widget = ({
 
     const interval = setInterval(() => {
       runRefresh();
-    }, time.toMilliseconds(widget.repeatRate, 'seconds'));
+    }, time.toMilliseconds(widget.repeatRate, widget.repeatTime));
 
     return () => clearInterval(interval);
   }, [widget.repeatRate, widget.repeatTime]);
@@ -65,6 +65,7 @@ const Widget = ({
           backgroundColor: widget.colour, 
         }}
       >
+        {/* TODO now we have a loading state var we can set a last update state var once it completes */}
         {isLoading ?
           <i className='fa-solid fa-circle-notch fa-spin fa-2xl' /> :
           children}
