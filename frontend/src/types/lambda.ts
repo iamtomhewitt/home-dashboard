@@ -25,3 +25,10 @@ export interface NewsResponse extends LambdaResponse {
 export interface ConfigResponse extends LambdaResponse {
   data: DashboardConfig;
 }
+
+export interface CalendarResponse extends LambdaResponse {
+  data: {
+    name: string;
+    date: string;
+  }[];
+}

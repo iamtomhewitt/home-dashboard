@@ -4,6 +4,7 @@ import { GridStack } from 'gridstack';
 import BbcNews from '../Widget/BbcNews';
 import BinDay from '../Widget/BinDay';
 import Clock from '../Widget/Clock';
+import Gmail from '../Widget/Gmail';
 import { sessionStorage } from '../../lib/session-storage';
 
 import 'gridstack/dist/gridstack.min.css';
@@ -14,6 +15,7 @@ const Dashboard = () => {
     bbcNews: BbcNews,
     binDay: BinDay,
     clock: Clock,
+    gmail: Gmail,
   };
 
   useEffect(() => {

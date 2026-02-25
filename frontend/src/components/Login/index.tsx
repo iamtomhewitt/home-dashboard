@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { configApi } from '../../api/config';
+import { ConfigResponse } from '../../types/lambda';
+import { api } from '../../lib/https';
 import { credentials } from '../../lib/credentials';
 import { sessionStorage } from '../../lib/session-storage';
 
@@ -16,12 +17,15 @@ const Login = () => {
 
   const onLogin = async () => {
     setError('');
-    const response = await configApi.get(dashboardId);
+    const response = await api.get<ConfigResponse>(`/config?id=${dashboardId}`);
 
     switch (response.status) {
       case 200:
         credentials.login(true);
-        sessionStorage.setDashboardConfig(response.data);
+        sessionStorage.setDashboardConfig({
+          ...response.data,
+          id: dashboardId,
+        });
         navigate('/dashboard');
         break;
       default:

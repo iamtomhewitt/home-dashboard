@@ -36,7 +36,7 @@ const App = () => {
 
         <Route element={withLoggedInRoute(<Dashboard />)} path='/dashboard' />
 
-        <Route element={<div>Not Found</div>} path='*' />
+        <Route element={withLoggedInRoute(<div>Not Found</div>)} path='*' />
 
       </Routes>
     </div>

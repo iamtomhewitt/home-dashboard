@@ -1,4 +1,7 @@
-const request = async (url: string, method: string, body?: any) => {
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const request = async <T>(path: string, method: string, body?: any): Promise<T> => {
+  const url = `${apiUrl}${path}`;
   const bodyToUse = body || {};
   const response = await fetch(url, {
     method,
@@ -14,31 +17,31 @@ const request = async (url: string, method: string, body?: any) => {
   };
 };
 
-const get = async <T>(url: string): Promise<T> => {
-  return await request(
-    url,
+const get = async <T>(path: string) => {
+  return await request<T>(
+    path,
     'GET',
     {},
   );
 };
 
-const put = async <T>(url: string, body?: any): Promise<T> => {
-  return await request(
-    url,
+const put = async <T>(path: string, body?: any) => {
+  return await request<T>(
+    path,
     'PUT',
     body,
   );
 };
 
-const post = async <T>(url: string, body?: any): Promise<T> => {
-  return await request(
-    url,
+const post = async <T>(path: string, body?: any) => {
+  return await request<T>(
+    path,
     'POST',
     body,
   );
 };
 
-export const http = {
+export const api = {
   get,
   post,
   put,

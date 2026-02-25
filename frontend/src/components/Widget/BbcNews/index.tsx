@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Widget from '../';
 import { NewsResponse } from '../../../types/lambda';
 import { Widget as WidgetType } from '../../../types/widget';
-import { newsApi } from '../../../api/news';
+import { api } from '../../../lib/https';
 
 const BbcNews = ({ widget }: Props) => {
   const [articles, setArticles] = useState<NewsResponse['data']>([]);
@@ -20,7 +20,7 @@ const BbcNews = ({ widget }: Props) => {
   }, [articles.length]);
 
   const onRefresh = async () => {
-    const response = await newsApi.get(widget.apiKey as string);
+    const response = await api.get<NewsResponse>(`/news?apiKey=${widget.apiKey}`);
     setArticles(response.data);
   };
 
