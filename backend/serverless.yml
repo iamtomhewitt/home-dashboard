@@ -20,9 +20,11 @@ functions:
   - ${file(./src/lambdas/config/infra/function.yml)}
   - ${file(./src/lambdas/google-calendar/infra/function.yml)}
   - ${file(./src/lambdas/news/infra/function.yml)}
+  - ${file(./src/lambdas/weather/infra/function.yml)}
 
 resources:
   - ${file(./src/lambdas/config/infra/resources.yml)}
   - ${file(./src/lambdas/google-calendar/infra/resources.yml)}
   - ${file(./src/lambdas/news/infra/resources.yml)}
+  - ${file(./src/lambdas/weather/infra/resources.yml)}
   - ${file(./infra/s3.yml)}

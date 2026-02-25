@@ -1,0 +1,15 @@
+---
+weather:
+  description: Requests weather, duh!
+  events:
+    - http:
+        cors: true
+        method: get
+        path: /weather
+  handler: dist/src/lambdas/weather/handler.handler
+  logRetentionInDays: 7
+  name: home-dashboard-weather
+  role:
+    Fn::GetAtt:
+      - WeatherLambdaRole
+      - Arn
