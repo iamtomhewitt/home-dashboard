@@ -5,17 +5,20 @@ import BbcNews from '../Widget/BbcNews';
 import BinDay from '../Widget/BinDay';
 import Clock from '../Widget/Clock';
 import Gmail from '../Widget/Gmail';
+import Weather from '../Widget/Weather';
 import { sessionStorage } from '../../lib/session-storage';
 
 import 'gridstack/dist/gridstack.min.css';
 
 const Dashboard = () => {
+  // https://basmilius.github.io/weather-icons/index-fill.html
   const { widgets } = sessionStorage.getDashboardConfig();
   const widgetLookup: any = {
-    bbcNews: BbcNews,
-    binDay: BinDay,
-    clock: Clock,
-    gmail: Gmail,
+    // bbcNews: BbcNews,
+    // binDay: BinDay,
+    // clock: Clock,
+    // gmail: Gmail,
+    weather: Weather,
   };
 
   useEffect(() => {

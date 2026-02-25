@@ -32,3 +32,23 @@ export interface CalendarResponse extends LambdaResponse {
     date: string;
   }[];
 }
+
+export interface WeatherResponse extends LambdaResponse {
+  data: {
+    location: string;
+    now: {
+      condition: string;
+      temperature: number;
+    };
+    hourly: {
+      condition: string;
+      date: string;
+      temperature: number;
+    }[];
+    daily: {
+      condition: string;
+      date: string;
+      temperature: number;
+    }[];
+  }
+}
