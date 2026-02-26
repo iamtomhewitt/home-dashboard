@@ -52,7 +52,7 @@ const main = async (e: APIGatewayProxyEvent) => {
 
   const calendarResponse = await calendar.events.list({
     calendarId: gmail,
-    maxResults: 10,
+    maxResults: 12,
     orderBy: 'startTime',
     singleEvents: true,
     timeMin: new Date().toISOString(),

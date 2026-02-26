@@ -62,7 +62,7 @@ const Widget = ({
       <div
         className='grid-stack-item-content widget-content'
         style={{
-          backgroundColor: widget.colour, 
+          backgroundColor: widget.colour,
         }}
       >
         {/* TODO now we have a loading state var we can set a last update state var once it completes */}
