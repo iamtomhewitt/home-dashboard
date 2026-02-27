@@ -19,8 +19,10 @@ const Weather = ({ widget }: Props) => {
 
   const toWeatherIcon = (condition: string) => {
     switch (condition) {
-      case 'patchy-rain-nearby':
       case 'light-drizzle':
+      case 'light-rain':
+        return 'drizzle'
+      case 'patchy-rain-nearby':
       case 'moderate-rain':
         return 'rain';
       case 'partly-cloudy':
