@@ -6,6 +6,14 @@ todoist:
         cors: true
         method: get
         path: /todoist
+    - http:
+        cors: true
+        method: post
+        path: /todoist
+    - http:
+        cors: true
+        method: delete
+        path: /todoist
   handler: dist/src/lambdas/todoist/handler.handler
   logRetentionInDays: 7
   name: home-dashboard-todoist
