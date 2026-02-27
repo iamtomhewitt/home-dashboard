@@ -10,7 +10,10 @@ const request = async <T>(path: string, method: string, body?: any): Promise<T> 
     },
   });
 
-  const json = await response.json();
+  const json = response.headers.get('Content-Type') === 'application/json' ?
+    await response.json() :
+    {};
+
   return {
     ...json,
     status: response.status,
@@ -41,8 +44,17 @@ const post = async <T>(path: string, body?: any) => {
   );
 };
 
+const deleteRequest = async <T>(path: string) => {
+  return await request<T>(
+    path,
+    'DELETE',
+    {},
+  );
+};
+
 export const api = {
   get,
   post,
   put,
+  delete: deleteRequest,
 };

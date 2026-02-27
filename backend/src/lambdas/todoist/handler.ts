@@ -23,19 +23,22 @@ const main = async (e: APIGatewayProxyEvent) => {
       },
     });
 
-    const json = await response.json();
-
     if (!response.ok) {
+      const json = await response.json();
       throw new LambdaError('InternalServerError', json.error);
     }
 
-    return json;
+    return response;
   };
 
   switch (e.httpMethod) {
     case 'GET': {
       const data = await makeTodoistRequest(`?project_id=${projectId}`)
-        .then(({ results = [] }) => results.map((item: any) => item.content));
+        .then(response => response.json())
+        .then(({ results = [] }) => results.map((item: any) => ({
+          name: item.content,
+          id: item.id,
+        })));
 
       return response.json(200, 'Success', data);
     }
@@ -45,7 +48,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         throw new BadRequestError('Missing request body');
       }
 
-      const data = await makeTodoistRequest('', {
+      await makeTodoistRequest('', {
         body: {
           ...JSON.parse(e.body),
           project_id: projectId,
@@ -53,7 +56,21 @@ const main = async (e: APIGatewayProxyEvent) => {
         method: 'POST',
       });
 
-      return response.json(200, 'Task created', data);
+      return response.json(200, 'Task created');
+    }
+
+    case 'DELETE': {
+      const { id } = e.queryStringParameters || {};
+
+      if (!id) {
+        throw new BadRequestError('No "id" specified');
+      }
+
+      await makeTodoistRequest(`/${id}`, {
+        method: 'DELETE',
+      });
+
+      return response.json(204, 'Task deleted');
     }
 
     default:

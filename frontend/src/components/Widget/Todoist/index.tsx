@@ -16,11 +16,24 @@ const Todoist = ({ widget }: Props) => {
     setTasks(response.data);
   };
 
+  const onDeleteTask = async (task: TodoistResponse['data'][number]) => {
+    await api.delete(`/todoist?apiKey=${widget.apiKey}&projectId=${widget.todoistId}&id=${task.id}`);
+    await fetchTasks();
+  };
+
   return (
     <Widget onRefresh={fetchTasks} widget={widget}>
       <div className='todoist'>
         {tasks.map((task, i) => (
-          <div className='todoist-item' key={i}>{task}</div>
+          <div
+            className='todoist-item'
+            key={i}
+            onClick={() => onDeleteTask(task)}
+          >
+            <i className='fa-solid fa-xmark' />
+
+            <div>{task.name}</div>
+          </div>
         ))}
       </div>
     </Widget>

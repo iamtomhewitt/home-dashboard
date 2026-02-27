@@ -3,9 +3,16 @@
   overflow-y: hidden;
   text-align: left;
   width: 100%;
-
+  
   &-item {
-    font-size: 8cqmin;
+    align-items: center;
+    display: inline-flex;
+    font-size: 6cqmin;
     padding: 0 14px;
+    width: 100%;
+
+    i {
+      margin-right: 6px;
+    }
   }
 }
