@@ -52,3 +52,7 @@ export interface WeatherResponse extends LambdaResponse {
     }[];
   }
 }
+
+export interface TodoistResponse extends LambdaResponse {
+  data: string[];
+}

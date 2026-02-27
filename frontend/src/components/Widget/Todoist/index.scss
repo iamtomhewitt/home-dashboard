@@ -1,0 +1,14 @@
+.todoist {
+  height: 78%;
+  overflow-y: hidden;
+  padding: 0 6px;
+
+  li {
+    align-items: center;
+    display: inline-flex;
+    font-size: 6cqmin;
+    justify-content: space-between;
+    list-style: none;
+    width: 100%;
+  }
+}

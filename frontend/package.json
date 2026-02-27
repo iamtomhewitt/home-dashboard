@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc -b && vite build",
     "lint-fix": "retail-linter --sourceFolder=./ --type=typescript-react --fix",
-    "start": "vite"
+    "start": "vite --host"
   },
   "dependencies": {
     "date-fns": "4.1.0",

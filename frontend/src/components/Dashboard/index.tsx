@@ -5,6 +5,7 @@ import BbcNews from '../Widget/BbcNews';
 import BinDay from '../Widget/BinDay';
 import Clock from '../Widget/Clock';
 import Gmail from '../Widget/Gmail';
+import Todoist from '../Widget/Todoist';
 import Weather from '../Widget/Weather';
 import { sessionStorage } from '../../lib/session-storage';
 
@@ -17,6 +18,7 @@ const Dashboard = () => {
     binDay: BinDay,
     clock: Clock,
     gmail: Gmail,
+    todoist: Todoist,
     weather: Weather,
   };
 
