@@ -18,11 +18,11 @@ const Todoist = ({ widget }: Props) => {
 
   return (
     <Widget onRefresh={fetchTasks} widget={widget}>
-      <ul className='todoist'>
+      <div className='todoist'>
         {tasks.map((task, i) => (
-          <li key={i}>{task}</li>
+          <div className='todoist-item' key={i}>{task}</div>
         ))}
-      </ul>
+      </div>
     </Widget>
   );
 };
