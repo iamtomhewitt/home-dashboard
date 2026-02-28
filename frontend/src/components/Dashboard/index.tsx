@@ -6,6 +6,7 @@ import BinDay from '../Widget/BinDay';
 import Clock from '../Widget/Clock';
 import Gmail from '../Widget/Gmail';
 import Modal from '../Modal';
+import Splitwise from '../Widget/Splitwise';
 import Todoist from '../Widget/Todoist';
 import Weather from '../Widget/Weather';
 import { sessionStorage } from '../../lib/session-storage';
@@ -19,6 +20,7 @@ const Dashboard = () => {
     binDay: BinDay,
     clock: Clock,
     gmail: Gmail,
+    splitwise: Splitwise,
     todoist: Todoist,
     weather: Weather,
   };

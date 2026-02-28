@@ -59,3 +59,11 @@ export interface TodoistResponse extends LambdaResponse {
     name: string;
   }[];
 }
+
+export interface SplitwiseResponse extends LambdaResponse {
+  data: {
+    amount: string;
+    owes: string;
+    who: string;
+  }
+}
