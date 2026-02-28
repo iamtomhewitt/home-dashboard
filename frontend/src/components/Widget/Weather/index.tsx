@@ -28,6 +28,9 @@ const Weather = ({ widget }: Props) => {
         return 'rain';
       case 'partly-cloudy':
         return 'cloudy';
+
+      case 'sunny':
+        return 'clear-day';
       default:
         return condition;
     }
