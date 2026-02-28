@@ -5,6 +5,7 @@ import BbcNews from '../Widget/BbcNews';
 import BinDay from '../Widget/BinDay';
 import Clock from '../Widget/Clock';
 import Gmail from '../Widget/Gmail';
+import Modal from '../Modal';
 import Todoist from '../Widget/Todoist';
 import Weather from '../Widget/Weather';
 import { sessionStorage } from '../../lib/session-storage';
@@ -38,6 +39,8 @@ const Dashboard = () => {
 
         return <Component key={i} widget={widget} />;
       })}
+
+      <Modal />
 
     </div>
   );

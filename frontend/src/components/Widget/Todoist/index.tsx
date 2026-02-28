@@ -1,6 +1,7 @@
-
 import { useState } from 'react';
+import PubSub from 'pubsub-js';
 
+import AddTodoistTask from '../../Modal/AddTodoistTask';
 import Widget from '../';
 import { TodoistResponse } from '../../../types/lambda';
 import { Widget as WidgetType } from '../../../types/widget';
@@ -14,6 +15,13 @@ const Todoist = ({ widget }: Props) => {
   const fetchTasks = async () => {
     const response = await api.get<TodoistResponse>(`/todoist?apiKey=${widget.apiKey}&projectId=${widget.todoistId}`);
     setTasks(response.data);
+  };
+
+  const onAddTask = () => {
+    PubSub.publish('show-modal', {
+      component: <AddTodoistTask projectId={widget.todoistId} />,
+      title: `Add to ${widget.title}`,
+    });
   };
 
   const onDeleteTask = async (task: TodoistResponse['data'][number]) => {
@@ -36,9 +44,11 @@ const Todoist = ({ widget }: Props) => {
           </div>
         ))}
 
-        <button style={{
-          backgroundColor: widget.colour,
-        }}
+        <button
+          onClick={onAddTask}
+          style={{
+            backgroundColor: widget.colour,
+          }}
         >
           Add
         </button>
