@@ -26,15 +26,24 @@ const Menu = () => {
     navigate('/login');
   };
 
+  const onRefresh = () => {
+    window.location.reload();
+  };
+
   return (
     <div className='menu'>
       <button onClick={onToggleFullScreen}>
         <i className={`fa-solid fa-${isFullScreen ? 'compress' : 'expand'}`} />
       </button>
 
-      <button onClick={onLogout}>
-        <i className={'fa-solid fa-arrow-right-from-bracket'} />
+      <button onClick={onRefresh}>
+        <i className='fa-solid fa-refresh' />
       </button>
+
+      <button onClick={onLogout}>
+        <i className='fa-solid fa-arrow-right-from-bracket' />
+      </button>
+
     </div>
   );
 };
