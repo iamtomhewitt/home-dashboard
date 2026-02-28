@@ -25,7 +25,6 @@
     background-color: #fff;
     border-radius: 10px;
     margin: auto;
-    min-height: 40%;
     position: relative;
     width: 60%;
 
@@ -43,8 +42,8 @@
     color: white;
     display: inline-flex;
     font-size: 3cqmin;
+    height: clamp(20px, 40%, 60px);
     justify-content: space-between;
-    min-height: 15%;
     padding: 0 20px;
     width: calc(100% - 40px);
   }

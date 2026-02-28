@@ -5,11 +5,13 @@ import './index.scss';
 
 const Modal = () => {
   const [children, setChildren] = useState<React.ReactElement | null>(null);
+  const [onChildClose, setOnChildClose] = useState<() => void | null>();
   const [title, setTitle] = useState('');
 
   useEffect(() => {
     PubSub.subscribe('show-modal', (topic: string, data) => {
       setChildren(data.component);
+      setOnChildClose(data.onClose);
       setTitle(data.title);
     });
 
@@ -18,7 +20,8 @@ const Modal = () => {
     };
   }, []);
 
-  const onClose = () => {
+  const onClose = async () => {
+    onChildClose && await onChildClose();
     setChildren(null);
   };
 

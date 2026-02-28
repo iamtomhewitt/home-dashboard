@@ -48,15 +48,17 @@ const main = async (e: APIGatewayProxyEvent) => {
         throw new BadRequestError('Missing request body');
       }
 
+      const requestBody = JSON.parse(e.body);
+
       await makeTodoistRequest('', {
         body: {
-          ...JSON.parse(e.body),
+          ...requestBody,
           project_id: projectId,
         },
         method: 'POST',
       });
 
-      return response.json(200, 'Task created');
+      return response.json(200, `${requestBody.content} created`);
     }
 
     case 'DELETE': {

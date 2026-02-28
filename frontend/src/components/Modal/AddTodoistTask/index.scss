@@ -1,0 +1,35 @@
+.add-todoist-task {
+  input {
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: large;
+    margin-bottom: 20px;
+    min-height: 50px;
+    width: 60%;
+  }
+
+  button {
+    background-color: #2970ff;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.75cqmin;
+    height: calc(var(--gs-cell-height) / 2);
+    width: 40%;
+
+    &:hover {
+      filter: brightness(120%);
+    }
+
+    &:disabled {
+      filter: brightness(80%);
+    }
+  }
+
+  &-message {
+    color: grey;
+    margin: 10px;
+  }
+}

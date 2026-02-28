@@ -10,22 +10,24 @@ import { api } from '../../../lib/https';
 import './index.scss';
 
 const Todoist = ({ widget }: Props) => {
+  const { apiKey, colour, title, todoistId } = widget;
   const [tasks, setTasks] = useState<TodoistResponse['data']>([]);
 
   const fetchTasks = async () => {
-    const response = await api.get<TodoistResponse>(`/todoist?apiKey=${widget.apiKey}&projectId=${widget.todoistId}`);
+    const response = await api.get<TodoistResponse>(`/todoist?apiKey=${apiKey}&projectId=${todoistId}`);
     setTasks(response.data);
   };
 
   const onAddTask = () => {
     PubSub.publish('show-modal', {
-      component: <AddTodoistTask projectId={widget.todoistId} />,
-      title: `Add to ${widget.title}`,
+      component: <AddTodoistTask apiKey={apiKey} projectId={todoistId} />,
+      onClose: () => fetchTasks,
+      title: `Add to ${title}`,
     });
   };
 
   const onDeleteTask = async (task: TodoistResponse['data'][number]) => {
-    await api.delete(`/todoist?apiKey=${widget.apiKey}&projectId=${widget.todoistId}&id=${task.id}`);
+    await api.delete(`/todoist?apiKey=${apiKey}&projectId=${todoistId}&id=${task.id}`);
     await fetchTasks();
   };
 
@@ -47,7 +49,7 @@ const Todoist = ({ widget }: Props) => {
         <button
           onClick={onAddTask}
           style={{
-            backgroundColor: widget.colour,
+            backgroundColor: colour,
           }}
         >
           Add
