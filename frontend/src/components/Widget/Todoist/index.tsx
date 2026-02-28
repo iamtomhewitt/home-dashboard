@@ -35,6 +35,13 @@ const Todoist = ({ widget }: Props) => {
             <div>{task.name}</div>
           </div>
         ))}
+
+        <button style={{
+          backgroundColor: widget.colour,
+        }}
+        >
+          Add
+        </button>
       </div>
     </Widget>
   );
