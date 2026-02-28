@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { LambdaResponse } from '../../../types/lambda';
+import { ApiResponse } from '../../../types/api';
 import { api } from '../../../lib/https';
 
 import './index.scss';
@@ -10,7 +10,7 @@ const AddTodoistTask = ({ apiKey, projectId }: Props) => {
   const [message, setMessage] = useState('');
 
   const onAdd = async () => {
-    const response = await api.post<LambdaResponse>(`/todoist?apiKey=${apiKey}&projectId=${projectId}`, {
+    const response = await api.post<ApiResponse<null>>(`/todoist?apiKey=${apiKey}&projectId=${projectId}`, {
       content: name,
     });
 

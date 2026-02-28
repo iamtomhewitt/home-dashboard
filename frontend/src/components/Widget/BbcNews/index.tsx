@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import Widget from '../';
-import { NewsResponse } from '../../../types/lambda';
+import { NewsApiResponse, NewsItem } from '../../../types/news';
 import { Widget as WidgetType } from '../../../types/widget';
 import { api } from '../../../lib/https';
 
 const BbcNews = ({ widget }: Props) => {
-  const [articles, setArticles] = useState<NewsResponse['data']>([]);
+  const [articles, setArticles] = useState<NewsItem[]>([]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const BbcNews = ({ widget }: Props) => {
   }, [articles.length]);
 
   const onRefresh = async () => {
-    const response = await api.get<NewsResponse>(`/news?apiKey=${widget.apiKey}`);
+    const response = await api.get<NewsApiResponse>(`/news?apiKey=${widget.apiKey}`);
     setArticles(response.data);
   };
 

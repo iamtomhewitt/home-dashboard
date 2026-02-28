@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 
 import Widget from '../';
-import { CalendarResponse } from '../../../types/lambda';
+import { Calendar, CalendarApiResponse } from '../../../types/calendar';
 import { Widget as WidgetType } from '../../../types/widget';
 import { api } from '../../../lib/https';
 import { sessionStorage } from '../../../lib/session-storage';
@@ -10,11 +10,11 @@ import { sessionStorage } from '../../../lib/session-storage';
 import './index.scss';
 
 const Gmail = ({ widget }: Props) => {
-  const [events, setEvents] = useState<CalendarResponse['data']>([]);
+  const [events, setEvents] = useState<Calendar[]>([]);
 
   const fetchEvents = async () => {
     const { id } = sessionStorage.getDashboardConfig();
-    const response = await api.get<CalendarResponse>(`/calendar?apiKey=${id}&gmail=${widget.gmailAddress}`);
+    const response = await api.get<CalendarApiResponse>(`/calendar?apiKey=${id}&gmail=${widget.gmailAddress}`);
     setEvents(response.data);
   };
 

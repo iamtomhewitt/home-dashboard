@@ -3,7 +3,7 @@ import PubSub from 'pubsub-js';
 
 import AddTodoistTask from '../../Modal/AddTodoistTask';
 import Widget from '../';
-import { TodoistResponse } from '../../../types/lambda';
+import { TodoistApiResponse, TodoistItem } from '../../../types/todoist';
 import { Widget as WidgetType } from '../../../types/widget';
 import { api } from '../../../lib/https';
 
@@ -11,10 +11,10 @@ import './index.scss';
 
 const Todoist = ({ widget }: Props) => {
   const { apiKey, colour, title, todoistId } = widget;
-  const [tasks, setTasks] = useState<TodoistResponse['data']>([]);
+  const [tasks, setTasks] = useState<TodoistItem[]>([]);
 
   const fetchTasks = async () => {
-    const response = await api.get<TodoistResponse>(`/todoist?apiKey=${apiKey}&projectId=${todoistId}`);
+    const response = await api.get<TodoistApiResponse>(`/todoist?apiKey=${apiKey}&projectId=${todoistId}`);
     setTasks(response.data);
   };
 
@@ -26,7 +26,7 @@ const Todoist = ({ widget }: Props) => {
     });
   };
 
-  const onDeleteTask = async (task: TodoistResponse['data'][number]) => {
+  const onDeleteTask = async (task: TodoistItem) => {
     await api.delete(`/todoist?apiKey=${apiKey}&projectId=${todoistId}&id=${task.id}`);
     await fetchTasks();
   };

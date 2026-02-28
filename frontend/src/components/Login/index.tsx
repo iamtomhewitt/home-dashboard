@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ConfigResponse } from '../../types/lambda';
+import { ConfigApiResponse } from '../../types/config';
 import { api } from '../../lib/https';
 import { credentials } from '../../lib/credentials';
 import { sessionStorage } from '../../lib/session-storage';
@@ -17,7 +17,7 @@ const Login = () => {
 
   const onLogin = async () => {
     setError('');
-    const response = await api.get<ConfigResponse>(`/config?id=${dashboardId}`);
+    const response = await api.get<ConfigApiResponse>(`/config?id=${dashboardId}`);
 
     switch (response.status) {
       case 200:

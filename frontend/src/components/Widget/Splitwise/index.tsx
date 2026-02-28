@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
 import Widget from '../';
-import { SplitwiseResponse } from '../../../types/lambda';
+import { SplitwiseApiResponse, SplitwiseGroup } from '../../../types/splitwise';
 import { Widget as WidgetType } from '../../../types/widget';
 import { api } from '../../../lib/https';
 
 import './index.scss';
 
 const Splitwise = ({ widget }: Props) => {
-  const [debt, setDebt] = useState<SplitwiseResponse['data']>();
+  const [debt, setDebt] = useState<SplitwiseGroup>();
   const owesLabel = `${debt?.who} owes ${debt?.owes}`;
 
   const fetchData = async () => {
-    const response = await api.get<SplitwiseResponse>(`/splitwise?apiKey=${widget.apiKey}&groupId=${widget.groupId}`);
+    const response = await api.get<SplitwiseApiResponse>(`/splitwise?apiKey=${widget.apiKey}&groupId=${widget.groupId}`);
     setDebt(response.data);
   };
 
