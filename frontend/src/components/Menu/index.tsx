@@ -30,6 +30,14 @@ const Menu = () => {
     window.location.reload();
   };
 
+  const onSettings = () => {
+    navigate('/settings');
+  };
+
+  const onHome = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <div className='menu'>
       <button onClick={onToggleFullScreen}>
@@ -38,6 +46,14 @@ const Menu = () => {
 
       <button onClick={onRefresh}>
         <i className='fa-solid fa-refresh' />
+      </button>
+
+      <button onClick={onSettings}>
+        <i className='fa-solid fa-gear' />
+      </button>
+
+      <button onClick={onHome}>
+        <i className='fa-solid fa-house' />
       </button>
 
       <button onClick={onLogout}>

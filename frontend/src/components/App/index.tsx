@@ -39,6 +39,8 @@ const App = () => {
 
         <Route element={withLoggedInRoute(<IconsPage />)} path='/icons' />
 
+        <Route element={withLoggedInRoute(<div>Settings</div>)} path='/settings' />
+
         <Route element={withLoggedInRoute(<div>Not Found</div>)} path='*' />
 
       </Routes>
