@@ -21,45 +21,36 @@ const Menu = () => {
     }
   };
 
-  const onLogout = () => {
-    credentials.logout();
-    navigate('/login');
-  };
-
-  const onRefresh = () => {
-    window.location.reload();
-  };
-
-  const onSettings = () => {
-    navigate('/settings');
-  };
-
-  const onHome = () => {
-    navigate('/dashboard');
-  };
+  const buttons = [{
+    icon: 'house',
+    onClick: () => navigate('/dashboard'),
+  }, {
+    icon: 'refresh',
+    onClick: () => window.location.reload(),
+  }, {
+    icon: 'utensils',
+    onClick: () => navigate('/recipe-manager'),
+  }, {
+    icon: 'gear',
+    onClick: () => navigate('/settings'),
+  }, {
+    icon: isFullScreen ? 'compress' : 'expand',
+    onClick: onToggleFullScreen,
+  }, {
+    icon: 'right-from-bracket',
+    onClick: () => {
+      credentials.logout();
+      navigate('/login');
+    },
+  }];
 
   return (
     <div className='menu'>
-      <button onClick={onToggleFullScreen}>
-        <i className={`fa-solid fa-${isFullScreen ? 'compress' : 'expand'}`} />
-      </button>
-
-      <button onClick={onRefresh}>
-        <i className='fa-solid fa-refresh' />
-      </button>
-
-      <button onClick={onSettings}>
-        <i className='fa-solid fa-gear' />
-      </button>
-
-      <button onClick={onHome}>
-        <i className='fa-solid fa-house' />
-      </button>
-
-      <button onClick={onLogout}>
-        <i className='fa-solid fa-arrow-right-from-bracket' />
-      </button>
-
+      {buttons.map(b => (
+        <button onClick={b.onClick}>
+          <i className={`fa-solid fa-${b.icon}`} />
+        </button>
+      ))}
     </div>
   );
 };

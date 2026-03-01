@@ -31,20 +31,20 @@ const App = () => {
   };
 
   return (
-    <div>
-      <Routes>
-        <Route element={<Login />} path='/login' />
+    <Routes>
+      <Route element={<Login />} path='/login' />
 
-        <Route element={withLoggedInRoute(<Dashboard />)} path='/dashboard' />
+      <Route element={withLoggedInRoute(<Dashboard />)} path='/dashboard' />
 
-        <Route element={withLoggedInRoute(<IconsPage />)} path='/icons' />
+      <Route element={withLoggedInRoute(<IconsPage />)} path='/icons' />
 
-        <Route element={withLoggedInRoute(<div>Settings</div>)} path='/settings' />
+      <Route element={withLoggedInRoute(<div>Settings</div>)} path='/settings' />
 
-        <Route element={withLoggedInRoute(<div>Not Found</div>)} path='*' />
+      <Route element={withLoggedInRoute(<div>Recipe Manager</div>)} path='/recipe-manager' />
 
-      </Routes>
-    </div>
+      <Route element={withLoggedInRoute(<div>Not Found</div>)} path='*' />
+
+    </Routes>
   );
 };
 
