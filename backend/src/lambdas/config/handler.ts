@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { DeleteObjectCommand } from '@aws-sdk/client-s3';
 
 import s3 from '../../lib/s3';
 import { BadRequestError, withErrorHandling } from '../../lib/error';
@@ -15,12 +15,7 @@ const main = async (e: APIGatewayProxyEvent) => {
 
   switch (e.httpMethod) {
     case 'GET': {
-      const file = await s3.send(new GetObjectCommand({
-        Bucket: bucketName,
-        Key: id,
-      }));
-      const contents = await file.Body?.transformToString() || '{}';
-      const data = JSON.parse(contents);
+      const data = await s3.getObjectAsJson(bucketName, id);
       return response.json(200, 'Success', data);
     }
 
@@ -29,11 +24,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         throw new BadRequestError('Missing request body');
       }
 
-      const data = await s3.send(new PutObjectCommand({
-        Body: e.body,
-        Bucket: bucketName,
-        Key: id,
-      }));
+      const data = await s3.save(bucketName, id, e.body);
 
       return response.json(200, 'Success', data);
     }

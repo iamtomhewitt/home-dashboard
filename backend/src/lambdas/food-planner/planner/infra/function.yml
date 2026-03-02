@@ -1,0 +1,19 @@
+---
+foodPlanner:
+  description: Controls recipes for each day of the week
+  events:
+    - http:
+        cors: true
+        method: get
+        path: /food-planner/planner
+    - http:
+        cors: true
+        method: put
+        path: /food-planner/planner
+  handler: dist/src/lambdas/food-planner/planner/handler.handler
+  logRetentionInDays: 7
+  name: home-dashboard-food-planner
+  role:
+    Fn::GetAtt:
+      - FoodPlannerLambdaRole
+      - Arn

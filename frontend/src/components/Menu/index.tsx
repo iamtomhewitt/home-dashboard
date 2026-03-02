@@ -46,8 +46,8 @@ const Menu = () => {
 
   return (
     <div className='menu'>
-      {buttons.map(b => (
-        <button onClick={b.onClick}>
+      {buttons.map((b, i) => (
+        <button key={i} onClick={b.onClick}>
           <i className={`fa-solid fa-${b.icon}`} />
         </button>
       ))}

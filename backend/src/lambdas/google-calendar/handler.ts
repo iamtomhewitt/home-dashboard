@@ -1,6 +1,5 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { GetParameterCommand } from '@aws-sdk/client-ssm';
-import { HeadObjectCommand } from '@aws-sdk/client-s3';
 import { google } from 'googleapis';
 
 import s3 from '../../lib/s3';
@@ -15,20 +14,9 @@ const main = async (e: APIGatewayProxyEvent) => {
     throw new BadRequestError('Missing \'apiKey\' or \'gmail\'');
   }
 
-  // Slight 'auth' to stop you form finding out the url and passing in an email to get back events
+  // Slight 'auth' to stop you from finding out the url and passing in an email to get back events
   // The API key is just the config key for your dashboard
-  const matchingApiKey = await s3
-    .send(new HeadObjectCommand({
-      Bucket: 'home-dashboard-config',
-      Key: apiKey,
-    }))
-    .then(() => true)
-    .catch((err) => {
-      if (err.name === 'NotFound') {
-        return false;
-      }
-      throw err;
-    });
+  const matchingApiKey = await s3.itemExists('home-dashboard-config', apiKey);
 
   if (!matchingApiKey) {
     throw new UnauthorisedError('Incorrect API key');
