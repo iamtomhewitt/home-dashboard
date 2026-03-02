@@ -37,4 +37,21 @@
       text-align: center;
     }
   }
+
+  button {
+    border: none;
+    border-radius: 10px;
+    bottom: 0;
+    color: white;
+    cursor: pointer;
+    filter: brightness(150%);
+    font-family: inherit;
+    height: calc(var(--gs-cell-height) / 3);
+    margin: 0 3cqmin 3cqmin;
+    margin-bottom: 10px;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
 }
