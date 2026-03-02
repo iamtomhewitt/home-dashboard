@@ -4,6 +4,7 @@ import { GridStack } from 'gridstack';
 import BbcNews from '../Widget/BbcNews';
 import BinDay from '../Widget/BinDay';
 import Clock from '../Widget/Clock';
+import FoodPlan from '../Widget/FoodPlanner';
 import Gmail from '../Widget/Gmail';
 import Modal from '../Modal';
 import Splitwise from '../Widget/Splitwise';
@@ -19,6 +20,7 @@ const Dashboard = () => {
     bbcNews: BbcNews,
     binDay: BinDay,
     clock: Clock,
+    foodPlanner: FoodPlan,
     gmail: Gmail,
     splitwise: Splitwise,
     todoist: Todoist,

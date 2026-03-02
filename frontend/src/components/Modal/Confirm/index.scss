@@ -1,12 +1,18 @@
 .confirm {
-  button {
+  &-message {
+    margin-bottom: 20px;
+  }
+
+  %-button {
     background-color: #2970ff;
     border: 0;
     border-radius: 10px;
     color: #fff;
+    cursor: pointer;
     font-family: inherit;
     font-size: 1.75cqmin;
     height: calc(var(--gs-cell-height) / 2);
+    margin: 0 10px;
     width: 40%;
 
     &:hover {
@@ -18,8 +24,15 @@
     }
   }
 
-  &-message {
-    color: grey;
-    margin: 10px;
+  button:nth-of-type(1) {
+    @extend %-button;
+
+    background-color: transparent;
+    border: 1px solid #2970ff;
+    color: #2970ff;
+  }
+
+  button:nth-of-type(2) {
+    @extend %-button;
   }
 }

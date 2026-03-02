@@ -24,6 +24,8 @@
   &-box {
     background-color: #fff;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
     margin: auto;
     position: relative;
     width: 60%;
@@ -42,7 +44,7 @@
     color: white;
     display: inline-flex;
     font-size: 3cqmin;
-    height: clamp(20px, 40%, 60px);
+    height: clamp(40px, 6cqmin, 60px);
     justify-content: space-between;
     padding: 0 20px;
     width: calc(100% - 40px);

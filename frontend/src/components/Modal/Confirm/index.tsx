@@ -1,25 +1,23 @@
 import './index.scss';
 
-const Confirm = ({ message, onYes, onNo }: Props) => (
+const Confirm = ({ message, onNo, onYes }: Props) => (
   <div className='confirm'>
-    <div>{message}</div>
+    <div className='confirm-message'>{message}</div>
 
-    <button>
+    <button onClick={onNo}>
       No
     </button>
 
-    <button>
+    <button onClick={onYes}>
       Yes
     </button>
-
-    <br />
   </div>
 );
 
 type Props = {
   message: string;
-  onYes: () => void;
   onNo: () => void;
+  onYes: () => void;
 }
 
 export default Confirm;

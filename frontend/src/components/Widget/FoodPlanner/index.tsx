@@ -21,8 +21,16 @@ const FoodPlanner = ({ widget }: Props) => {
           onYes={() => { }}
         />
       ),
-      onClose: () => console.log('TODO'),
+      onClose: () => onRefresh,
       title: 'Add to Shopping List',
+    });
+  };
+
+  const onChangeDay = (day: string, value: string) => {
+    PubSub.publish('show-modal', {
+      component: <div>TODO {day},{value}</div>,
+      onClose: () => onRefresh,
+      title: `Change ${day}`,
     });
   };
 
@@ -36,7 +44,11 @@ const FoodPlanner = ({ widget }: Props) => {
     <Widget onRefresh={onRefresh} widget={widget}>
       <div className='food-planner'>
         {plan && Object.entries(plan).map(([day, value]) => (
-          <div className='food-planner-card' key={day}>
+          <div
+            className='food-planner-card'
+            key={day}
+            onClick={() => onChangeDay(day, value)}
+          >
             <div
               className='food-planner-card-day'
               style={{

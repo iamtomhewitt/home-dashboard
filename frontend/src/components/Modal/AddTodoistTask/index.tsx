@@ -32,8 +32,6 @@ const AddTodoistTask = ({ apiKey, projectId }: Props) => {
       <div className='add-todoist-task-message'>
         {message}
       </div>
-
-      <br />
     </div>
   );
 };
