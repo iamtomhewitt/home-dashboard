@@ -4,8 +4,8 @@ import PubSub from 'pubsub-js';
 import './index.scss';
 
 const Modal = () => {
-  const [children, setChildren] = useState<React.ReactElement | null>(null);
-  const [onChildClose, setOnChildClose] = useState<() => void | null>();
+  const [children, setChildren] = useState<React.ReactElement<ModalProps> | null>(null);
+  const [onChildClose, setOnChildClose] = useState<(() => void) | null>(null);
   const [title, setTitle] = useState('');
 
   useEffect(() => {
@@ -42,11 +42,17 @@ const Modal = () => {
         </div>
 
         <div className='modal-children'>
-          {children}
+          {React.cloneElement(children, {
+            onClose,
+          })}
         </div>
       </div>
     </div>
   );
 };
+
+export type ModalProps = {
+  onClose?: () => void;
+}
 
 export default Modal;
