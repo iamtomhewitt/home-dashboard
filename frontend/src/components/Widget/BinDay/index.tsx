@@ -15,9 +15,11 @@ const BinDay = ({ widget }: Props) => {
   widget.colour = display.colour;
 
   const onRefresh = () => {
-    const today = new Date();
-    const tomorrow = dateFns.addDays(today, 1);
+    const today = dateFns.startOfDay(new Date());
+    const tomorrow = dateFns.startOfDay(dateFns.addDays(today, 1));
     let stopProcessing = false;
+
+    const toDateString = (date: Date) => dateFns.format(date, 'dd-MM-yyyy');
 
     for (const bin of bins) {
       if (stopProcessing) {
@@ -28,12 +30,11 @@ const BinDay = ({ widget }: Props) => {
       const lastBinDay = (() => {
         const days = dateFns.differenceInDays(today, firstDate);
         const remainder = days % bin.repeatRateInDays;
-        return dateFns.addDays(today, -remainder);
+        return dateFns.startOfDay(dateFns.addDays(today, -remainder));
       })();
-
       const nextBinDay = dateFns.addDays(lastBinDay, bin.repeatRateInDays);
-      const binToday = nextBinDay === today || lastBinDay === today;
-      const binTomorrow = nextBinDay === tomorrow || lastBinDay === tomorrow;
+      const binToday = toDateString(nextBinDay) === toDateString(today);
+      const binTomorrow = toDateString(nextBinDay) === toDateString(tomorrow);
 
       if (binToday) {
         stopProcessing = true;
