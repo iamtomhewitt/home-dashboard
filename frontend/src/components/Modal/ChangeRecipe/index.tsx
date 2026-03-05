@@ -1,13 +1,23 @@
 import { useEffect, useState } from 'react';
 
+import { CookbookApiResponse, Recipe } from '../../../types/food-planner';
+import { api } from '../../../lib/https';
+import { sessionStorage } from '../../../lib/session-storage';
+
 import './index.scss';
 
 const ChangeRecipe = ({ day, recipe }: Props) => {
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [selectedRecipe, setSelectedRecipe] = useState(recipe);
 
   useEffect(() => {
-    console.log('make a request to the cookbook to fetch recipes');
+    const fetchRecipes = async () => {
+      const config = sessionStorage.getDashboardConfig();
+      const response = await api.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
+      setRecipes(response.data.sort((a, b) => a.name.localeCompare(b.name)));
+    };
+
+    fetchRecipes();
   }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,15 +26,27 @@ const ChangeRecipe = ({ day, recipe }: Props) => {
 
   return (
     <div className='change-recipe'>
-      <input
-        onChange={(e) => onChange(e)}
-        placeholder='Something else?'
-        value={selectedRecipe}
-      />
+      <div className='change-recipe-control'>
+        <input
+          onChange={(e) => onChange(e)}
+          placeholder='Something else?'
+          value={selectedRecipe}
+        />
 
-      <div>
+        <button>
+          Save
+        </button>
+      </div>
+
+      <div className='change-recipe-recipes'>
         {recipes.map((recipe, i) => (
-          <div key={i}>{recipe}</div>
+          <div className='change-recipe-item' key={i}>
+            <button>
+              <i className='fa-solid fa-utensils' />
+            </button>
+
+            <span>{recipe.name}</span>
+          </div>
         ))}
       </div>
     </div>

@@ -18,9 +18,9 @@ const Dashboard = () => {
   const { widgets } = sessionStorage.getDashboardConfig();
   const widgetLookup: any = {
     // bbcNews: BbcNews,
-    binDay: BinDay,
+    // binDay: BinDay,
     // clock: Clock,
-    // foodPlanner: FoodPlan,
+    foodPlanner: FoodPlan,
     // gmail: Gmail,
     // splitwise: Splitwise,
     // todoist: Todoist,
