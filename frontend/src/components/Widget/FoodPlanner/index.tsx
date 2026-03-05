@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import ChangeRecipe from '../../Modal/ChangeRecipe';
 import Confirm from '../../Modal/Confirm';
 import Widget from '../';
 import { FoodPlan, FoodPlannerApiResponse } from '../../../types/food-planner';
@@ -28,7 +29,7 @@ const FoodPlanner = ({ widget }: Props) => {
 
   const onChangeDay = (day: string, value: string) => {
     PubSub.publish('show-modal', {
-      component: <div>TODO {day},{value}</div>,
+      component: <ChangeRecipe day={day} recipe={value} />,
       onClose: () => onRefresh,
       title: `Change ${day}`,
     });

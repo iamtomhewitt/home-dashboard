@@ -1,0 +1,19 @@
+---
+cookbook:
+  description: Manages recipes and ingredients for food planner
+  events:
+    - http:
+        cors: true
+        method: get
+        path: /food-planner/cookbook
+    - http:
+        cors: true
+        method: put
+        path: /food-planner/cookbook
+  handler: dist/src/lambdas/food-planner/cookbook/handler.handler
+  logRetentionInDays: 7
+  name: home-dashboard-food-planner-cookbook
+  role:
+    Fn::GetAtt:
+      - CookbookLambdaRole
+      - Arn

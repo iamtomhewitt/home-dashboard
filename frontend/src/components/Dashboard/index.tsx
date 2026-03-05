@@ -17,14 +17,14 @@ import 'gridstack/dist/gridstack.min.css';
 const Dashboard = () => {
   const { widgets } = sessionStorage.getDashboardConfig();
   const widgetLookup: any = {
-    bbcNews: BbcNews,
+    // bbcNews: BbcNews,
     binDay: BinDay,
-    clock: Clock,
-    foodPlanner: FoodPlan,
-    gmail: Gmail,
-    splitwise: Splitwise,
-    todoist: Todoist,
-    weather: Weather,
+    // clock: Clock,
+    // foodPlanner: FoodPlan,
+    // gmail: Gmail,
+    // splitwise: Splitwise,
+    // todoist: Todoist,
+    // weather: Weather,
   };
 
   useEffect(() => {
