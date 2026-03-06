@@ -2,10 +2,11 @@ import { useState } from 'react';
 import PubSub from 'pubsub-js';
 
 import AddTodoistTask from '../../Modal/AddTodoistTask';
+import Icon from '../../Icon';
 import Widget from '../';
 import { TodoistApiResponse, TodoistItem } from '../../../types/todoist';
 import { Widget as WidgetType } from '../../../types/widget';
-import { api } from '../../../lib/https';
+import { http } from '../../../lib/https';
 
 import './index.scss';
 
@@ -14,7 +15,7 @@ const Todoist = ({ widget }: Props) => {
   const [tasks, setTasks] = useState<TodoistItem[]>([]);
 
   const fetchTasks = async () => {
-    const response = await api.get<TodoistApiResponse>(`/todoist?apiKey=${apiKey}&projectId=${todoistId}`);
+    const response = await http.get<TodoistApiResponse>(`/todoist?apiKey=${apiKey}&projectId=${todoistId}`);
     setTasks(response.data);
   };
 
@@ -27,7 +28,7 @@ const Todoist = ({ widget }: Props) => {
   };
 
   const onDeleteTask = async (task: TodoistItem) => {
-    await api.delete(`/todoist?apiKey=${apiKey}&projectId=${todoistId}&id=${task.id}`);
+    await http.delete(`/todoist?apiKey=${apiKey}&projectId=${todoistId}&id=${task.id}`);
     await fetchTasks();
   };
 
@@ -40,7 +41,7 @@ const Todoist = ({ widget }: Props) => {
             key={i}
             onClick={() => onDeleteTask(task)}
           >
-            <i className='fa-solid fa-xmark' />
+            <Icon name='xmark' />
 
             <div>{task.name}</div>
           </div>

@@ -5,7 +5,7 @@ import LazySvg from '../../LazySvgLoader';
 import Widget from '../';
 import { WeatherApiResponse, WeatherData } from '../../../types/weather';
 import { Widget as WidgetType } from '../../../types/widget';
-import { api } from '../../../lib/https';
+import { http } from '../../../lib/https';
 
 import './index.scss';
 
@@ -13,7 +13,7 @@ const Weather = ({ widget }: Props) => {
   const [weather, setWeather] = useState<WeatherData>();
 
   const onRefresh = async () => {
-    const response = await api.get<WeatherApiResponse>(`/weather?apiKey=${widget.apiKey}&latitude=${widget.latitude}&longitude=${widget.longitude}`);
+    const response = await http.get<WeatherApiResponse>(`/weather?apiKey=${widget.apiKey}&latitude=${widget.latitude}&longitude=${widget.longitude}`);
     setWeather(response.data);
   };
 

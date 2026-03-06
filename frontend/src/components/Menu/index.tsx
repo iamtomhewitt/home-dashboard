@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Icon from '../Icon';
 import { credentials } from '../../lib/credentials';
 
 import './index.scss';
@@ -48,7 +49,7 @@ const Menu = () => {
     <div className='menu'>
       {buttons.map((b, i) => (
         <button key={i} onClick={b.onClick}>
-          <i className={`fa-solid fa-${b.icon}`} />
+          <Icon name={b.icon} />
         </button>
       ))}
     </div>

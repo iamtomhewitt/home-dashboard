@@ -52,7 +52,7 @@ const deleteRequest = async <T>(path: string) => {
   );
 };
 
-export const api = {
+export const http = {
   get,
   post,
   put,

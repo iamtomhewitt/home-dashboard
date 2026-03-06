@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import Icon from '../../Icon';
 import Widget from '../';
 import { NewsApiResponse, NewsItem } from '../../../types/news';
 import { Widget as WidgetType } from '../../../types/widget';
-import { api } from '../../../lib/https';
+import { http } from '../../../lib/https';
 
 const BbcNews = ({ widget }: Props) => {
   const [articles, setArticles] = useState<NewsItem[]>([]);
@@ -20,7 +21,7 @@ const BbcNews = ({ widget }: Props) => {
   }, [articles.length]);
 
   const onRefresh = async () => {
-    const response = await api.get<NewsApiResponse>(`/news?apiKey=${widget.apiKey}`);
+    const response = await http.get<NewsApiResponse>(`/news?apiKey=${widget.apiKey}`);
     setArticles(response.data);
   };
 
@@ -29,7 +30,11 @@ const BbcNews = ({ widget }: Props) => {
       <div>
         {articles.length > 0 ?
           articles[index].title :
-          <i className='fa-solid fa-circle-notch fa-spin fa-2xl' />}
+          <Icon
+            animation='spin'
+            name='circle-notch'
+            size='2xl'
+          />}
       </div>
     </Widget>
   );

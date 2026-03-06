@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import Icon from '../Icon';
 import { Widget as WidgetType } from '../../types/widget';
 import { time } from '../../lib/time';
 
@@ -67,7 +68,11 @@ const Widget = ({
       >
         {/* TODO now we have a loading state var we can set a last update state var once it completes */}
         {isLoading ?
-          <i className='fa-solid fa-circle-notch fa-spin fa-2xl' /> :
+          <Icon
+            animation='spin'
+            name='circle-notch'
+            size='2xl'
+          /> :
           children}
       </div>
     </div>

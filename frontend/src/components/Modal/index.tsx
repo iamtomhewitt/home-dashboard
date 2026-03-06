@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PubSub from 'pubsub-js';
 
+import Icon from '../Icon';
+
 import './index.scss';
 
 const Modal = () => {
@@ -38,7 +40,9 @@ const Modal = () => {
         <div className='modal-title'>
           <span>{title}</span>
 
-          <i className='fa-solid fa-xmark' onClick={onClose} />
+          <span onClick={onClose}>
+            <Icon name='xmark' />
+          </span>
         </div>
 
         <div className='modal-children'>

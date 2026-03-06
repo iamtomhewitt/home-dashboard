@@ -23,6 +23,7 @@
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.4",
+    "classnames": "2.5.1",
     "sass-embedded": "1.97.3",
     "serverless-s3-sync": "3.5.1",
     "vite": "7.3.1",

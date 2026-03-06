@@ -5,7 +5,7 @@ import Confirm from '../../Modal/Confirm';
 import Widget from '../';
 import { FoodPlan, FoodPlannerApiResponse } from '../../../types/food-planner';
 import { Widget as WidgetType } from '../../../types/widget';
-import { api } from '../../../lib/https';
+import { http } from '../../../lib/https';
 import { sessionStorage } from '../../../lib/session-storage';
 
 import './index.scss';
@@ -37,7 +37,7 @@ const FoodPlanner = ({ widget }: Props) => {
 
   const onRefresh = async () => {
     const { id } = sessionStorage.getDashboardConfig();
-    const response = await api.get<FoodPlannerApiResponse>(`/food-planner/planner?id=${id}`);
+    const response = await http.get<FoodPlannerApiResponse>(`/food-planner/planner?id=${id}`);
     setPlan(response.data);
   };
 
