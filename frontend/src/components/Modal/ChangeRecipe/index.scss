@@ -40,12 +40,23 @@
 
     button {
       margin-right: 10px;
+      border: 0;
+      border-radius: 10px;
+      height: 4cqmin;
+      width: 4cqmin;
+    }
+
+    .fa-circle-notch {
+      margin: auto;
+      width: 100%;
+      color: #2970ff;
     }
   }
 
   &-item {
     align-items: center;
     display: inline-flex;
+    margin-bottom: 10px;
     width: 100%;
   }
 }

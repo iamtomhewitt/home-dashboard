@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
-
+import PubSub from 'pubsub-js';
 import Icon from '../../Icon';
 import { CookbookApiResponse, Recipe } from '../../../types/food-planner';
 import { http } from '../../../lib/https';
 import { sessionStorage } from '../../../lib/session-storage';
 
 import './index.scss';
+import RecipeDetails from '../RecipeDetails';
 
 const ChangeRecipe = ({ day, recipe }: Props) => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [selectedRecipe, setSelectedRecipe] = useState(recipe);
+  const [selectedRecipe, setSelectedRecipe] = useState('');
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -25,11 +26,22 @@ const ChangeRecipe = ({ day, recipe }: Props) => {
     setSelectedRecipe(e.target.value);
   };
 
+  const onShowRecipeDetails = () => {
+    PubSub.publish('show-modal', {
+      component: <RecipeDetails day={day} recipe={recipe} />,
+      onClose: () => () => PubSub.publish('show-modal', {
+        component: <ChangeRecipe day={day} recipe={recipe} />,
+        title: `Change ${day}`
+      }),
+      title: `Recipe Details`
+    })
+  }
+
   return (
     <div className='change-recipe'>
       <div className='change-recipe-control'>
         <input
-          onChange={(e) => onChange(e)}
+          onChange={onChange}
           placeholder='Something else?'
           value={selectedRecipe}
         />
@@ -40,9 +52,17 @@ const ChangeRecipe = ({ day, recipe }: Props) => {
       </div>
 
       <div className='change-recipe-recipes'>
+        {recipes.length === 0 && (
+          <Icon
+            animation='spin'
+            name='circle-notch'
+            size='2xl'
+          />
+        )}
+
         {recipes.map((recipe, i) => (
           <div className='change-recipe-item' key={i}>
-            <button>
+            <button onClick={onShowRecipeDetails}>
               <Icon name='utensils' />
             </button>
 
