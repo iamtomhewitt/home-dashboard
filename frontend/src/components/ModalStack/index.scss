@@ -27,6 +27,7 @@
     display: flex;
     flex-direction: column;
     margin: auto;
+    max-height: 90%;
     position: relative;
     width: 60%;
 
@@ -45,12 +46,25 @@
     font-size: 3cqmin;
     height: clamp(40px, 6cqmin, 60px);
     justify-content: space-between;
+    min-height: clamp(40px, 6cqmin, 60px);
     padding: 0 20px;
     width: calc(100% - 40px);
   }
 
   &-children {
     font-size: 2.5cqmin;
+    overflow-y: scroll;
     padding: 20px;
+
+    &::-webkit-scrollbar {
+      appearance: none;
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #2970ff;
+      border-bottom-right-radius: 10px;
+      box-shadow: 0 0 1px rgb(255 255 255 / 0.5);
+    }
   }
 }

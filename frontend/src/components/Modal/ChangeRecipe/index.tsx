@@ -34,9 +34,8 @@ const ChangeRecipe = ({ day, onClose }: Props) => {
 
   const onShowRecipeDetails = (recipe: Recipe) => {
     modalstack.open(RecipeDetails, {
-      day,
       recipe,
-      title: 'Recipe Details',
+      title: recipe.name,
     });
   };
 
