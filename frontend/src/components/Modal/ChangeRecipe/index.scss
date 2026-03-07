@@ -39,17 +39,22 @@
     text-align: left;
 
     button {
+      background-color: #2970ff;
       border: 0;
       border-radius: 10px;
       height: 4cqmin;
       margin-right: 10px;
-      width: 4cqmin;
+      width: 4cqmin;;
     }
 
     .fa-circle-notch {
       color: #2970ff;
       margin: auto;
       width: 100%;
+    }
+
+    .fa-utensils {
+      color: #fff;
     }
   }
 
