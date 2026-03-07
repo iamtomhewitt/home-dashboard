@@ -12,7 +12,7 @@ type ModalStackItem = {
 };
 
 type ModalContextType = {
-  close: <R>(result: R) => void;
+  close: () => void;
   open: <P>(Component: ModalComponent<P>, props?: P) => any;
 };
 

@@ -6,7 +6,6 @@ import BinDay from '../Widget/BinDay';
 import Clock from '../Widget/Clock';
 import FoodPlan from '../Widget/FoodPlanner';
 import Gmail from '../Widget/Gmail';
-import Modal from '../Modal';
 import Splitwise from '../Widget/Splitwise';
 import Todoist from '../Widget/Todoist';
 import Weather from '../Widget/Weather';
@@ -43,8 +42,6 @@ const Dashboard = () => {
 
         return <Component key={i} widget={widget} />;
       })}
-
-      <Modal />
 
     </div>
   );

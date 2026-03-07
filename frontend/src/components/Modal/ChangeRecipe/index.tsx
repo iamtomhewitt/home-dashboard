@@ -9,7 +9,7 @@ import { useModalStack } from '../../ModalStack';
 
 import './index.scss';
 
-const ChangeRecipe = ({ day }: Props) => {
+const ChangeRecipe = ({ day, onClose }: Props) => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [selectedRecipe, setSelectedRecipe] = useState('');
   const modalstack = useModalStack();
@@ -22,6 +22,10 @@ const ChangeRecipe = ({ day }: Props) => {
     };
 
     fetchRecipes();
+
+    return () => {
+      onClose();
+    };
   }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +40,14 @@ const ChangeRecipe = ({ day }: Props) => {
     });
   };
 
+  const onSelectRecipe = async (recipe: string) => {
+    const { id } = sessionStorage.getDashboardConfig();
+    await http.put(`/food-planner/planner?id=${id}`, {
+      [day]: recipe,
+    });
+    modalstack.close();
+  };
+
   return (
     <div className='change-recipe'>
       <div className='change-recipe-control'>
@@ -45,7 +57,7 @@ const ChangeRecipe = ({ day }: Props) => {
           value={selectedRecipe}
         />
 
-        <button>
+        <button onClick={() => onSelectRecipe(selectedRecipe)}>
           Save
         </button>
       </div>
@@ -65,7 +77,7 @@ const ChangeRecipe = ({ day }: Props) => {
               <Icon name='utensils' />
             </button>
 
-            <span>{recipe.name}</span>
+            <span onClick={() => onSelectRecipe(recipe.name)}>{recipe.name}</span>
           </div>
         ))}
       </div>
@@ -75,6 +87,7 @@ const ChangeRecipe = ({ day }: Props) => {
 
 type Props = {
   day: string;
+  onClose: () => void;
 }
 
 export default ChangeRecipe;
