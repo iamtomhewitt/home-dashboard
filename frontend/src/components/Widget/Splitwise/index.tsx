@@ -32,8 +32,7 @@ const Splitwise = ({ widget }: Props) => {
             <div className='splitwise-amount'>
               {debt?.amount}
             </div>
-          </>
-        }
+          </>}
       </div>
     </Widget>
   );
