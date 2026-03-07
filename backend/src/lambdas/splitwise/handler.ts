@@ -25,10 +25,20 @@ const main = async (e: APIGatewayProxyEvent) => {
     name: member.first_name,
   }));
 
+  if (group.simplified_debts.length === 0) {
+    return response.json(200, 'Success', {
+      amount: 'n/a',
+      owes: 'n/a',
+      settledUp: true,
+      who: 'n/a',
+    });
+  }
+
   const debt = group.simplified_debts[0];
   const data = {
     amount: `£${parseFloat(debt.amount).toFixed(2)}`,
     owes: members.find(m => m.id === debt.to).name,
+    settledUp: false,
     who: members.find(m => m.id === debt.from).name,
   };
 

@@ -22,13 +22,18 @@ const Splitwise = ({ widget }: Props) => {
       <div className='splitwise'>
         <Icon name='sterling-sign' />
 
-        <div>
-          {owesLabel}
-        </div>
+        {debt?.settledUp ?
+          <div>All settled up!</div> :
+          <>
+            <div>
+              {owesLabel}
+            </div>
 
-        <div className='splitwise-amount'>
-          {debt?.amount}
-        </div>
+            <div className='splitwise-amount'>
+              {debt?.amount}
+            </div>
+          </>
+        }
       </div>
     </Widget>
   );
