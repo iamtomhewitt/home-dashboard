@@ -5,6 +5,7 @@ import Dashboard from '../Dashboard';
 import IconsPage from '../IconsPage';
 import Login from '../Login';
 import Menu from '../Menu';
+import ModalStack from '../ModalStack';
 import { credentials } from '../../lib/credentials';
 
 import './index.scss';
@@ -31,20 +32,22 @@ const App = () => {
   };
 
   return (
-    <Routes>
-      <Route element={<Login />} path='/login' />
+    <ModalStack>
+      <Routes>
+        <Route element={<Login />} path='/login' />
 
-      <Route element={withLoggedInRoute(<Dashboard />)} path='/dashboard' />
+        <Route element={withLoggedInRoute(<Dashboard />)} path='/dashboard' />
 
-      <Route element={withLoggedInRoute(<IconsPage />)} path='/icons' />
+        <Route element={withLoggedInRoute(<IconsPage />)} path='/icons' />
 
-      <Route element={withLoggedInRoute(<div>Settings</div>)} path='/settings' />
+        <Route element={withLoggedInRoute(<div>Settings</div>)} path='/settings' />
 
-      <Route element={withLoggedInRoute(<div>Recipe Manager</div>)} path='/recipe-manager' />
+        <Route element={withLoggedInRoute(<div>Recipe Manager</div>)} path='/recipe-manager' />
 
-      <Route element={withLoggedInRoute(<div>Not Found</div>)} path='*' />
+        <Route element={withLoggedInRoute(<div>Not Found</div>)} path='*' />
 
-    </Routes>
+      </Routes>
+    </ModalStack>
   );
 };
 

@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
-import PubSub from 'pubsub-js';
+
 import Icon from '../../Icon';
+import RecipeDetails from '../RecipeDetails';
 import { CookbookApiResponse, Recipe } from '../../../types/food-planner';
 import { http } from '../../../lib/https';
 import { sessionStorage } from '../../../lib/session-storage';
+import { useModalStack } from '../../ModalStack';
 
 import './index.scss';
-import RecipeDetails from '../RecipeDetails';
 
-const ChangeRecipe = ({ day, recipe }: Props) => {
+const ChangeRecipe = ({ day }: Props) => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [selectedRecipe, setSelectedRecipe] = useState('');
+  const modalstack = useModalStack();
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -26,16 +28,13 @@ const ChangeRecipe = ({ day, recipe }: Props) => {
     setSelectedRecipe(e.target.value);
   };
 
-  const onShowRecipeDetails = () => {
-    PubSub.publish('show-modal', {
-      component: <RecipeDetails day={day} recipe={recipe} />,
-      onClose: () => () => PubSub.publish('show-modal', {
-        component: <ChangeRecipe day={day} recipe={recipe} />,
-        title: `Change ${day}`
-      }),
-      title: `Recipe Details`
-    })
-  }
+  const onShowRecipeDetails = (recipe: Recipe) => {
+    modalstack.open(RecipeDetails, {
+      day,
+      recipe,
+      title: 'Recipe Details',
+    });
+  };
 
   return (
     <div className='change-recipe'>
@@ -62,7 +61,7 @@ const ChangeRecipe = ({ day, recipe }: Props) => {
 
         {recipes.map((recipe, i) => (
           <div className='change-recipe-item' key={i}>
-            <button onClick={onShowRecipeDetails}>
+            <button onClick={() => onShowRecipeDetails(recipe)}>
               <Icon name='utensils' />
             </button>
 
@@ -76,7 +75,6 @@ const ChangeRecipe = ({ day, recipe }: Props) => {
 
 type Props = {
   day: string;
-  recipe: string;
 }
 
 export default ChangeRecipe;

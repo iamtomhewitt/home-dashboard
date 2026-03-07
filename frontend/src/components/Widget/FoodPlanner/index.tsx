@@ -7,31 +7,27 @@ import { FoodPlan, FoodPlannerApiResponse } from '../../../types/food-planner';
 import { Widget as WidgetType } from '../../../types/widget';
 import { http } from '../../../lib/https';
 import { sessionStorage } from '../../../lib/session-storage';
+import { useModalStack } from '../../ModalStack';
 
 import './index.scss';
 
 const FoodPlanner = ({ widget }: Props) => {
   const [plan, setPlan] = useState<FoodPlan | null>();
+  const modalstack = useModalStack();
 
   const onAddToShoppingList = () => {
-    PubSub.publish('show-modal', {
-      component: (
-        <Confirm
-          message='Add all ingredients to Shopping List?'
-          onNo={() => { }}
-          onYes={() => { }}
-        />
-      ),
-      onClose: () => onRefresh,
-      title: 'Add to Shopping List',
+    modalstack.open(Confirm, {
+      message: 'Add all ingredients to Shopping List?',
+      onNo: () => { },
+      onYes: () => { },
+      title: 'Add to Shopping List?',
     });
   };
 
-  const onChangeDay = (day: string, value: string) => {
-    PubSub.publish('show-modal', {
-      component: <ChangeRecipe day={day} recipe={value} />,
-      onClose: () => onRefresh,
-      title: `Change ${day}`,
+  const onChangeDay = (day: string) => {
+    modalstack.open(ChangeRecipe, {
+      day,
+      title: 'Change Recipe',
     });
   };
 

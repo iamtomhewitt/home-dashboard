@@ -1,26 +1,15 @@
-import ChangeRecipe from "../ChangeRecipe"
+import { Recipe } from '../../../types/food-planner';
 
-
-const RecipeDetails = ({ day, recipe }: Props) => {
-
-  const onClose = () => {
-    PubSub.publish('show-modal', {
-      component: <ChangeRecipe day={day} recipe={recipe} />,
-      title: recipe
-    })
-  }
-
+const RecipeDetails = ({ recipe }: Props) => {
   return (
     <div>
-      {recipe}
+      {recipe.name}
     </div>
-  )
-}
+  );
+};
 
 type Props = {
-  onClose?: () => void;
-  day: string;
-  recipe: string;
+  recipe: Recipe;
 }
 
-export default RecipeDetails
+export default RecipeDetails;

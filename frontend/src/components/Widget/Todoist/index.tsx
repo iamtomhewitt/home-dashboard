@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PubSub from 'pubsub-js';
 
 import AddTodoistTask from '../../Modal/AddTodoistTask';
 import Icon from '../../Icon';
@@ -7,12 +6,14 @@ import Widget from '../';
 import { TodoistApiResponse, TodoistItem } from '../../../types/todoist';
 import { Widget as WidgetType } from '../../../types/widget';
 import { http } from '../../../lib/https';
+import { useModalStack } from '../../ModalStack';
 
 import './index.scss';
 
 const Todoist = ({ widget }: Props) => {
   const { apiKey, colour, title, todoistId } = widget;
   const [tasks, setTasks] = useState<TodoistItem[]>([]);
+  const modalstack = useModalStack();
 
   const fetchTasks = async () => {
     const response = await http.get<TodoistApiResponse>(`/todoist?apiKey=${apiKey}&projectId=${todoistId}`);
@@ -20,10 +21,10 @@ const Todoist = ({ widget }: Props) => {
   };
 
   const onAddTask = () => {
-    PubSub.publish('show-modal', {
-      component: <AddTodoistTask apiKey={apiKey} projectId={todoistId} />,
-      onClose: () => fetchTasks,
-      title: `Add to ${title}`,
+    modalstack.open(AddTodoistTask, {
+      apiKey,
+      projectId: todoistId,
+      title: `Add to ${title}`, 
     });
   };
 
