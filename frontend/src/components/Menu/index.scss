@@ -1,13 +1,53 @@
 .menu {
-  bottom: 20px;
-  position: absolute;
-  right: 20px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 25%;
 
-  button {
-    border: 0;
-    border-radius: 4px;
-    height: 50px;
-    margin: 0 2px;
-    width: 50px;
+  &-closed {
+    transform: translate(100%, 0);
+    transition: 0.5s;
+  }
+
+  &-open {
+    box-shadow: -5px 0 5px lightgrey;
+    transform: translate(0%, 0);
+    transition: 0.5s;
+  }
+
+  &-toggle-button {
+    border: none;
+    border-radius: 10px;
+    bottom: 0;
+    margin: 20px;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+  }
+
+  hr {
+    border: 1px solid rgb(211 211 211 / 0.3);
+    border-radius: 10px;
+    margin-top: auto;
+    width: 80%;
+  }
+
+  &-item {
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 6%;
+    padding: 20px;
+    width: 100%;
+
+    &-selected {
+      color: #2970ff;
+    }
   }
 }
