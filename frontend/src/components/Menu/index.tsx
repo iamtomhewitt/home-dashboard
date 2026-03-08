@@ -10,7 +10,7 @@ import './index.scss';
 
 const Menu = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
