@@ -10,6 +10,7 @@
   position: fixed;
   right: 0;
   width: 25%;
+  z-index: 100;
 
   &-closed {
     transform: translate(100%, 0);
@@ -45,23 +46,5 @@
     border-radius: 10px;
     margin-top: auto;
     width: 80%;
-  }
-
-  &-item {
-    align-items: center;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: inline-flex;
-    gap: 6%;
-    padding: 20px;
-    width: 100%;
-
-    &:hover {
-      background: rgb(0 0 0 / 0.04);
-    }
-
-    &-selected {
-      color: #2970ff;
-    }
   }
 }

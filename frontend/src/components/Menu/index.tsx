@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Spin as Hamburger } from 'hamburger-react';
 import { useNavigate } from 'react-router-dom';
 
-import Icon from '../Icon';
+import MenuButton from './Button';
 import { credentials } from '../../lib/credentials';
 
 import './index.scss';
@@ -84,47 +84,29 @@ const Menu = () => {
       </button>
 
       <div>
-        {navigationButtons.map((b, i) => {
-          const classes = classNames({
-            'menu-item': true,
-            'menu-item-selected': b.isSelected,
-          });
-
-          return (
-            <div
-              className={classes}
-              key={i}
-              onClick={b.onClick}
-            >
-              <Icon name={b.icon} />
-
-              <span>{b.label}</span>
-            </div>
-          );
-        })}
+        {navigationButtons.map((b, i) => (
+          <MenuButton
+            icon={b.icon}
+            isSelected={b.isSelected}
+            key={i}
+            label={b.label}
+            onClick={b.onClick}
+          />
+        ))}
       </div>
 
       <hr />
 
       <div>
-        {actionButtons.map((b, i) => {
-          const classes = classNames({
-            'menu-item': true,
-            'menu-item-selected': b.isSelected,
-          });
-
-          return (
-            <div
-              className={classes}
-              key={i}
-              onClick={b.onClick}
-            >
-              <Icon name={b.icon} />
-
-              <span>{b.label}</span>
-            </div>
-          );
-        })}
+        {actionButtons.map((b, i) => (
+          <MenuButton
+            icon={b.icon}
+            isSelected={b.isSelected}
+            key={i}
+            label={b.label}
+            onClick={b.onClick}
+          />
+        ))}
       </div>
     </div>
   );

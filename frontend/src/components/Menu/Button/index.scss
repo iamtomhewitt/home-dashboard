@@ -1,0 +1,19 @@
+.menu-button {
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 6%;
+  padding: 20px;
+  width: 100%;
+  z-index: 100;
+
+  &:hover {
+    background: rgb(0 0 0 / 0.04);
+  }
+
+  &-selected {
+    border-right: 4px solid #2970ff;
+    color: #2970ff;
+  }
+}
