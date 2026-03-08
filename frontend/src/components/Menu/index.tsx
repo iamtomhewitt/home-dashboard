@@ -10,7 +10,19 @@ import './index.scss';
 
 const Menu = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const menuClasses = classNames({
+    menu: true,
+    'menu-open': isOpen,
+    'menu-closed': !isOpen,
+  });
+
+  const toggleButtonClasses = classNames({
+    'menu-toggle-button': true,
+    'menu-toggle-button-open': isOpen,
+  });
+
   const navigate = useNavigate();
 
   const onToggleFullScreen = () => {
@@ -28,12 +40,6 @@ const Menu = () => {
     setIsOpen(!isOpen);
   };
 
-  const menuClasses = classNames({
-    menu: true,
-    'menu-open': isOpen,
-    'menu-closed': !isOpen,
-  });
-
   const navigationButtons = [{
     icon: 'house',
     label: 'Home',
@@ -41,20 +47,20 @@ const Menu = () => {
     onClick: () => navigate('/dashboard'),
   }, {
     icon: 'utensils',
-    isSelected: false,
     label: 'Recipe Manager',
+    isSelected: false,
     onClick: () => navigate('/recipe-manager'),
   }, {
     icon: 'gear',
-    isSelected: false,
     label: 'Settings',
+    isSelected: false,
     onClick: () => navigate('/settings'),
   }];
 
   const actionButtons = [{
     icon: isFullScreen ? 'compress' : 'expand',
-    isSelected: false,
     label: 'Full Screen',
+    isSelected: false,
     onClick: onToggleFullScreen,
   }, {
     icon: 'refresh',
@@ -63,8 +69,8 @@ const Menu = () => {
     onClick: () => window.location.reload(),
   }, {
     icon: 'right-from-bracket',
-    isSelected: false,
     label: 'Logout',
+    isSelected: false,
     onClick: () => {
       credentials.logout();
       navigate('/login');
@@ -72,53 +78,53 @@ const Menu = () => {
   }];
 
   return (
-    <div>
-      <button className='menu-toggle-button' onClick={onToggleOpen}>
-        <Hamburger toggled={isOpen} />
+    <div className={menuClasses}>
+      <button className={toggleButtonClasses} onClick={onToggleOpen}>
+        <Hamburger size={12} toggled={isOpen} />
       </button>
 
-      <div className={menuClasses}>
-        <div>
-          {navigationButtons.map((b, i) => {
-            const classes = classNames({
-              'menu-item': true,
-              'menu-item-selected': b.isSelected,
-            });
-            return (
-              <div
-                className={classes}
-                key={i}
-                onClick={b.onClick}
-              >
-                <Icon name={b.icon} />
+      <div>
+        {navigationButtons.map((b, i) => {
+          const classes = classNames({
+            'menu-item': true,
+            'menu-item-selected': b.isSelected,
+          });
 
-                <span>{b.label}</span>
-              </div>
-            );
-          })}
-        </div>
+          return (
+            <div
+              className={classes}
+              key={i}
+              onClick={b.onClick}
+            >
+              <Icon name={b.icon} />
 
-        <hr />
+              <span>{b.label}</span>
+            </div>
+          );
+        })}
+      </div>
 
-        <div>
-          {actionButtons.map((b, i) => {
-            const classes = classNames({
-              'menu-item': true,
-              'menu-item-selected': b.isSelected,
-            });
-            return (
-              <div
-                className={classes}
-                key={i}
-                onClick={b.onClick}
-              >
-                <Icon name={b.icon} />
+      <hr />
 
-                <span>{b.label}</span>
-              </div>
-            );
-          })}
-        </div>
+      <div>
+        {actionButtons.map((b, i) => {
+          const classes = classNames({
+            'menu-item': true,
+            'menu-item-selected': b.isSelected,
+          });
+
+          return (
+            <div
+              className={classes}
+              key={i}
+              onClick={b.onClick}
+            >
+              <Icon name={b.icon} />
+
+              <span>{b.label}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -1,33 +1,43 @@
 .menu {
+  background: white;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+  bottom: 0;
+  color: #b0b1b0;
   display: inline-flex;
   flex-direction: column;
   height: 100vh;
   position: fixed;
   right: 0;
-  top: 0;
   width: 25%;
 
   &-closed {
     transform: translate(100%, 0);
-    transition: 0.5s;
+    transition: transform 0.5s;
   }
 
   &-open {
     box-shadow: -5px 0 5px lightgrey;
     transform: translate(0%, 0);
-    transition: 0.5s;
+    transition: transform 0.5s;
   }
 
   &-toggle-button {
+    background: transparent;
     border: none;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     bottom: 0;
-    margin: 20px;
+    cursor: pointer;
+    left: 0;
+    margin: 0;
+    padding: 0;
     position: absolute;
-    right: 0;
+    transform: translate(-100%, 0);
     z-index: 1000;
+
+    &-open {
+      color: red;
+    }
   }
 
   hr {
@@ -45,6 +55,10 @@
     gap: 6%;
     padding: 20px;
     width: 100%;
+
+    &:hover {
+      background: rgb(0 0 0 / 0.04);
+    }
 
     &-selected {
       color: #2970ff;
