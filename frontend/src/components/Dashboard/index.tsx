@@ -14,7 +14,7 @@ import { sessionStorage } from '../../lib/session-storage';
 import 'gridstack/dist/gridstack.min.css';
 
 const Dashboard = () => {
-  const { widgets } = sessionStorage.getDashboardConfig();
+  const { backgroundColour, widgets } = sessionStorage.getDashboardConfig();
   const widgetLookup: any = {
     bbcNews: BbcNews,
     binDay: BinDay,
@@ -31,7 +31,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className='grid-stack'>
+    <div className='grid-stack' style={{ backgroundColor: backgroundColour, height: '100vh !important' }}>
       {widgets.map((widget, i) => {
         const Component = widgetLookup[widget.id];
 
