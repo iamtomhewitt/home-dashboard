@@ -1,10 +1,12 @@
 .menu-button {
   align-items: center;
+  border-right: 4px solid transparent;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-flex;
   gap: 6%;
   padding: 20px;
+  transition: all 0.3s ease;
   width: 100%;
   z-index: 100;
 
@@ -13,7 +15,7 @@
   }
 
   &-selected {
-    border-right: 4px solid #2970ff;
+    border-right-color: #2970ff;
     color: #2970ff;
   }
 }

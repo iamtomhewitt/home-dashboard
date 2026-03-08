@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import { Spin as Hamburger } from 'hamburger-react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import MenuButton from './Button';
 import { credentials } from '../../lib/credentials';
@@ -11,6 +11,8 @@ import './index.scss';
 const Menu = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const menuClasses = classNames({
     menu: true,
@@ -22,8 +24,6 @@ const Menu = () => {
     'menu-toggle-button': true,
     'menu-toggle-button-open': isOpen,
   });
-
-  const navigate = useNavigate();
 
   const onToggleFullScreen = () => {
     if (document.fullscreenElement) {
@@ -43,17 +43,17 @@ const Menu = () => {
   const navigationButtons = [{
     icon: 'house',
     label: 'Home',
-    isSelected: true,
+    isSelected: location.pathname === '/dashboard',
     onClick: () => navigate('/dashboard'),
   }, {
     icon: 'utensils',
     label: 'Recipe Manager',
-    isSelected: false,
+    isSelected: location.pathname === '/recipe-manager',
     onClick: () => navigate('/recipe-manager'),
   }, {
     icon: 'gear',
     label: 'Settings',
-    isSelected: false,
+    isSelected: location.pathname === '/settings',
     onClick: () => navigate('/settings'),
   }];
 
