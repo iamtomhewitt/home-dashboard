@@ -28,10 +28,19 @@ const Dashboard = () => {
 
   useEffect(() => {
     GridStack.init();
+
+    const body = document.getElementById('body');
+
+    if (body) {
+      body.style.backgroundColor = backgroundColour;
+    }
+    else {
+      console.warn('Could not find element by ID \'body\'');
+    }
   }, []);
 
   return (
-    <div className='grid-stack' style={{ backgroundColor: backgroundColour, height: '100vh !important' }}>
+    <div className='grid-stack'>
       {widgets.map((widget, i) => {
         const Component = widgetLookup[widget.id];
 
