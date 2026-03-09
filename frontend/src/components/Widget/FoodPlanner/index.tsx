@@ -18,7 +18,6 @@ const FoodPlanner = ({ widget }: Props) => {
   const onAddToShoppingList = () => {
     modalstack.open(Confirm, {
       message: 'Add all ingredients to Shopping List?',
-      onNo: () => { },
       onYes: () => { },
       title: 'Add to Shopping List?',
     });

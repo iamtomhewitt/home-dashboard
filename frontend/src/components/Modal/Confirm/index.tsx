@@ -1,22 +1,33 @@
+import { useModalStack } from '../../ModalStack';
+
 import './index.scss';
 
-const Confirm = ({ message, onNo, onYes }: Props) => (
-  <div className='confirm'>
-    <div className='confirm-message'>{message}</div>
+const Confirm = ({ message, onNo, onYes }: Props) => {
+  const modalstack = useModalStack();
 
-    <button onClick={onNo}>
-      No
-    </button>
+  const onSelectNo = () => {
+    onNo?.();
+    modalstack.close();
+  };
 
-    <button onClick={onYes}>
-      Yes
-    </button>
-  </div>
-);
+  return (
+    <div className='confirm'>
+      <div className='confirm-message'>{message}</div>
+
+      <button onClick={onSelectNo}>
+        No
+      </button>
+
+      <button onClick={onYes}>
+        Yes
+      </button>
+    </div>
+  );
+};
 
 type Props = {
   message: string;
-  onNo: () => void;
+  onNo?: () => void;
   onYes: () => void;
 }
 
