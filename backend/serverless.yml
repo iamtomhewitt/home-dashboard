@@ -20,6 +20,7 @@ functions:
   - ${file(./src/lambdas/config/infra/function.yml)}
   - ${file(./src/lambdas/food-planner/cookbook/infra/function.yml)}
   - ${file(./src/lambdas/food-planner/planner/infra/function.yml)}
+  - ${file(./src/lambdas/food-planner/shopping-list/infra/function.yml)}
   - ${file(./src/lambdas/google-calendar/infra/function.yml)}
   - ${file(./src/lambdas/news/infra/function.yml)}
   - ${file(./src/lambdas/splitwise/infra/function.yml)}
@@ -30,6 +31,7 @@ resources:
   - ${file(./src/lambdas/config/infra/resources.yml)}
   - ${file(./src/lambdas/food-planner/cookbook/infra/resources.yml)}
   - ${file(./src/lambdas/food-planner/planner/infra/resources.yml)}
+  - ${file(./src/lambdas/food-planner/shopping-list/infra/resources.yml)}
   - ${file(./src/lambdas/google-calendar/infra/resources.yml)}
   - ${file(./src/lambdas/news/infra/resources.yml)}
   - ${file(./src/lambdas/splitwise/infra/resources.yml)}
