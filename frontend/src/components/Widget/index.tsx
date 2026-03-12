@@ -11,10 +11,10 @@ import './index.scss';
  */
 const Widget = ({
   children,
-  height = 2,
+  height = 1,
   onRefresh,
   widget,
-  width = 2,
+  width = 1,
   x = 0,
   y = 0,
 }: Props) => {
@@ -53,10 +53,10 @@ const Widget = ({
   return (
     <div
       className='grid-stack-item widget'
-      gs-h={height} // eslint-disable-line react/no-unknown-property
-      gs-w={width}// eslint-disable-line react/no-unknown-property 
-      gs-x={x}// eslint-disable-line react/no-unknown-property 
-      gs-y={y}// eslint-disable-line react/no-unknown-property
+      gs-h={(widget.height || height) * 2} // eslint-disable-line react/no-unknown-property
+      gs-w={(widget.width || width) * 2} // eslint-disable-line react/no-unknown-property 
+      gs-x={(widget.x || x) * 2} // eslint-disable-line react/no-unknown-property 
+      gs-y={(widget.y || y) * 2} // eslint-disable-line react/no-unknown-property
     >
       {widget.title && <div className='widget-title'>{widget.title}</div>}
 
