@@ -21,6 +21,8 @@ export type Recipe = {
   steps?: string[];
 }
 
-export type FoodPlannerApiResponse = ApiResponse<FoodPlan>
+export type CookbookApiResponse = ApiResponse<Recipe[]>;
 
-export type CookbookApiResponse = ApiResponse<Recipe[]>
+export type FoodPlannerApiResponse = ApiResponse<FoodPlan>;
+
+export type ShoppingListResponse = ApiResponse<string[]>;

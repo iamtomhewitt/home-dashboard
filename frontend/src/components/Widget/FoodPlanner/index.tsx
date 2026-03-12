@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ChangeRecipe from '../../Modal/ChangeRecipe';
 import Confirm from '../../Modal/Confirm';
 import Widget from '../';
-import { FoodPlan, FoodPlannerApiResponse } from '../../../types/food-planner';
+import { FoodPlan, FoodPlannerApiResponse, ShoppingListResponse } from '../../../types/food-planner';
 import { Widget as WidgetType } from '../../../types/widget';
 import { http } from '../../../lib/https';
 import { sessionStorage } from '../../../lib/session-storage';
@@ -12,13 +12,26 @@ import { useModalStack } from '../../ModalStack';
 import './index.scss';
 
 const FoodPlanner = ({ widget }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [plan, setPlan] = useState<FoodPlan | null>();
   const modalstack = useModalStack();
+  const { id } = sessionStorage.getDashboardConfig();
 
   const onAddToShoppingList = () => {
     modalstack.open(Confirm, {
       message: 'Add all ingredients to Shopping List?',
-      onYes: () => { },
+      onYes: async () => {
+        setIsLoading(true);
+        const response = await http.get<ShoppingListResponse>(`/food-planner/shoppingList?id=${id}`);
+        for (const item of response.data) {
+          console.log(item);
+          await http.post(`/todoist?apiKey=${widget.todoist.apiKey}&projectId=${widget.todoist.id}`, {
+            content: item,
+          });
+        }
+        setIsLoading(false);
+        document.location.reload();
+      },
       title: 'Add to Shopping List?',
     });
   };
@@ -32,7 +45,6 @@ const FoodPlanner = ({ widget }: Props) => {
   };
 
   const onRefresh = async () => {
-    const { id } = sessionStorage.getDashboardConfig();
     const response = await http.get<FoodPlannerApiResponse>(`/food-planner/planner?id=${id}`);
     setPlan(response.data);
   };
@@ -59,14 +71,17 @@ const FoodPlanner = ({ widget }: Props) => {
           </div>
         ))}
 
-        <button
-          onClick={onAddToShoppingList}
-          style={{
-            backgroundColor: widget.colour,
-          }}
-        >
-          Add to Shopping List
-        </button>
+        {widget.todoist.id && (
+          <button
+            disabled={isLoading}
+            onClick={onAddToShoppingList}
+            style={{
+              backgroundColor: widget.colour,
+            }}
+          >
+            Add to Shopping List
+          </button>
+        )}
       </div>
     </Widget>
   );

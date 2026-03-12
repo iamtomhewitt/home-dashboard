@@ -10,6 +10,11 @@ const Confirm = ({ message, onNo, onYes }: Props) => {
     modalstack.close();
   };
 
+  const onSelectYes = async () => {
+    await onYes();
+    modalstack.close();
+  };
+
   return (
     <div className='confirm'>
       <div className='confirm-message'>{message}</div>
@@ -18,7 +23,7 @@ const Confirm = ({ message, onNo, onYes }: Props) => {
         No
       </button>
 
-      <button onClick={onYes}>
+      <button onClick={onSelectYes}>
         Yes
       </button>
     </div>

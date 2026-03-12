@@ -11,9 +11,9 @@
     cursor: pointer;
     font-family: inherit;
     font-size: 1.75cqmin;
-    height: calc(var(--gs-cell-height) / 2);
+    height: 4cqmin;
     margin: 0 10px;
-    width: 40%;
+    width: 30%;
 
     &:hover {
       filter: brightness(120%);

@@ -53,5 +53,9 @@
     &:hover {
       filter: brightness(90%);
     }
+
+    &:disabled {
+      filter: brightness(60%);
+    }
   }
 }
