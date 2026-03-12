@@ -6,6 +6,8 @@ import { credentials } from '../../lib/credentials';
 import { http } from '../../lib/https';
 import { sessionStorage } from '../../lib/session-storage';
 
+import './index.scss';
+
 const Login = () => {
   const [error, setError] = useState('');
   const [dashboardId, setDashboardId] = useState('');
@@ -35,19 +37,18 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className='login'>
+      <div className='login-box'>
+        <h1>Home Dashboard</h1>
 
-      <label>
-        Token
-        <input onChange={onChangeInput} />
-      </label>
+        <input onChange={onChangeInput} placeholder='Dashboard ID' />
 
-      <button disabled={!dashboardId} onClick={onLogin}>
-        Login
-      </button>
+        <button disabled={!dashboardId} onClick={onLogin}>
+          Login
+        </button>
 
-      {error && <div>{error}</div>}
+        {error && <div>{error}</div>}
+      </div>
     </div>
   );
 };
