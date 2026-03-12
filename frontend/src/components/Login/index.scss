@@ -54,4 +54,9 @@
       filter: brightness(120%);
     }
   }
+
+  &-error {
+    color: tomato;
+    margin-top: 4%;
+  }
 }
