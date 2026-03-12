@@ -25,17 +25,6 @@ const Menu = () => {
     'menu-toggle-button-open': isOpen,
   });
 
-  const onToggleFullScreen = () => {
-    if (document.fullscreenElement) {
-      setIsFullScreen(false);
-      document.exitFullscreen();
-    }
-    else {
-      setIsFullScreen(true);
-      document.documentElement.requestFullscreen();
-    }
-  };
-
   const onToggleOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -61,7 +50,16 @@ const Menu = () => {
     icon: isFullScreen ? 'compress' : 'expand',
     label: 'Full Screen',
     isSelected: false,
-    onClick: onToggleFullScreen,
+    onClick: () => {
+      if (document.fullscreenElement) {
+        setIsFullScreen(false);
+        document.exitFullscreen();
+      }
+      else {
+        setIsFullScreen(true);
+        document.documentElement.requestFullscreen();
+      }
+    },
   }, {
     icon: 'refresh',
     label: 'Refresh',
@@ -73,7 +71,9 @@ const Menu = () => {
     isSelected: false,
     onClick: () => {
       credentials.logout();
+      setIsOpen(false);
       navigate('/login');
+      window.location.reload();
     },
   }];
 
