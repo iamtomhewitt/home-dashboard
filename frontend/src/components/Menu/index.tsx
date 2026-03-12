@@ -48,7 +48,7 @@ const Menu = () => {
 
   const actionButtons = [{
     icon: isFullScreen ? 'compress' : 'expand',
-    label: 'Full Screen',
+    label: isFullScreen ? 'Exit Full Screen' : 'Full Screen',
     isSelected: false,
     onClick: () => {
       if (document.fullscreenElement) {

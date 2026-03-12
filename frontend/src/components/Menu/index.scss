@@ -1,6 +1,5 @@
 .menu {
   background: white;
-  border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
   bottom: 0;
   color: #b0b1b0;
@@ -18,13 +17,12 @@
   }
 
   &-open {
-    box-shadow: -5px 0 5px lightgrey;
     transform: translate(0%, 0);
     transition: transform 0.5s;
   }
 
   &-toggle-button {
-    background: transparent;
+    background: white;
     border: none;
     border-radius: 10px 0 0 10px;
     bottom: 0;
