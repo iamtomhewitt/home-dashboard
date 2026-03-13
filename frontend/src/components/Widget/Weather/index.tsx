@@ -34,6 +34,10 @@ const Weather = ({ widget }: Props) => {
       case 'clear':
       case 'sunny':
         return 'clear-day';
+
+      case 'thundery-outbreaks-in-nearby':
+        return 'thunderstorms-rain';
+
       default:
         return condition;
     }
