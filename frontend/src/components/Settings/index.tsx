@@ -1,11 +1,16 @@
-const Settings = () => (
-  <div className='settings'>
-    <h1>Settings</h1>
+import './index.scss';
 
-    <div>Width: {window.innerWidth}</div>
+const Settings = () => {
+  return (
+    <div className='settings'>
+      <h1>Settings</h1>
 
-    <div>Height: {window.innerHeight}</div>
-  </div>
-);
+      <div>Width: {window.innerWidth}</div>
+
+      <div>Height: {window.innerHeight}</div>
+
+    </div>
+  );
+};
 
 export default Settings;
