@@ -6,6 +6,7 @@ import IconsPage from '../IconsPage';
 import Login from '../Login';
 import Menu from '../Menu';
 import ModalStack from '../ModalStack';
+import Settings from '../Settings';
 import { credentials } from '../../lib/credentials';
 
 import './index.scss';
@@ -40,7 +41,7 @@ const App = () => {
 
         <Route element={withLoggedInRoute(<IconsPage />)} path='/icons' />
 
-        <Route element={withLoggedInRoute(<div>Settings</div>)} path='/settings' />
+        <Route element={withLoggedInRoute(<Settings />)} path='/settings' />
 
         <Route element={withLoggedInRoute(<div>Recipe Manager</div>)} path='/recipe-manager' />
 

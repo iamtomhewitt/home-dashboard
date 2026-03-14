@@ -1,5 +1,6 @@
 .change-recipe {
   height: 60vh;
+  overflow-y: hidden;
 
   &-control {
     align-items: center;
@@ -13,7 +14,7 @@
       border: 0;
       border-radius: 10px;
       color: #fff;
-      font-size: 1.75cqmin;
+      font-size: 2cqmin;
       min-height: 50px;
       width: 20%;
     }
@@ -44,7 +45,7 @@
       border-radius: 10px;
       height: 4cqmin;
       margin-right: 10px;
-      width: 4cqmin;;
+      width: 4cqmin;
     }
 
     .fa-circle-notch {
