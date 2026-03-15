@@ -38,6 +38,9 @@ const Weather = ({ widget }: Props) => {
       case 'thundery-outbreaks-in-nearby':
         return 'thunderstorms-rain';
 
+      case 'light-sleet-showers':
+        return 'sleet'
+
       default:
         return condition;
     }
