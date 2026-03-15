@@ -95,7 +95,10 @@ const Menu = () => {
             isSelected={b.isSelected}
             key={i}
             label={b.label}
-            onClick={b.onClick}
+            onClick={() => {
+              b.onClick()
+              setIsOpen(false)
+            }}
           />
         ))}
       </div>
