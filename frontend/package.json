@@ -8,6 +8,7 @@
     "start": "vite --host"
   },
   "dependencies": {
+    "case": "1.6.3",
     "date-fns": "4.1.0",
     "gridstack": "12.4.2",
     "hamburger-react": "2.5.2",

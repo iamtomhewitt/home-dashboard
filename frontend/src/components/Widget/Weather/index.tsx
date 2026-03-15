@@ -39,7 +39,7 @@ const Weather = ({ widget }: Props) => {
         return 'thunderstorms-rain';
 
       case 'light-sleet-showers':
-        return 'sleet'
+        return 'sleet';
 
       default:
         return condition;

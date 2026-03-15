@@ -1,3 +1,36 @@
 .settings {
   color: white;
+  font-size: 2cqmin;
+  padding: 5%;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  &-item {
+    background-color: #fff;
+    border-radius: 10px;
+    color: #5a5a5a;
+    margin-bottom: 2%;
+    padding: 2%;
+
+    &-value {
+      align-items: center;
+      display: inline-flex;
+      font-size: 2cqmin;
+      justify-content: space-between;
+      width: 100%;
+
+      input {
+        border: 1px solid lightgrey;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 2cqmin;
+        margin-bottom: 10px;
+        min-height: 5cqmin;
+        padding-left: 2%;
+        width: 50%;
+      }
+    }
+  }
 }
