@@ -6,6 +6,8 @@ import { NewsApiResponse, NewsItem } from '../../../types/news';
 import { Widget as WidgetType } from '../../../types/widget';
 import { http } from '../../../lib/https';
 
+import './index.scss';
+
 const BbcNews = ({ widget }: Props) => {
   const [articles, setArticles] = useState<NewsItem[]>([]);
   const [index, setIndex] = useState(0);
@@ -27,7 +29,7 @@ const BbcNews = ({ widget }: Props) => {
 
   return (
     <Widget onRefresh={onRefresh} widget={widget}>
-      <div>
+      <div className='bbc-news'>
         {articles.length > 0 ?
           articles[index].title :
           <Icon
