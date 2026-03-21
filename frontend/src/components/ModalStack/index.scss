@@ -8,10 +8,11 @@
   text-align: center;
   top: 0;
   width: 100%;
-  z-index: 10;
+  z-index: 200;
 
   &-overlay {
     background-color: rgb(0 0 0 / 0.5);
+    border: 0;
     cursor: pointer;
     display: block;
     height: 100%;
