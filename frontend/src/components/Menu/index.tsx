@@ -96,8 +96,8 @@ const Menu = () => {
             key={i}
             label={b.label}
             onClick={() => {
-              b.onClick()
-              setIsOpen(false)
+              b.onClick();
+              setIsOpen(false);
             }}
           />
         ))}

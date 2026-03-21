@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { format } from 'date-fns';
+import * as dateFns from 'date-fns';
 
 import LazySvg from '../../LazySvgLoader';
 import Widget from '../';
@@ -33,7 +33,12 @@ const Weather = ({ widget }: Props) => {
 
       case 'clear':
       case 'sunny':
-        return 'clear-day';
+        const now = new Date();
+        const isNight = dateFns.isWithinInterval(now, {
+          start: dateFns.setHours(now, 10).setMinutes(0, 0),
+          end: dateFns.setHours(dateFns.addDays(now, 1), 6).setMinutes(0, 0),
+        });
+        return isNight ? 'clear-night' : 'clear-day';
 
       case 'thundery-outbreaks-in-nearby':
         return 'thunderstorms-rain';
@@ -51,7 +56,7 @@ const Weather = ({ widget }: Props) => {
       <div className='weather'>
         {weather?.hourly.map((hourly, i) => (
           <div className='weather-item' key={i}>
-            <div>{format(new Date(hourly.date), 'HH')}</div>
+            <div>{dateFns.format(new Date(hourly.date), 'HH')}</div>
 
             <LazySvg
               height='3em'
@@ -65,7 +70,7 @@ const Weather = ({ widget }: Props) => {
 
         {weather?.daily.map((daily, i) => (
           <div className='weather-item' key={i}>
-            <div>{format(new Date(daily.date), 'eee')}</div>
+            <div>{dateFns.format(new Date(daily.date), 'eee')}</div>
 
             <LazySvg
               height='3em'
