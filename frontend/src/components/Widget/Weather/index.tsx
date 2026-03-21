@@ -35,7 +35,7 @@ const Weather = ({ widget }: Props) => {
       case 'sunny':
         const now = new Date();
         const isNight = dateFns.isWithinInterval(now, {
-          start: dateFns.setHours(now, 10).setMinutes(0, 0),
+          start: dateFns.setHours(now, 22).setMinutes(0, 0),
           end: dateFns.setHours(dateFns.addDays(now, 1), 6).setMinutes(0, 0),
         });
         return isNight ? 'clear-night' : 'clear-day';
