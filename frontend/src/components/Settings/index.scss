@@ -33,4 +33,25 @@
       }
     }
   }
+
+  &-save {
+    background-color: #2970ff;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1.75cqmin;
+    height: clamp(50px, 5%, 60px);
+    min-height: 5cqmin;
+    width: 100%;
+
+    &:hover {
+      filter: brightness(120%);
+    }
+  }
+
+  &-message {
+    padding: 2cqmin;
+    text-align: center;
+  }
 }

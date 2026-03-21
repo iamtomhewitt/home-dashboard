@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react';
 import casing from 'case';
 
+import Confirm from '../Modal/Confirm';
+import { ConfigApiResponse } from '../../types/config';
 import { Widget } from '../../types/widget';
+import { http } from '../../lib/https';
 import { sessionStorage } from '../../lib/session-storage';
+import { useModalStack } from '../ModalStack';
 
 import './index.scss';
 
 const Settings = () => {
+  const [message, setMessage] = useState('');
   const [widgetConfig, setWidgetConfig] = useState<Widget[]>([]);
+  const modalstack = useModalStack();
+  const { backgroundColour, id, widgets } = sessionStorage.getDashboardConfig();
 
   useEffect(() => {
-    const { backgroundColour, widgets } = sessionStorage.getDashboardConfig();
     setWidgetConfig(widgets);
 
     const body = document.getElementById('body');
@@ -37,7 +43,15 @@ const Settings = () => {
   };
 
   const onSave = () => {
-    console.log(widgetConfig);
+    setMessage('');
+    modalstack.open(Confirm, {
+      message: 'Are you sure you want to save this config?',
+      onYes: async () => {
+        const response = await http.get<ConfigApiResponse>(`/config?id=${id}`);
+        setMessage(response.message);
+      },
+      title: 'Warning',
+    });
   };
 
   return (
@@ -57,9 +71,21 @@ const Settings = () => {
       {widgetConfig.map(widget => (
         <div className='settings-item' key={widget.id}>
           {Object.entries(widget).map(([key, value]) => {
+            const title = casing.title(key);
+
+            if (Array.isArray(value) || typeof (value) === 'object') {
+              return (
+                <div className='settings-item-value' key={key}>
+                  <div>{title}</div>
+
+                  <input disabled value={`Config "${key}" not editable at this time.`} />
+                </div>
+              );
+            }
+
             return (
               <div className='settings-item-value' key={key}>
-                <div>{casing.title(key)}</div>
+                <div>{title}</div>
 
                 <input
                   id={widget.id}
@@ -73,7 +99,11 @@ const Settings = () => {
         </div>
       ))}
 
-      <button onClick={onSave}>Save</button>
+      <button className='settings-save' onClick={onSave}>
+        Save
+      </button>
+
+      {message && <div className='settings-message'>{message}</div>}
     </div>
   );
 };

@@ -66,11 +66,6 @@ const Menu = () => {
     isSelected: false,
     onClick: () => window.location.reload(),
   }, {
-    icon: 'floppy-disk',
-    label: 'Save',
-    isSelected: false,
-    onClick: () => alert('todo'),
-  }, {
     icon: 'right-from-bracket',
     label: 'Logout',
     isSelected: false,
