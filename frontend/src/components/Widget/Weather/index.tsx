@@ -3,7 +3,7 @@ import * as dateFns from 'date-fns';
 
 import LazySvg from '../../LazySvgLoader';
 import Widget from '../';
-import { WeatherApiResponse, WeatherData } from '../../../types/weather';
+import { WeatherApiResponse, WeatherCondition, WeatherData } from '../../../types/weather';
 import { Widget as WidgetType } from '../../../types/widget';
 import { http } from '../../../lib/https';
 
@@ -17,8 +17,14 @@ const Weather = ({ widget }: Props) => {
     setWeather(response.data);
   };
 
-  const toWeatherIcon = (condition: string) => {
-    switch (condition) {
+  const toWeatherIcon = (data: WeatherCondition, isHourlyWeather = false) => {
+    const now = new Date();
+    const isNight = dateFns.isWithinInterval(new Date(data.date), {
+      start: dateFns.setHours(now, 19).setMinutes(30, 0),
+      end: dateFns.setHours(dateFns.addDays(now, 1), 5).setMinutes(59, 0),
+    }) && isHourlyWeather;
+
+    switch (data.condition) {
       case 'light-drizzle':
       case 'light-rain':
         return 'drizzle';
@@ -33,11 +39,6 @@ const Weather = ({ widget }: Props) => {
 
       case 'clear':
       case 'sunny':
-        const now = new Date();
-        const isNight = dateFns.isWithinInterval(now, {
-          start: dateFns.setHours(now, 22).setMinutes(0, 0),
-          end: dateFns.setHours(dateFns.addDays(now, 1), 6).setMinutes(0, 0),
-        });
         return isNight ? 'clear-night' : 'clear-day';
 
       case 'thundery-outbreaks-in-nearby':
@@ -47,7 +48,7 @@ const Weather = ({ widget }: Props) => {
         return 'sleet';
 
       default:
-        return condition;
+        return data.condition;
     }
   };
 
@@ -60,7 +61,7 @@ const Weather = ({ widget }: Props) => {
 
             <LazySvg
               height='3em'
-              name={toWeatherIcon(hourly.condition)}
+              name={toWeatherIcon(hourly, true)}
               width='3em'
             />
 
@@ -74,7 +75,7 @@ const Weather = ({ widget }: Props) => {
 
             <LazySvg
               height='3em'
-              name={toWeatherIcon(daily.condition)}
+              name={toWeatherIcon(daily)}
               width='3em'
             />
 

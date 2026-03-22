@@ -6,16 +6,14 @@ export type WeatherData = {
     condition: string;
     temperature: number;
   };
-  hourly: {
-    condition: string;
-    date: string;
-    temperature: number;
-  }[];
-  daily: {
-    condition: string;
-    date: string;
-    temperature: number;
-  }[];
+  hourly: WeatherCondition[];
+  daily: WeatherCondition[];
 }
+
+export type WeatherCondition = {
+  condition: string;
+  date: string;
+  temperature: number;
+};
 
 export type WeatherApiResponse = ApiResponse<WeatherData>;
