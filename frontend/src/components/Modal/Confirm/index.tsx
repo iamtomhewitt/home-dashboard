@@ -1,8 +1,11 @@
+import { useState } from 'react';
+
 import { useModalStack } from '../../ModalStack';
 
 import './index.scss';
 
 const Confirm = ({ message, onNo, onYes }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
   const modalstack = useModalStack();
 
   const onSelectNo = () => {
@@ -11,8 +14,10 @@ const Confirm = ({ message, onNo, onYes }: Props) => {
   };
 
   const onSelectYes = async () => {
+    setIsLoading(true);
     await onYes();
     modalstack.close();
+    setIsLoading(false);
   };
 
   return (
@@ -23,8 +28,8 @@ const Confirm = ({ message, onNo, onYes }: Props) => {
         No
       </button>
 
-      <button onClick={onSelectYes}>
-        Yes
+      <button disabled={isLoading} onClick={onSelectYes}>
+        {isLoading ? 'Please wait...' : 'Yes'}
       </button>
     </div>
   );
