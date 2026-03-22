@@ -66,7 +66,6 @@ const Widget = ({
           background: widget.colour,
         }}
       >
-        {/* TODO now we have a loading state var we can set a last update state var once it completes */}
         {isLoading ?
           <Icon
             animation='spin'

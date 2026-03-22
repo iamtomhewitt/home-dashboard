@@ -9,13 +9,17 @@ import './index.scss';
 
 const RecipeManager = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const config = sessionStorage.getDashboardConfig();
 
     const fetchRecipes = async () => {
       const response = await http.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
-      setRecipes(response.data.sort((a, b) => a.name.localeCompare(b.name)));
+      const returnedRecipes = response.data.sort((a, b) => a.name.localeCompare(b.name));
+      setRecipes(returnedRecipes);
+      setFilteredRecipes(returnedRecipes);
     };
 
     fetchRecipes();
@@ -30,12 +34,21 @@ const RecipeManager = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const filtered = recipes.filter(recipe => recipe.name.toLowerCase().includes(search.toLowerCase()));
+    setFilteredRecipes(filtered);
+  }, [search]);
+
+  const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className='recipe-manager'>
       <h1>Recipe Manager</h1>
 
       <div className='recipe-manager-controls'>
-        <input placeholder='Search...' />
+        <input onChange={onChangeSearch} placeholder='Search...' />
 
         <Icon name='add' />
 
@@ -43,7 +56,7 @@ const RecipeManager = () => {
       </div>
 
       <div className='recipe-manager-recipes'>
-        {recipes.map((recipe, i) => (
+        {filteredRecipes.map((recipe, i) => (
           <div className='recipe-manager-recipe' key={i}>
             <div className='recipe-manager-recipe-title'>
               {recipe.name}
