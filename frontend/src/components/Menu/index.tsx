@@ -4,6 +4,7 @@ import { Spin as Hamburger } from 'hamburger-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import MenuButton from './Button';
+import pkg from '../../../package.json';
 import { credentials } from '../../lib/credentials';
 
 import './index.scss';
@@ -100,7 +101,7 @@ const Menu = () => {
 
       <hr />
 
-      <div>
+      <div className='menu-action-buttons'>
         {actionButtons.map((b, i) => (
           <MenuButton
             icon={b.icon}
@@ -110,6 +111,10 @@ const Menu = () => {
             onClick={b.onClick}
           />
         ))}
+      </div>
+
+      <div className='menu-version'>
+        {pkg.version}
       </div>
     </div>
   );

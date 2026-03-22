@@ -45,4 +45,19 @@
     margin-top: auto;
     width: 80%;
   }
+
+  &-action-buttons {
+    .menu-button:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &-version {
+    box-sizing: border-box;
+    color: #d8d8d8;
+    font-size: 1.5cqmin;
+    padding: 4px 20px;
+    text-align: center;
+    width: 100%;
+  }
 }
