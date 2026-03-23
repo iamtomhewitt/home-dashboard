@@ -47,7 +47,11 @@ const Settings = () => {
     modalstack.open(Confirm, {
       message: 'Are you sure you want to save this config?',
       onYes: async () => {
-        const response = await http.get<ConfigApiResponse>(`/config?id=${id}`);
+        const response = await http.put<ConfigApiResponse>(`/config?id=${id}`, {
+          backgroundColour,
+          id,
+          widgets: widgetConfig,
+        });
         setMessage(response.message);
       },
       title: 'Warning',

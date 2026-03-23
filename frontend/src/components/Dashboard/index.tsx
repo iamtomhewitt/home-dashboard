@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GridStack } from 'gridstack';
 
 import BbcNews from '../Widget/BbcNews';
@@ -9,12 +9,14 @@ import Gmail from '../Widget/Gmail';
 import Splitwise from '../Widget/Splitwise';
 import Todoist from '../Widget/Todoist';
 import Weather from '../Widget/Weather';
+import { ConfigApiResponse } from '../../types/config';
+import { http } from '../../lib/https';
 import { sessionStorage } from '../../lib/session-storage';
 
 import 'gridstack/dist/gridstack.min.css';
 
 const Dashboard = () => {
-  const { backgroundColour, widgets } = sessionStorage.getDashboardConfig();
+  const [dashboardConfig, setDashboardConfig] = useState(sessionStorage.getDashboardConfig());
   const widgetLookup: any = {
     bbcNews: BbcNews,
     binDay: BinDay,
@@ -29,10 +31,18 @@ const Dashboard = () => {
   useEffect(() => {
     GridStack.init();
 
+    const fetchConfig = async () => {
+      const response = await http.get<ConfigApiResponse>(`/config?id=${dashboardConfig.id}`);
+      setDashboardConfig(response.data);
+      sessionStorage.setDashboardConfig(response.data);
+    };
+
+    fetchConfig();
+
     const body = document.getElementById('body');
 
     if (body) {
-      body.style.backgroundColor = backgroundColour;
+      body.style.backgroundColor = dashboardConfig.backgroundColour;
     }
     else {
       console.warn('Could not find element by ID \'body\'');
@@ -41,7 +51,7 @@ const Dashboard = () => {
 
   return (
     <div className='grid-stack'>
-      {widgets.map((widget, i) => {
+      {dashboardConfig.widgets.map((widget, i) => {
         const Component = widgetLookup[widget.id];
 
         if (!Component) {
