@@ -42,6 +42,7 @@ const Weather = ({ widget }: Props) => {
         return isNight ? 'clear-night' : 'clear-day';
 
       case 'thundery-outbreaks-in-nearby':
+      case 'moderate-or-heavy-rain-in-area-with-thunder':
         return 'thunderstorms-rain';
 
       case 'light-sleet-showers':
