@@ -34,7 +34,7 @@ const BinDay = ({ widget }: Props) => {
         return dateFns.startOfDay(dateFns.addDays(today, -remainder));
       })();
       const nextBinDay = dateFns.addDays(lastBinDay, bin.repeatRateInDays);
-      const binToday = toDateString(nextBinDay) === toDateString(today);
+      const binToday = (toDateString(nextBinDay) === toDateString(today) || toDateString(lastBinDay) === toDateString(today));
       const binTomorrow = toDateString(nextBinDay) === toDateString(tomorrow);
 
       if (binToday) {
