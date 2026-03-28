@@ -9,11 +9,11 @@
     margin-bottom: 20px;
     width: 100%;
 
-    button {
-      background-color: #2970ff;
+    button {  background-color: #2970ff;
       border: 0;
       border-radius: 10px;
       color: #fff;
+    cursor: pointer;
       font-size: 2cqmin;
       min-height: 50px;
       width: 20%;
@@ -39,10 +39,10 @@
     padding: 10px;
     text-align: left;
 
-    button {
-      background-color: #2970ff;
+    button {  background-color: #2970ff;
       border: 0;
       border-radius: 10px;
+    cursor: pointer;
       height: 4cqmin;
       margin-right: 10px;
       width: 4cqmin;

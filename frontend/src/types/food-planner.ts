@@ -11,14 +11,15 @@ export type FoodPlan = {
 }
 
 export type Recipe = {
-  ingredients?: {
-    amount: number;
-    category: 'dairy' | 'fruit' | 'vegetable' | 'meat' | 'other';
-    name: string;
-    weight: 'grams' | 'quantity' | 'tablespoon' | 'teaspoon';
-  }[];
+  ingredients?: RecipeIngredient[];
   name: string;
   steps?: string[];
+}
+
+export type RecipeIngredient = {
+  amount: number;
+  name: string;
+  weight: 'grams' | 'quantity' | 'tablespoon' | 'teaspoon';
 }
 
 export type CookbookApiResponse = ApiResponse<Recipe[]>;

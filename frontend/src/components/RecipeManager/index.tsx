@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import Icon from '../Icon';
+import RecipeDetails from '../Modal/RecipeDetails';
+import RecipeEditor from '../Modal/RecipeEditor';
 import { CookbookApiResponse, Recipe } from '../../types/food-planner';
 import { http } from '../../lib/https';
 import { sessionStorage } from '../../lib/session-storage';
+import { useModalStack } from '../ModalStack';
 
 import './index.scss';
 
@@ -11,17 +14,10 @@ const RecipeManager = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
   const [search, setSearch] = useState('');
+  const modalstack = useModalStack();
+  const config = sessionStorage.getDashboardConfig();
 
   useEffect(() => {
-    const config = sessionStorage.getDashboardConfig();
-
-    const fetchRecipes = async () => {
-      const response = await http.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
-      const returnedRecipes = response.data.sort((a, b) => a.name.localeCompare(b.name));
-      setRecipes(returnedRecipes);
-      setFilteredRecipes(returnedRecipes);
-    };
-
     fetchRecipes();
 
     const body = document.getElementById('body');
@@ -39,8 +35,38 @@ const RecipeManager = () => {
     setFilteredRecipes(filtered);
   }, [search]);
 
+  const fetchRecipes = async () => {
+    setRecipes([]);
+    setFilteredRecipes([]);
+    const response = await http.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
+    const returnedRecipes = response.data.sort((a, b) => a.name.localeCompare(b.name));
+    setRecipes(returnedRecipes);
+    setFilteredRecipes(returnedRecipes);
+  };
+
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+  };
+
+  const onAddRecipe = () => {
+    modalstack.open(RecipeEditor, {
+      recipe: undefined,
+      title: 'Add New Recipe',
+    });
+  };
+
+  const onEditRecipe = (recipe: Recipe) => {
+    modalstack.open(RecipeEditor, {
+      recipe,
+      title: `Edit ${recipe.name}`,
+    });
+  };
+
+  const onViewRecipe = (recipe: Recipe) => {
+    modalstack.open(RecipeDetails, {
+      recipe,
+      title: recipe.name,
+    });
   };
 
   return (
@@ -50,9 +76,11 @@ const RecipeManager = () => {
       <div className='recipe-manager-controls'>
         <input onChange={onChangeSearch} placeholder='Search...' />
 
-        <Icon name='add' />
+        <div className='recipe-manager-controls-spacer' />
 
-        <Icon name='refresh' />
+        <span onClick={onAddRecipe}><Icon name='add' /></span>
+
+        <span onClick={fetchRecipes}><Icon name='refresh' /></span>
       </div>
 
       <div className='recipe-manager-recipes'>
@@ -63,13 +91,17 @@ const RecipeManager = () => {
             </div>
 
             <div className='recipe-manager-recipe-buttons'>
-              <Icon name='edit' size='xl' />
+              <div onClick={() => onEditRecipe(recipe)}>
+                <Icon name='edit' size='xl' />
+              </div>
 
-              <Icon
-                name='eye'
-                size='xl'
-                style='regular'
-              />
+              <div onClick={() => onViewRecipe(recipe)}>
+                <Icon
+                  name='eye'
+                  size='xl'
+                  style='regular'
+                />
+              </div>
             </div>
           </div>
         ))}

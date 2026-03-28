@@ -9,16 +9,22 @@
 
   &-controls {
     align-items: center;
+    box-sizing: border-box;
     display: inline-flex;
+    padding: 2cqmin 1.5cqmin;
     width: 100%;
 
-    i {
-      color: green;
+    &-spacer {
+      margin-left: auto;
+      margin-right: 2cqmin;
+    }
 
-      &:nth-of-type(1) {
-        margin-left: auto;
-        margin-right: 2cqmin;
-      }
+    i {
+      background-color: #fff;
+      border-radius: 10px;
+      color: grey;
+      margin-left: 2cqmin;
+      padding: 1cqmin;
     }
 
     input {
@@ -64,7 +70,7 @@
       display: inline-flex;
       gap: 2cqmin;
       justify-content: center;
-      margin: 3cqmin 0;
+      margin: 2cqmin 0;
       width: 100%;
 
       i {
