@@ -28,12 +28,12 @@ const main = async (e: APIGatewayProxyEvent) => {
         await s3.save(bucketName, cookbookKey, e.body);
       }
       else {
-        const existingCookbook = await s3.getObjectAsJson(bucketName, cookbookKey);
-        const newPlanner = {
-          ...existingCookbook,
+        const existingRecipes = await s3.getObjectAsJson(bucketName, cookbookKey);
+        const newRecipes = {
+          ...existingRecipes,
           ...JSON.parse(e.body),
         };
-        await s3.save(bucketName, cookbookKey, JSON.stringify(newPlanner));
+        await s3.save(bucketName, cookbookKey, JSON.stringify(newRecipes));
       }
 
       return response.json(200, 'Success');
