@@ -24,20 +24,21 @@ const main = async (e: APIGatewayProxyEvent) => {
         throw new BadRequestError('Missing request body');
       }
 
+      const existingRecipes: any[] = await s3.getObjectAsJson(bucketName, cookbookKey);
+
       if (!await s3.itemExists(bucketName, cookbookKey)) {
         await s3.save(bucketName, cookbookKey, e.body);
+        return response.json(200, 'Success', existingRecipes);
       }
       else {
         const requestBody = JSON.parse(e.body);
-        const existingRecipes: any[] = await s3.getObjectAsJson(bucketName, cookbookKey);
         const updatedRecipes = [
           ...existingRecipes.filter(r => r.name !== requestBody.name),
           requestBody,
         ];
         await s3.save(bucketName, cookbookKey, JSON.stringify(updatedRecipes));
+        return response.json(200, 'Success', updatedRecipes);
       }
-
-      return response.json(200, 'Success');
     }
 
     default:

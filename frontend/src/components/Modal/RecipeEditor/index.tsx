@@ -1,16 +1,40 @@
 import { useState } from 'react';
 
-import { Recipe, RecipeIngredient } from '../../../types/food-planner';
+import { CookbookApiResponse, Recipe, RecipeIngredient } from '../../../types/food-planner';
+import { http } from '../../../lib/https';
+import { sessionStorage } from '../../../lib/session-storage';
 
 import './index.scss';
 
-const RecipeEditor = ({ recipe }: Props) => {
+const RecipeEditor = ({ isEditing = false, recipe }: Props) => {
+  const [name, setName] = useState(recipe?.name || '');
   const [ingredients, setIngredients] = useState<RecipeIngredient[]>(recipe?.ingredients || []);
-  const [steps, setSteps] = useState(recipe?.steps || []);
+  const [steps, setSteps] = useState<string[]>(recipe?.steps || []);
+  const [isLoading, setIsLoading] = useState(false)
+
+  const onChangeIngredient = (index: number, key: keyof RecipeIngredient, value: any) => {
+    setIngredients(prev => {
+      const updated = [...prev];
+      updated[index] = {
+        ...updated[index],
+        [key]: value,
+      };
+      return updated;
+    });
+  };
+
+  const onChangeStep = (index: number, value: string) => {
+    setSteps(prev => {
+      const updated = [...prev];
+      updated[index] = value;
+      return updated;
+    });
+  };
 
   const onAddIngredient = () => {
     setIngredients(prev => [
-      ...prev, {
+      ...prev,
+      {
         amount: 0,
         name: 'New Ingredient',
         weight: 'grams',
@@ -19,34 +43,54 @@ const RecipeEditor = ({ recipe }: Props) => {
   };
 
   const onAddStep = () => {
-    setSteps(prev => [
-      ...prev,
-      'New step',
-    ]);
+    setSteps(prev => [...prev, 'New step']);
+  };
+
+  const onSave = async () => {
+    setIsLoading(true)
+    const dashboardConfig = sessionStorage.getDashboardConfig();
+    await http.put<CookbookApiResponse>(`/food-planner/cookbook?id=${dashboardConfig.id}`, {
+      ingredients,
+      name,
+      steps,
+    });
+
+    setIsLoading(false)
   };
 
   return (
     <div className='recipe-editor'>
-
       <div className='recipe-editor-ingredients'>
         <h4>Ingredients</h4>
+
+        {isEditing && <input onChange={(e) => setName(e.target.value)} value={name} />}
 
         <div>
           {ingredients.map((ingredient, i) => (
             <div className='recipe-editor-ingredient' key={i}>
-              <div>{ingredient.name}</div>
 
-              <input type='number' value={ingredient.amount} />
+              <input
+                onChange={(e) => onChangeIngredient(i, 'name', e.target.value)}
+                type='text'
+                value={ingredient.name}
+              />
 
-              <select>
-                <option selected={ingredient.weight === 'grams'}>grams</option>
+              <input
+                onChange={(e) => onChangeIngredient(i, 'amount', Number(e.target.value))}
+                type='number'
+                value={ingredient.amount}
+              />
 
-                <option selected={ingredient.weight === 'quantity'}>quantity</option>
+              <select onChange={(e) => onChangeIngredient(i, 'weight', e.target.value)} value={ingredient.weight}>
+                <option value='grams'>grams</option>
 
-                <option selected={ingredient.weight === 'tablespoon'}>tablespoon</option>
+                <option value='quantity'>quantity</option>
 
-                <option selected={ingredient.weight === 'teaspoon'}>teaspoon</option>
+                <option value='tablespoon'>tablespoon</option>
+
+                <option value='teaspoon'>teaspoon</option>
               </select>
+
             </div>
           ))}
         </div>
@@ -61,24 +105,29 @@ const RecipeEditor = ({ recipe }: Props) => {
 
         <div>
           {steps.map((step, i) => (
-            <textarea className='recipe-editor-step' key={i}>{step}</textarea>
+            <textarea
+              className='recipe-editor-step'
+              key={i}
+              onChange={(e) => onChangeStep(i, e.target.value)}
+              value={step}
+            />
           ))}
         </div>
 
         <button onClick={onAddStep}>
           Add Step
         </button>
-
       </div>
 
-      <button>
-        Save
+      <button disabled={isLoading} onClick={onSave}>
+        {isLoading ? 'Loading...' : 'Save'}
       </button>
     </div>
   );
 };
 
 type Props = {
+  isEditing?: boolean;
   recipe?: Recipe;
 }
 
