@@ -28,12 +28,13 @@ const main = async (e: APIGatewayProxyEvent) => {
         await s3.save(bucketName, cookbookKey, e.body);
       }
       else {
-        const existingRecipes = await s3.getObjectAsJson(bucketName, cookbookKey);
-        const newRecipes = {
-          ...existingRecipes,
-          ...JSON.parse(e.body),
-        };
-        await s3.save(bucketName, cookbookKey, JSON.stringify(newRecipes));
+        const requestBody = JSON.parse(e.body);
+        const existingRecipes: any[] = await s3.getObjectAsJson(bucketName, cookbookKey);
+        const updatedRecipes = [
+          ...existingRecipes.filter(r => r.name !== requestBody.name),
+          requestBody,
+        ];
+        await s3.save(bucketName, cookbookKey, JSON.stringify(updatedRecipes));
       }
 
       return response.json(200, 'Success');
