@@ -41,6 +41,14 @@ const main = async (e: APIGatewayProxyEvent) => {
       }
     }
 
+    case 'DELETE': {
+      const { recipeName } = e.queryStringParameters || {};
+      const existingRecipes: any[] = await s3.getObjectAsJson(bucketName, cookbookKey);
+      const withRecipeFilteredOut = existingRecipes.filter(recipe => recipe.name !== recipeName);
+      await s3.save(bucketName, cookbookKey, JSON.stringify(withRecipeFilteredOut));
+      return response.json(200, `'${recipeName}' deleted`, withRecipeFilteredOut);
+    }
+
     default:
       throw new BadRequestError(`${e.httpMethod} is not supported`);
   }

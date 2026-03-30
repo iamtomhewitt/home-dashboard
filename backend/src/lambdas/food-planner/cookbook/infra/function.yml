@@ -10,6 +10,10 @@ cookbook:
         cors: true
         method: put
         path: /food-planner/cookbook
+    - http:
+        cors: true
+        method: delete
+        path: /food-planner/cookbook
   handler: dist/src/lambdas/food-planner/cookbook/handler.handler
   logRetentionInDays: 7
   name: home-dashboard-food-planner-cookbook

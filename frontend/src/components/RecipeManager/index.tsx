@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import Confirm from '../Modal/Confirm';
 import Icon from '../Icon';
 import RecipeDetails from '../Modal/RecipeDetails';
 import RecipeEditor from '../Modal/RecipeEditor';
@@ -69,6 +70,15 @@ const RecipeManager = () => {
     });
   };
 
+  const onDeleteRecipe = async (recipe: Recipe) => {
+    modalstack.open(Confirm, {
+      message: `Delete ${recipe.name}?`,
+      onYes: async () =>
+        await http.delete<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}&recipeName=${recipe.name}`),
+      title: 'Warning',
+    });
+  };
+
   return (
     <div className='recipe-manager'>
       <h1>Recipe Manager</h1>
@@ -101,6 +111,10 @@ const RecipeManager = () => {
                   size='xl'
                   style='regular'
                 />
+              </div>
+
+              <div onClick={() => onDeleteRecipe(recipe)}>
+                <Icon name='trash' size='xl' />
               </div>
             </div>
           </div>
