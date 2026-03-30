@@ -7,6 +7,19 @@
     margin-top: 0;
   }
 
+  &-name {
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: medium;
+    margin-bottom: 1cqmin;
+    margin-right: 6px;
+    min-height: 5cqmin;
+    padding-left: 2%;
+    width: 100%;
+  }
+
   &-ingredient {
     align-items: center;
     display: inline-flex;

@@ -64,9 +64,14 @@ const RecipeEditor = ({ recipe }: Props) => {
   return (
     <div className='recipe-editor'>
       <div className='recipe-editor-ingredients'>
-        <h4>Ingredients</h4>
+        <input
+          className='recipe-editor-name'
+          onChange={(e) => setName(e.target.value)}
+          placeholder='Recipe name'
+          value={name}
+        />
 
-        <input onChange={(e) => setName(e.target.value)} value={name} />
+        <h4>Ingredients</h4>
 
         <div>
           {ingredients.map((ingredient, i) => (
