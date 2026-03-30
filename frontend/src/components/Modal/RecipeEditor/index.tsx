@@ -6,11 +6,12 @@ import { sessionStorage } from '../../../lib/session-storage';
 
 import './index.scss';
 
-const RecipeEditor = ({ isEditing = false, recipe }: Props) => {
+const RecipeEditor = ({ recipe }: Props) => {
   const [name, setName] = useState(recipe?.name || '');
   const [ingredients, setIngredients] = useState<RecipeIngredient[]>(recipe?.ingredients || []);
   const [steps, setSteps] = useState<string[]>(recipe?.steps || []);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
   const onChangeIngredient = (index: number, key: keyof RecipeIngredient, value: any) => {
     setIngredients(prev => {
@@ -47,15 +48,17 @@ const RecipeEditor = ({ isEditing = false, recipe }: Props) => {
   };
 
   const onSave = async () => {
-    setIsLoading(true)
+    setMessage('');
+    setIsLoading(true);
     const dashboardConfig = sessionStorage.getDashboardConfig();
-    await http.put<CookbookApiResponse>(`/food-planner/cookbook?id=${dashboardConfig.id}`, {
+    const response = await http.put<CookbookApiResponse>(`/food-planner/cookbook?id=${dashboardConfig.id}`, {
       ingredients,
       name,
       steps,
     });
 
-    setIsLoading(false)
+    setMessage(response.message);
+    setIsLoading(false);
   };
 
   return (
@@ -63,7 +66,7 @@ const RecipeEditor = ({ isEditing = false, recipe }: Props) => {
       <div className='recipe-editor-ingredients'>
         <h4>Ingredients</h4>
 
-        {isEditing && <input onChange={(e) => setName(e.target.value)} value={name} />}
+        <input onChange={(e) => setName(e.target.value)} value={name} />
 
         <div>
           {ingredients.map((ingredient, i) => (
@@ -122,12 +125,13 @@ const RecipeEditor = ({ isEditing = false, recipe }: Props) => {
       <button disabled={isLoading} onClick={onSave}>
         {isLoading ? 'Loading...' : 'Save'}
       </button>
+
+      <div className='recipe-editor-message'>{message}</div>
     </div>
   );
 };
 
 type Props = {
-  isEditing?: boolean;
   recipe?: Recipe;
 }
 

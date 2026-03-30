@@ -57,7 +57,6 @@ const RecipeManager = () => {
 
   const onEditRecipe = (recipe: Recipe) => {
     modalstack.open(RecipeEditor, {
-      isEditing: true,
       recipe,
       title: `Edit ${recipe.name}`,
     });
