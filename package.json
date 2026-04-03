@@ -6,7 +6,8 @@
     "build:backend": "npm run build --ws backend",
     "build:frontend": "npm run build --ws frontend",
     "frontend": "cd frontend && npm start",
-    "lint-fix": "npm run lint-fix --ws"
+    "lint-fix": "npm run lint-fix --ws",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@commitlint/cli": "20.5.0",
@@ -19,10 +20,5 @@
   "workspaces": [
     "frontend",
     "backend"
-  ],
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  }
+  ]
 }
