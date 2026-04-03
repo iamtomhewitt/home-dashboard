@@ -27,11 +27,17 @@ const BbcNews = ({ widget }: Props) => {
     setArticles(response.data);
   };
 
+  const onClick = (article: NewsItem) => {
+    window.open(article.url, '_blank');
+  };
+
   return (
     <Widget onRefresh={onRefresh} widget={widget}>
       <div className='bbc-news'>
         {articles.length > 0 ?
-          articles[index].title :
+          <span onClick={() => onClick(articles[index])}>
+            {articles[index].title}
+          </span> :
           <Icon
             animation='spin'
             name='circle-notch'
