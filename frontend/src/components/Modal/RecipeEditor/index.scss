@@ -28,6 +28,11 @@
     margin-bottom: 0.5cqmin;
     width: 100%;
 
+    i {
+      color: tomato;
+      cursor: pointer;
+    }
+
     input {
       border: 1px solid lightgrey;
       border-radius: 10px;
@@ -54,6 +59,7 @@
     border-radius: 10px;
     field-sizing: content; /* stylelint-disable-line property-no-unknown */
     font-family: inherit;
+    padding: 2%;
     width: 100%;
   }
 
@@ -65,7 +71,7 @@
     cursor: pointer;
     display: block;
     font-family: inherit;
-    height: 2.5cqmin;
+    height: 4cqmin;
     margin: 1.5cqmin auto 0;
     width: 30%;
 

@@ -1,0 +1,5 @@
+- make types at the top level to be shared by both the frontend and the backend
+- last updated on a widget?
+- make other dashboards
+- have a global pubsub subscription to trigger a refresh of all widgets
+- check if there is latest version via github, and show a confirm modal to refresh

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import Icon from '../../Icon';
 import { CookbookApiResponse, Recipe, RecipeIngredient } from '../../../types/food-planner';
 import { http } from '../../../lib/https';
 import { sessionStorage } from '../../../lib/session-storage';
@@ -43,6 +44,10 @@ const RecipeEditor = ({ recipe }: Props) => {
     ]);
   };
 
+  const onRemoveIngredient = (name: string) => {
+    setIngredients(ingredients.filter(x => x.name !== name));
+  };
+
   const onAddStep = () => {
     setSteps(prev => [...prev, 'New step']);
   };
@@ -76,6 +81,9 @@ const RecipeEditor = ({ recipe }: Props) => {
         <div>
           {ingredients.map((ingredient, i) => (
             <div className='recipe-editor-ingredient' key={i}>
+              <span onClick={() => onRemoveIngredient(ingredient.name)}>
+                <Icon name='xmark' />
+              </span>
 
               <input
                 onChange={(e) => onChangeIngredient(i, 'name', e.target.value)}

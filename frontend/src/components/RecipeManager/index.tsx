@@ -73,8 +73,10 @@ const RecipeManager = () => {
   const onDeleteRecipe = async (recipe: Recipe) => {
     modalstack.open(Confirm, {
       message: `Delete ${recipe.name}?`,
-      onYes: async () =>
-        await http.delete<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}&recipeName=${recipe.name}`),
+      onYes: async () => {
+        await http.delete<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}&recipeName=${recipe.name}`);
+        await fetchRecipes();
+      },
       title: 'Warning',
     });
   };
