@@ -6,6 +6,7 @@ import RecipeDetails from '../Modal/RecipeDetails';
 import RecipeEditor from '../Modal/RecipeEditor';
 import { CookbookApiResponse, Recipe } from '../../types/food-planner';
 import { api } from '../../lib/api';
+import { dashboard } from '../../lib/dashboard';
 import { sessionStorage } from '../../lib/session-storage';
 import { useModalStack } from '../ModalStack';
 
@@ -20,15 +21,7 @@ const RecipeManager = () => {
 
   useEffect(() => {
     fetchRecipes();
-
-    const body = document.getElementById('body');
-
-    if (body) {
-      body.style.backgroundColor = config.backgroundColour;
-    }
-    else {
-      console.warn('Could not find element by ID \'body\'');
-    }
+    dashboard.setBackgroundColour(config.backgroundColour);
   }, []);
 
   useEffect(() => {

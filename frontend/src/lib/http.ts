@@ -7,7 +7,7 @@ const request = async <T>(url: string, method: string, body?: any): Promise<T> =
     },
   });
 
-  const json = response.headers.get('Content-Type') === 'application/json' ?
+  const json = response.headers.get('Content-Type')?.includes('application/json') ?
     await response.json() :
     {};
 

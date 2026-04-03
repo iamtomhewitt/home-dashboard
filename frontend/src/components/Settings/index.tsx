@@ -5,6 +5,7 @@ import Confirm from '../Modal/Confirm';
 import { ConfigApiResponse } from '../../types/config';
 import { Widget } from '../../types/widget';
 import { api } from '../../lib/api';
+import { dashboard } from '../../lib/dashboard';
 import { sessionStorage } from '../../lib/session-storage';
 import { useModalStack } from '../ModalStack';
 
@@ -18,15 +19,7 @@ const Settings = () => {
 
   useEffect(() => {
     setWidgetConfig(widgets);
-
-    const body = document.getElementById('body');
-
-    if (body) {
-      body.style.backgroundColor = backgroundColour;
-    }
-    else {
-      console.warn('Could not find element by ID \'body\'');
-    }
+    dashboard.setBackgroundColour(backgroundColour);
   }, []);
 
   const onChangeWidgetConfig = (e: React.ChangeEvent<HTMLInputElement>) => {
