@@ -4,16 +4,19 @@ import { Spin as Hamburger } from 'hamburger-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import MenuButton from './Button';
+import Ok from '../Modal/Ok';
 import pkg from '../../../package.json';
 import { credentials } from '../../lib/credentials';
+import { useModalStack } from '../ModalStack';
 
 import './index.scss';
 
 const Menu = () => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
+  const modalstack = useModalStack();
+  const navigate = useNavigate();
 
   const menuClasses = classNames({
     menu: true,
@@ -66,6 +69,14 @@ const Menu = () => {
     label: 'Refresh',
     isSelected: false,
     onClick: () => window.location.reload(),
+  }, {
+    icon: 'file-pen',
+    label: 'Logs',
+    isSelected: false,
+    onClick: () => modalstack.open(Ok, {
+      message: JSON.parse(sessionStorage.getItem('logs') || '[]'),
+      title: 'Logs',
+    }),
   }, {
     icon: 'right-from-bracket',
     label: 'Logout',
