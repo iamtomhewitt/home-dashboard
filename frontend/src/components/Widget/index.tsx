@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import PubSub from 'pubsub-js';
 
 import Icon from '../Icon';
 import { Widget as WidgetType } from '../../types/widget';
@@ -25,6 +26,24 @@ const Widget = ({
     refreshRef.current = onRefresh;
   }, [onRefresh]);
 
+  useEffect(() => {
+    runRefresh();
+
+    const interval = setInterval(() => {
+      runRefresh();
+    }, time.toMilliseconds(widget.repeatRate, widget.repeatTime));
+
+    return () => clearInterval(interval);
+  }, [widget.repeatRate, widget.repeatTime]);
+
+  useEffect(() => {
+    PubSub.subscribe(`refresh-${widget.id}`, () => runRefresh());
+
+    return () => {
+      PubSub.unsubscribe(`refresh-${widget.id}`); 
+    };
+  }, []);
+
   const runRefresh = async () => {
     setIsLoading(true);
 
@@ -39,16 +58,6 @@ const Widget = ({
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    runRefresh();
-
-    const interval = setInterval(() => {
-      runRefresh();
-    }, time.toMilliseconds(widget.repeatRate, widget.repeatTime));
-
-    return () => clearInterval(interval);
-  }, [widget.repeatRate, widget.repeatTime]);
 
   return (
     <div

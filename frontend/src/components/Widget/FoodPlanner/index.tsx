@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PubSub from 'pubsub-js';
 
 import ChangeRecipe from '../../Modal/ChangeRecipe';
 import Confirm from '../../Modal/Confirm';
@@ -24,13 +25,12 @@ const FoodPlanner = ({ widget }: Props) => {
         setIsLoading(true);
         const response = await http.get<ShoppingListResponse>(`/food-planner/shoppingList?id=${id}`);
         for (const item of response.data) {
-          console.log(item);
           await http.post(`/todoist?apiKey=${widget.todoist.apiKey}&projectId=${widget.todoist.id}`, {
             content: item,
           });
         }
         setIsLoading(false);
-        document.location.reload();
+        PubSub.publish('refresh-todoist');
       },
       title: 'Add to Shopping List?',
     });
