@@ -7,7 +7,7 @@ import Widget from '../';
 import { FoodPlan, FoodPlannerApiResponse, ShoppingListResponse } from '../../../types/food-planner';
 import { Widget as WidgetType } from '../../../types/widget';
 import { api } from '../../../lib/api';
-import { sessionStorage } from '../../../lib/session-storage';
+import { dashboard } from '../../../lib/dashboard';
 import { useModalStack } from '../../ModalStack';
 
 import './index.scss';
@@ -16,7 +16,7 @@ const FoodPlanner = ({ widget }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [plan, setPlan] = useState<FoodPlan | null>();
   const modalstack = useModalStack();
-  const { id } = sessionStorage.getDashboardConfig();
+  const { id } = dashboard.getConfig();
 
   const onAddToShoppingList = () => {
     modalstack.open(Confirm, {

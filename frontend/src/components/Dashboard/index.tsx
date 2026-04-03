@@ -15,14 +15,13 @@ import { ConfigApiResponse } from '../../types/config';
 import { api } from '../../lib/api';
 import { dashboard } from '../../lib/dashboard';
 import { http } from '../../lib/http';
-import { sessionStorage } from '../../lib/session-storage';
 import { time } from '../../lib/time';
 import { useModalStack } from '../ModalStack';
 
 import 'gridstack/dist/gridstack.min.css';
 
 const Dashboard = () => {
-  const [dashboardConfig, setDashboardConfig] = useState(sessionStorage.getDashboardConfig());
+  const [dashboardConfig, setDashboardConfig] = useState(dashboard.getConfig());
   const modalstack = useModalStack();
   const widgetLookup: any = {
     bbcNews: BbcNews,
@@ -41,7 +40,7 @@ const Dashboard = () => {
     const fetchConfig = async () => {
       const response = await api.get<ConfigApiResponse>(`/config?id=${dashboardConfig.id}`);
       setDashboardConfig(response.data);
-      sessionStorage.setDashboardConfig(response.data);
+      dashboard.setConfig(response.data);
     };
 
     fetchConfig();

@@ -6,7 +6,6 @@ import { ConfigApiResponse } from '../../types/config';
 import { Widget } from '../../types/widget';
 import { api } from '../../lib/api';
 import { dashboard } from '../../lib/dashboard';
-import { sessionStorage } from '../../lib/session-storage';
 import { useModalStack } from '../ModalStack';
 
 import './index.scss';
@@ -15,7 +14,7 @@ const Settings = () => {
   const [message, setMessage] = useState('');
   const [widgetConfig, setWidgetConfig] = useState<Widget[]>([]);
   const modalstack = useModalStack();
-  const { backgroundColour, id, widgets } = sessionStorage.getDashboardConfig();
+  const { backgroundColour, id, widgets } = dashboard.getConfig();
 
   useEffect(() => {
     setWidgetConfig(widgets);

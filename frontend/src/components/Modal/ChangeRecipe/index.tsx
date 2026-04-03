@@ -4,7 +4,7 @@ import Icon from '../../Icon';
 import RecipeDetails from '../RecipeDetails';
 import { CookbookApiResponse, Recipe } from '../../../types/food-planner';
 import { api } from '../../../lib/api';
-import { sessionStorage } from '../../../lib/session-storage';
+import { dashboard } from '../../../lib/dashboard';
 import { useModalStack } from '../../ModalStack';
 
 import './index.scss';
@@ -16,7 +16,7 @@ const ChangeRecipe = ({ day, onClose }: Props) => {
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      const config = sessionStorage.getDashboardConfig();
+      const config = dashboard.getConfig();
       const response = await api.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
       setRecipes(response.data.sort((a, b) => a.name.localeCompare(b.name)));
     };
@@ -40,7 +40,7 @@ const ChangeRecipe = ({ day, onClose }: Props) => {
   };
 
   const onSelectRecipe = async (recipe: string) => {
-    const { id } = sessionStorage.getDashboardConfig();
+    const { id } = dashboard.getConfig();
     await api.put(`/food-planner/planner?id=${id}`, {
       [day]: recipe,
     });

@@ -7,7 +7,6 @@ import RecipeEditor from '../Modal/RecipeEditor';
 import { CookbookApiResponse, Recipe } from '../../types/food-planner';
 import { api } from '../../lib/api';
 import { dashboard } from '../../lib/dashboard';
-import { sessionStorage } from '../../lib/session-storage';
 import { useModalStack } from '../ModalStack';
 
 import './index.scss';
@@ -17,7 +16,7 @@ const RecipeManager = () => {
   const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
   const [search, setSearch] = useState('');
   const modalstack = useModalStack();
-  const config = sessionStorage.getDashboardConfig();
+  const config = dashboard.getConfig();
 
   useEffect(() => {
     fetchRecipes();

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ConfigApiResponse } from '../../types/config';
 import { api } from '../../lib/api';
 import { credentials } from '../../lib/credentials';
-import { sessionStorage } from '../../lib/session-storage';
+import { dashboard } from '../../lib/dashboard';
 
 import './index.scss';
 
@@ -24,7 +24,7 @@ const Login = () => {
     switch (response.status) {
       case 200:
         credentials.login(true);
-        sessionStorage.setDashboardConfig({
+        dashboard.setConfig({
           ...response.data,
           id: dashboardId,
         });
