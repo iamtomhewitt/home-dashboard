@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Icon from '../../Icon';
 import { CookbookApiResponse, Recipe, RecipeIngredient } from '../../../types/food-planner';
-import { http } from '../../../lib/https';
+import { api } from '../../../lib/api';
 import { sessionStorage } from '../../../lib/session-storage';
 
 import './index.scss';
@@ -56,7 +56,7 @@ const RecipeEditor = ({ recipe }: Props) => {
     setMessage('');
     setIsLoading(true);
     const dashboardConfig = sessionStorage.getDashboardConfig();
-    const response = await http.put<CookbookApiResponse>(`/food-planner/cookbook?id=${dashboardConfig.id}`, {
+    const response = await api.put<CookbookApiResponse>(`/food-planner/cookbook?id=${dashboardConfig.id}`, {
       ingredients,
       name,
       steps,

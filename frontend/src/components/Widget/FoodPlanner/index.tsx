@@ -6,7 +6,7 @@ import Confirm from '../../Modal/Confirm';
 import Widget from '../';
 import { FoodPlan, FoodPlannerApiResponse, ShoppingListResponse } from '../../../types/food-planner';
 import { Widget as WidgetType } from '../../../types/widget';
-import { http } from '../../../lib/https';
+import { api } from '../../../lib/api';
 import { sessionStorage } from '../../../lib/session-storage';
 import { useModalStack } from '../../ModalStack';
 
@@ -23,9 +23,9 @@ const FoodPlanner = ({ widget }: Props) => {
       message: 'Add all ingredients to Shopping List?',
       onYes: async () => {
         setIsLoading(true);
-        const response = await http.get<ShoppingListResponse>(`/food-planner/shoppingList?id=${id}`);
+        const response = await api.get<ShoppingListResponse>(`/food-planner/shoppingList?id=${id}`);
         for (const item of response.data) {
-          await http.post(`/todoist?apiKey=${widget.todoist.apiKey}&projectId=${widget.todoist.id}`, {
+          await api.post(`/todoist?apiKey=${widget.todoist.apiKey}&projectId=${widget.todoist.id}`, {
             content: item,
           });
         }
@@ -45,7 +45,7 @@ const FoodPlanner = ({ widget }: Props) => {
   };
 
   const onRefresh = async () => {
-    const response = await http.get<FoodPlannerApiResponse>(`/food-planner/planner?id=${id}`);
+    const response = await api.get<FoodPlannerApiResponse>(`/food-planner/planner?id=${id}`);
     setPlan(response.data);
   };
 

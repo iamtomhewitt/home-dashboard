@@ -4,7 +4,7 @@ import Icon from '../../Icon';
 import Widget from '../';
 import { SplitwiseApiResponse, SplitwiseGroup } from '../../../types/splitwise';
 import { Widget as WidgetType } from '../../../types/widget';
-import { http } from '../../../lib/https';
+import { api } from '../../../lib/api';
 
 import './index.scss';
 
@@ -13,7 +13,7 @@ const Splitwise = ({ widget }: Props) => {
   const owesLabel = `${debt?.who} owes ${debt?.owes}`;
 
   const fetchData = async () => {
-    const response = await http.get<SplitwiseApiResponse>(`/splitwise?apiKey=${widget.apiKey}&groupId=${widget.groupId}`);
+    const response = await api.get<SplitwiseApiResponse>(`/splitwise?apiKey=${widget.apiKey}&groupId=${widget.groupId}`);
     setDebt(response.data);
   };
 

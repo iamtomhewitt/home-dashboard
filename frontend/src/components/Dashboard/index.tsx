@@ -10,7 +10,7 @@ import Splitwise from '../Widget/Splitwise';
 import Todoist from '../Widget/Todoist';
 import Weather from '../Widget/Weather';
 import { ConfigApiResponse } from '../../types/config';
-import { http } from '../../lib/https';
+import { api } from '../../lib/api';
 import { sessionStorage } from '../../lib/session-storage';
 
 import 'gridstack/dist/gridstack.min.css';
@@ -32,7 +32,7 @@ const Dashboard = () => {
     GridStack.init();
 
     const fetchConfig = async () => {
-      const response = await http.get<ConfigApiResponse>(`/config?id=${dashboardConfig.id}`);
+      const response = await api.get<ConfigApiResponse>(`/config?id=${dashboardConfig.id}`);
       setDashboardConfig(response.data);
       sessionStorage.setDashboardConfig(response.data);
     };

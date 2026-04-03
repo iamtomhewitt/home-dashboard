@@ -4,7 +4,7 @@ import Icon from '../../Icon';
 import Widget from '../';
 import { NewsApiResponse, NewsItem } from '../../../types/news';
 import { Widget as WidgetType } from '../../../types/widget';
-import { http } from '../../../lib/https';
+import { api } from '../../../lib/api';
 
 import './index.scss';
 
@@ -23,7 +23,7 @@ const BbcNews = ({ widget }: Props) => {
   }, [articles.length]);
 
   const onRefresh = async () => {
-    const response = await http.get<NewsApiResponse>(`/news?apiKey=${widget.apiKey}`);
+    const response = await api.get<NewsApiResponse>(`/news?apiKey=${widget.apiKey}`);
     setArticles(response.data);
   };
 

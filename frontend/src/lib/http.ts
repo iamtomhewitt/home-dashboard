@@ -1,7 +1,4 @@
-const apiUrl = import.meta.env.VITE_API_URL;
-
-const request = async <T>(path: string, method: string, body?: any): Promise<T> => {
-  const url = `${apiUrl}${path}`;
+const request = async <T>(url: string, method: string, body?: any): Promise<T> => {
   const bodyToUse = body || {};
   const response = await fetch(url, {
     method,
@@ -15,38 +12,38 @@ const request = async <T>(path: string, method: string, body?: any): Promise<T> 
     {};
 
   return {
-    ...json,
     status: response.status,
+    ...json,
   };
 };
 
-const get = async <T>(path: string) => {
+const get = async <T>(url: string) => {
   return await request<T>(
-    path,
+    url,
     'GET',
     {},
   );
 };
 
-const put = async <T>(path: string, body?: any) => {
+const put = async <T>(url: string, body?: any) => {
   return await request<T>(
-    path,
+    url,
     'PUT',
     body,
   );
 };
 
-const post = async <T>(path: string, body?: any) => {
+const post = async <T>(url: string, body?: any) => {
   return await request<T>(
-    path,
+    url,
     'POST',
     body,
   );
 };
 
-const deleteRequest = async <T>(path: string) => {
+const deleteRequest = async <T>(url: string) => {
   return await request<T>(
-    path,
+    url,
     'DELETE',
     {},
   );

@@ -5,7 +5,7 @@ import Icon from '../../Icon';
 import Widget from '../';
 import { TodoistApiResponse, TodoistItem } from '../../../types/todoist';
 import { Widget as WidgetType } from '../../../types/widget';
-import { http } from '../../../lib/https';
+import { api } from '../../../lib/api';
 import { useModalStack } from '../../ModalStack';
 
 import './index.scss';
@@ -16,7 +16,7 @@ const Todoist = ({ widget }: Props) => {
   const modalstack = useModalStack();
 
   const fetchTasks = async () => {
-    const response = await http.get<TodoistApiResponse>(`/todoist?apiKey=${apiKey}&projectId=${todoistId}`);
+    const response = await api.get<TodoistApiResponse>(`/todoist?apiKey=${apiKey}&projectId=${todoistId}`);
     setTasks(response.data);
   };
 
@@ -29,7 +29,7 @@ const Todoist = ({ widget }: Props) => {
   };
 
   const onDeleteTask = async (task: TodoistItem) => {
-    await http.delete(`/todoist?apiKey=${apiKey}&projectId=${todoistId}&id=${task.id}`);
+    await api.delete(`/todoist?apiKey=${apiKey}&projectId=${todoistId}&id=${task.id}`);
     await fetchTasks();
   };
 

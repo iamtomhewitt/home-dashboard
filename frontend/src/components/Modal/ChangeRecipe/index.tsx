@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Icon from '../../Icon';
 import RecipeDetails from '../RecipeDetails';
 import { CookbookApiResponse, Recipe } from '../../../types/food-planner';
-import { http } from '../../../lib/https';
+import { api } from '../../../lib/api';
 import { sessionStorage } from '../../../lib/session-storage';
 import { useModalStack } from '../../ModalStack';
 
@@ -17,7 +17,7 @@ const ChangeRecipe = ({ day, onClose }: Props) => {
   useEffect(() => {
     const fetchRecipes = async () => {
       const config = sessionStorage.getDashboardConfig();
-      const response = await http.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
+      const response = await api.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
       setRecipes(response.data.sort((a, b) => a.name.localeCompare(b.name)));
     };
 
@@ -41,7 +41,7 @@ const ChangeRecipe = ({ day, onClose }: Props) => {
 
   const onSelectRecipe = async (recipe: string) => {
     const { id } = sessionStorage.getDashboardConfig();
-    await http.put(`/food-planner/planner?id=${id}`, {
+    await api.put(`/food-planner/planner?id=${id}`, {
       [day]: recipe,
     });
     modalstack.close();

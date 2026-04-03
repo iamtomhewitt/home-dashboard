@@ -4,7 +4,7 @@ import casing from 'case';
 import Confirm from '../Modal/Confirm';
 import { ConfigApiResponse } from '../../types/config';
 import { Widget } from '../../types/widget';
-import { http } from '../../lib/https';
+import { api } from '../../lib/api';
 import { sessionStorage } from '../../lib/session-storage';
 import { useModalStack } from '../ModalStack';
 
@@ -47,7 +47,7 @@ const Settings = () => {
     modalstack.open(Confirm, {
       message: 'Are you sure you want to save this config?',
       onYes: async () => {
-        const response = await http.put<ConfigApiResponse>(`/config?id=${id}`, {
+        const response = await api.put<ConfigApiResponse>(`/config?id=${id}`, {
           backgroundColour,
           id,
           widgets: widgetConfig,

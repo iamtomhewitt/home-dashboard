@@ -5,7 +5,7 @@ import Icon from '../Icon';
 import RecipeDetails from '../Modal/RecipeDetails';
 import RecipeEditor from '../Modal/RecipeEditor';
 import { CookbookApiResponse, Recipe } from '../../types/food-planner';
-import { http } from '../../lib/https';
+import { api } from '../../lib/api';
 import { sessionStorage } from '../../lib/session-storage';
 import { useModalStack } from '../ModalStack';
 
@@ -39,7 +39,7 @@ const RecipeManager = () => {
   const fetchRecipes = async () => {
     setRecipes([]);
     setFilteredRecipes([]);
-    const response = await http.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
+    const response = await api.get<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}`);
     const returnedRecipes = response.data.sort((a, b) => a.name.localeCompare(b.name));
     setRecipes(returnedRecipes);
     setFilteredRecipes(returnedRecipes);
@@ -74,7 +74,7 @@ const RecipeManager = () => {
     modalstack.open(Confirm, {
       message: `Delete ${recipe.name}?`,
       onYes: async () => {
-        await http.delete<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}&recipeName=${recipe.name}`);
+        await api.delete<CookbookApiResponse>(`/food-planner/cookbook?id=${config.id}&recipeName=${recipe.name}`);
         await fetchRecipes();
       },
       title: 'Warning',

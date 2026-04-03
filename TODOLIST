@@ -1,3 +1,4 @@
 - make types at the top level to be shared by both the frontend and the backend
 - check if there is latest version via github, and show a confirm modal to refresh
 - logs?
+- chore/fix/feature commit message checking
