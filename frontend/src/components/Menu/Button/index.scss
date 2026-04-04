@@ -1,0 +1,21 @@
+.menu-button {
+  align-items: center;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 6%;
+  padding: 20px;
+  transition: all 0.3s ease;
+  width: 100%;
+  z-index: 100;
+
+  &:hover {
+    background: rgb(0 0 0 / 0.04);
+  }
+
+  &-selected {
+    border-right-color: #2970ff;
+    color: #2970ff;
+  }
+}

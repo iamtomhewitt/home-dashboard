@@ -1,0 +1,31 @@
+.widget {
+  container-type: size;
+
+  &-title {
+    color: rgb(255 255 255 / 0.8);
+    font-size: 9cqmin;
+    padding-top: 20px;
+    position: absolute;
+    resize: both;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  &-content {
+    align-items: center;
+    background-color: lightblue;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    font-size: 10cqmin;
+    inset: 3px !important;
+    justify-content: center;
+    overflow: hidden !important;
+    resize: both;
+    text-align: center;
+  }
+}

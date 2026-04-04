@@ -1,0 +1,7 @@
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$BRANCH" != "master" ]; then
+  exit 0
+fi
+
+npx --no-install commitlint --edit "$1"

@@ -1,0 +1,35 @@
+{
+  "name": "@home-dashboard/frontend",
+  "version": "6.10.3",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "deploy": "sls deploy --aws-profile tom",
+    "lint-fix": "retail-linter --sourceFolder=./ --type=typescript-react --fix",
+    "start": "vite --host"
+  },
+  "dependencies": {
+    "case": "1.6.3",
+    "date-fns": "4.1.0",
+    "gridstack": "12.4.2",
+    "hamburger-react": "2.5.2",
+    "pubsub-js": "1.9.5",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-router-dom": "7.13.0"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "7.2.0",
+    "@fortawesome/free-regular-svg-icons": "7.2.0",
+    "@types/node": "24.10.13",
+    "@types/pubsub-js": "1.8.6",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.4",
+    "classnames": "2.5.1",
+    "sass-embedded": "1.97.3",
+    "serverless-s3-sync": "3.5.1",
+    "vite": "7.3.1",
+    "vite-plugin-svgr": "4.5.0"
+  }
+}

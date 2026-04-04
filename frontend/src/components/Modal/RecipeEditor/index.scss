@@ -1,0 +1,87 @@
+.recipe-editor {
+  font-size: 2cqmin;
+  text-align: left;
+
+  h4 {
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  &-name {
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: medium;
+    margin-bottom: 1cqmin;
+    margin-right: 6px;
+    min-height: 5cqmin;
+    padding-left: 2%;
+    width: 100%;
+  }
+
+  &-ingredient {
+    align-items: center;
+    display: inline-flex;
+    font-size: 1.75cqmin;
+    justify-content: flex-start;
+    margin-bottom: 0.5cqmin;
+    width: 100%;
+
+    i {
+      color: tomato;
+      cursor: pointer;
+    }
+
+    input {
+      border: 1px solid lightgrey;
+      border-radius: 10px;
+      font-family: inherit;
+      margin-right: 6px;
+      min-height: 2.5cqmin;
+      padding-left: 2%;
+    }
+
+    input:nth-of-type(2) {
+      margin-left: auto;
+    }
+
+    select {
+      border: 1px solid lightgrey;
+      border-radius: 10px;
+      font-family: inherit;
+      min-height: 2.5cqmin;
+    }
+  }
+
+  &-step {
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    field-sizing: content; /* stylelint-disable-line property-no-unknown */
+    font-family: inherit;
+    padding: 2%;
+    width: 100%;
+  }
+
+  button {
+    background-color: #2970ff;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-family: inherit;
+    height: 4cqmin;
+    margin: 1.5cqmin auto 0;
+    width: 30%;
+
+    &:hover {
+      filter: brightness(120%);
+    }
+  }
+
+  &-message {
+    text-align: center;
+    width: 100%;
+  }
+}

@@ -1,0 +1,38 @@
+.confirm {
+  &-message {
+    margin-bottom: 20px;
+  }
+
+  %-button {
+    background-color: #2970ff;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.75cqmin;
+    height: 4cqmin;
+    margin: 0 10px;
+    width: 30%;
+
+    &:hover {
+      filter: brightness(120%);
+    }
+
+    &:disabled {
+      filter: brightness(80%);
+    }
+  }
+
+  button:nth-of-type(1) {
+    @extend %-button;
+
+    background-color: transparent;
+    border: 1px solid #2970ff;
+    color: #2970ff;
+  }
+
+  button:nth-of-type(2) {
+    @extend %-button;
+  }
+}

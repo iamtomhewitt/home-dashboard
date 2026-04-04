@@ -1,0 +1,33 @@
+.ok {
+  &-message {
+    margin-bottom: 20px;
+    text-align: left;
+    word-wrap: break-word;
+
+    div {
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+
+  button {
+    background-color: #2970ff;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.75cqmin;
+    height: 4cqmin;
+    margin: 0 10px;
+    width: 30%;
+
+    &:hover {
+      filter: brightness(120%);
+    }
+
+    &:disabled {
+      filter: brightness(80%);
+    }
+  }
+}

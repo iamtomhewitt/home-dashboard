@@ -1,0 +1,11 @@
+.clock {
+  &-time {
+    font-size: 18cqmin;
+  }
+
+  &-date {
+    color: rgb(255 255 255 / 0.8);
+    font-size: 9cqmin;
+    text-align: center;
+  }
+}

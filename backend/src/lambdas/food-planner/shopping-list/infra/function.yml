@@ -1,0 +1,15 @@
+---
+shoppingList:
+  description: Returns a shopping list for items in a food planner
+  events:
+    - http:
+        cors: true
+        method: get
+        path: /food-planner/shoppingList
+  handler: dist/src/lambdas/food-planner/shopping-list/handler.handler
+  logRetentionInDays: 7
+  name: home-dashboard-shopping-list
+  role:
+    Fn::GetAtt:
+      - ShoppingListLambdaRole
+      - Arn

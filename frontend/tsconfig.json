@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "typeRoots": [
+      "./node_modules/@types",
+    ],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "rootDir": "./",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+  },
+  "include": [
+    "src",
+    ".storybook"
+  ],
+  "exclude": [
+    ".idea",
+    "**/build",
+    "**/.build",
+    "**/node_modules**",
+    "**/coverage",
+    "**/bin",
+    "**/dist",
+    "**/jest",
+    "**/jest.*",
+    "**/babel.*",
+    "**/*.spec.ts",
+    "vite.config.ts"
+  ]
+}

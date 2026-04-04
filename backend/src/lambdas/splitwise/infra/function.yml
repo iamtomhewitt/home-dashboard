@@ -1,0 +1,15 @@
+---
+splitwise:
+  description: Lambda that backs onto the Splitwise API
+  events:
+    - http:
+        cors: true
+        method: get
+        path: /splitwise
+  handler: dist/src/lambdas/splitwise/handler.handler
+  logRetentionInDays: 7
+  name: home-dashboard-splitwise
+  role:
+    Fn::GetAtt:
+      - SplitwiseLambdaRole
+      - Arn

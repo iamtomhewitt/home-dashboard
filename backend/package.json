@@ -1,0 +1,19 @@
+{
+  "name": "@home-dashboard/backend",
+  "version": "6.10.3",
+  "scripts": {
+    "build": "rm -rf dist && tsc -b && cp package.json dist/package.json && cd dist && npm i --omit=dev",
+    "deploy": "sls deploy --aws-profile tom",
+    "lint-fix": "retail-linter --sourceFolder=./ --type=typescript --fix"
+  },
+  "dependencies": {
+    "googleapis": "171.4.0"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-s3": "3.995.0",
+    "@aws-sdk/client-ssm": "3.995.0",
+    "@types/aws-lambda": "8.10.122",
+    "@types/node": "25.2.3",
+    "aws-lambda": "1.0.7"
+  }
+}
