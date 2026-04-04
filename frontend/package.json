@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
+    "deploy": "sls deploy --aws-profile tom",
     "lint-fix": "retail-linter --sourceFolder=./ --type=typescript-react --fix",
     "start": "vite --host"
   },

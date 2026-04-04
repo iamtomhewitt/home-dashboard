@@ -5,10 +5,11 @@
     "build": "npm run build --ws",
     "build:backend": "npm run build --ws backend",
     "build:frontend": "npm run build --ws frontend",
+    "deploy": "npm run deploy --ws",
     "frontend": "cd frontend && npm start",
     "lint-fix": "npm run lint-fix --ws",
     "prepare": "husky",
-    "release": "ts-node --esm release.ts"
+    "release": "npm run build && npm run deploy && ts-node --esm release.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "20.5.0",
@@ -16,6 +17,7 @@
     "date-fns": "4.1.0",
     "husky": "9.1.7",
     "retail-linter": "3.4.0",
+    "serverless": "3.4",
     "ts-node": "10.9.2",
     "typescript": "5.9.3"
   },
