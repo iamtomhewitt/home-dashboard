@@ -1,6 +1,7 @@
 {
   "name": "home-dashboard",
   "version": "6.10.3",
+  "author": "Tom Hewitt",
   "scripts": {
     "build": "npm run build --ws",
     "build:backend": "npm run build --ws backend",
