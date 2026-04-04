@@ -45,7 +45,9 @@ const main = async (e: APIGatewayProxyEvent) => {
     daily,
   };
 
-  return response.json(200, 'Success', mappedWeather);
+  return response.ok({
+    body: mappedWeather, 
+  });
 };
 
 export const handler = withErrorHandling(main);

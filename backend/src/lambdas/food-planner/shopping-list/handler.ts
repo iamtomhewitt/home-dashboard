@@ -65,7 +65,9 @@ const main = async (e: APIGatewayProxyEvent) => {
         return `${ingredient.amount}${amountSuffix} ${ingredient.name}`;
       });
 
-      return response.json(200, 'Success', shoppingList);
+      return response.ok({
+        body: shoppingList, 
+      });
     }
 
     default:

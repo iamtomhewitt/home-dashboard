@@ -26,11 +26,13 @@ const main = async (e: APIGatewayProxyEvent) => {
   }));
 
   if (group.simplified_debts.length === 0) {
-    return response.json(200, 'Success', {
-      amount: 'n/a',
-      owes: 'n/a',
-      settledUp: true,
-      who: 'n/a',
+    return response.ok({
+      body: {
+        amount: 'n/a',
+        owes: 'n/a',
+        settledUp: true,
+        who: 'n/a',
+      },
     });
   }
 
@@ -42,7 +44,9 @@ const main = async (e: APIGatewayProxyEvent) => {
     who: members.find(m => m.id === debt.from).name,
   };
 
-  return response.json(200, 'Success', data);
+  return response.ok({
+    body: data, 
+  });
 };
 
 export const handler = withErrorHandling(main);

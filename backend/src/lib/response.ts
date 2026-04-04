@@ -32,8 +32,15 @@ const json = (statusCode: number, message: string, body?: ResponseBody) => {
 
 export const response = {
   json,
+  noContent: (data: ResponseData) => json(204, data.message ?? 'OK', data.body),
+  ok: (data: ResponseData) => json(200, data.message ?? 'No content', data.body),
 };
 
 type ResponseBody = {
   [key: string]: any;
+}
+
+type ResponseData = {
+  body?: ResponseBody;
+  message?: string;
 }

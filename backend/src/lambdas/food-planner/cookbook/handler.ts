@@ -16,7 +16,9 @@ const main = async (e: APIGatewayProxyEvent) => {
   switch (e.httpMethod) {
     case 'GET': {
       const data = await s3.getObjectAsJson(bucketName, cookbookKey);
-      return response.json(200, 'Success', data);
+      return response.ok({
+        body: data, 
+      });
     }
 
     case 'PUT': {
@@ -28,7 +30,9 @@ const main = async (e: APIGatewayProxyEvent) => {
 
       if (!await s3.itemExists(bucketName, cookbookKey)) {
         await s3.save(bucketName, cookbookKey, e.body);
-        return response.json(200, 'Success', existingRecipes);
+        return response.ok({
+          body: existingRecipes, 
+        });
       }
       else {
         const requestBody = JSON.parse(e.body);
@@ -37,7 +41,9 @@ const main = async (e: APIGatewayProxyEvent) => {
           requestBody,
         ];
         await s3.save(bucketName, cookbookKey, JSON.stringify(updatedRecipes));
-        return response.json(200, 'Success', updatedRecipes);
+        return response.ok({
+          body: updatedRecipes, 
+        });
       }
     }
 
@@ -46,7 +52,10 @@ const main = async (e: APIGatewayProxyEvent) => {
       const existingRecipes: any[] = await s3.getObjectAsJson(bucketName, cookbookKey);
       const withRecipeFilteredOut = existingRecipes.filter(recipe => recipe.name !== recipeName);
       await s3.save(bucketName, cookbookKey, JSON.stringify(withRecipeFilteredOut));
-      return response.json(200, `'${recipeName}' deleted`, withRecipeFilteredOut);
+      return response.ok({
+        body: withRecipeFilteredOut,
+        message: `'${recipeName}' deleted`, 
+      });
     }
 
     default:

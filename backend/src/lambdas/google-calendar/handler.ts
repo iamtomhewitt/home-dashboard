@@ -51,7 +51,9 @@ const main = async (e: APIGatewayProxyEvent) => {
     name: event.summary,
   }));
 
-  return response.json(200, 'Success', events);
+  return response.ok({
+    body: events, 
+  });
 };
 
 export const handler = withErrorHandling(main);

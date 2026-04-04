@@ -16,7 +16,9 @@ const main = async (e: APIGatewayProxyEvent) => {
   switch (e.httpMethod) {
     case 'GET': {
       const data = await s3.getObjectAsJson(bucketName, plannerKey);
-      return response.json(200, 'Success', data);
+      return response.ok({
+        body: data, 
+      });
     }
 
     case 'PUT': {
@@ -36,7 +38,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         await s3.save(bucketName, plannerKey, JSON.stringify(newPlanner));
       }
 
-      return response.json(200, 'Success');
+      return response.ok({});
     }
 
     default:

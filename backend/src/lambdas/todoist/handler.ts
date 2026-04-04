@@ -40,7 +40,9 @@ const main = async (e: APIGatewayProxyEvent) => {
           id: item.id,
         })));
 
-      return response.json(200, 'Success', data);
+      return response.ok({
+        body: data, 
+      });
     }
 
     case 'POST': {
@@ -58,7 +60,9 @@ const main = async (e: APIGatewayProxyEvent) => {
         method: 'POST',
       });
 
-      return response.json(200, `${requestBody.content} created`);
+      return response.ok({
+        message: `${requestBody.content} created`, 
+      });
     }
 
     case 'DELETE': {
@@ -72,7 +76,9 @@ const main = async (e: APIGatewayProxyEvent) => {
         method: 'DELETE',
       });
 
-      return response.json(204, 'Task deleted');
+      return response.noContent({
+        message: 'Task deleted', 
+      });
     }
 
     default:

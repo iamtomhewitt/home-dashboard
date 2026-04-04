@@ -16,7 +16,9 @@ const main = async (e: APIGatewayProxyEvent) => {
   switch (e.httpMethod) {
     case 'GET': {
       const data = await s3.getObjectAsJson(bucketName, id);
-      return response.json(200, 'Success', data);
+      return response.ok({
+        body: data, 
+      });
     }
 
     case 'PUT': {
@@ -25,8 +27,9 @@ const main = async (e: APIGatewayProxyEvent) => {
       }
 
       const data = await s3.save(bucketName, id, e.body);
-
-      return response.json(200, 'Success', data);
+      return response.ok({
+        body: data, 
+      });
     }
 
     case 'DELETE': {
@@ -35,7 +38,9 @@ const main = async (e: APIGatewayProxyEvent) => {
         Key: id,
       }));
 
-      return response.json(200, 'Success', data);
+      return response.ok({
+        body: data, 
+      });
     }
 
     default:

@@ -20,7 +20,9 @@ const main = async (e: APIGatewayProxyEvent) => {
   const articles = await fetch(url)
     .then(response => response.json())
     .then(data => data.articles);
-  return response.json(200, 'Success', articles);
+  return response.ok({
+    body: articles, 
+  });
 };
 
 export const handler = withErrorHandling(main);
