@@ -1,6 +1,6 @@
 {
   "name": "@home-dashboard/backend",
-  "version": "0.0.0",
+  "version": "6.10.3",
   "scripts": {
     "build": "rm -rf dist && tsc -b && cp package.json dist/package.json && cd dist && npm i --omit=dev",
     "lint-fix": "retail-linter --sourceFolder=./ --type=typescript --fix"

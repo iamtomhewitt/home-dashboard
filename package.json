@@ -1,17 +1,19 @@
 {
   "name": "home-dashboard",
-  "version": "0.0.0",
+  "version": "6.10.3",
   "scripts": {
     "build": "npm run build --ws",
     "build:backend": "npm run build --ws backend",
     "build:frontend": "npm run build --ws frontend",
     "frontend": "cd frontend && npm start",
     "lint-fix": "npm run lint-fix --ws",
-    "prepare": "husky"
+    "prepare": "husky",
+    "release": "ts-node --esm release.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "20.5.0",
     "@commitlint/config-conventional": "20.5.0",
+    "date-fns": "4.1.0",
     "husky": "9.1.7",
     "retail-linter": "3.4.0",
     "ts-node": "10.9.2",
