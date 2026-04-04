@@ -72,4 +72,10 @@ import { execSync } from 'child_process';
   const existingChangelog = fs.readFileSync(changelogFilePath).toString();
   const newChangelog = `${entry}\n\n${existingChangelog} `;
   fs.writeFileSync(changelogFilePath, newChangelog);
+
+  execSync('git add .');
+  execSync(`git commit -m 'release: version ${newVersion}'`);
+  execSync('git push');
+  execSync(`git tag ${newVersion}`);
+  execSync('git push --tags');
 })();
