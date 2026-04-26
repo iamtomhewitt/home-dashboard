@@ -1,3 +1,7 @@
+## Version 7.0.1
+Released **26 Apr 2026 10:03:08am** - *1 commits*
+- aa6eacd fix: catch null items in shopping list
+
 ## Version 7.0.0
 Released **04 Apr 2026 21:34:27pm** - *158 commits*
 - bb03929 author
@@ -321,4 +325,4 @@ Released **04 Apr 2026 21:34:27pm** - *158 commits*
 
 ### Issues in this release:
 
-* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser 
+* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser  
