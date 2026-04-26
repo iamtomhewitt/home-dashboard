@@ -27,7 +27,7 @@ export class NotFoundError extends LambdaError {
 
 export class UnauthorisedError extends LambdaError {
   constructor (message: string) {
-    super('NotFound', message, 401);
+    super('Unauthorised', message, 401);
   }
 }
 
@@ -36,6 +36,8 @@ export const withErrorHandling = (handler: (e: APIGatewayProxyEvent) => Promise<
     return await handler(e);
   }
   catch (err: any) {
+    console.log(`Error: ${err}`);
+
     let { code } = err;
 
     if (!err.code) {

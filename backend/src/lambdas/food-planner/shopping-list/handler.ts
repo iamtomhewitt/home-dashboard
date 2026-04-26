@@ -26,6 +26,10 @@ const main = async (e: APIGatewayProxyEvent) => {
 
       const groupedIngredients = Object.values(
         allIngredients.reduce((acc, item) => {
+          if (!item) {
+            return acc;
+          }
+
           const key = `${item.name.trim()}_${item.weight}`;
 
           if (!acc[key]) {
@@ -66,7 +70,7 @@ const main = async (e: APIGatewayProxyEvent) => {
       });
 
       return response.ok({
-        body: shoppingList, 
+        body: shoppingList,
       });
     }
 
