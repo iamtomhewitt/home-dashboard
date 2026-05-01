@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import MenuButton from './Button';
 import Ok from '../Modal/Ok';
-import pkg from '../../../package.json';
 import { credentials } from '../../lib/credentials';
 import { useModalStack } from '../ModalStack';
 
@@ -125,7 +124,7 @@ const Menu = () => {
       </div>
 
       <div className='menu-version'>
-        {pkg.version}
+        {import.meta.env.PACKAGE_VERSION}
       </div>
     </div>
   );
