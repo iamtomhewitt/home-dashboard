@@ -60,6 +60,7 @@ const Menu = () => {
       }
       else {
         setIsFullScreen(true);
+        setIsOpen(false);
         document.documentElement.requestFullscreen();
       }
     },
