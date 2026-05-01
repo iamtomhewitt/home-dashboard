@@ -29,6 +29,7 @@ const Weather = ({ widget }: Props) => {
       case 'light-rain':
         return 'drizzle';
 
+      case 'heavy-rain':
       case 'light-rain-shower':
       case 'moderate-rain':
       case 'patchy-rain-nearby':
