@@ -1,3 +1,9 @@
+## Version 7.1.0
+Released **01 May 2026 10:24:29am** - *3 commits*
+- 1054a9d chore: close menu when entering full screen
+- 1303ddd fix: package.json not being included in build
+- 5136ae5 fix: add icon for heavy rain
+
 ## Version 7.0.1
 Released **26 Apr 2026 10:03:08am** - *1 commits*
 - aa6eacd fix: catch null items in shopping list
@@ -325,4 +331,4 @@ Released **04 Apr 2026 21:34:27pm** - *158 commits*
 
 ### Issues in this release:
 
-* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser  
+* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser   

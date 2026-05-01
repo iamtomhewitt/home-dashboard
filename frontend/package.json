@@ -1,6 +1,6 @@
 {
   "name": "@home-dashboard/frontend",
-  "version": "7.0.1",
+  "version": "7.1.0",
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
