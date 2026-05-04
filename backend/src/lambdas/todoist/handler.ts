@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { http } from '@iamtomhewitt/http';
 
 import { BadRequestError, LambdaError, withErrorHandling } from '../../lib/error';
-import { response } from '../../lib/response';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { apiKey, projectId } = e.queryStringParameters || {};
@@ -40,7 +40,7 @@ const main = async (e: APIGatewayProxyEvent) => {
           id: item.id,
         })));
 
-      return response.ok({
+      return http.response.ok({
         body: data, 
       });
     }
@@ -60,7 +60,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         method: 'POST',
       });
 
-      return response.ok({
+      return http.response.ok({
         message: `${requestBody.content} created`, 
       });
     }
@@ -76,7 +76,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         method: 'DELETE',
       });
 
-      return response.noContent({
+      return http.response.noContent({
         message: 'Task deleted', 
       });
     }

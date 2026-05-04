@@ -18,21 +18,18 @@ const Login = () => {
   };
 
   const onLogin = async () => {
-    setError('');
-    const response = await api.get<ConfigApiResponse>(`/config?id=${dashboardId}`);
-
-    switch (response.status) {
-      case 200:
-        credentials.login(true);
-        dashboard.setConfig({
-          ...response.data,
-          id: dashboardId,
-        });
-        navigate('/dashboard');
-        break;
-      default:
-        setError(response.message);
-        break;
+    try {
+      setError('');
+      const response = await api.get<ConfigApiResponse>(`/config?id=${dashboardId}`);
+      credentials.login(true);
+      dashboard.setConfig({
+        ...response.data,
+        id: dashboardId,
+      });
+      navigate('/dashboard');
+    }
+    catch (err: any) {
+      setError(`${err.detail?.message || err.message}`);
     }
   };
 

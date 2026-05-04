@@ -1,8 +1,8 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { http } from '@iamtomhewitt/http';
 
 import s3 from '../../../lib/s3';
 import { BadRequestError, withErrorHandling } from '../../../lib/error';
-import { response } from '../../../lib/response';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { id } = e.queryStringParameters || {};
@@ -16,7 +16,7 @@ const main = async (e: APIGatewayProxyEvent) => {
   switch (e.httpMethod) {
     case 'GET': {
       const data = await s3.getObjectAsJson(bucketName, plannerKey);
-      return response.ok({
+      return http.response.ok({
         body: data, 
       });
     }
@@ -38,7 +38,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         await s3.save(bucketName, plannerKey, JSON.stringify(newPlanner));
       }
 
-      return response.ok({});
+      return http.response.ok({});
     }
 
     default:

@@ -1,9 +1,9 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { http } from '@iamtomhewitt/http';
 
 import s3 from '../../lib/s3';
 import { BadRequestError, withErrorHandling } from '../../lib/error';
-import { response } from '../../lib/response';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const bucketName = 'home-dashboard-config';
@@ -16,8 +16,8 @@ const main = async (e: APIGatewayProxyEvent) => {
   switch (e.httpMethod) {
     case 'GET': {
       const data = await s3.getObjectAsJson(bucketName, id);
-      return response.ok({
-        body: data, 
+      return http.response.ok({
+        body: data,
       });
     }
 
@@ -27,8 +27,8 @@ const main = async (e: APIGatewayProxyEvent) => {
       }
 
       const data = await s3.save(bucketName, id, e.body);
-      return response.ok({
-        body: data, 
+      return http.response.ok({
+        body: data,
       });
     }
 
@@ -38,8 +38,8 @@ const main = async (e: APIGatewayProxyEvent) => {
         Key: id,
       }));
 
-      return response.ok({
-        body: data, 
+      return http.response.ok({
+        body: data,
       });
     }
 

@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { http } from '@iamtomhewitt/http';
 
 import { BadRequestError, withErrorHandling } from '../../lib/error';
-import { response } from '../../lib/response';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { apiKey, latitude, longitude, days = 4 } = e.queryStringParameters || {};
@@ -45,7 +45,7 @@ const main = async (e: APIGatewayProxyEvent) => {
     daily,
   };
 
-  return response.ok({
+  return http.response.ok({
     body: mappedWeather, 
   });
 };

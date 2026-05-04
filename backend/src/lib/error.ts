@@ -1,6 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-
-import { response } from './response';
+import { http } from '@iamtomhewitt/http';
 
 export class LambdaError extends Error {
   code = 500;
@@ -48,6 +47,8 @@ export const withErrorHandling = (handler: (e: APIGatewayProxyEvent) => Promise<
       code = codeMap[err.name] || 500;
     }
 
-    return response.json(code, `${err.name}: ${err.message}`);
+    return http.response.json(code, {
+      message: `${err.name}: ${err.message}`, 
+    });
   }
 };

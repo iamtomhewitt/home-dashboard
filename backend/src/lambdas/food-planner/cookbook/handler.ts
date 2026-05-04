@@ -1,8 +1,8 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { http } from '@iamtomhewitt/http';
 
 import s3 from '../../../lib/s3';
 import { BadRequestError, withErrorHandling } from '../../../lib/error';
-import { response } from '../../../lib/response';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { id } = e.queryStringParameters || {};
@@ -16,7 +16,7 @@ const main = async (e: APIGatewayProxyEvent) => {
   switch (e.httpMethod) {
     case 'GET': {
       const data = await s3.getObjectAsJson(bucketName, cookbookKey);
-      return response.ok({
+      return http.response.ok({
         body: data, 
       });
     }
@@ -30,7 +30,7 @@ const main = async (e: APIGatewayProxyEvent) => {
 
       if (!await s3.itemExists(bucketName, cookbookKey)) {
         await s3.save(bucketName, cookbookKey, e.body);
-        return response.ok({
+        return http.response.ok({
           body: existingRecipes, 
         });
       }
@@ -41,7 +41,7 @@ const main = async (e: APIGatewayProxyEvent) => {
           requestBody,
         ];
         await s3.save(bucketName, cookbookKey, JSON.stringify(updatedRecipes));
-        return response.ok({
+        return http.response.ok({
           body: updatedRecipes, 
         });
       }
@@ -52,7 +52,7 @@ const main = async (e: APIGatewayProxyEvent) => {
       const existingRecipes: any[] = await s3.getObjectAsJson(bucketName, cookbookKey);
       const withRecipeFilteredOut = existingRecipes.filter(recipe => recipe.name !== recipeName);
       await s3.save(bucketName, cookbookKey, JSON.stringify(withRecipeFilteredOut));
-      return response.ok({
+      return http.response.ok({
         body: withRecipeFilteredOut,
         message: `'${recipeName}' deleted`, 
       });

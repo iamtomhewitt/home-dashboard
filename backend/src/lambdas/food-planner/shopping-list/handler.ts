@@ -1,8 +1,8 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { http } from '@iamtomhewitt/http';
 
 import s3 from '../../../lib/s3';
 import { BadRequestError, withErrorHandling } from '../../../lib/error';
-import { response } from '../../../lib/response';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { id } = e.queryStringParameters || {};
@@ -69,7 +69,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         return `${ingredient.amount}${amountSuffix} ${ingredient.name}`;
       });
 
-      return response.ok({
+      return http.response.ok({
         body: shoppingList,
       });
     }

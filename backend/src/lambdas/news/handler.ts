@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { http } from '@iamtomhewitt/http';
 
 import { BadRequestError, withErrorHandling } from '../../lib/error';
-import { response } from '../../lib/response';
 
 /**
  * *Why don't you make this request from the browser?*
@@ -20,7 +20,7 @@ const main = async (e: APIGatewayProxyEvent) => {
   const articles = await fetch(url)
     .then(response => response.json())
     .then(data => data.articles);
-  return response.ok({
+  return http.response.ok({
     body: articles, 
   });
 };

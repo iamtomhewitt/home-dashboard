@@ -1,11 +1,11 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
 import { GetParameterCommand } from '@aws-sdk/client-ssm';
 import { google } from 'googleapis';
+import { http } from '@iamtomhewitt/http';
 
 import s3 from '../../lib/s3';
 import ssm from '../../lib/ssm';
 import { BadRequestError, UnauthorisedError, withErrorHandling } from '../../lib/error';
-import { response } from '../../lib/response';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { apiKey, gmail } = e.queryStringParameters || {};
@@ -51,7 +51,7 @@ const main = async (e: APIGatewayProxyEvent) => {
     name: event.summary,
   }));
 
-  return response.ok({
+  return http.response.ok({
     body: events, 
   });
 };

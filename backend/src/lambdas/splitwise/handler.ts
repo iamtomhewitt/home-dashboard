@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { http } from '@iamtomhewitt/http';
 
 import { BadRequestError, withErrorHandling } from '../../lib/error';
-import { response } from '../../lib/response';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { apiKey, groupId } = e.queryStringParameters || {};
@@ -26,7 +26,7 @@ const main = async (e: APIGatewayProxyEvent) => {
   }));
 
   if (group.simplified_debts.length === 0) {
-    return response.ok({
+    return http.response.ok({
       body: {
         amount: 'n/a',
         owes: 'n/a',
@@ -44,7 +44,7 @@ const main = async (e: APIGatewayProxyEvent) => {
     who: members.find(m => m.id === debt.from).name,
   };
 
-  return response.ok({
+  return http.response.ok({
     body: data, 
   });
 };

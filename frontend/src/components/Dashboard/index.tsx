@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { GridStack } from 'gridstack';
+import { http } from '@iamtomhewitt/http';
 
 import BbcNews from '../Widget/BbcNews';
 import BinDay from '../Widget/BinDay';
@@ -14,7 +15,6 @@ import pkg from '../../../package.json';
 import { ConfigApiResponse } from '../../types/config';
 import { api } from '../../lib/api';
 import { dashboard } from '../../lib/dashboard';
-import { http } from '../../lib/http';
 import { time } from '../../lib/time';
 import { useModalStack } from '../ModalStack';
 
@@ -50,7 +50,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const checkVersion = async () => {
-      const response = await http.get<any[]>('https://api.github.com/repos/iamtomhewitt/home-dashboard/tags');
+      const response = await http.request.get<any[]>('https://api.github.com/repos/iamtomhewitt/home-dashboard/tags');
       const latestTag: string = response[0].name;
       if (latestTag !== pkg.version) {
         modalstack.open(Confirm, {
