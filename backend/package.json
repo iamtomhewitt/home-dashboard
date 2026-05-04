@@ -4,7 +4,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc -b && cp package.json dist/package.json && cd dist && npm i --omit=dev",
     "deploy": "sls deploy --aws-profile tom",
-    "lint-fix": "retail-linter --sourceFolder=./ --type=typescript --fix"
+    "lint-fix": "iamtomhewitt-linter --sourceFolder=./ --type=typescript --fix"
   },
   "dependencies": {
     "googleapis": "171.4.0"
