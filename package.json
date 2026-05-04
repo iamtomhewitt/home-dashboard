@@ -10,12 +10,13 @@
     "frontend": "cd frontend && npm start",
     "lint-fix": "npm run lint-fix --ws",
     "prepare": "husky",
-    "release": "ts-node --esm release.ts && npm run build && npm run deploy"
+    "release": "npm run build && npm run deploy && iamtomhewitt-releaser"
   },
   "devDependencies": {
     "@commitlint/cli": "20.5.0",
     "@commitlint/config-conventional": "20.5.0",
     "@iamtomhewitt/linter": "1.0.6",
+    "@iamtomhewitt/releaser": "1.0.6",
     "date-fns": "4.1.0",
     "husky": "9.1.7",
     "serverless": "3.4",
