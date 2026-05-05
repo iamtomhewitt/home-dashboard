@@ -1,6 +1,6 @@
 {
   "name": "@home-dashboard/backend",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "scripts": {
     "build": "rm -rf dist && tsc -b && cp package.json dist/package.json && cd dist && npm i --omit=dev",
     "deploy": "sls deploy --aws-profile tom",

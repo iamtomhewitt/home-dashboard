@@ -1,3 +1,13 @@
+## Version 8.0.0
+Released **5th May 2026 08:43:30am** - *7 commits*
+- 573b7db deps: update package
+- ec28299 fix: refresh todoist lists when adding a task
+- d14a8c1 fix: reimplement network logs
+- a655389 chore: migrate to @iamtomhewitt packages
+- e30ce62 deps: update dependencies
+- 31855ba ci: use @iamtomhewitt/releaser for releases
+- b880667 chore: move to public registry, use different linter
+
 ## Version 7.1.0
 Released **01 May 2026 10:24:29am** - *3 commits*
 - 1054a9d chore: close menu when entering full screen
@@ -331,4 +341,4 @@ Released **04 Apr 2026 21:34:27pm** - *158 commits*
 
 ### Issues in this release:
 
-* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser   
+* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser    
