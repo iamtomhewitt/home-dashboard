@@ -15,6 +15,7 @@
   "devDependencies": {
     "@commitlint/cli": "20.5.0",
     "@commitlint/config-conventional": "20.5.0",
+    "@iamtomhewitt/releaser": "2.1.2",
     "date-fns": "4.1.0",
     "husky": "9.1.7",
     "serverless": "3.4",

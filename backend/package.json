@@ -14,7 +14,6 @@
     "@aws-sdk/client-s3": "3.995.0",
     "@aws-sdk/client-ssm": "3.995.0",
     "@iamtomhewitt/linter": "2.1.2",
-    "@iamtomhewitt/releaser": "2.1.2",
     "@types/aws-lambda": "8.10.122",
     "@types/node": "25.2.3",
     "aws-lambda": "1.0.7"
