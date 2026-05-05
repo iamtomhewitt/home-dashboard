@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import PubSub from 'pubsub-js';
 
 import { ApiResponse } from '../../../types/api';
 import { api } from '../../../lib/api';
@@ -8,6 +9,12 @@ import './index.scss';
 const AddTodoistTask = ({ apiKey, projectId }: Props) => {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    return () => {
+      PubSub.publish('refresh-todoist');
+    };
+  }, []);
 
   const onAdd = async () => {
     const response = await api.post<ApiResponse<null>>(`/todoist?apiKey=${apiKey}&projectId=${projectId}`, {
