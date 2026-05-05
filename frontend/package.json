@@ -9,7 +9,7 @@
     "start": "vite --host"
   },
   "dependencies": {
-    "@iamtomhewitt/http": "2.1.2",
+    "@iamtomhewitt/http": "2.2.0",
     "case": "1.6.3",
     "date-fns": "4.1.0",
     "gridstack": "12.4.2",
@@ -20,7 +20,7 @@
     "react-router-dom": "7.13.0"
   },
   "devDependencies": {
-    "@iamtomhewitt/linter": "2.1.2",
+    "@iamtomhewitt/linter": "2.2.0",
     "@fortawesome/fontawesome-svg-core": "7.2.0",
     "@fortawesome/free-regular-svg-icons": "7.2.0",
     "@types/node": "24.10.13",
