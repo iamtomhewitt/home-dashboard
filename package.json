@@ -1,6 +1,6 @@
 {
   "name": "home-dashboard",
-  "version": "8.0.0",
+  "version": "7.1.1",
   "author": "Tom Hewitt",
   "scripts": {
     "build": "npm run build --ws",
