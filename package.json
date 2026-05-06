@@ -10,7 +10,7 @@
     "frontend": "cd frontend && npm start",
     "lint-fix": "npm run lint-fix --ws",
     "prepare": "husky",
-    "release": "npm run build && npm run deploy && iamtomhewitt-releaser"
+    "release": "iamtomhewitt-releaser && npm run build && npm run deploy"
   },
   "devDependencies": {
     "@commitlint/cli": "20.5.0",
