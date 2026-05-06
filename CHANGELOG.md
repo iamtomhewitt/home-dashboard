@@ -9,9 +9,6 @@ Released **6th May 2026 08:12:37am** - *9 commits*
 - e30ce62 deps: update dependencies
 - 31855ba ci: use @iamtomhewitt/releaser for releases
 - b880667 chore: move to public registry, use different linter
-
-## Version 8.0.0
-Released **5th May 2026 08:43:30am** - *7 commits*
 - 573b7db deps: update package
 - ec28299 fix: refresh todoist lists when adding a task
 - d14a8c1 fix: reimplement network logs
