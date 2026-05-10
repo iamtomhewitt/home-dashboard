@@ -1,7 +1,6 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { BadRequestError, InternalServerError, withErrorHandling } from '@iamtomhewitt/error';
 import { http } from '@iamtomhewitt/http';
-
-import { BadRequestError, LambdaError, withErrorHandling } from '../../lib/error';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { apiKey, projectId } = e.queryStringParameters || {};
@@ -25,7 +24,7 @@ const main = async (e: APIGatewayProxyEvent) => {
 
     if (!response.ok) {
       const json = await response.json();
-      throw new LambdaError('InternalServerError', json.error);
+      throw new InternalServerError(json.error || response.statusText);
     }
 
     return response;
@@ -41,7 +40,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         })));
 
       return http.response.ok({
-        body: data, 
+        body: data,
       });
     }
 
@@ -61,7 +60,7 @@ const main = async (e: APIGatewayProxyEvent) => {
       });
 
       return http.response.ok({
-        message: `${requestBody.content} created`, 
+        message: `${requestBody.content} created`,
       });
     }
 
@@ -77,7 +76,7 @@ const main = async (e: APIGatewayProxyEvent) => {
       });
 
       return http.response.noContent({
-        message: 'Task deleted', 
+        message: 'Task deleted',
       });
     }
 
@@ -86,4 +85,11 @@ const main = async (e: APIGatewayProxyEvent) => {
   }
 };
 
-export const handler = withErrorHandling(main);
+export const handler = withErrorHandling(
+  main,
+  (err, code) => {
+    return http.response.json(code, {
+      message: `${err.name}: ${err.message}`,
+    });
+  },
+);

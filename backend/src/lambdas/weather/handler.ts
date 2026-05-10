@@ -1,7 +1,6 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { BadRequestError, withErrorHandling } from '@iamtomhewitt/error';
 import { http } from '@iamtomhewitt/http';
-
-import { BadRequestError, withErrorHandling } from '../../lib/error';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { apiKey, latitude, longitude, days = 4 } = e.queryStringParameters || {};
@@ -46,8 +45,15 @@ const main = async (e: APIGatewayProxyEvent) => {
   };
 
   return http.response.ok({
-    body: mappedWeather, 
+    body: mappedWeather,
   });
 };
 
-export const handler = withErrorHandling(main);
+export const handler = withErrorHandling(
+  main,
+  (err, code) => {
+    return http.response.json(code, {
+      message: `${err.name}: ${err.message}`,
+    });
+  },
+);

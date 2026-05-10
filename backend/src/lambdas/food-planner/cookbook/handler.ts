@@ -1,8 +1,8 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { BadRequestError, withErrorHandling } from '@iamtomhewitt/error';
 import { http } from '@iamtomhewitt/http';
 
 import s3 from '../../../lib/s3';
-import { BadRequestError, withErrorHandling } from '../../../lib/error';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { id } = e.queryStringParameters || {};
@@ -17,7 +17,7 @@ const main = async (e: APIGatewayProxyEvent) => {
     case 'GET': {
       const data = await s3.getObjectAsJson(bucketName, cookbookKey);
       return http.response.ok({
-        body: data, 
+        body: data,
       });
     }
 
@@ -31,7 +31,7 @@ const main = async (e: APIGatewayProxyEvent) => {
       if (!await s3.itemExists(bucketName, cookbookKey)) {
         await s3.save(bucketName, cookbookKey, e.body);
         return http.response.ok({
-          body: existingRecipes, 
+          body: existingRecipes,
         });
       }
       else {
@@ -42,7 +42,7 @@ const main = async (e: APIGatewayProxyEvent) => {
         ];
         await s3.save(bucketName, cookbookKey, JSON.stringify(updatedRecipes));
         return http.response.ok({
-          body: updatedRecipes, 
+          body: updatedRecipes,
         });
       }
     }
@@ -54,7 +54,7 @@ const main = async (e: APIGatewayProxyEvent) => {
       await s3.save(bucketName, cookbookKey, JSON.stringify(withRecipeFilteredOut));
       return http.response.ok({
         body: withRecipeFilteredOut,
-        message: `'${recipeName}' deleted`, 
+        message: `'${recipeName}' deleted`,
       });
     }
 
@@ -63,4 +63,11 @@ const main = async (e: APIGatewayProxyEvent) => {
   }
 };
 
-export const handler = withErrorHandling(main);
+export const handler = withErrorHandling(
+  main,
+  (err, code) => {
+    return http.response.json(code, {
+      message: `${err.name}: ${err.message}`,
+    });
+  },
+);

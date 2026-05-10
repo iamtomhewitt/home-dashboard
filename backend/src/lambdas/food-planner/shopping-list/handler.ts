@@ -1,8 +1,8 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { BadRequestError, withErrorHandling } from '@iamtomhewitt/error';
 import { http } from '@iamtomhewitt/http';
 
 import s3 from '../../../lib/s3';
-import { BadRequestError, withErrorHandling } from '../../../lib/error';
 
 const main = async (e: APIGatewayProxyEvent) => {
   const { id } = e.queryStringParameters || {};
@@ -79,4 +79,11 @@ const main = async (e: APIGatewayProxyEvent) => {
   }
 };
 
-export const handler = withErrorHandling(main);
+export const handler = withErrorHandling(
+  main,
+  (err, code) => {
+    return http.response.json(code, {
+      message: `${err.name}: ${err.message}`,
+    });
+  },
+);

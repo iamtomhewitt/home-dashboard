@@ -1,7 +1,6 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
+import { BadRequestError, withErrorHandling } from '@iamtomhewitt/error';
 import { http } from '@iamtomhewitt/http';
-
-import { BadRequestError, withErrorHandling } from '../../lib/error';
 
 /**
  * *Why don't you make this request from the browser?*
@@ -25,4 +24,11 @@ const main = async (e: APIGatewayProxyEvent) => {
   });
 };
 
-export const handler = withErrorHandling(main);
+export const handler = withErrorHandling(
+  main,
+  (err, code) => {
+    return http.response.json(code, {
+      message: `${err.name}: ${err.message}`,
+    });
+  },
+);
