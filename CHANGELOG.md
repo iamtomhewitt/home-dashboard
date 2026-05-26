@@ -1,3 +1,10 @@
+## Version 7.2.0
+Released **26th May 2026 05:24:45pm** - *4 commits*
+- 72462b8 fix: missing weather icon
+- 2dc2481 chore: use to @iamtomhewitt/error
+- 360d884 ci: change order of script so that released files are included in the build
+- ef423f4 docs: update CHANGELOG to reflect changed release
+
 ## Version 7.1.1
 Released **6th May 2026 08:12:37am** - *9 commits*
 - 2fac16a deps: update package
@@ -350,4 +357,4 @@ Released **04 Apr 2026 21:34:27pm** - *158 commits*
 
 ### Issues in this release:
 
-* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser     
+* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser      
