@@ -35,13 +35,13 @@ const main = async (e: APIGatewayProxyEvent) => {
     .slice(0, 3);
 
   const mappedWeather = {
+    daily,
+    hourly,
     location: result.location.name,
     now: {
       condition: toKebabCase(result.current.condition.text),
       temperature: result.current.temp_c,
     },
-    hourly,
-    daily,
   };
 
   return http.response.ok({

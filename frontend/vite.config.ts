@@ -5,11 +5,11 @@ import { defineConfig } from 'vite';
 import pkg from './package.json';
 
 export default defineConfig({
+  define: {
+    'import.meta.env.PACKAGE_VERSION': JSON.stringify(pkg.version),
+  },
   plugins: [
     react({}),
     svgr(),
   ],
-  define: {
-    'import.meta.env.PACKAGE_VERSION': JSON.stringify(pkg.version),
-  },
 });

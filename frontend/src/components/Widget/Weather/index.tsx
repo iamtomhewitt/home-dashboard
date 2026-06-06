@@ -20,8 +20,8 @@ const Weather = ({ widget }: Props) => {
   const toWeatherIcon = (data: WeatherCondition, isHourlyWeather = false) => {
     const now = new Date();
     const isNight = dateFns.isWithinInterval(new Date(data.date), {
-      start: dateFns.setHours(now, 19).setMinutes(30, 0),
       end: dateFns.setHours(dateFns.addDays(now, 1), 5).setMinutes(59, 0),
+      start: dateFns.setHours(now, 19).setMinutes(30, 0),
     }) && isHourlyWeather;
 
     switch (data.condition) {

@@ -12,11 +12,11 @@ const main = async (e: APIGatewayProxyEvent) => {
   const makeTodoistRequest = async (path?: string, options?: RequestInit) => {
     const { method = 'GET', body } = options || {};
     const response = await fetch(`https://api.todoist.com/api/v1/tasks${path}`, {
-      method,
       headers: {
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
+      method,
       ...method !== 'GET' && {
         body: JSON.stringify(body),
       },
@@ -35,8 +35,8 @@ const main = async (e: APIGatewayProxyEvent) => {
       const data = await makeTodoistRequest(`?project_id=${projectId}`)
         .then(response => response.json())
         .then(({ results = [] }) => results.map((item: any) => ({
-          name: item.content,
           id: item.id,
+          name: item.content,
         })));
 
       return http.response.ok({

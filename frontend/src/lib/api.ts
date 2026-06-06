@@ -8,8 +8,8 @@ const post = async <T>(path: string, body?: any) => await http.request.post<T>(`
 const put = async <T>(path: string, body?: any) => await http.request.put<T>(`${apiUrl}${path}`, body);
 
 export const api = {
+  delete: _delete,
   get,
   post,
   put,
-  delete: _delete,
 };

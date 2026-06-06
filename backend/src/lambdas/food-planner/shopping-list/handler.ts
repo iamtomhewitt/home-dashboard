@@ -35,8 +35,8 @@ const main = async (e: APIGatewayProxyEvent) => {
           if (!acc[key]) {
             acc[key] = {
               ...item,
-              name: item.name.trim(),
               amount: 0,
+              name: item.name.trim(),
             };
           }
 

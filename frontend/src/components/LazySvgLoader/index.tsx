@@ -24,9 +24,9 @@ const useLazySvgImport = (name: string) => {
   }, [name]);
 
   return {
+    Svg: importRef.current,
     error,
     loading,
-    Svg: importRef.current,
   };
 };
 

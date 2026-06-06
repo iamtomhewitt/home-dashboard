@@ -39,8 +39,8 @@ const FoodPlanner = ({ widget }: Props) => {
   const onChangeDay = (day: string) => {
     modalstack.open(ChangeRecipe, {
       day,
-      title: 'Select Recipe',
       onClose: onRefresh,
+      title: 'Select Recipe',
     });
   };
 

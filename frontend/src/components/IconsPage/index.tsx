@@ -140,8 +140,8 @@ const IconsPage = () => {
         <div
           key={icon}
           style={{
-            textAlign: 'center',
             margin: '20px',
+            textAlign: 'center',
           }}
         >
           <div>{icon}</div>
