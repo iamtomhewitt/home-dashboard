@@ -1,3 +1,8 @@
+## Version 7.3.0
+Released **17th Aug 2026 03:21:51pm** - *2 commits*
+- 57aa794 fix: missing weather icon
+- fd49dd7 chore: update package
+
 ## Version 7.2.0
 Released **26th May 2026 05:24:45pm** - *4 commits*
 - 72462b8 fix: missing weather icon
@@ -357,4 +362,4 @@ Released **04 Apr 2026 21:34:27pm** - *158 commits*
 
 ### Issues in this release:
 
-* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser      
+* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser       
