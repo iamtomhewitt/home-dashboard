@@ -47,7 +47,9 @@ const Weather = ({ widget }: Props) => {
       case 'moderate-or-heavy-rain-in-area-with-thunder':
         return 'thunderstorms-rain';
 
+      case 'blizzard':
       case 'light-sleet-showers':
+      case 'blowing-snow':
         return 'sleet';
 
       default:
