@@ -46,13 +46,21 @@ const Login = () => {
       <div className='login-box'>
         <h1>Home Dashboard</h1>
 
-        <input onChange={onChangeInput} placeholder='Dashboard ID' />
+        <input
+          onChange={onChangeInput}
+          placeholder='Dashboard ID'
+          value={dashboardId}
+        />
 
         <button disabled={!dashboardId} onClick={onLogin}>
           Login
         </button>
 
         {error && <div className='login-error'>{error}</div>}
+
+        <div className='login-version'>
+          Version {import.meta.env.PACKAGE_VERSION}
+        </div>
       </div>
     </div>
   );
