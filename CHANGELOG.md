@@ -1,3 +1,8 @@
+## Version 8.0.0
+Released **24th Aug 2026 03:39:40pm** - *2 commits*
+- 986d6ce chore: show version on login screen
+- 2c25ed9 feat: use id from url to populate login screen
+
 ## Version 7.3.0
 Released **17th Aug 2026 03:21:51pm** - *2 commits*
 - 57aa794 fix: missing weather icon
@@ -362,4 +367,4 @@ Released **04 Apr 2026 21:34:27pm** - *158 commits*
 
 ### Issues in this release:
 
-* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser       
+* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser        
