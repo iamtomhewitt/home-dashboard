@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { ConfigApiResponse } from '../../types/config';
 import { api } from '../../lib/api';
@@ -12,6 +12,14 @@ const Login = () => {
   const [error, setError] = useState('');
   const [dashboardId, setDashboardId] = useState('');
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const id = searchParams.get('id');
+    if (id) {
+      setDashboardId(id);
+    }
+  }, []);
 
   const onChangeInput = (e: any) => {
     setDashboardId(e.target.value);
