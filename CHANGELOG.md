@@ -1,3 +1,7 @@
+## Version 8.0.1
+Released **30th Aug 2026 09:14:23am** - *1 commits*
+- 9cc5092 fix: bin widget not resetting at the weekend
+
 ## Version 8.0.0
 Released **24th Aug 2026 03:39:40pm** - *2 commits*
 - 986d6ce chore: show version on login screen
@@ -367,4 +371,4 @@ Released **04 Apr 2026 21:34:27pm** - *158 commits*
 
 ### Issues in this release:
 
-* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser        
+* [#164](https://github.com/iamtomhewitt/home-dashboard/issues/164) - Use github releaser         
