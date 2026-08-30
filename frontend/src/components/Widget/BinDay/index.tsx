@@ -16,6 +16,11 @@ const BinDay = ({ widget }: Props) => {
   widget.colour = display.colour;
 
   const onRefresh = () => {
+    setDisplay({
+      colour: widget.noBinColour,
+      message: 'No bins today!',
+    });
+
     const today = dateFns.startOfDay(new Date());
     const tomorrow = dateFns.startOfDay(dateFns.addDays(today, 1));
     let stopProcessing = false;
