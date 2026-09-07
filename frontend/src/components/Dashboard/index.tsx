@@ -8,7 +8,6 @@ import Clock from '../Widget/Clock';
 import Confirm from '../Modal/Confirm';
 import FoodPlan from '../Widget/FoodPlanner';
 import Gmail from '../Widget/Gmail';
-import Splitwise from '../Widget/Splitwise';
 import Todoist from '../Widget/Todoist';
 import Weather from '../Widget/Weather';
 import pkg from '../../../package.json';
@@ -29,7 +28,6 @@ const Dashboard = () => {
     clock: Clock,
     foodPlanner: FoodPlan,
     gmail: Gmail,
-    splitwise: Splitwise,
     todoist: Todoist,
     weather: Weather,
   };

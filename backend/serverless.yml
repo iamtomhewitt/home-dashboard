@@ -23,7 +23,6 @@ functions:
   - ${file(./src/lambdas/food-planner/shopping-list/infra/function.yml)}
   - ${file(./src/lambdas/google-calendar/infra/function.yml)}
   - ${file(./src/lambdas/news/infra/function.yml)}
-  - ${file(./src/lambdas/splitwise/infra/function.yml)}
   - ${file(./src/lambdas/todoist/infra/function.yml)}
   - ${file(./src/lambdas/weather/infra/function.yml)}
 
@@ -34,7 +33,6 @@ resources:
   - ${file(./src/lambdas/food-planner/shopping-list/infra/resources.yml)}
   - ${file(./src/lambdas/google-calendar/infra/resources.yml)}
   - ${file(./src/lambdas/news/infra/resources.yml)}
-  - ${file(./src/lambdas/splitwise/infra/resources.yml)}
   - ${file(./src/lambdas/todoist/infra/resources.yml)}
   - ${file(./src/lambdas/weather/infra/resources.yml)}
   - ${file(./infra/s3.yml)}
